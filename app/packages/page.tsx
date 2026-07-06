@@ -1,6 +1,6 @@
 'use client'
 
-import { SITE_NAME } from "../lib/branding";
+import { SITE_NAME } from "@/lib/branding";
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
