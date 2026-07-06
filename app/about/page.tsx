@@ -7,38 +7,39 @@ import { MapPin, Award, Shield, CheckCircle, Star, Sparkles, Users, Clock, Car, 
 import Link from "next/link";
 import Image from "next/image";
 import { SITE_NAME } from "@/lib/branding";
+import { COFFEE_IMAGES } from "@/lib/coffeeImages";
 
 const AboutPage = () => {
   const whatSetsUsApart = [
     {
       icon: Shield,
-      title: "Transparent Pricing",
-      description: "Clear inclusions with no hidden costs or misleading information",
-      image: "https://th.bing.com/th/id/OIP.6XOdcf3TQ4clGRinPTqowgHaFF?w=266&h=183&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+      title: "Transparent Sourcing",
+      description: "Clear origin details, roast dates, and pricing on every bag — no surprises",
+      image: COFFEE_IMAGES.beans
     },
     {
       icon: Star,
-      title: "Comfort & Quality",
-      description: "Focus on comfort, timing, and service quality in every experience",
-      image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      title: "Small-Batch Roasting",
+      description: "Roasted in limited batches for peak flavor and consistent quality",
+      image: COFFEE_IMAGES.beansDark
     },
     {
       icon: Users,
-      title: "Carefully Selected Partners",
-      description: "Handpicked vehicles, guides, and suppliers that meet our high standards",
-      image: "https://tse2.mm.bing.net/th/id/OIP.lwYPFhYWdpabUJ1JIS6F8QHaE7?rs=1&pid=ImgDetMain&o=7&rm=3"
+      title: "Farm Partnerships",
+      description: "Direct relationships with growers who share our commitment to quality",
+      image: COFFEE_IMAGES.pour
     },
     {
       icon: Sparkles,
-      title: "Personalized Tours",
-      description: "Customized International Tours tailored to your preferences and needs",
-      image: "https://tse3.mm.bing.net/th/id/OIP.mVmw5OWyuDbYW0aV-NMQZAHaF0?pid=ImgDet&w=184&h=144&c=7&dpr=1.3&o=7&rm=3"
+      title: "Custom Grind Options",
+      description: "Whole bean or ground for espresso, pour-over, French press, and more",
+      image: COFFEE_IMAGES.latte
     },
     {
       icon: UserCheck,
-      title: "Professional Support",
-      description: "Dedicated support from booking to completion of your journey",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      title: "Roaster Support",
+      description: "Brewing advice and product guidance from our team, order to cup",
+      image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80"
     }
   ];
 
@@ -61,11 +62,11 @@ const AboutPage = () => {
   ];
 
   const valueDifferences = [
-    "Better vehicles",
-    "Professional guides",
-    "Improved seating and timing",
-    "Less crowd and more comfort",
-    "Best Service throughout the trip"
+    "Freshly roasted to order",
+    "Ethically sourced beans",
+    "Roast date on every bag",
+    "Whole bean & ground options",
+    "Expert brewing guidance"
   ];
 
   const whyChooseUs = [
@@ -97,7 +98,7 @@ const AboutPage = () => {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"
+            backgroundImage: "url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2000&q=80')"
           }}
         />
         {/* Dark overlay */}
@@ -109,17 +110,17 @@ const AboutPage = () => {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
-            <p className="text-[#bd9245] font-bold uppercase tracking-[0.3em] text-sm mb-6">Our Journey</p>
+            <p className="text-[#bd9245] font-bold uppercase tracking-[0.3em] text-sm mb-6">Our Story</p>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-[1000] mb-6 leading-none tracking-tighter uppercase">
               About Us
             </h1>
             <p className="text-xl md:text-2xl mb-10 text-white/80 max-w-4xl mx-auto font-medium leading-relaxed">
-              {SITE_NAME} is a premium-focused global travel brand dedicated to delivering well-crafted travel experiences defined by comfort, clarity, and service quality.
+              {SITE_NAME} is a specialty coffee roaster dedicated to sourcing exceptional beans, roasting in small batches, and delivering peak freshness with every bag.
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-white/60 text-sm font-bold uppercase tracking-widest">
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
-                <span>Based In Cameroon</span>
+                <span>Specialty Roaster</span>
               </div>
               <span className="text-white/30">·</span>
               <div className="flex items-center space-x-2">
@@ -161,13 +162,13 @@ const AboutPage = () => {
                 </h2>
                 <div className="space-y-5 text-gray-700 leading-relaxed text-lg">
                   <p>
-                    {SITE_NAME} is a premier travel firm dedicated to seamless global mobility. We specialize in expertly curated tours and precision ticketing services, blending local expertise with world-class standards.
+                    {SITE_NAME} is a specialty coffee company dedicated to sourcing exceptional beans and roasting them with care. We blend origin expertise with small-batch precision.
                   </p>
                   <p>
-                    Whether you are exploring new horizons or securing your next flight, {SITE_NAME} delivers sophisticated, reliable, and personalized travel solutions designed to get you where you need to be.
+                    Whether you brew at home or run a café, {SITE_NAME} delivers freshly roasted coffee with transparent sourcing and reliable quality in every bag.
                   </p>
                   <p className="font-semibold text-[#1e1f44]">
-                    We are a specialized travel company dedicated to delivering quality, transparency, and genuine comfort to our guests from around the world.
+                    We are a passionate roasting team dedicated to quality, transparency, and the craft of great coffee.
                   </p>
                 </div>
               </div>
@@ -194,7 +195,7 @@ const AboutPage = () => {
             <div className="grid lg:grid-cols-2 gap-12 mb-16 items-center">
               <div className="space-y-6 text-gray-700 leading-relaxed text-lg order-2 lg:order-1">
                 <p>
-                  In a travel market often cluttered with hidden costs and inconsistent service, {SITE_NAME} stands for absolute clarity. We believe that booking a flight or a tour should never be a guessing game of "what's included."
+                  In a market full of stale supermarket coffee, {SITE_NAME} stands for freshness and honesty. We believe every bag should tell you where the beans came from, when they were roasted, and how to brew them best.
                 </p>
                 <p>
                   We bridge the gap between price and value. We don't simply chase the lowest fare; we pursue the highest standard. Our commitment is to ensure you understand exactly what you are paying for—eliminating uncertainty through transparent pricing, expert vetting, and premium service.
@@ -329,13 +330,13 @@ const AboutPage = () => {
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 bg-white/20 backdrop-blur-md text-white border-white/30">
               <Sparkles className="h-4 w-4 mr-2" />
-              Start Your Journey
+              Start Brewing
             </Badge>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
-              Ready to Start Your Journey?
+              Ready to Taste the Difference?
             </h2>
             <p className="text-lg md:text-xl mb-10 text-white/90 leading-relaxed">
-              If you are looking for premium international tours or seamless ticketing services delivered with professionalism and care, we invite you to explore the world with us
+              Explore our single-origin beans, signature blends, and subscription options — roasted fresh and delivered to your door.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
@@ -345,7 +346,7 @@ const AboutPage = () => {
               </Link>
               <Link href="/packages">
                 <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-6 backdrop-blur-sm bg-white/10">
-                  View Packages
+                  Shop Coffee
                 </Button>
               </Link>
             </div>

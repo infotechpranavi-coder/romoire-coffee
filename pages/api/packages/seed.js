@@ -2,6 +2,7 @@ import connectDB from '../../../lib/mongodb';
 import Package from '../../../models/Package';
 import { isConnected } from '../../../lib/mongodb';
 import { PACKAGE_EXPERIENCE_CATEGORIES } from '../../../lib/packageExperienceCategories';
+import { SITE_NAME } from '../../../lib/branding';
 
 const categoryImage = (value) =>
   PACKAGE_EXPERIENCE_CATEGORIES.find((c) => c.value === value)?.heroImage ?? '';
@@ -10,10 +11,10 @@ const packageDefaults = (categoryValue, title, extras = {}) => {
   const category = PACKAGE_EXPERIENCE_CATEGORIES.find((c) => c.value === categoryValue);
   return {
     title,
-    subtitle: extras.subtitle ?? category?.heroSubtitle?.slice(0, 90) ?? 'Curated Explore 360 experience',
-    about: extras.about ?? category?.heroSubtitle ?? 'A curated adventure with Explore 360.',
+    subtitle: extras.subtitle ?? category?.heroSubtitle?.slice(0, 90) ?? `Curated ${SITE_NAME} experience`,
+    about: extras.about ?? category?.heroSubtitle ?? `A curated adventure with ${SITE_NAME}.`,
     services: extras.services ?? 'Guided experience, safety briefing, expert support',
-    tourDetails: extras.tourDetails ?? `Full ${category?.label ?? 'experience'} package with Explore 360.`,
+    tourDetails: extras.tourDetails ?? `Full ${category?.label ?? 'experience'} package with ${SITE_NAME}.`,
     price: extras.price ?? 4999,
     duration: extras.duration ?? '1 Day',
     location: extras.location ?? 'South Africa',

@@ -208,7 +208,7 @@ const ContactForm = () => {
               Contact Us
             </h1>
             <p className="text-xl md:text-2xl mb-10 text-white/80 max-w-2xl mx-auto font-medium">
-              Get in touch with us for any questions, custom packages, or travel assistance
+              Get in touch for orders, wholesale inquiries, or coffee recommendations
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-white/60 text-sm font-bold uppercase tracking-widest">
               <div className="flex items-center space-x-2">
@@ -311,7 +311,7 @@ const ContactForm = () => {
                         </div>
                         <div>
                           <label htmlFor="destination" className="block text-sm font-medium text-gray-700 mb-2">
-                            Destination *
+                            Coffee / Product *
                           </label>
                           <div className="relative">
                             <Input
@@ -321,7 +321,7 @@ const ContactForm = () => {
                               value={formData.destination}
                               onChange={handleInputChange}
                               required
-                              placeholder="Enter or select destination"
+                              placeholder="Enter or select coffee"
                             />
                             <datalist id="contact-package-destinations">
                               {availablePackages.map((pkg) => (
@@ -335,7 +335,7 @@ const ContactForm = () => {
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
                           <label htmlFor="travelDate" className="block text-sm font-medium text-gray-700 mb-2">
-                            Travel Date *
+                            Preferred Delivery Date *
                           </label>
                           <Input
                             id="travelDate"
@@ -348,11 +348,11 @@ const ContactForm = () => {
                         </div>
                         <div>
                           <label htmlFor="travelers" className="block text-sm font-medium text-gray-700 mb-2">
-                            Number of Travelers *
+                            Quantity (bags) *
                           </label>
                           <Select value={formData.travelers} onValueChange={(val) => setFormData(p => ({...p, travelers: val}))} required>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select travelers" />
+                              <SelectValue placeholder="Select quantity" />
                             </SelectTrigger>
                             <SelectContent>
                               <SelectItem value="1">1 Person</SelectItem>
@@ -404,7 +404,7 @@ const ContactForm = () => {
                           name="message"
                           value={formData.message}
                           onChange={handleInputChange}
-                          placeholder="Tell us about your travel plans, Special requirements, or any specific requirements..."
+                          placeholder="Tell us your grind preference, brew method, or any special requests..."
                           rows={4}
                         />
                       </div>
@@ -616,7 +616,7 @@ const ContactForm = () => {
               Ready to Start Planning?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Let's create the perfect travel experience for you
+              Let&apos;s find the perfect coffee for you
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="tel:+237683577676">

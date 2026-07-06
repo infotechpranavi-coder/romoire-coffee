@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+const DEFAULT_AUTHOR = 'Romoire Travel Expert';
+
 const BlogSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -25,7 +27,7 @@ const BlogSchema = new mongoose.Schema({
   author: {
     type: String,
     required: [true, 'Please provide an author name'],
-    default: 'Skygo Travel Expert',
+    default: DEFAULT_AUTHOR,
   },
   category: {
     type: String,

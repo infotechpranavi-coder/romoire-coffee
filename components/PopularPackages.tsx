@@ -51,7 +51,7 @@ const PopularPackages = ({ initialPackages }: PopularPackagesProps) => {
     return (
       <div className="py-24 bg-[#faf8f3] flex flex-col items-center justify-center min-h-[400px]">
         <Loader2 className="w-12 h-12 text-[#bd9245] animate-spin mb-4" />
-        <p className="text-[#1e1f44] font-bold uppercase tracking-widest text-sm">Loading Premium Experiences...</p>
+        <p className="text-[#1e1f44] font-bold uppercase tracking-widest text-sm">Loading coffees...</p>
       </div>
     );
   }
@@ -85,7 +85,7 @@ const PopularPackages = ({ initialPackages }: PopularPackagesProps) => {
           <div className="space-y-8 2xl:pr-4">
             <div className="mb-6 md:mb-10 lg:overflow-hidden">
               <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-[1000] text-[#1e1f44] leading-[0.9] tracking-tighter uppercase break-words">
-                POPULAR<br />PACKAGES
+                POPULAR<br />COFFEES
               </h2>
             </div>
 
@@ -119,7 +119,7 @@ const PopularPackages = ({ initialPackages }: PopularPackagesProps) => {
                 className="group flex items-center gap-3 text-[#1e1f44] font-black text-xl uppercase tracking-tighter hover:bg-transparent hover:text-[#bd9245] transition-all duration-300"
                 onClick={() => router.push('/packages')}
               >
-                <span>View All Packages</span>
+                <span>Shop All Coffee</span>
                 <div className="w-10 h-10 rounded-full border border-[#3d407f]/10 flex items-center justify-center group-hover:bg-[#bd9245] group-hover:border-[#bd9245] transition-all">
                   <ArrowRight className="w-5 h-5" />
                 </div>
@@ -169,7 +169,7 @@ const PackageCard = ({ pkg, index, router, openForm }: any) => {
       <div className="p-6 flex flex-col justify-between flex-grow">
         <div>
           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">
-            {pkg.duration} &nbsp;·&nbsp; PREMIER EXPERIENCE
+            {pkg.duration} &nbsp;·&nbsp; SPECIALTY ROAST
           </p>
           <h3 className="text-xl md:text-2xl font-black text-[#1e1f44] leading-[1.1] mb-2 uppercase tracking-tighter group-hover:text-[#bd9245] transition-colors">
             {pkg.title}
@@ -178,7 +178,7 @@ const PackageCard = ({ pkg, index, router, openForm }: any) => {
             {[...Array(5)].map((_, i) => (
               <Star key={i} className="w-3 h-3 fill-[#bd9245] text-[#bd9245]" />
             ))}
-            <span className="text-[10px] font-bold text-gray-300 ml-1">Verified Experience</span>
+            <span className="text-[10px] font-bold text-gray-300 ml-1">Verified Roast</span>
           </div>
           <p className="text-gray-400 text-[13px] leading-relaxed line-clamp-2 font-medium">
             {pkg.subtitle}
@@ -210,7 +210,7 @@ const PackageCard = ({ pkg, index, router, openForm }: any) => {
               });
             }}
           >
-            Enquire Now
+            Order Now
           </Button>
         </div>
       </div>

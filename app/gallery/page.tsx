@@ -34,7 +34,7 @@ export default function GalleryPage() {
         <div
           className="absolute inset-0 opacity-20"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2000&q=80')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -48,7 +48,7 @@ export default function GalleryPage() {
             Our Gallery
           </h1>
           <p className="text-white/60 text-lg max-w-2xl mx-auto font-medium">
-            Explore unforgettable journeys and adventures from {SITE_NAME} travelers around the world.
+            Explore our roastery, brewing moments, and coffee culture with {SITE_NAME}.
           </p>
         </div>
       </section>

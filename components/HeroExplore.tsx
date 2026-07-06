@@ -61,13 +61,13 @@ const HeroExplore = ({ initialBanners }: HeroExploreProps) => {
     _id: 'default',
     title: SITE_NAME.toUpperCase(),
     subtitle:
-      'Start your exciting travel adventure with Explore 360, where safety and memorable experiences come first.',
+      `Discover freshly roasted specialty coffee beans from ${SITE_NAME} — sourced ethically, roasted in small batches, delivered at peak flavor.`,
     image: {
-      url: '/safeimagekit-kayak2__1_.webp',
-      public_id: 'default-kayak',
-      alt: 'Kayaking adventure',
+      url: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1920&q=80',
+      public_id: 'default-coffee',
+      alt: 'Premium coffee beans',
     },
-    link: '/packages/kayaking-boat-rides',
+    link: '/packages',
     mediaType: 'image',
     isActive: true,
     createdAt: new Date().toISOString(),
@@ -122,7 +122,7 @@ const HeroExplore = ({ initialBanners }: HeroExploreProps) => {
   const heroTitle = getHeroTitle(currentBanner.title);
   const description =
     currentBanner.subtitle?.trim() ||
-    'Start your exciting travel adventure with Explore 360, where safety and memorable experiences come first.';
+    `Discover freshly roasted specialty coffee beans from ${SITE_NAME} — sourced ethically, roasted in small batches, delivered at peak flavor.`;
 
   const handlePrimaryAction = () => {
     if (currentBanner.link) {
@@ -235,7 +235,7 @@ const HeroExplore = ({ initialBanners }: HeroExploreProps) => {
                 onClick={handlePrimaryAction}
                 className="mt-6 inline-flex items-center justify-center rounded-full bg-[#c8d8e2] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#17303f] transition hover:bg-white sm:mt-8 sm:px-8 sm:py-3.5 sm:text-xs"
               >
-                {currentBanner.link ? 'View Details' : 'Book An Experience'}
+                {currentBanner.link ? 'View Coffee' : 'Shop Now'}
               </button>
             </motion.div>
           </AnimatePresence>

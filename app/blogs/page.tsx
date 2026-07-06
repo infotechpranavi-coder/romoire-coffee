@@ -163,7 +163,7 @@ const BlogsPage = () => {
               Travel Blog
             </h1>
             <p className="text-xl md:text-2xl mb-10 text-white/80 max-w-2xl mx-auto font-medium leading-relaxed">
-              Discover travel tips, destination guides, and inspiring stories from {SITE_NAME}
+              Discover brewing tips, origin stories, and coffee culture from {SITE_NAME}
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-white/60 text-sm font-bold uppercase tracking-widest">
               <div className="flex items-center space-x-2">

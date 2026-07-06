@@ -4,17 +4,18 @@ import { useState, useEffect, FormEvent, ReactNode } from 'react';
 import { ArrowUpRight, Facebook, Instagram, Twitter, Linkedin, Youtube } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, LOGO_SRC } from '@/lib/branding';
+import BrandLogo from '@/components/BrandLogo';
+import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION } from '@/lib/branding';
 import { useCategoryLabels } from '@/contexts/CategoryLabelsContext';
 import { getGroupPageHref } from '@/lib/packageExperienceCategories';
 
 const FOOTER_BG =
-  'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80';
+  'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2000&q=80';
 
 const quickLinks = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
-  { label: 'Packages', href: '/packages' },
+  { label: 'Shop Coffee', href: '/packages' },
   { label: 'Blog', href: '/blogs' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Contact Us', href: '/contact' },
@@ -95,15 +96,10 @@ const Footer = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0">
             {/* Brand + social */}
             <div className="lg:pr-10 space-y-6">
-              <Link href="/" className="inline-flex items-center gap-3">
-                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full border border-gray-200 bg-white shadow-sm">
-                  <Image src={LOGO_SRC} alt={SITE_NAME} fill className="object-contain p-1.5" sizes="56px" />
-                </div>
-                <div>
-                  <p className="text-xl font-black text-gray-900 tracking-tight">{SITE_NAME}</p>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9aab6b]">{SITE_TAGLINE}</p>
-                </div>
-              </Link>
+              <div>
+                <BrandLogo size="md" />
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9aab6b] mt-2 pl-0.5">{SITE_TAGLINE}</p>
+              </div>
 
               <p className="text-sm leading-relaxed text-gray-600 max-w-xs">
                 {SITE_DESCRIPTION.split('.')[0]}.
@@ -155,7 +151,7 @@ const Footer = () => {
 
             {/* Experience categories */}
             <div className="lg:border-l lg:border-gray-200 lg:pl-10 space-y-5">
-              <h4 className="text-base font-bold text-gray-900">Experience Categories</h4>
+              <h4 className="text-base font-bold text-gray-900">Coffee Collections</h4>
               <ul className="space-y-3">
                 {navGroups.map((group) => (
                   <FooterLink key={group.slug} href={getGroupPageHref(group.slug)}>
@@ -171,7 +167,7 @@ const Footer = () => {
                 Subscribe To Our Newsletter
               </h4>
               <p className="text-xs text-gray-500 leading-relaxed">
-                * Sign up to receive curated travel ideas, seasonal discounts.
+                * Sign up for new roasts, brewing tips, and exclusive offers.
               </p>
               <form onSubmit={handleNewsletter} className="flex overflow-hidden rounded-full border border-gray-200 bg-gray-50/80 shadow-sm">
                 <input

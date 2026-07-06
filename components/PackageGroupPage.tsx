@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Clock, MapPin, Search, Star, Users, ArrowRight, Compass } from 'lucide-react';
+import { SITE_NAME } from '@/lib/branding';
 import {
   PackageNavGroup,
   GROUP_HERO_IMAGES,
@@ -139,12 +140,12 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
             <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-6">
               <Compass className={`h-4 w-4 ${styles.icon}`} />
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/90">
-                Explore 360
+                {SITE_NAME}
               </span>
             </div>
             <h1 className="text-4xl md:text-6xl font-black mb-5 tracking-tight uppercase">{group.label}</h1>
             <p className="text-lg md:text-xl text-white/85 max-w-2xl mx-auto font-medium leading-relaxed">
-              All {group.label.toLowerCase()} experiences — browse packages from the database below
+              All {group.label.toLowerCase()} coffees — browse beans from our collection below
             </p>
           </div>
         </div>

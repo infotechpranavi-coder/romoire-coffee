@@ -508,7 +508,7 @@ Why Choose This Trip?
 • Ideal for families, couples, and private groups
 • Balanced mix of sightseeing and leisure
 
-Why Explore 360 UAE for This Journey?
+Why ${SITE_NAME} UAE for This Journey?
 
 • Dedicated private vehicles and professional drivers
 • Custom itinerary adjustments based on preferences
@@ -773,7 +773,7 @@ Why Choose This Trip ?
 • Ideal for families, honeymooners, and small groups
 • Balanced mix of culture, luxury, and leisure
 
-Why Explore 360 for This Journey ?
+Why ${SITE_NAME} for This Journey ?
 
 • Per - vehicle pricing for better value
 • Private vehicles and experienced local staff
@@ -1444,7 +1444,7 @@ This transit tour operates throughout the year.
 
 Cape Town's infrastructure ensures comfort even during cooler months.
 
-Why Explore 360 for This Transit Trip ?
+Why ${SITE_NAME} for This Transit Trip ?
 
 • Expertise in short - stay and stopover logistics
 • Flight - time - sensitive planning
@@ -1637,7 +1637,7 @@ With flexible hotel categories and a mix of guided tours and personal free time,
 
 Tour Overview 
 Cape Town is a destination of contrasts, historic neighborhoods sit beside futuristic skylines, calm coastal landscapes balance vibrant urban life, and traditional hospitality blends seamlessly with modern style.The Cape Town Classic Discovery tour has been crafted to reflect this diversity while maintaining simplicity and ease throughout the journey.
-From the moment you arrive, all major travel logistics are handled by Explore 360, allowing you to focus entirely on enjoying the destination. Private airport transfers ensure a smooth arrival, while carefully scheduled sightseeing days prevent fatigue.
+From the moment you arrive, all major travel logistics are handled by ${SITE_NAME}, allowing you to focus entirely on enjoying the destination. Private airport transfers ensure a smooth arrival, while carefully scheduled sightseeing days prevent fatigue.
 The tour introduces Cape Town gradually, starting with a relaxed arrival day followed by guided city exploration.Guests experience historical Cape Town, with its heritage areas and traditional markets, and modern districts, known for architectural landmarks.
 A wildlife safari offers a cultural contrast to the city experience, providing insight into the region's natural landscape. The evening Harbour Cruise delivers a calm, scenic dining experience, ideal for families and couples alike.
 The inclusion of a Winelands tour adds depth to the itinerary, offering a broader understanding of the Western Cape beyond the city.A dedicated free day allows guests to shop, relax, or explore independently, an essential element for a comfortable holiday.
@@ -2724,7 +2724,7 @@ Key Highlights`,
                   </div>
 
                   <CardContent className="p-8 md:p-12">
-                    {/* About Explore 360 Story */}
+                    {/* About Romoire Story */}
                     {packageData.about && (
                       <Card className="border border-gray-100 shadow-sm overflow-hidden bg-white rounded-3xl mb-12">
                         <div className="p-8 bg-gray-50 border-b border-gray-100">
@@ -3255,7 +3255,7 @@ Key Highlights`,
                     </CardContent>
                   </Card>
 
-                  {/* About Explore 360 */}
+                  {/* About Romoire */}
                   <Card className="border border-gray-100 shadow-sm overflow-hidden bg-white rounded-3xl">
                     <div className="bg-gray-50 px-8 py-5 border-b border-gray-100">
                       <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">About {SITE_NAME}</h4>

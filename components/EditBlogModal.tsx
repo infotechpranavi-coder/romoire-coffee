@@ -8,6 +8,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { X, Upload, Save, Eye } from "lucide-react";
+import { SITE_NAME } from "@/lib/branding";
+
+const DEFAULT_AUTHOR = `${SITE_NAME} Travel Expert`;
 
 interface EditBlogModalProps {
     isOpen: boolean;
@@ -22,7 +25,7 @@ const EditBlogModal = ({ isOpen, onClose, onBlogUpdated, blog }: EditBlogModalPr
         slug: "",
         excerpt: "",
         content: "",
-        author: "Skygo Travel Expert",
+        author: DEFAULT_AUTHOR,
         category: "Experience",
         status: "published",
         isFeatured: false,
@@ -44,7 +47,7 @@ const EditBlogModal = ({ isOpen, onClose, onBlogUpdated, blog }: EditBlogModalPr
                 slug: blog.slug || "",
                 excerpt: blog.excerpt || "",
                 content: blog.content || "",
-                author: blog.author || "Skygo Travel Expert",
+                author: blog.author || DEFAULT_AUTHOR,
                 category: blog.category || "Experience",
                 status: blog.status || "published",
                 isFeatured: blog.isFeatured || false,

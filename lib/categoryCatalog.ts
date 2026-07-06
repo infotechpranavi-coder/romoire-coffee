@@ -1,3 +1,4 @@
+import { SITE_NAME } from './branding';
 import {
   PACKAGE_NAV_GROUPS,
   CATEGORY_IMAGES,
@@ -140,7 +141,7 @@ export function buildCustomSubcategory(entry: CustomSubcategoryEntry): PackageEx
     slug: entry.slug,
     href: `/packages/category/${entry.slug}`,
     heroTitle: label,
-    heroSubtitle: entry.heroSubtitle?.trim() || `Explore ${label} with Explore 360`,
+    heroSubtitle: entry.heroSubtitle?.trim() || `Shop ${label} coffee with ${SITE_NAME}`,
     heroImage: CATEGORY_IMAGES['yachts-sailing-cruises'],
     emptyMessage: `No ${label} packages yet`,
     accent: defaultAccentForGroup(entry.groupSlug),

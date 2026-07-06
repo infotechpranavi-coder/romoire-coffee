@@ -24,6 +24,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { TicketData } from "@/lib/types";
+import { SITE_NAME } from "@/lib/branding";
 import { useInquiryForm } from "@/contexts/InquiryFormContext";
 
 const demoTickets = [
@@ -314,7 +315,7 @@ const TicketDetailPage = () => {
 
                             <div className="bg-gray-50 p-6 flex items-center justify-center gap-8 border-t border-gray-100">
                                 <div className="flex items-center gap-2 opacity-30 grayscale">
-                                    <span className="text-[8px] font-bold uppercase tracking-widest">Skygo Air Services Member</span>
+                                    <span className="text-[8px] font-bold uppercase tracking-widest">{SITE_NAME} Air Services Member</span>
                                 </div>
                             </div>
                         </motion.div>
@@ -456,7 +457,7 @@ const TicketDetailPage = () => {
                                         <Users className="h-8 w-8" />
                                     </div>
                                     <div>
-                                        <p className="text-amber-600 text-[10px] font-bold uppercase tracking-widest mb-1">Skygo Service</p>
+                                        <p className="text-amber-600 text-[10px] font-bold uppercase tracking-widest mb-1">{SITE_NAME} Service</p>
                                         <p className="text-lg font-black text-gray-900 leading-tight">Expert Assistance</p>
                                     </div>
                                 </div>

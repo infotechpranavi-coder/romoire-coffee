@@ -1,10 +1,11 @@
 'use client'
 
+import { SITE_NAME } from "../lib/branding";
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Search, ArrowRight, Waves } from "lucide-react";
+import { Search, ArrowRight, Coffee } from "lucide-react";
 import Link from "next/link";
 import {
   PACKAGE_NAV_GROUPS,
@@ -58,21 +59,21 @@ const PackagesPage = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-6">
-              <Waves className="h-4 w-4 text-cyan-200" />
-              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/90">Explore 360 Experiences</span>
+              <Coffee className="h-4 w-4 text-amber-200" />
+              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/90">{SITE_NAME} Coffee</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-black mb-6 leading-none tracking-tight uppercase">
-              Tour Packages
+              Shop Coffee Beans
             </h1>
             <p className="text-lg md:text-xl mb-10 text-white/85 max-w-2xl mx-auto font-medium">
-              Choose an experience type — water, land, or sky — then browse packages on that page
+              Browse by origin, roast profile, blend, or subscription — whole bean and ground options available
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-white/60 text-sm font-bold uppercase tracking-widest">
-              <span>{totalCategories} Experience Categories</span>
+              <span>{totalCategories} Coffee Collections</span>
               <span className="text-white/30">·</span>
-              <span>Best Price Guarantee</span>
+              <span>Freshly Roasted</span>
               <span className="text-white/30">·</span>
-              <span>Expert Guided</span>
+              <span>Ethically Sourced</span>
             </div>
           </div>
         </div>
@@ -82,13 +83,13 @@ const PackagesPage = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-8">
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#bd9245] mb-2">Explore by Experience</p>
-              <h2 className="text-3xl font-black text-[#1e1f44] mb-3 uppercase tracking-tight">All Experience Categories</h2>
-              <p className="text-gray-600 mb-6">Water, Land — Motor, Land — Physical, and Sky</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#bd9245] mb-2">Shop by Collection</p>
+              <h2 className="text-3xl font-black text-[#1e1f44] mb-3 uppercase tracking-tight">All Coffee Categories</h2>
+              <p className="text-gray-600 mb-6">Single Origin, Roasts, Blends, Specialty, and Subscriptions</p>
               <div className="relative max-w-md mx-auto">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
-                  placeholder="Search experience types..."
+                  placeholder="Search coffee beans, roasts, origins..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-11 h-12 rounded-full border-gray-200 bg-white shadow-sm"

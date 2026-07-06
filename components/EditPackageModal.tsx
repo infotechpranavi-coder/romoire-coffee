@@ -16,7 +16,7 @@ import PackageTourExtrasFields, {
   type ShortItineraryRow,
 } from "@/components/PackageTourExtrasFields";
 import { useCategoryLabels } from "@/contexts/CategoryLabelsContext";
-import { SITE_NAME } from "@/lib/branding";
+import { SITE_NAME, LOGO_SRC } from "@/lib/branding";
 
 interface ItineraryDay {
   id: string;
@@ -1044,7 +1044,7 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
               <div className="flex flex-wrap gap-3">
                 {existingImages.map((image, index) => (
                   <div key={`existing_${index}`} className="relative w-24 h-24 rounded-xl border border-gray-100 overflow-hidden group shadow-sm">
-                    <img src={image.url} className="w-full h-full object-cover" alt={image.alt || `Image ${index + 1}`} onError={(e) => { (e.target as HTMLImageElement).src = '/explore360-logo.png'; }} />
+                    <img src={image.url} className="w-full h-full object-cover" alt={image.alt || `Image ${index + 1}`} onError={(e) => { (e.target as HTMLImageElement).src = LOGO_SRC; }} />
                     <button type="button" onClick={() => removeExistingImage(index)} className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"><X className="h-3 w-3" /></button>
                     <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-[9px] px-1 py-0.5 text-center">Saved</div>
                   </div>
@@ -1058,7 +1058,7 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
                 ))}
                 {externalImageUrls.map((url, index) => (
                   <div key={`url_${url}`} className="relative w-24 h-24 rounded-xl border border-blue-100 overflow-hidden group shadow-sm">
-                    <img src={url} className="w-full h-full object-cover" alt={`URL image ${index + 1}`} onError={(e) => { (e.target as HTMLImageElement).src = '/explore360-logo.png'; }} />
+                    <img src={url} className="w-full h-full object-cover" alt={`URL image ${index + 1}`} onError={(e) => { (e.target as HTMLImageElement).src = LOGO_SRC; }} />
                     <button type="button" onClick={() => setExternalImageUrls(prev => prev.filter((_, i) => i !== index))} className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"><X className="h-3 w-3" /></button>
                   </div>
                 ))}

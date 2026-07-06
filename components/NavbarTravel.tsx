@@ -5,10 +5,9 @@ import { Search, Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useInquiryForm } from "../contexts/InquiryFormContext";
-import { SITE_NAME, LOGO_SRC } from "@/lib/branding";
+import BrandLogo from "@/components/BrandLogo";
 import { PACKAGE_NAV_GROUPS, getGroupPageHref } from "@/lib/packageExperienceCategories";
 import { useCategoryLabels } from "@/contexts/CategoryLabelsContext";
 
@@ -21,11 +20,11 @@ type NavItem = {
 };
 
 const groupHoverStyles: Record<string, string> = {
-  water: 'bg-teal-50 text-teal-800',
-  'land-motor': 'bg-orange-50 text-orange-800',
-  'land-physical': 'bg-green-50 text-green-800',
-  sky: 'bg-violet-50 text-violet-800',
-  'upcoming-tours': 'bg-amber-50 text-amber-800',
+  'single-origin': 'bg-amber-50 text-amber-800',
+  roasts: 'bg-orange-50 text-orange-800',
+  blends: 'bg-green-50 text-green-800',
+  specialty: 'bg-violet-50 text-violet-800',
+  subscribe: 'bg-teal-50 text-teal-800',
 };
 
 const NavbarTravel = () => {
@@ -58,7 +57,7 @@ const NavbarTravel = () => {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     {
-      name: 'Package',
+      name: 'Shop',
       href: '/packages',
       packageGroups: navGroups,
     },
@@ -133,19 +132,9 @@ const NavbarTravel = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center relative z-50">
-            <div className="relative w-40 h-12 md:w-52 md:h-14">
-              <Image
-                src={LOGO_SRC}
-                alt={SITE_NAME}
-                fill
-                className={`object-contain object-left transition-all duration-300 ${
-                  useSolidNav ? '' : 'brightness-0 invert'
-                }`}
-                priority
-              />
-            </div>
-          </Link>
+          <div className="relative z-50">
+            <BrandLogo variant={useSolidNav ? 'dark' : 'light'} />
+          </div>
 
           {/* Centered Navigation Pill */}
           <div className={`hidden lg:flex items-center justify-center flex-1 transition-all duration-300 ${isSearchOpen ? 'opacity-0 pointer-events-none scale-95' : 'opacity-100'}`}>
@@ -237,7 +226,7 @@ const NavbarTravel = () => {
                               }}
                               className="block px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-[#bd9245] hover:bg-[#bd9245]/5 border-t border-gray-100 mt-1"
                             >
-                              View All Packages
+                              View All Coffee
                             </Link>
                           </div>
                           {hoveredPackageGroup && (
@@ -414,7 +403,7 @@ const NavbarTravel = () => {
                 <form onSubmit={handleSearch} className="flex items-center w-full bg-white/80 backdrop-blur-xl rounded-full border border-[#bd9245]/30 shadow-sm px-2 overflow-hidden">
                   <Input
                     autoFocus
-                    placeholder="Search trips, flights, or packages..."
+                    placeholder="Search coffee beans, roasts, or blends..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="border-none outline-none shadow-none ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 bg-transparent text-gray-800 h-10 w-full rounded-full"
@@ -461,7 +450,7 @@ const NavbarTravel = () => {
                   : 'bg-transparent border border-white/35 text-white hover:bg-white/10 hover:text-white'
               } font-bold px-5 py-2 rounded-full shadow-none h-10 whitespace-nowrap text-[11px] uppercase tracking-[0.16em]`}
             >
-              Book Now
+              Order Now
             </Button>
           </div>
 
@@ -565,7 +554,7 @@ const NavbarTravel = () => {
               }}
               className="w-full bg-[#bd9245] hover:bg-[#a07835] text-gray-900 font-bold mt-4"
             >
-              Book Now
+              Order Now
             </Button>
           </div>
         </div>

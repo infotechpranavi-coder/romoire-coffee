@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useInquiryForm } from "../contexts/InquiryFormContext";
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { COFFEE_IMAGES } from "@/lib/coffeeImages";
 
 const ExploreWithUs = () => {
   const router = useRouter();
@@ -46,19 +47,16 @@ const ExploreWithUs = () => {
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            {/* TIME TO TRAVEL heading */}
             <p className="text-[#bd9245] font-bold text-sm uppercase tracking-wider mb-2">
-              TIME TO TRAVEL
+              FRESH FROM THE ROASTERY
             </p>
 
-            {/* EXPLORE WITH US - Large stacked heading */}
             <h2 className="text-6xl sm:text-7xl md:text-8xl font-black text-gray-900 mb-8 leading-tight">
-              EXPLORE<br />WITH US
+              BREW<br />WITH US
             </h2>
 
-            {/* ALL PACKAGES INCLUDE section */}
             <p className="text-gray-500 text-lg md:text-xl font-medium tracking-wide mb-6">
-              Everything Handled. You Just Show Up.
+              Every bag includes what matters most.
             </p>
 
             {/* Two Column Inclusions List */}
@@ -91,10 +89,10 @@ const ExploreWithUs = () => {
             {/* CTA Button and Phone */}
             <div className="flex items-center gap-6">
               <Button
-                onClick={() => openForm()}
+                onClick={() => router.push('/packages')}
                 className="bg-[#bd9245] hover:bg-[#a07835] text-gray-900 font-bold px-8 py-6 rounded-lg text-base"
               >
-                Book Now
+                Shop Now
               </Button>
 
               {/* Phone Number */}
@@ -123,8 +121,8 @@ const ExploreWithUs = () => {
               <div className="absolute top-0 left-0 w-64 h-80 bg-white p-4 shadow-2xl transform rotate-[-8deg] z-10">
                 <div className="relative w-full h-full">
                   <Image
-                    src="/safeimagekit-kayak2__1_.webp"
-                    alt="Kayaking adventure"
+                    src={COFFEE_IMAGES.beans}
+                    alt="Coffee beans"
                     fill
                     className="object-cover"
                   />
@@ -135,8 +133,8 @@ const ExploreWithUs = () => {
               <div className="absolute top-20 left-32 w-64 h-80 bg-white p-4 shadow-2xl transform rotate-[5deg] z-20">
                 <div className="relative w-full h-full">
                   <Image
-                    src="/four-adventurous-friends-whitewater-rafting-through-rapids-free-photo.webp"
-                    alt="Whitewater rafting"
+                    src={COFFEE_IMAGES.beansDark}
+                    alt="Pouring coffee"
                     fill
                     className="object-cover"
                   />
@@ -147,8 +145,8 @@ const ExploreWithUs = () => {
               <div className="absolute top-40 left-64 w-64 h-80 bg-white p-4 shadow-2xl transform rotate-[-3deg] z-30">
                 <div className="relative w-full h-full">
                   <Image
-                    src="/bungee-jumping-nedir.webp"
-                    alt="Bungee jumping"
+                    src={COFFEE_IMAGES.latte}
+                    alt="Latte art"
                     fill
                     className="object-cover"
                   />

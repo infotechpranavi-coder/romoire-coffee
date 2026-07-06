@@ -7,9 +7,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { SITE_NAME, LOGO_SRC } from "@/lib/branding";
+import BrandLogo from "@/components/BrandLogo";
+import { SITE_NAME } from "@/lib/branding";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -24,8 +24,8 @@ const LoginPage = () => {
     setIsLoading(true);
     setError("");
 
-    // Credentials: admin@skygo.com / skygo@admin2025
-    if (email === "admin@skygo.com" && password === "skygo@admin2025") {
+    // Credentials: romoire@gmail.com / Admin@123
+    if (email === "romoire@gmail.com" && password === "Admin@123") {
       // Set session cookie for 24 hours
       const expires = new Date();
       expires.setHours(expires.getHours() + 24);
@@ -45,15 +45,8 @@ const LoginPage = () => {
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-56 h-16 mb-4">
-            <Image
-              src={LOGO_SRC}
-              alt={`${SITE_NAME} Logo`}
-              width={224}
-              height={64}
-              className="h-full w-auto object-contain"
-              priority
-            />
+          <div className="inline-flex items-center justify-center mb-4">
+            <BrandLogo size="lg" asLink={false} />
           </div>
           <h1 className="text-3xl font-bold text-slate-900">Welcome Back</h1>
           <p className="text-slate-500 mt-2">Sign in to manage your {SITE_NAME} portal</p>
@@ -83,7 +76,7 @@ const LoginPage = () => {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="admin@skygo.com"
+                    placeholder="romoire@gmail.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="pl-10 h-11 border-slate-200 focus:border-primary focus:ring-primary/10 bg-slate-50/30"

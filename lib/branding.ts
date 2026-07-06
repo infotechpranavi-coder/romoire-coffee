@@ -1,20 +1,31 @@
-export const SITE_NAME = 'Explore 360';
-export const SITE_TAGLINE = 'The Experience Company';
-export const LOGO_SRC = '/explore360-logo.png';
+export const SITE_NAME = 'Romoire';
+export const SITE_TAGLINE = 'Specialty Coffee Roasters';
+export const LOGO_SRC = '/romoire-logo.svg';
 export const SITE_DESCRIPTION =
-  'Explore 360 specializes in comprehensive tours, travel, and ticketing services. We provide well-curated travel experiences and seamless flight bookings with professional, personalized solutions for journeys within the region and beyond.';
+  'Romoire sources and roasts premium coffee beans from the world\'s finest growing regions. Shop single-origin lots, signature blends, and fresh roasts delivered to your door.';
 
-export const DEFAULT_ABOUT_TEXT = `${SITE_NAME} is a specialized travel management company dedicated to crafting exceptional journeys across dynamic destinations.`;
+export const DEFAULT_ABOUT_TEXT = `${SITE_NAME} is a specialty coffee roaster dedicated to sourcing exceptional beans, roasting in small batches, and delivering peak freshness with every bag.`;
 
 export const DEFAULT_SERVICES_TEXT =
-  'Customized travel planning, Guided tours & local experiences, Group & family vacations, Luxury & adventure travel';
+  'Single-origin beans, Signature blends, Espresso roasts, Whole bean & ground options, Wholesale & subscriptions';
 
-/** Replace legacy SkyGo branding in stored package copy when rendering. */
+/** Replace legacy travel branding in stored product copy when rendering. */
 export function brandedText(text?: string | null): string {
   if (!text) return '';
   return text
+    .replace(/Explore\s*360/gi, SITE_NAME)
     .replace(/Premium Sky\s*Go Tours/gi, `Premium ${SITE_NAME}`)
     .replace(/Premium Skygo Tours/gi, `Premium ${SITE_NAME}`)
     .replace(/Sky\s*Go/gi, SITE_NAME)
-    .replace(/Skygo/gi, SITE_NAME);
+    .replace(/Skygo/gi, SITE_NAME)
+    .replace(/\b(tour|tours|travel package|travel packages|ticketing)\b/gi, (match) => {
+      const map: Record<string, string> = {
+        tour: 'coffee',
+        tours: 'coffees',
+        'travel package': 'coffee bag',
+        'travel packages': 'coffee bags',
+        ticketing: 'ordering',
+      };
+      return map[match.toLowerCase()] ?? match;
+    });
 }

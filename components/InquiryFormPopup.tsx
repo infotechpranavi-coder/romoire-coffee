@@ -84,8 +84,8 @@ const InquiryFormPopup = ({ isOpen, onClose, productInfo }: InquiryFormPopupProp
           : '') ||
         [
           formData.destination && `Destination: ${formData.destination}`,
-          formData.travelDate && `Travel date: ${formData.travelDate}`,
-          formData.travelers && `Travelers: ${formData.travelers}`,
+          formData.travelDate && `Delivery date: ${formData.travelDate}`,
+          formData.travelers && `Quantity: ${formData.travelers}`,
           formData.budget && `Budget: ${formData.budget}`,
         ]
           .filter(Boolean)
@@ -159,10 +159,10 @@ const InquiryFormPopup = ({ isOpen, onClose, productInfo }: InquiryFormPopupProp
           </button>
           <div className="text-center pr-8 sm:pr-0">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">
-              {productInfo && productInfo.type !== 'General' ? `Book ${productInfo.title}` : 'Plan Your Dream Trip'}
+              {productInfo && productInfo.type !== 'General' ? `Order ${productInfo.title}` : 'Place Your Coffee Order'}
             </h2>
             <p className="text-sm sm:text-base md:text-lg opacity-90">
-              {productInfo && productInfo.type !== 'General' ? `Send an inquiry for this ${productInfo.type.toLowerCase()}` : 'Get personalized travel recommendations from our experts'}
+              {productInfo && productInfo.type !== 'General' ? `Tell us how you'd like this coffee prepared and delivered` : 'Get personalized coffee recommendations from our roasting team'}
             </p>
           </div>
         </div>
@@ -245,7 +245,7 @@ const InquiryFormPopup = ({ isOpen, onClose, productInfo }: InquiryFormPopupProp
 
               <div>
                 <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
-                  Destination *
+                  Coffee / Product *
                 </label>
                 <div className="relative">
                   <input
@@ -255,7 +255,7 @@ const InquiryFormPopup = ({ isOpen, onClose, productInfo }: InquiryFormPopupProp
                     onChange={handleInputChange}
                     required
                     className="w-full max-w-xs sm:max-w-none px-2 sm:px-4 py-1.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all text-xs sm:text-base"
-                    placeholder="Enter or select destination"
+                    placeholder="Enter or select coffee"
                   />
                   <datalist id="package-destinations">
                     {availablePackages.map((pkg) => (
@@ -269,7 +269,7 @@ const InquiryFormPopup = ({ isOpen, onClose, productInfo }: InquiryFormPopupProp
             <div className="grid md:grid-cols-2 gap-1 sm:gap-4">
               <div>
                 <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
-                  Travel Date *
+                  Preferred Delivery Date *
                 </label>
                 <input
                   type="date"
@@ -283,7 +283,7 @@ const InquiryFormPopup = ({ isOpen, onClose, productInfo }: InquiryFormPopupProp
 
               <div>
                 <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
-                  Number of Travelers *
+                  Quantity (bags) *
                 </label>
                 <select
                   name="travelers"
@@ -292,7 +292,7 @@ const InquiryFormPopup = ({ isOpen, onClose, productInfo }: InquiryFormPopupProp
                   required
                   className="w-full max-w-xs sm:max-w-none px-2 sm:px-4 py-1.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all text-xs sm:text-base"
                 >
-                  <option value="">Select travelers</option>
+                  <option value="">Select quantity</option>
                   <option value="1">1 Person</option>
                   <option value="2">2 People</option>
                   <option value="3">3 People</option>
@@ -326,7 +326,7 @@ const InquiryFormPopup = ({ isOpen, onClose, productInfo }: InquiryFormPopupProp
                 onChange={handleInputChange}
                 rows={3}
                 className="w-full max-w-xs sm:max-w-none px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all text-sm sm:text-base"
-                placeholder="Tell us about your travel preferences, special requirements, or any questions you have..."
+                placeholder="Tell us your grind preference (whole bean / ground), brew method, or any special requests..."
               />
             </div>
 
