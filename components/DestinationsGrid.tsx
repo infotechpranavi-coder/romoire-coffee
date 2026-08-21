@@ -136,8 +136,8 @@ function OptionPills({
             onClick={() => onChange(opt)}
             className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
               value === opt
-                ? 'border-[#1a3d32] bg-[#1a3d32] text-white'
-                : 'border-gray-300 bg-white text-gray-700 hover:border-[#1a3d32]/50'
+                ? 'border-[#6B1F2A] bg-[#6B1F2A] text-white'
+                : 'border-gray-300 bg-white text-gray-700 hover:border-[#6B1F2A]/50'
             }`}
           >
             {opt}
@@ -221,7 +221,7 @@ const DestinationsGrid = () => {
     <section id="destinations" ref={ref} className="bg-white py-10 md:py-12 lg:py-14">
       <div className="container mx-auto px-4">
         {/* Section title */}
-        <h2 className="mb-5 text-center text-3xl font-black tracking-tight text-[#1a3d32] sm:text-4xl md:mb-6">
+        <h2 className="mb-5 text-center text-3xl font-black tracking-tight text-[#6B1F2A] sm:text-4xl md:mb-6">
           ORIGINS
         </h2>
 
@@ -230,7 +230,7 @@ const DestinationsGrid = () => {
           <button
             type="button"
             onClick={() => goTo(currentIndex - 1)}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#1a3d32] hover:text-[#1a3d32]"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#6B1F2A] hover:text-[#6B1F2A]"
             aria-label="Previous origin"
           >
             <ChevronLeft className="h-4 w-4" />
@@ -242,7 +242,7 @@ const DestinationsGrid = () => {
                 type="button"
                 onClick={() => goTo(i)}
                 className={`h-2 w-2 rounded-full transition-colors ${
-                  i === currentIndex ? 'bg-[#1a3d32]' : 'bg-gray-300 hover:bg-gray-400'
+                  i === currentIndex ? 'bg-[#6B1F2A]' : 'bg-gray-300 hover:bg-gray-400'
                 }`}
                 aria-label={`Go to slide ${i + 1}`}
               />
@@ -251,7 +251,7 @@ const DestinationsGrid = () => {
           <button
             type="button"
             onClick={() => setPaused((p) => !p)}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#1a3d32] hover:text-[#1a3d32]"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#6B1F2A] hover:text-[#6B1F2A]"
             aria-label={paused ? 'Play slideshow' : 'Pause slideshow'}
           >
             <Pause className="h-3.5 w-3.5" />
@@ -259,7 +259,7 @@ const DestinationsGrid = () => {
           <button
             type="button"
             onClick={() => goTo(currentIndex + 1)}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#1a3d32] hover:text-[#1a3d32]"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#6B1F2A] hover:text-[#6B1F2A]"
             aria-label="Next origin"
           >
             <ChevronRight className="h-4 w-4" />
@@ -270,8 +270,8 @@ const DestinationsGrid = () => {
         <div className="mb-5 flex flex-wrap items-center justify-center gap-4 md:gap-6 lg:gap-8">
           {BADGES.map(({ icon: Icon, label }) => (
             <div key={label} className="flex flex-col items-center gap-1 text-center">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[#2d6a5a] bg-white shadow-sm md:h-12 md:w-12">
-                <Icon className="h-5 w-5 text-[#2d6a5a] md:h-5 md:w-5" strokeWidth={1.5} />
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[#6B1F2A] bg-white shadow-sm md:h-12 md:w-12">
+                <Icon className="h-5 w-5 text-[#6B1F2A] md:h-5 md:w-5" strokeWidth={1.5} />
               </div>
               <span className="text-[9px] font-bold uppercase tracking-wider text-gray-600 md:text-[10px]">
                 {label}
@@ -293,7 +293,7 @@ const DestinationsGrid = () => {
           }`}
         >
           {/* Left — product image */}
-          <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl bg-[#faf8f3] shadow-sm lg:max-w-none">
+          <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl bg-[#F5EFE6] shadow-sm lg:max-w-none">
             <Image
               src={imageSrc}
               alt={product.title}
@@ -307,7 +307,7 @@ const DestinationsGrid = () => {
           {/* Right — product details */}
           <div className="flex flex-col">
             <h3
-              className="mb-2 text-2xl font-semibold leading-tight text-[#1a3d32] md:text-3xl"
+              className="mb-2 text-2xl font-semibold leading-tight text-[#6B1F2A] md:text-3xl"
               style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
             >
               {product.title}
@@ -323,7 +323,7 @@ const DestinationsGrid = () => {
                 ${product.price.toFixed(2)}
               </span>
               {hasSale && (
-                <span className="rounded bg-[#1a3d32] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                <span className="rounded bg-[#6B1F2A] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
                   Sale
                 </span>
               )}
@@ -346,7 +346,7 @@ const DestinationsGrid = () => {
                 <button
                   type="button"
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="flex h-9 w-9 items-center justify-center text-gray-600 hover:text-[#1a3d32]"
+                  className="flex h-9 w-9 items-center justify-center text-gray-600 hover:text-[#6B1F2A]"
                   aria-label="Decrease quantity"
                 >
                   <Minus className="h-3.5 w-3.5" />
@@ -357,7 +357,7 @@ const DestinationsGrid = () => {
                 <button
                   type="button"
                   onClick={() => setQuantity((q) => q + 1)}
-                  className="flex h-9 w-9 items-center justify-center text-gray-600 hover:text-[#1a3d32]"
+                  className="flex h-9 w-9 items-center justify-center text-gray-600 hover:text-[#6B1F2A]"
                   aria-label="Increase quantity"
                 >
                   <Plus className="h-3.5 w-3.5" />
@@ -370,14 +370,14 @@ const DestinationsGrid = () => {
               <button
                 type="button"
                 onClick={() => handleOrder(false)}
-                className="flex-1 rounded-full border-2 border-[#1a3d32] bg-white py-2.5 text-xs font-bold text-[#1a3d32] transition-colors hover:bg-[#1a3d32]/5 md:text-sm"
+                className="flex-1 rounded-full border-2 border-[#6B1F2A] bg-white py-2.5 text-xs font-bold text-[#6B1F2A] transition-colors hover:bg-[#6B1F2A]/5 md:text-sm"
               >
                 Add to cart
               </button>
               <button
                 type="button"
                 onClick={() => handleOrder(true)}
-                className="flex-1 rounded-full bg-[#1a3d32] py-2.5 text-xs font-bold text-white transition-colors hover:bg-[#143028] md:text-sm"
+                className="flex-1 rounded-full bg-[#6B1F2A] py-2.5 text-xs font-bold text-white transition-colors hover:bg-[#4A1520] md:text-sm"
               >
                 Buy it now
               </button>
@@ -385,7 +385,7 @@ const DestinationsGrid = () => {
 
             <Link
               href={product.link}
-              className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-gray-600 underline-offset-4 hover:text-[#1a3d32] hover:underline"
+              className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-gray-600 underline-offset-4 hover:text-[#6B1F2A] hover:underline"
             >
               View full details
               <ArrowRight className="h-3.5 w-3.5" />

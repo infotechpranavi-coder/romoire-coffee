@@ -211,7 +211,7 @@ const EditBannerModal = ({ isOpen, onClose, onBannerUpdated, banner }: EditBanne
                             id="isActiveEdit"
                             checked={formData.isActive}
                             onChange={(e) => handleInputChange("isActive", e.target.checked)}
-                            className="w-4 h-4 rounded border-gray-300 text-[#bd9245] focus:ring-[#bd9245]"
+                            className="w-4 h-4 rounded border-gray-300 text-[#6B1F2A] focus:ring-[#6B1F2A]"
                         />
                         <label htmlFor="isActiveEdit" className="text-sm font-bold text-gray-700 uppercase tracking-widest">Active Banner</label>
                     </div>
@@ -224,7 +224,7 @@ const EditBannerModal = ({ isOpen, onClose, onBannerUpdated, banner }: EditBanne
                         <Button
                             onClick={handleSubmit}
                             disabled={isSubmitting}
-                            className="bg-[#111827] hover:bg-[#bd9245] rounded-xl px-10 h-12 font-black uppercase text-xs tracking-widest shadow-xl transition-all"
+                            className="bg-[#111827] hover:bg-[#6B1F2A] rounded-xl px-10 h-12 font-black uppercase text-xs tracking-widest shadow-xl transition-all"
                         >
                             {isSubmitting ? "Updating..." : "Update Banner"}
                         </Button>

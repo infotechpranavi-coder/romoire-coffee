@@ -49,9 +49,9 @@ const PopularPackages = ({ initialPackages }: PopularPackagesProps) => {
 
   if (isLoading) {
     return (
-      <div className="py-24 bg-[#faf8f3] flex flex-col items-center justify-center min-h-[400px]">
-        <Loader2 className="w-12 h-12 text-[#bd9245] animate-spin mb-4" />
-        <p className="text-[#1e1f44] font-bold uppercase tracking-widest text-sm">Loading coffees...</p>
+      <div className="py-24 bg-[#F5EFE6] flex flex-col items-center justify-center min-h-[400px]">
+        <Loader2 className="w-12 h-12 text-[#6B1F2A] animate-spin mb-4" />
+        <p className="text-[#3D1218] font-bold uppercase tracking-widest text-sm">Loading coffees...</p>
       </div>
     );
   }
@@ -64,7 +64,7 @@ const PopularPackages = ({ initialPackages }: PopularPackagesProps) => {
   return (
     <section
       id="packages"
-      className="py-24 bg-[#faf8f3]"
+      className="py-24 bg-[#F5EFE6]"
     >
       <div className="container mx-auto px-4">
         {/* Force single column for anything below very large desktop to avoid overlap */}
@@ -84,7 +84,7 @@ const PopularPackages = ({ initialPackages }: PopularPackagesProps) => {
           {/* Left Column: Title + 2 Cards */}
           <div className="space-y-8 2xl:pr-4">
             <div className="mb-6 md:mb-10 lg:overflow-hidden">
-              <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-[1000] text-[#1e1f44] leading-[0.9] tracking-tighter uppercase break-words">
+              <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-[1000] text-[#3D1218] leading-[0.9] tracking-tighter uppercase break-words">
                 POPULAR<br />COFFEES
               </h2>
             </div>
@@ -116,11 +116,11 @@ const PopularPackages = ({ initialPackages }: PopularPackagesProps) => {
             <div className="pt-8 pl-4">
               <Button
                 variant="ghost"
-                className="group flex items-center gap-3 text-[#1e1f44] font-black text-xl uppercase tracking-tighter hover:bg-transparent hover:text-[#bd9245] transition-all duration-300"
+                className="group flex items-center gap-3 text-[#3D1218] font-black text-xl uppercase tracking-tighter hover:bg-transparent hover:text-[#6B1F2A] transition-all duration-300"
                 onClick={() => router.push('/packages')}
               >
                 <span>Shop All Coffee</span>
-                <div className="w-10 h-10 rounded-full border border-[#3d407f]/10 flex items-center justify-center group-hover:bg-[#bd9245] group-hover:border-[#bd9245] transition-all">
+                <div className="w-10 h-10 rounded-full border border-[#6B1F2A]/10 flex items-center justify-center group-hover:bg-[#6B1F2A] group-hover:border-[#6B1F2A] transition-all">
                   <ArrowRight className="w-5 h-5" />
                 </div>
               </Button>
@@ -171,12 +171,12 @@ const PackageCard = ({ pkg, index, router, openForm }: any) => {
           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">
             {pkg.duration} &nbsp;·&nbsp; SPECIALTY ROAST
           </p>
-          <h3 className="text-xl md:text-2xl font-black text-[#1e1f44] leading-[1.1] mb-2 uppercase tracking-tighter group-hover:text-[#bd9245] transition-colors">
+          <h3 className="text-xl md:text-2xl font-black text-[#3D1218] leading-[1.1] mb-2 uppercase tracking-tighter group-hover:text-[#6B1F2A] transition-colors">
             {pkg.title}
           </h3>
           <div className="flex items-center gap-1 mb-3">
             {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-3 h-3 fill-[#bd9245] text-[#bd9245]" />
+              <Star key={i} className="w-3 h-3 fill-[#6B1F2A] text-[#6B1F2A]" />
             ))}
             <span className="text-[10px] font-bold text-gray-300 ml-1">Verified Roast</span>
           </div>
@@ -187,7 +187,7 @@ const PackageCard = ({ pkg, index, router, openForm }: any) => {
 
         <div className="flex flex-col sm:flex-row gap-3 mt-4">
           <Button
-            className="flex-1 bg-[#bd9245] hover:bg-[#a07835] text-white font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
+            className="flex-1 bg-[#6B1F2A] hover:bg-[#4A1520] text-white font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
             onClick={(e) => {
               e.stopPropagation();
               router.push(route);
@@ -198,7 +198,7 @@ const PackageCard = ({ pkg, index, router, openForm }: any) => {
           </Button>
           <Button
             variant="outline"
-            className="flex-1 border-[#1e1f44] text-[#1e1f44] hover:bg-[#1e1f44] hover:text-white font-bold py-4 rounded-xl transition-all duration-300"
+            className="flex-1 border-[#3D1218] text-[#3D1218] hover:bg-[#3D1218] hover:text-white font-bold py-4 rounded-xl transition-all duration-300"
             onClick={(e) => {
               e.stopPropagation();
               openForm({

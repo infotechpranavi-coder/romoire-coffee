@@ -138,7 +138,7 @@ export default function DashboardCategoriesPanel() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <FolderTree className="h-7 w-7 text-[#bd9245]" />
+        <FolderTree className="h-7 w-7 text-[#6B1F2A]" />
         <div>
           <h2 className="text-2xl font-black text-[#111827] tracking-tight uppercase">Category Tree</h2>
           <p className="text-sm text-gray-500">Main category → Subcategory → Mini category</p>
@@ -169,7 +169,7 @@ export default function DashboardCategoriesPanel() {
                 const isSelected = selectedGroup?.slug === group.slug;
                 const isEditing = editingGroupSlug === group.slug;
                 return (
-                  <div key={group.slug} className={`rounded-xl border p-3 ${isSelected ? 'border-[#bd9245] bg-[#bd9245]/5' : 'border-gray-100'}`}>
+                  <div key={group.slug} className={`rounded-xl border p-3 ${isSelected ? 'border-[#6B1F2A] bg-[#6B1F2A]/5' : 'border-gray-100'}`}>
                     {isEditing ? (
                       <div className="flex gap-2">
                         <Input value={groupDraft} onChange={(e) => setGroupDraft(e.target.value)} className="h-9 rounded-lg" />
@@ -211,7 +211,7 @@ export default function DashboardCategoriesPanel() {
                 <Checkbox id="sub-future" checked={newSubFuture} onCheckedChange={(c) => setNewSubFuture(!!c)} />
                 <label htmlFor="sub-future" className="text-xs text-gray-600">Coming soon</label>
               </div>
-              <Button type="button" onClick={handleAddSubcategory} disabled={saving || !newSubName.trim()} className="w-full h-9 rounded-lg bg-[#bd9245] hover:bg-[#a67f3d]">
+              <Button type="button" onClick={handleAddSubcategory} disabled={saving || !newSubName.trim()} className="w-full h-9 rounded-lg bg-[#6B1F2A] hover:bg-[#a67f3d]">
                 <Plus className="h-4 w-4 mr-1" /> Add Subcategory
               </Button>
             </div>
@@ -220,7 +220,7 @@ export default function DashboardCategoriesPanel() {
                 const isSelected = selectedSubSlug === sub.slug;
                 const isEditing = editingSubSlug === sub.slug;
                 return (
-                  <div key={sub.slug} className={`rounded-xl border p-3 ${isSelected ? 'border-[#bd9245] bg-[#bd9245]/5' : 'border-gray-100'}`}>
+                  <div key={sub.slug} className={`rounded-xl border p-3 ${isSelected ? 'border-[#6B1F2A] bg-[#6B1F2A]/5' : 'border-gray-100'}`}>
                     {isEditing ? (
                       <div className="space-y-2">
                         <Input value={subDraft.label} onChange={(e) => setSubDraft((p) => ({ ...p, label: e.target.value }))} className="h-9 rounded-lg" />

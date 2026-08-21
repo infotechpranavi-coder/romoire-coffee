@@ -23,10 +23,10 @@ All colors MUST be HSL.
     --popover-foreground: 0 0% 0%;
     /* Black */
 
-    --primary: 0 0% 0%;
-    /* Black as primary */
-    --primary-foreground: 0 0% 100%;
-    /* White text on primary */
+    --primary: 351 55% 27%;
+    /* Romoire burgundy */
+    --primary-foreground: 36 33% 93%;
+    /* Cream text on primary */
 
     --secondary: 0 0% 50%;
     /* Medium grey */
@@ -53,25 +53,27 @@ All colors MUST be HSL.
     --ring: 0 0% 0%;
     /* Black ring */
 
-    /* Brand palette - updated theme */
-    --brand-dark: #1e1f44;
-    /* Deep navy - primary text & dark UI */
-    --brand-mid: #3d407f;
-    /* Indigo - secondary accents & hovers */
-    --brand-gold: #bd9245;
-    /* Gold - primary CTA accent */
+    /* Brand palette — from Romoire logo (burgundy + cream) */
+    --brand-dark: #3D1218;
+    /* Deep burgundy — primary text & dark UI */
+    --brand-mid: #6B1F2A;
+    /* Logo burgundy — accents & CTAs */
+    --brand-gold: #6B1F2A;
+    /* Alias: accent matches logo burgundy */
+    --brand-cream: #F5EFE6;
+    /* Logo cream */
     --brand-green: #22c55e;
     /* Green - kept for prices & positive indicators */
 
-    /* Travel website specific colors */
-    --travel-teal: 237 39% 59%;
-    /* Indigo mid */
-    --travel-navy: 239 38% 19%;
-    /* Deep navy */
-    --travel-light-teal: 237 39% 95%;
-    /* Light indigo tint */
-    --travel-light-bg: 0 0% 98%;
-    /* Almost white */
+    /* Travel website specific colors (mapped to Romoire) */
+    --travel-teal: 351 55% 27%;
+    /* Burgundy */
+    --travel-navy: 351 55% 16%;
+    /* Deep burgundy */
+    --travel-light-teal: 36 33% 93%;
+    /* Cream tint */
+    --travel-light-bg: 36 40% 96%;
+    /* Soft cream */
 
     /* Animation variables */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

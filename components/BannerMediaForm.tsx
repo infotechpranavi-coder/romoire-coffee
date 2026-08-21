@@ -74,11 +74,11 @@ const BannerMediaForm = ({
               onClick={() => onMediaTypeChange(option.value)}
               className={`flex flex-col items-center justify-center gap-2 rounded-2xl border px-3 py-4 text-center transition-all ${
                 active
-                  ? 'border-[#bd9245] bg-[#bd9245]/10 text-[#111827]'
+                  ? 'border-[#6B1F2A] bg-[#6B1F2A]/10 text-[#111827]'
                   : 'border-gray-100 bg-gray-50/60 text-gray-500 hover:border-gray-200'
               }`}
             >
-              <Icon className={`h-5 w-5 ${active ? 'text-[#bd9245]' : ''}`} />
+              <Icon className={`h-5 w-5 ${active ? 'text-[#6B1F2A]' : ''}`} />
               <span className="text-[10px] font-black uppercase tracking-widest">{option.label}</span>
             </button>
           );
@@ -104,11 +104,11 @@ const BannerMediaForm = ({
           ) : (
             <div className="flex flex-col gap-4">
               <div
-                className="border-2 border-dashed border-gray-100 rounded-[24px] p-10 text-center cursor-pointer hover:border-[#bd9245] hover:bg-gray-50/50 transition-all group"
+                className="border-2 border-dashed border-gray-100 rounded-[24px] p-10 text-center cursor-pointer hover:border-[#6B1F2A] hover:bg-gray-50/50 transition-all group"
                 onClick={() => imageInputRef.current?.click()}
               >
-                <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#bd9245]/10 transition-colors">
-                  <Upload className="h-6 w-6 text-gray-300 group-hover:text-[#bd9245] transition-colors" />
+                <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#6B1F2A]/10 transition-colors">
+                  <Upload className="h-6 w-6 text-gray-300 group-hover:text-[#6B1F2A] transition-colors" />
                 </div>
                 <p className="text-xs font-black text-[#111827] uppercase tracking-widest">Upload Image</p>
                 <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter mt-1">PNG, JPG or WEBP</p>
@@ -150,11 +150,11 @@ const BannerMediaForm = ({
           ) : (
             <div className="flex flex-col gap-4">
               <div
-                className="border-2 border-dashed border-gray-100 rounded-[24px] p-10 text-center cursor-pointer hover:border-[#bd9245] hover:bg-gray-50/50 transition-all group"
+                className="border-2 border-dashed border-gray-100 rounded-[24px] p-10 text-center cursor-pointer hover:border-[#6B1F2A] hover:bg-gray-50/50 transition-all group"
                 onClick={() => videoInputRef.current?.click()}
               >
-                <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#bd9245]/10 transition-colors">
-                  <Film className="h-6 w-6 text-gray-300 group-hover:text-[#bd9245] transition-colors" />
+                <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#6B1F2A]/10 transition-colors">
+                  <Film className="h-6 w-6 text-gray-300 group-hover:text-[#6B1F2A] transition-colors" />
                 </div>
                 <p className="text-xs font-black text-[#111827] uppercase tracking-widest">Upload Video</p>
                 <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter mt-1">MP4, WEBM or MOV up to 100MB</p>
@@ -187,7 +187,7 @@ const BannerMediaForm = ({
             ) : (
               <div className="flex flex-col gap-3">
                 <div
-                  className="border border-dashed border-gray-100 rounded-2xl p-6 text-center cursor-pointer hover:border-[#bd9245] transition-all"
+                  className="border border-dashed border-gray-100 rounded-2xl p-6 text-center cursor-pointer hover:border-[#6B1F2A] transition-all"
                   onClick={() => imageInputRef.current?.click()}
                 >
                   <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">Upload poster image</p>
@@ -238,7 +238,7 @@ const BannerMediaForm = ({
             ) : (
               <div className="flex flex-col gap-3">
                 <div
-                  className="border border-dashed border-gray-100 rounded-2xl p-6 text-center cursor-pointer hover:border-[#bd9245] transition-all"
+                  className="border border-dashed border-gray-100 rounded-2xl p-6 text-center cursor-pointer hover:border-[#6B1F2A] transition-all"
                   onClick={() => imageInputRef.current?.click()}
                 >
                   <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">Upload fallback image</p>

@@ -118,7 +118,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
 
               <div className="absolute bottom-4 left-5 right-5 z-10">
                 <div className="flex flex-wrap gap-2 mb-3">
-                  <Badge className="bg-[#bd9245] text-white hover:bg-[#bd9245] border-none px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
+                  <Badge className="bg-[#6B1F2A] text-white hover:bg-[#6B1F2A] border-none px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
                     {resolveCategoryByValue(packageData.packageCategory)?.label || packageData.packageCategory}
                   </Badge>
                   <Badge className="bg-white/10 backdrop-blur-md text-white border-white/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
@@ -537,7 +537,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                 <div className="space-y-10 pt-8">
                   <div className="flex items-center gap-4 pb-4 border-b border-gray-100">
                     <div className="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center shadow-inner">
-                      <Star className="h-7 w-7 text-[#bd9245]" />
+                      <Star className="h-7 w-7 text-[#6B1F2A]" />
                     </div>
                     <h2 className="text-3xl font-black text-gray-900 tracking-tight">Guest Feedback & Reviews</h2>
                   </div>
@@ -547,7 +547,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                       <Card key={idx} className="p-10 border-none bg-white shadow-sm rounded-[32px] hover:shadow-xl hover:-translate-y-1 transition-all">
                         <div className="flex items-center justify-between mb-6">
                           <div className="flex items-center gap-5">
-                            <div className="w-14 h-14 rounded-full bg-[#bd9245]/10 flex items-center justify-center font-black text-[#bd9245] text-xl shadow-inner">
+                            <div className="w-14 h-14 rounded-full bg-[#6B1F2A]/10 flex items-center justify-center font-black text-[#6B1F2A] text-xl shadow-inner">
                               {review.name.charAt(0)}
                             </div>
                             <div>
@@ -559,7 +559,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                             {[...Array(5)].map((_, i) => (
                               <Star
                                 key={i}
-                                className={cn("h-4 w-4", i < review.rating ? "fill-[#bd9245] text-[#bd9245]" : "fill-gray-200 text-gray-200")}
+                                className={cn("h-4 w-4", i < review.rating ? "fill-[#6B1F2A] text-[#6B1F2A]" : "fill-gray-200 text-gray-200")}
                               />
                             ))}
                           </div>
@@ -581,7 +581,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
           <div className="text-center sm:text-left">
             <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Package Investment</p>
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-[#bd9245] tracking-tight uppercase text-sm">Enquire for Quote</span>
+              <span className="text-2xl font-bold text-[#6B1F2A] tracking-tight uppercase text-sm">Enquire for Quote</span>
               <span className="text-gray-400 font-medium text-sm">/ Complete Journey</span>
             </div>
           </div>
@@ -593,7 +593,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
             >
               Close Details
             </Button>
-            <Button className="w-full sm:w-auto bg-[#bd9245] hover:bg-[#a67e3a] text-white font-bold uppercase tracking-widest h-10 px-6 rounded-xl shadow-lg shadow-[#bd9245]/20 group transition-all text-[10px]">
+            <Button className="w-full sm:w-auto bg-[#6B1F2A] hover:bg-[#a67e3a] text-white font-bold uppercase tracking-widest h-10 px-6 rounded-xl shadow-lg shadow-[#6B1F2A]/20 group transition-all text-[10px]">
               Reservations & Support <TrendingUp className="ml-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Button>
           </div>

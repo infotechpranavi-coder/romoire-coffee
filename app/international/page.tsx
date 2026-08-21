@@ -131,7 +131,7 @@ const InternationalPage = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.5)_100%)]" />
-                <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#faf8f3] to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#F5EFE6] to-transparent" />
 
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
@@ -187,11 +187,11 @@ const InternationalPage = () => {
             </section>
 
             {/* Packages Grid */}
-            <section className="py-16 bg-[#faf8f3]">
+            <section className="py-16 bg-[#F5EFE6]">
                 <div className="container mx-auto px-4">
                     {filteredPackages.length === 0 ? (
                         <div className="text-center py-20">
-                            <h3 className="text-2xl font-black text-[#1e1f44] mb-2 uppercase tracking-tighter">No destinations found</h3>
+                            <h3 className="text-2xl font-black text-[#3D1218] mb-2 uppercase tracking-tighter">No destinations found</h3>
                             <p className="text-gray-400 font-medium">Try adjusting your search</p>
                         </div>
                     ) : (
@@ -217,7 +217,7 @@ const InternationalPage = () => {
                                     <div className="p-6 flex flex-col flex-grow">
                                         <div className="flex-grow">
                                             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">{pkg.duration} &nbsp;·&nbsp; {pkg.location}</p>
-                                            <h3 className="text-xl font-black text-[#1e1f44] leading-tight mb-2 uppercase tracking-tighter group-hover:text-[#bd9245] transition-colors">{pkg.title}</h3>
+                                            <h3 className="text-xl font-black text-[#3D1218] leading-tight mb-2 uppercase tracking-tighter group-hover:text-[#6B1F2A] transition-colors">{pkg.title}</h3>
                                             <div className="flex items-center gap-1 mb-3">
                                                 {[...Array(5)].map((_, i) => <Star key={i} className={`w-3 h-3 ${i < Math.round(pkg.rating || 5) ? 'fill-amber-400 text-amber-400' : 'fill-gray-200 text-gray-200'}`} />)}
                                             </div>

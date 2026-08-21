@@ -196,7 +196,7 @@ const CreateBlogModal = ({ isOpen, onClose, onBlogCreated }: CreateBlogModalProp
                                         type="checkbox" 
                                         checked={formData.isFeatured} 
                                         onChange={e => handleInputChange("isFeatured", e.target.checked)}
-                                        className="w-5 h-5 rounded border-gray-300 text-[#bd9245] focus:ring-[#bd9245]"
+                                        className="w-5 h-5 rounded border-gray-300 text-[#6B1F2A] focus:ring-[#6B1F2A]"
                                     />
                                     <span className="text-xs font-bold uppercase tracking-tight text-gray-600">Featured Post</span>
                                 </div>
@@ -238,8 +238,8 @@ const CreateBlogModal = ({ isOpen, onClose, onBlogCreated }: CreateBlogModalProp
                                 <CardTitle className="text-sm font-black uppercase tracking-widest text-[#111827]">Cover Image</CardTitle>
                             </CardHeader>
                             <CardContent className="p-6 space-y-4">
-                                <div className="border-2 border-dashed border-gray-100 rounded-[24px] p-6 text-center cursor-pointer hover:border-[#bd9245] transition-all bg-gray-50/30 group" onClick={() => fileInputRef.current?.click()}>
-                                    <Upload className="h-8 w-8 text-gray-300 mx-auto mb-2 group-hover:text-[#bd9245] transition-colors" />
+                                <div className="border-2 border-dashed border-gray-100 rounded-[24px] p-6 text-center cursor-pointer hover:border-[#6B1F2A] transition-all bg-gray-50/30 group" onClick={() => fileInputRef.current?.click()}>
+                                    <Upload className="h-8 w-8 text-gray-300 mx-auto mb-2 group-hover:text-[#6B1F2A] transition-colors" />
                                     <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{image ? image.name : "Select Cover Image"}</p>
                                     <input type="file" hidden ref={fileInputRef} onChange={e => setImage(e.target.files?.[0] || null)} accept="image/*" />
                                 </div>
@@ -282,7 +282,7 @@ const CreateBlogModal = ({ isOpen, onClose, onBlogCreated }: CreateBlogModalProp
                     {submitError && <p className="text-red-500 text-xs font-bold uppercase tracking-widest mb-2">{submitError}</p>}
                     <div className="flex gap-4 w-full justify-end">
                         <Button variant="ghost" onClick={handleClose} className="rounded-2xl px-8 h-12 font-black uppercase text-xs tracking-widest">Cancel</Button>
-                        <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-[#111827] hover:bg-[#bd9245] rounded-2xl px-12 h-14 font-black uppercase text-xs tracking-widest shadow-xl transition-all flex gap-3">
+                        <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-[#111827] hover:bg-[#6B1F2A] rounded-2xl px-12 h-14 font-black uppercase text-xs tracking-widest shadow-xl transition-all flex gap-3">
                             <FileText className="h-5 w-5" />
                             {isSubmitting ? "Publishing Narrative..." : "Publish Narrative"}
                         </Button>

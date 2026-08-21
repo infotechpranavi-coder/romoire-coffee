@@ -106,11 +106,11 @@ const AboutPage = () => {
         {/* Radial vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.5)_100%)]" />
         {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#faf8f3] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#F5EFE6] to-transparent" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
-            <p className="text-[#bd9245] font-bold uppercase tracking-[0.3em] text-sm mb-6">Our Story</p>
+            <p className="text-[#6B1F2A] font-bold uppercase tracking-[0.3em] text-sm mb-6">Our Story</p>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-[1000] mb-6 leading-none tracking-tighter uppercase">
               About Us
             </h1>
@@ -157,7 +157,7 @@ const AboutPage = () => {
                     Our Story
                   </Badge>
                 </div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1e1f44] leading-tight">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D1218] leading-tight">
                   About {SITE_NAME}
                 </h2>
                 <div className="space-y-5 text-gray-700 leading-relaxed text-lg">
@@ -167,7 +167,7 @@ const AboutPage = () => {
                   <p>
                     Whether you brew at home or run a café, {SITE_NAME} delivers freshly roasted coffee with transparent sourcing and reliable quality in every bag.
                   </p>
-                  <p className="font-semibold text-[#1e1f44]">
+                  <p className="font-semibold text-[#3D1218]">
                     We are a passionate roasting team dedicated to quality, transparency, and the craft of great coffee.
                   </p>
                 </div>
@@ -187,7 +187,7 @@ const AboutPage = () => {
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
                 Our Core Values
               </Badge>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1e1f44] mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D1218] mb-6">
                 Our Philosophy: <span className="text-primary">Absolute Clarity</span>
               </h2>
             </div>
@@ -200,7 +200,7 @@ const AboutPage = () => {
                 <p>
                   We bridge the gap between price and value. We don't simply chase the lowest fare; we pursue the highest standard. Our commitment is to ensure you understand exactly what you are paying for—eliminating uncertainty through transparent pricing, expert vetting, and premium service.
                 </p>
-                <p className="font-semibold text-[#1e1f44]">
+                <p className="font-semibold text-[#3D1218]">
                   At {SITE_NAME}, we don’t just sell tickets; we deliver peace of mind.
                 </p>
               </div>
@@ -227,7 +227,7 @@ const AboutPage = () => {
                     <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl mb-6 group-hover:scale-110 transition-transform">
                       <belief.icon className="h-10 w-10 text-primary" />
                     </div>
-                    <h3 className="text-xl font-bold text-[#1e1f44] mb-4">
+                    <h3 className="text-xl font-bold text-[#3D1218] mb-4">
                       {belief.title}
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
@@ -244,7 +244,7 @@ const AboutPage = () => {
               <div className="relative z-10">
                 <div className="text-center mb-10">
                   <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#1e1f44] mb-2">
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#3D1218] mb-2">
                     Sometimes, a modest price difference results in:
                   </h3>
                 </div>
@@ -276,7 +276,7 @@ const AboutPage = () => {
                 <Star className="h-3 w-3 mr-2" />
                 What Makes Us Different
               </Badge>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1e1f44] mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D1218] mb-6">
                 What Sets Us Apart
               </h2>
             </div>
@@ -299,7 +299,7 @@ const AboutPage = () => {
                     </div>
                   </div>
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-[#1e1f44] mb-3 group-hover:text-primary transition-colors">
+                    <h3 className="text-xl font-bold text-[#3D1218] mb-3 group-hover:text-primary transition-colors">
                       {item.title}
                     </h3>
                     <p className="text-gray-600 leading-relaxed">

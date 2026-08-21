@@ -57,7 +57,7 @@ export default function ReplyEnquiryModal({ isOpen, onClose, enquiryData }: Repl
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-      <div className="bg-[#faf8f3] rounded-[40px] w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col md:flex-row border border-white/20">
+      <div className="bg-[#F5EFE6] rounded-[40px] w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col md:flex-row border border-white/20">
         
         {/* Left Side: Original Enquiry Context */}
         <div className="w-full md:w-5/12 bg-white p-8 border-r border-gray-100 overflow-y-auto hidden md:block">
@@ -92,7 +92,7 @@ export default function ReplyEnquiryModal({ isOpen, onClose, enquiryData }: Repl
 
             {enquiryData.phone && (
               <div className="flex items-center gap-3 text-sm font-bold text-gray-600 bg-gray-50 p-4 rounded-xl border border-gray-100">
-                <span className="text-[10px] uppercase tracking-widest text-[#bd9245]">Phone:</span> {enquiryData.phone}
+                <span className="text-[10px] uppercase tracking-widest text-[#6B1F2A]">Phone:</span> {enquiryData.phone}
               </div>
             )}
           </div>
@@ -103,7 +103,7 @@ export default function ReplyEnquiryModal({ isOpen, onClose, enquiryData }: Repl
           <div className="p-8 border-b border-gray-100 flex items-center justify-between bg-white shrink-0">
             <div>
               <h2 className="text-2xl font-black text-[#111827] tracking-tight uppercase">Compose Reply</h2>
-              <p className="text-xs font-bold text-[#bd9245] uppercase tracking-[0.2em] mt-1">To: {enquiryData.email}</p>
+              <p className="text-xs font-bold text-[#6B1F2A] uppercase tracking-[0.2em] mt-1">To: {enquiryData.email}</p>
             </div>
             <Button variant="ghost" size="sm" onClick={onClose} className="h-10 w-10 p-0 rounded-2xl bg-gray-50 hover:bg-red-50 hover:text-red-500 transition-colors">
               <X className="h-5 w-5" />
@@ -116,7 +116,7 @@ export default function ReplyEnquiryModal({ isOpen, onClose, enquiryData }: Repl
               <Input
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
-                className="h-14 rounded-2xl border-none shadow-sm focus:ring-2 focus:ring-[#bd9245] bg-white font-semibold text-gray-900"
+                className="h-14 rounded-2xl border-none shadow-sm focus:ring-2 focus:ring-[#6B1F2A] bg-white font-semibold text-gray-900"
                 placeholder="Email Subject"
               />
             </div>
@@ -128,7 +128,7 @@ export default function ReplyEnquiryModal({ isOpen, onClose, enquiryData }: Repl
               <Textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="flex-1 rounded-[24px] border-none shadow-sm focus:ring-2 focus:ring-[#bd9245] p-6 bg-white resize-none font-medium text-gray-700 leading-relax"
+                className="flex-1 rounded-[24px] border-none shadow-sm focus:ring-2 focus:ring-[#6B1F2A] p-6 bg-white resize-none font-medium text-gray-700 leading-relax"
                 placeholder="Type your reply here..."
               />
             </div>
@@ -145,7 +145,7 @@ export default function ReplyEnquiryModal({ isOpen, onClose, enquiryData }: Repl
             <Button
               onClick={handleSendReply}
               disabled={isSending}
-              className="h-14 px-8 rounded-2xl bg-[#111827] hover:bg-[#bd9245] text-white font-black uppercase tracking-widest shadow-xl shadow-[#111827]/10 flex items-center gap-3 transition-colors shrink-0"
+              className="h-14 px-8 rounded-2xl bg-[#111827] hover:bg-[#6B1F2A] text-white font-black uppercase tracking-widest shadow-xl shadow-[#111827]/10 flex items-center gap-3 transition-colors shrink-0"
             >
               {isSending ? 'Sending...' : (
                 <>

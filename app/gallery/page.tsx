@@ -27,7 +27,7 @@ export default function GalleryPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#faf8f3]">
+    <div className="min-h-screen bg-[#F5EFE6]">
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-[#111827]" />
@@ -41,7 +41,7 @@ export default function GalleryPage() {
         />
         <div className="relative container mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-6">
-            <Camera className="h-4 w-4 text-[#bd9245]" />
+            <Camera className="h-4 w-4 text-[#6B1F2A]" />
             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">Moments Captured</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-4">
@@ -57,7 +57,7 @@ export default function GalleryPage() {
       <section className="container mx-auto px-6 py-16">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-32 gap-4">
-            <Loader2 className="h-10 w-10 animate-spin text-[#bd9245]" />
+            <Loader2 className="h-10 w-10 animate-spin text-[#6B1F2A]" />
             <p className="text-gray-400 font-medium">Loading gallery...</p>
           </div>
         ) : items.length === 0 ? (
@@ -73,7 +73,7 @@ export default function GalleryPage() {
                 key={item._id}
                 type="button"
                 onClick={() => setSelected(item)}
-                className="group relative w-full break-inside-avoid rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-[#bd9245]"
+                className="group relative w-full break-inside-avoid rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-[#6B1F2A]"
               >
                 <div className="relative w-full" style={{ minHeight: '200px' }}>
                   <Image

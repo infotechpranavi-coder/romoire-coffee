@@ -139,7 +139,7 @@ export default function EditTestimonialModal({ isOpen, onClose, testimonial, onT
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="John Doe"
-                  className="h-14 rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-[#bd9245]"
+                  className="h-14 rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-[#6B1F2A]"
                 />
               </div>
               <div className="space-y-2">
@@ -148,7 +148,7 @@ export default function EditTestimonialModal({ isOpen, onClose, testimonial, onT
                   value={formData.role}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                   placeholder="Traveler"
-                  className="h-14 rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-[#bd9245]"
+                  className="h-14 rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-[#6B1F2A]"
                 />
               </div>
             </div>
@@ -160,7 +160,7 @@ export default function EditTestimonialModal({ isOpen, onClose, testimonial, onT
                 value={formData.content}
                 onChange={(e) => setFormData({ ...formData, content: e.target.value })}
                 placeholder="Share the client's experience..."
-                className="min-h-[120px] rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-[#bd9245] resize-y"
+                className="min-h-[120px] rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-[#6B1F2A] resize-y"
               />
             </div>
 
@@ -175,7 +175,7 @@ export default function EditTestimonialModal({ isOpen, onClose, testimonial, onT
                   required
                   value={formData.rating}
                   onChange={(e) => setFormData({ ...formData, rating: parseFloat(e.target.value) })}
-                  className="h-12 w-24 rounded-xl border-transparent focus:border-[#bd9245]"
+                  className="h-12 w-24 rounded-xl border-transparent focus:border-[#6B1F2A]"
                 />
                 <div className="flex text-orange-400">
                   <Star className="h-5 w-5 fill-current" />
@@ -192,7 +192,7 @@ export default function EditTestimonialModal({ isOpen, onClose, testimonial, onT
                      value={formData.imageUrl}
                      onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value, imageFile: null })}
                      placeholder="https://example.com/image.jpg"
-                     className="h-14 rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-[#bd9245]"
+                     className="h-14 rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-[#6B1F2A]"
                      disabled={!!formData.imageFile}
                   />
                </div>
@@ -201,7 +201,7 @@ export default function EditTestimonialModal({ isOpen, onClose, testimonial, onT
                   <span className="text-xs font-black text-gray-300 uppercase tracking-widest">Or Upload</span>
                   <div className="flex-1 h-px bg-gray-100"></div>
                </div>
-               <div className="relative border-2 border-dashed border-gray-200 rounded-3xl p-8 hover:border-[#bd9245] hover:bg-[#faf8f3] transition-all group overflow-hidden">
+               <div className="relative border-2 border-dashed border-gray-200 rounded-3xl p-8 hover:border-[#6B1F2A] hover:bg-[#F5EFE6] transition-all group overflow-hidden">
                   <input
                      type="file"
                      accept="image/*"
@@ -211,7 +211,7 @@ export default function EditTestimonialModal({ isOpen, onClose, testimonial, onT
                   />
                   <div className="flex flex-col items-center justify-center text-center space-y-4">
                      <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center group-hover:scale-110 group-hover:bg-white transition-all shadow-sm">
-                     <Upload className="h-6 w-6 text-gray-400 group-hover:text-[#bd9245]" />
+                     <Upload className="h-6 w-6 text-gray-400 group-hover:text-[#6B1F2A]" />
                      </div>
                      <div>
                      <p className="font-bold text-sm text-[#111827]">
@@ -235,7 +235,7 @@ export default function EditTestimonialModal({ isOpen, onClose, testimonial, onT
             <Button
               type="submit"
               disabled={loading}
-              className="flex-1 h-16 rounded-2xl bg-[#111827] hover:bg-[#bd9245] text-white font-black uppercase tracking-widest shadow-xl shadow-[#111827]/10"
+              className="flex-1 h-16 rounded-2xl bg-[#111827] hover:bg-[#6B1F2A] text-white font-black uppercase tracking-widest shadow-xl shadow-[#111827]/10"
             >
               {loading ? 'Updating...' : 'Update Feedback'}
             </Button>

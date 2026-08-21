@@ -405,7 +405,7 @@ const Navbar = () => {
                                   {pkg.rating}/5
                                 </div>
                               </div>
-                              <div className="text-sm font-semibold text-[#bd9245] mt-1 uppercase text-[10px] tracking-wider">
+                              <div className="text-sm font-semibold text-[#6B1F2A] mt-1 uppercase text-[10px] tracking-wider">
                                 Enquire for quote
                               </div>
                             </div>
@@ -590,7 +590,7 @@ const Navbar = () => {
                                     <MapPin className="h-3 w-3 mr-1" />
                                     {pkg.location}
                                   </div>
-                                  <div className="text-xs font-semibold text-[#bd9245] uppercase tracking-wider">
+                                  <div className="text-xs font-semibold text-[#6B1F2A] uppercase tracking-wider">
                                     Enquire
                                   </div>
                                 </div>

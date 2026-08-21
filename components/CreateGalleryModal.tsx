@@ -187,7 +187,7 @@ const CreateGalleryModal = ({ isOpen, onClose, onGalleryCreated }: CreateGallery
                             <button
                                 type="button"
                                 onClick={() => fileInputRef.current?.click()}
-                                className="w-full border border-dashed border-gray-200 rounded-xl py-4 flex flex-col items-center gap-1.5 hover:border-[#bd9245] transition-colors"
+                                className="w-full border border-dashed border-gray-200 rounded-xl py-4 flex flex-col items-center gap-1.5 hover:border-[#6B1F2A] transition-colors"
                             >
                                 <Upload className="h-5 w-5 text-gray-300" />
                                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Upload image</span>
@@ -218,7 +218,7 @@ const CreateGalleryModal = ({ isOpen, onClose, onGalleryCreated }: CreateGallery
                     <Button
                         onClick={handleSubmit}
                         disabled={isSubmitting}
-                        className="bg-[#111827] hover:bg-[#bd9245] text-white rounded-lg h-9 text-xs px-5"
+                        className="bg-[#111827] hover:bg-[#6B1F2A] text-white rounded-lg h-9 text-xs px-5"
                     >
                         {isSubmitting ? "Uploading..." : "Add to Gallery"}
                     </Button>

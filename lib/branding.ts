@@ -1,6 +1,17 @@
 export const SITE_NAME = 'Romoire';
 export const SITE_TAGLINE = 'Specialty Coffee Roasters';
-export const LOGO_SRC = '/romoire-logo.svg';
+export const LOGO_SRC = '/romoire-logo.jpg';
+
+/** Brand palette from the Romoire logo (burgundy + cream) */
+export const BRAND = {
+  burgundy: '#6B1F2A',
+  burgundyDark: '#4A1520',
+  burgundyDeep: '#3D1218',
+  cream: '#F5EFE6',
+  creamMuted: '#E8DFD0',
+  creamSoft: '#FAF6F0',
+} as const;
+
 export const SITE_DESCRIPTION =
   'Romoire sources and roasts premium coffee beans from the world\'s finest growing regions. Shop single-origin lots, signature blends, and fresh roasts delivered to your door.';
 

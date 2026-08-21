@@ -28,7 +28,7 @@ function BlogCard({ blog }: { blog: BlogData }) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
-          <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#1a3d32]">
+          <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#6B1F2A]">
             {blog.category}
           </span>
         </div>
@@ -43,7 +43,7 @@ function BlogCard({ blog }: { blog: BlogData }) {
           </div>
 
           <h3
-            className={`${playfair.className} mb-3 text-2xl font-normal leading-snug text-[#1a3d32] transition-colors group-hover:text-[#bd9245] md:text-[1.65rem]`}
+            className={`${playfair.className} mb-3 text-2xl font-normal leading-snug text-[#6B1F2A] transition-colors group-hover:text-[#6B1F2A] md:text-[1.65rem]`}
           >
             {blog.title}
           </h3>
@@ -52,7 +52,7 @@ function BlogCard({ blog }: { blog: BlogData }) {
             {blog.excerpt}
           </p>
 
-          <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#bd9245]">
+          <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#6B1F2A]">
             Read article
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </span>
@@ -123,7 +123,7 @@ const HomeBlogs = ({ initialBlogs }: HomeBlogsProps) => {
     <section id="blogs" className="bg-[#fafafa] py-16 md:py-20 lg:py-24">
       <div className="container mx-auto px-4">
         <div className="mb-10 text-center md:mb-14">
-          <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-[#bd9245] md:text-base">
+          <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-[#6B1F2A] md:text-base">
             From the roastery
           </p>
           <h2 className="text-4xl font-black tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
@@ -136,7 +136,7 @@ const HomeBlogs = ({ initialBlogs }: HomeBlogsProps) => {
 
         {loading ? (
           <div className="flex flex-col items-center justify-center py-16">
-            <Loader2 className="mb-4 h-10 w-10 animate-spin text-[#bd9245]" />
+            <Loader2 className="mb-4 h-10 w-10 animate-spin text-[#6B1F2A]" />
             <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
               Loading blogs...
             </p>
@@ -152,7 +152,7 @@ const HomeBlogs = ({ initialBlogs }: HomeBlogsProps) => {
             <div className="mt-12 flex justify-center md:mt-14">
               <Link
                 href="/blogs"
-                className="group inline-flex items-center gap-2 rounded-full border-2 border-[#bd9245] bg-white px-10 py-3.5 text-sm font-bold uppercase tracking-wide text-[#bd9245] transition-all hover:bg-[#bd9245] hover:text-white hover:shadow-lg hover:shadow-[#bd9245]/20"
+                className="group inline-flex items-center gap-2 rounded-full border-2 border-[#6B1F2A] bg-white px-10 py-3.5 text-sm font-bold uppercase tracking-wide text-[#6B1F2A] transition-all hover:bg-[#6B1F2A] hover:text-white hover:shadow-lg hover:shadow-[#6B1F2A]/20"
               >
                 View all blogs
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

@@ -36,11 +36,20 @@ const ClientFeedback = () => {
   }, []);
 
   const displayTestimonials = apiTestimonials.length > 0 ? apiTestimonials : staticTestimonials;
+  const safeIndex =
+    displayTestimonials.length > 0
+      ? Math.min(activeIndex, displayTestimonials.length - 1)
+      : 0;
+  const current = displayTestimonials[safeIndex];
 
   const nextTestimonial = (index: number) => {
     setDirection(1);
     setActiveIndex(index);
   };
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [displayTestimonials.length]);
 
   useEffect(() => {
     if (displayTestimonials.length === 0) return;
@@ -66,13 +75,13 @@ const ClientFeedback = () => {
     }),
   };
 
-  if (isLoading || displayTestimonials.length === 0) return null;
+  if (isLoading || !current) return null;
 
   return (
-    <section className="py-24 bg-[#faf8f3] overflow-hidden">
+    <section className="py-24 bg-[#F5EFE6] overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <h2 className="text-5xl md:text-7xl font-[1000] text-[#1e1f44] leading-none tracking-tighter uppercase mb-12">
+        <h2 className="text-5xl md:text-7xl font-[1000] text-[#3D1218] leading-none tracking-tighter uppercase mb-12">
           CLIENT FEEDBACK
         </h2>
 
@@ -82,7 +91,7 @@ const ClientFeedback = () => {
             <div className="absolute inset-0 bg-[#ffc107] rounded-full scale-90" />
             <AnimatePresence mode="popLayout" custom={direction} initial={false}>
               <motion.div
-                key={displayTestimonials[activeIndex].id}
+                key={current.id}
                 custom={direction}
                 variants={variants}
                 initial="enter"
@@ -95,8 +104,8 @@ const ClientFeedback = () => {
                 className="absolute inset-0 w-full h-full rounded-full border-[8px] border-white shadow-[0_15px_40px_rgba(0,0,0,0.1)] overflow-hidden z-10"
               >
                 <img
-                  src={displayTestimonials[activeIndex].avatar}
-                  alt={displayTestimonials[activeIndex].name}
+                  src={current.avatar}
+                  alt={current.name}
                   className="w-full h-full object-cover"
                 />
               </motion.div>
@@ -104,13 +113,13 @@ const ClientFeedback = () => {
           </div>
 
           {/* Divider Line */}
-          <div className="hidden lg:block w-[1.5px] h-[220px] bg-[#1e1f44]/10 mx-6 flex-shrink-0" />
+          <div className="hidden lg:block w-[1.5px] h-[220px] bg-[#3D1218]/10 mx-6 flex-shrink-0" />
 
           {/* Testimonial Content */}
           <div className="flex-grow relative min-h-[300px] md:min-h-[400px] flex flex-col justify-center">
             <AnimatePresence mode="popLayout" custom={direction} initial={true}>
               <motion.div
-                key={displayTestimonials[activeIndex].id || activeIndex}
+                key={current.id || safeIndex}
                 custom={direction}
                 variants={variants}
                 initial="enter"
@@ -122,16 +131,16 @@ const ClientFeedback = () => {
                 }}
                 className="relative md:absolute md:inset-x-0 md:top-0 md:bottom-0 flex flex-col justify-center py-8 md:py-0"
               >
-                <Quote className="w-10 h-10 md:w-14 md:h-14 text-[#bd9245] mb-4 fill-[#bd9245]" />
+                <Quote className="w-10 h-10 md:w-14 md:h-14 text-[#6B1F2A] mb-4 fill-[#6B1F2A]" />
                 <p className="text-lg md:text-[20px] text-gray-700 leading-snug font-medium mb-6 md:mb-8 max-w-3xl tracking-tight">
-                  {displayTestimonials[activeIndex].quote}
+                  {current.quote}
                 </p>
                 <div>
-                  <h4 className="text-xl md:text-2xl font-black text-[#1e1f44] uppercase tracking-tighter">
-                    {displayTestimonials[activeIndex].name}
+                  <h4 className="text-xl md:text-2xl font-black text-[#3D1218] uppercase tracking-tighter">
+                    {current.name}
                   </h4>
                   <p className="text-gray-400 font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs mt-1 md:mt-2">
-                    {displayTestimonials[activeIndex].role}
+                    {current.role}
                   </p>
                 </div>
               </motion.div>
@@ -144,7 +153,7 @@ const ClientFeedback = () => {
               <button
                 key={t.id}
                 onClick={() => nextTestimonial(idx)}
-                className={`w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-4 transition-all duration-500 flex-shrink-0 ${activeIndex === idx ? 'border-[#bd9245] scale-110 shadow-md' : 'border-transparent opacity-40 grayscale hover:opacity-100 hover:grayscale-0'
+                className={`w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-4 transition-all duration-500 flex-shrink-0 ${safeIndex === idx ? 'border-[#6B1F2A] scale-110 shadow-md' : 'border-transparent opacity-40 grayscale hover:opacity-100 hover:grayscale-0'
                   }`}
               >
                 <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />

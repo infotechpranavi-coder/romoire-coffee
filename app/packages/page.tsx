@@ -53,8 +53,8 @@ const PackagesPage = () => {
             </div>
           ))}
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1e1f44]/85 via-[#1e1f44]/50 to-[#1e1f44]/80" />
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#faf8f3] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#3D1218]/85 via-[#3D1218]/50 to-[#3D1218]/80" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#F5EFE6] to-transparent" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -79,12 +79,12 @@ const PackagesPage = () => {
         </div>
       </section>
 
-      <section className="py-10 bg-[#faf8f3]">
+      <section className="py-10 bg-[#F5EFE6]">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-8">
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#bd9245] mb-2">Shop by Collection</p>
-              <h2 className="text-3xl font-black text-[#1e1f44] mb-3 uppercase tracking-tight">All Coffee Categories</h2>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#6B1F2A] mb-2">Shop by Collection</p>
+              <h2 className="text-3xl font-black text-[#3D1218] mb-3 uppercase tracking-tight">All Coffee Categories</h2>
               <p className="text-gray-600 mb-6">Single Origin, Roasts, Blends, Specialty, and Subscriptions</p>
               <div className="relative max-w-md mx-auto">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -151,7 +151,7 @@ const PackagesPage = () => {
               We can create a custom package tailored to your specific needs and preferences
             </p>
             <Link href="/contact">
-              <Button size="lg" className="bg-[#bd9245] hover:bg-[#a07835] text-white font-bold rounded-full px-10">
+              <Button size="lg" className="bg-[#6B1F2A] hover:bg-[#4A1520] text-white font-bold rounded-full px-10">
                 Contact Us
               </Button>
             </Link>

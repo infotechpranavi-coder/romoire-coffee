@@ -85,7 +85,7 @@ export default function PackageTourExtrasFields({
 }: PackageTourExtrasFieldsProps) {
   return (
     <div className="space-y-6 border-t border-gray-100 pt-6">
-      <h3 className="text-sm font-black uppercase tracking-widest text-[#bd9245]">Tour Departures & Policies</h3>
+      <h3 className="text-sm font-black uppercase tracking-widest text-[#6B1F2A]">Tour Departures & Policies</h3>
 
       <div className="space-y-3">
         <div className="flex items-center justify-between">

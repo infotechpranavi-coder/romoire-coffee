@@ -1474,7 +1474,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="h-screen bg-[#faf8f3] flex font-inter overflow-hidden relative">
+    <div className="h-screen bg-[#F5EFE6] flex font-inter overflow-hidden relative">
       {/* Sidebar */}
       <aside
         className={cn(
@@ -1501,7 +1501,7 @@ export default function DashboardPage() {
                 </div>
                 <div>
                   <h2 className="text-lg font-black text-white tracking-tighter uppercase">{SITE_NAME}</h2>
-                  <p className="text-[10px] font-bold text-[#bd9245] uppercase tracking-widest">Management</p>
+                  <p className="text-[10px] font-bold text-[#6B1F2A] uppercase tracking-widest">Management</p>
                 </div>
               </div>
               <Button
@@ -1527,7 +1527,7 @@ export default function DashboardPage() {
                   className={cn(
                     "w-full flex items-center space-x-4 px-5 py-4 rounded-2xl transition-all duration-300 group",
                     isActive
-                      ? "bg-[#bd9245] text-white shadow-xl shadow-[#bd9245]/20"
+                      ? "bg-[#6B1F2A] text-white shadow-xl shadow-[#6B1F2A]/20"
                       : "text-white/60 hover:bg-white/5 hover:text-white"
                   )}
                 >
@@ -1547,7 +1547,7 @@ export default function DashboardPage() {
           <div className="p-6 border-t border-white/10">
             <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
               <div className="flex items-center space-x-3 mb-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#bd9245] to-orange-300 flex items-center justify-center font-bold text-white shadow-lg">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#6B1F2A] to-orange-300 flex items-center justify-center font-bold text-white shadow-lg">
                   AD
                 </div>
                 <div>
@@ -1588,7 +1588,7 @@ export default function DashboardPage() {
                     variant="ghost"
                     size="sm"
                     onClick={() => setSidebarOpen(true)}
-                    className="bg-[#111827] text-white hover:bg-[#bd9245] rounded-xl p-2 h-auto"
+                    className="bg-[#111827] text-white hover:bg-[#6B1F2A] rounded-xl p-2 h-auto"
                   >
                     <Menu className="h-6 w-6" />
                   </Button>
@@ -1629,7 +1629,7 @@ export default function DashboardPage() {
                 {(activeView === 'packages' || activeView === 'tours' || activeView === 'tickets') && (
                   <Button
                     onClick={openCreatePackageModal}
-                    className="bg-[#111827] hover:bg-[#bd9245] text-white font-black px-6 py-6 rounded-2xl shadow-xl shadow-[#111827]/10 transition-all uppercase text-xs tracking-widest flex gap-3"
+                    className="bg-[#111827] hover:bg-[#6B1F2A] text-white font-black px-6 py-6 rounded-2xl shadow-xl shadow-[#111827]/10 transition-all uppercase text-xs tracking-widest flex gap-3"
                   >
                     <Plus className="h-5 w-5" />
                     {activeView === 'packages' ? 'New Package' : activeView === 'tours' ? 'New Tour' : activeView === 'tickets' ? 'New Ticket' : 'New Banner'}
@@ -1652,8 +1652,8 @@ export default function DashboardPage() {
                     label: 'Enquiries Received',
                     value: enquiries.length,
                     icon: MessageSquare,
-                    color: 'text-[#bd9245]',
-                    bg: 'bg-[#bd9245]/10'
+                    color: 'text-[#6B1F2A]',
+                    bg: 'bg-[#6B1F2A]/10'
                   },
                   {
                     label: 'Avg Rating',
@@ -1763,12 +1763,12 @@ export default function DashboardPage() {
                           Search
                         </label>
                         <div className="relative group">
-                          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#bd9245] h-4 w-4 transition-colors" />
+                          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#6B1F2A] h-4 w-4 transition-colors" />
                           <Input
                             placeholder="Find package..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="h-14 pl-12 pr-4 rounded-2xl border-white shadow-sm focus:ring-[#bd9245] focus:border-[#bd9245]"
+                            className="h-14 pl-12 pr-4 rounded-2xl border-white shadow-sm focus:ring-[#6B1F2A] focus:border-[#6B1F2A]"
                           />
                         </div>
                       </div>
@@ -1833,7 +1833,7 @@ export default function DashboardPage() {
                       <tbody>
                         {filteredPackages.length > 0 ? (
                           filteredPackages.map((pkg) => (
-                            <tr key={pkg._id} className="group hover:bg-[#faf8f3] transition-colors">
+                            <tr key={pkg._id} className="group hover:bg-[#F5EFE6] transition-colors">
                               <td className="p-4">
                                 <div className="flex items-center space-x-4">
                                   {pkg.images && pkg.images.length > 0 ? (
@@ -1877,7 +1877,7 @@ export default function DashboardPage() {
                               </td>
                               <td className="p-4">
                                 <div className="flex items-center gap-2 text-xs font-bold text-gray-500 bg-gray-50 px-3 py-1.5 rounded-xl w-fit">
-                                  <Clock className="h-3 w-3 text-[#bd9245]" />
+                                  <Clock className="h-3 w-3 text-[#6B1F2A]" />
                                   {pkg.duration?.split(' ')[0]}D / {pkg.duration?.split(' ')[3]}N
                                 </div>
                               </td>
@@ -1885,7 +1885,7 @@ export default function DashboardPage() {
                                 <div className="text-sm font-black text-[#111827] tracking-tight">
                                   R {pkg.price?.toLocaleString()}
                                 </div>
-                                <div className="text-[9px] font-bold text-[#bd9245] uppercase tracking-widest">Premium Tier</div>
+                                <div className="text-[9px] font-bold text-[#6B1F2A] uppercase tracking-widest">Premium Tier</div>
                               </td>
                               <td className="p-4">
                                 <div className="flex items-center gap-1.5 bg-orange-50 px-3 py-1.5 rounded-xl w-fit">
@@ -1900,7 +1900,7 @@ export default function DashboardPage() {
                                       <Button
                                         variant="ghost"
                                         size="sm"
-                                        className="w-10 h-10 rounded-xl bg-white border border-gray-100 hover:bg-[#bd9245] hover:text-white shadow-sm flex items-center justify-center p-0 transition-all"
+                                        className="w-10 h-10 rounded-xl bg-white border border-gray-100 hover:bg-[#6B1F2A] hover:text-white shadow-sm flex items-center justify-center p-0 transition-all"
                                       >
                                         <Menu className="h-5 w-5" />
                                       </Button>
@@ -1910,7 +1910,7 @@ export default function DashboardPage() {
                                         <Edit className="h-4 w-4 text-blue-500" /> Modify Package
                                       </DropdownMenuItem>
                                       <DropdownMenuItem onClick={() => handleDuplicatePackage(pkg)} className="rounded-xl flex gap-3 font-bold text-xs uppercase tracking-widest p-3">
-                                        <Copy className="h-4 w-4 text-[#bd9245]" /> Clone Entry
+                                        <Copy className="h-4 w-4 text-[#6B1F2A]" /> Clone Entry
                                       </DropdownMenuItem>
                                       <DropdownMenuItem onClick={() => handleExportSinglePackageToWord(pkg)} className="rounded-xl flex gap-3 font-bold text-xs uppercase tracking-widest p-3">
                                         <Download className="h-4 w-4 text-emerald-500" /> Export Doc
@@ -1938,7 +1938,7 @@ export default function DashboardPage() {
                                         <Plus className="h-4 w-4 mr-2" />
                                         Create Your First Package
                                       </Button>
-                                      <Button onClick={handleSeedPackages} disabled={seedingPackages} size="sm" variant="outline" className="rounded-xl border-[#bd9245] text-[#bd9245] hover:bg-[#bd9245] hover:text-white">
+                                      <Button onClick={handleSeedPackages} disabled={seedingPackages} size="sm" variant="outline" className="rounded-xl border-[#6B1F2A] text-[#6B1F2A] hover:bg-[#6B1F2A] hover:text-white">
                                         {seedingPackages ? 'Adding...' : '✨ Add Sample Packages'}
                                       </Button>
                                     </div>
@@ -2003,7 +2003,7 @@ export default function DashboardPage() {
                       </thead>
                       <tbody>
                         {tours.length > 0 ? tours.map((tour) => (
-                          <tr key={tour._id} className="group hover:bg-[#faf8f3] transition-colors border-b border-gray-50 last:border-0">
+                          <tr key={tour._id} className="group hover:bg-[#F5EFE6] transition-colors border-b border-gray-50 last:border-0">
                             <td className="p-4">
                               <div className="flex items-center space-x-3">
                                 {tour.images?.[0] ? (
@@ -2039,7 +2039,7 @@ export default function DashboardPage() {
                                   <Button onClick={() => setIsCreateTourModalOpen(true)} size="sm" className="bg-[#111827] text-white rounded-xl">
                                     <Plus className="h-4 w-4 mr-2" /> Create Tour
                                   </Button>
-                                  <Button onClick={handleSeedTours} disabled={seedingTours} size="sm" variant="outline" className="rounded-xl border-[#bd9245] text-[#bd9245] hover:bg-[#bd9245] hover:text-white">
+                                  <Button onClick={handleSeedTours} disabled={seedingTours} size="sm" variant="outline" className="rounded-xl border-[#6B1F2A] text-[#6B1F2A] hover:bg-[#6B1F2A] hover:text-white">
                                     {seedingTours ? 'Adding...' : '✨ Add Sample Tours'}
                                   </Button>
                                 </div>
@@ -2081,14 +2081,14 @@ export default function DashboardPage() {
                       </thead>
                       <tbody>
                         {tickets.length > 0 ? tickets.map((ticket) => (
-                          <tr key={ticket._id} className="group hover:bg-[#faf8f3] transition-colors border-b border-gray-50 last:border-0">
+                          <tr key={ticket._id} className="group hover:bg-[#F5EFE6] transition-colors border-b border-gray-50 last:border-0">
                             <td className="p-4">
                               <div className="flex items-center space-x-3">
                                 {ticket.images?.[0] ? (
                                   <img src={ticket.images[0].url} className="w-10 h-10 rounded-xl object-cover" alt="" />
                                 ) : (
                                   <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center">
-                                    <Plane className="h-5 w-5 text-[#bd9245]" />
+                                    <Plane className="h-5 w-5 text-[#6B1F2A]" />
                                   </div>
                                 )}
                                 <div className="font-bold text-sm text-[#111827]">{ticket.title}</div>
@@ -2115,7 +2115,7 @@ export default function DashboardPage() {
                                   <Button onClick={() => setIsCreateTicketModalOpen(true)} size="sm" className="bg-[#111827] text-white rounded-xl">
                                     <Plus className="h-4 w-4 mr-2" /> Create Ticket
                                   </Button>
-                                  <Button onClick={handleSeedTickets} disabled={seedingTickets} size="sm" variant="outline" className="rounded-xl border-[#bd9245] text-[#bd9245] hover:bg-[#bd9245] hover:text-white">
+                                  <Button onClick={handleSeedTickets} disabled={seedingTickets} size="sm" variant="outline" className="rounded-xl border-[#6B1F2A] text-[#6B1F2A] hover:bg-[#6B1F2A] hover:text-white">
                                     {seedingTickets ? 'Adding...' : '✨ Add Sample Tickets'}
                                   </Button>
                                 </div>
@@ -2141,10 +2141,10 @@ export default function DashboardPage() {
                       <CardDescription className="text-sm font-medium text-gray-400">Manage the hero slider banners on the home page — multiple banners create a slideshow</CardDescription>
                     </div>
                     <div className="flex gap-3">
-                      <Button onClick={handleSeedBanners} disabled={seedingBanners} variant="outline" className="rounded-2xl border-[#bd9245] text-[#bd9245] hover:bg-[#bd9245] hover:text-white font-black uppercase tracking-widest text-xs h-12 px-6">
+                      <Button onClick={handleSeedBanners} disabled={seedingBanners} variant="outline" className="rounded-2xl border-[#6B1F2A] text-[#6B1F2A] hover:bg-[#6B1F2A] hover:text-white font-black uppercase tracking-widest text-xs h-12 px-6">
                         {seedingBanners ? 'Adding...' : '✨ Add Sample Banners'}
                       </Button>
-                      <Button onClick={() => setIsCreateBannerModalOpen(true)} className="bg-[#111827] hover:bg-[#bd9245] text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs shadow-xl flex gap-2">
+                      <Button onClick={() => setIsCreateBannerModalOpen(true)} className="bg-[#111827] hover:bg-[#6B1F2A] text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs shadow-xl flex gap-2">
                         <Plus className="h-4 w-4" /> New Banner
                       </Button>
                     </div>
@@ -2168,7 +2168,7 @@ export default function DashboardPage() {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                           <div className="absolute bottom-4 left-4 right-4">
                             <h4 className="text-white font-black text-lg uppercase tracking-tighter leading-none">{banner.title}</h4>
-                            <p className="text-[#bd9245] font-bold text-[10px] uppercase tracking-widest mt-1">{banner.subtitle}</p>
+                            <p className="text-[#6B1F2A] font-bold text-[10px] uppercase tracking-widest mt-1">{banner.subtitle}</p>
                           </div>
                           <div className="absolute top-4 left-4 flex flex-col gap-2">
                             <Badge className={cn(
@@ -2182,7 +2182,7 @@ export default function DashboardPage() {
                             </Badge>
                           </div>
                           <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <Button variant="secondary" size="icon" onClick={() => { setSelectedBanner(banner); setIsEditBannerModalOpen(true); }} className="h-8 w-8 rounded-lg bg-white/90 text-[#111827] hover:bg-[#bd9245] hover:text-white"><Edit className="h-4 w-4" /></Button>
+                            <Button variant="secondary" size="icon" onClick={() => { setSelectedBanner(banner); setIsEditBannerModalOpen(true); }} className="h-8 w-8 rounded-lg bg-white/90 text-[#111827] hover:bg-[#6B1F2A] hover:text-white"><Edit className="h-4 w-4" /></Button>
                             <Button variant="secondary" size="icon" onClick={() => handleDeleteBanner(banner)} className="h-8 w-8 rounded-lg bg-white/90 text-red-500 hover:bg-red-500 hover:text-white"><Trash2 className="h-4 w-4" /></Button>
                           </div>
                         </div>
@@ -2203,7 +2203,7 @@ export default function DashboardPage() {
                         <h4 className="text-[#111827] font-black uppercase tracking-tighter text-xl">No Banners Found</h4>
                         <p className="text-gray-400 text-sm font-medium mt-2">Add sample banners to instantly populate the homepage slider, or create your own custom banners.</p>
                         <div className="flex justify-center gap-3 mt-6">
-                          <Button onClick={handleSeedBanners} disabled={seedingBanners} className="bg-[#bd9245] hover:bg-[#111827] text-white rounded-2xl px-8 h-12 font-black uppercase tracking-widest text-[10px] transition-all">
+                          <Button onClick={handleSeedBanners} disabled={seedingBanners} className="bg-[#6B1F2A] hover:bg-[#111827] text-white rounded-2xl px-8 h-12 font-black uppercase tracking-widest text-[10px] transition-all">
                             {seedingBanners ? 'Adding...' : '✨ Add Sample Banners'}
                           </Button>
                           <Button onClick={() => setIsCreateBannerModalOpen(true)} variant="outline" className="rounded-2xl px-8 h-12 font-black uppercase tracking-widest text-[10px]">
@@ -2230,13 +2230,13 @@ export default function DashboardPage() {
                       </CardDescription>
                     </div>
                     <div className="flex gap-3">
-                      <Button asChild variant="outline" className="rounded-2xl border-[#bd9245] text-[#bd9245] hover:bg-[#bd9245] hover:text-white font-black uppercase tracking-widest text-xs h-12 px-6">
+                      <Button asChild variant="outline" className="rounded-2xl border-[#6B1F2A] text-[#6B1F2A] hover:bg-[#6B1F2A] hover:text-white font-black uppercase tracking-widest text-xs h-12 px-6">
                         <Link href="/gallery" target="_blank">
                           <ExternalLink className="h-4 w-4 mr-2 inline" />
                           View Gallery
                         </Link>
                       </Button>
-                      <Button onClick={() => setIsCreateGalleryModalOpen(true)} className="bg-[#111827] hover:bg-[#bd9245] text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs shadow-xl flex gap-2">
+                      <Button onClick={() => setIsCreateGalleryModalOpen(true)} className="bg-[#111827] hover:bg-[#6B1F2A] text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs shadow-xl flex gap-2">
                         <Plus className="h-4 w-4" /> Upload Image
                       </Button>
                     </div>
@@ -2268,7 +2268,7 @@ export default function DashboardPage() {
                               variant="secondary"
                               size="icon"
                               onClick={() => handleToggleGalleryActive(item)}
-                              className="h-8 w-8 rounded-lg bg-white/90 text-[#111827] hover:bg-[#bd9245] hover:text-white"
+                              className="h-8 w-8 rounded-lg bg-white/90 text-[#111827] hover:bg-[#6B1F2A] hover:text-white"
                               title={item.isActive ? 'Hide from gallery' : 'Show on gallery'}
                             >
                               {item.isActive ? <X className="h-4 w-4" /> : <Check className="h-4 w-4" />}
@@ -2293,7 +2293,7 @@ export default function DashboardPage() {
                         <LayoutGrid className="h-12 w-12 text-gray-200 mx-auto mb-4" />
                         <h4 className="text-[#111827] font-black uppercase tracking-tighter text-xl">No Gallery Images Yet</h4>
                         <p className="text-gray-400 text-sm font-medium mt-2">Upload your first photo to populate the gallery page.</p>
-                        <Button onClick={() => setIsCreateGalleryModalOpen(true)} className="mt-6 bg-[#bd9245] hover:bg-[#111827] text-white rounded-2xl px-8 h-12 font-black uppercase tracking-widest text-[10px]">
+                        <Button onClick={() => setIsCreateGalleryModalOpen(true)} className="mt-6 bg-[#6B1F2A] hover:bg-[#111827] text-white rounded-2xl px-8 h-12 font-black uppercase tracking-widest text-[10px]">
                           Upload First Image
                         </Button>
                       </div>
@@ -2313,7 +2313,7 @@ export default function DashboardPage() {
                       <CardTitle className="text-2xl font-black text-[#111827] tracking-tight uppercase">Guest Feedback</CardTitle>
                       <CardDescription className="text-sm font-medium text-gray-400">Manage client testimonials shown on the homepage</CardDescription>
                     </div>
-                    <Button onClick={() => setIsCreateTestimonialModalOpen(true)} className="bg-[#111827] hover:bg-[#bd9245] text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs transition-all shadow-xl shadow-[#111827]/10 flex items-center gap-2">
+                    <Button onClick={() => setIsCreateTestimonialModalOpen(true)} className="bg-[#111827] hover:bg-[#6B1F2A] text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs transition-all shadow-xl shadow-[#111827]/10 flex items-center gap-2">
                       <Plus className="h-4 w-4" />
                       Add Feedback
                     </Button>
@@ -2333,7 +2333,7 @@ export default function DashboardPage() {
                       <tbody>
                         {testimonials.length > 0 ? (
                           testimonials.map((testimonial) => (
-                            <tr key={testimonial._id} className="group hover:bg-[#faf8f3] transition-colors border-b border-gray-50 last:border-0">
+                            <tr key={testimonial._id} className="group hover:bg-[#F5EFE6] transition-colors border-b border-gray-50 last:border-0">
                                <td className="p-4">
                                   <div className="flex items-center gap-4">
                                      {testimonial.image?.url ? (
@@ -2401,10 +2401,10 @@ export default function DashboardPage() {
                       <CardDescription className="text-sm font-medium text-gray-400">Manage your travel blog narratives, tips, and experiences</CardDescription>
                     </div>
                     <div className="flex gap-3">
-                      <Button onClick={handleSeedBlogs} disabled={seedingBlogs} variant="outline" className="rounded-2xl border-[#bd9245] text-[#bd9245] hover:bg-[#bd9245] hover:text-white font-black uppercase tracking-widest text-xs h-12 px-6">
+                      <Button onClick={handleSeedBlogs} disabled={seedingBlogs} variant="outline" className="rounded-2xl border-[#6B1F2A] text-[#6B1F2A] hover:bg-[#6B1F2A] hover:text-white font-black uppercase tracking-widest text-xs h-12 px-6">
                         {seedingBlogs ? 'Adding...' : '✨ Seed Stories'}
                       </Button>
-                      <Button onClick={() => setIsCreateBlogModalOpen(true)} className="bg-[#111827] hover:bg-[#bd9245] text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs shadow-xl flex gap-2">
+                      <Button onClick={() => setIsCreateBlogModalOpen(true)} className="bg-[#111827] hover:bg-[#6B1F2A] text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs shadow-xl flex gap-2">
                         <Plus className="h-4 w-4" /> New Narrative
                       </Button>
                     </div>
@@ -2433,7 +2433,7 @@ export default function DashboardPage() {
                                   </div>
                                 ) : (
                                   <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center">
-                                    <FileText className="h-6 w-6 text-[#bd9245]" />
+                                    <FileText className="h-6 w-6 text-[#6B1F2A]" />
                                   </div>
                                 )}
                                 <div>
@@ -2513,7 +2513,7 @@ export default function DashboardPage() {
                       <Button
                         onClick={reportModule === 'packages' ? handleExportToWord : undefined}
                         disabled={reportModule !== 'packages'}
-                        className="w-full sm:w-auto bg-[#111827] hover:bg-[#bd9245] text-white font-black h-12 px-6 rounded-2xl shadow-xl shadow-[#111827]/10 transition-all uppercase text-xs tracking-widest disabled:opacity-50"
+                        className="w-full sm:w-auto bg-[#111827] hover:bg-[#6B1F2A] text-white font-black h-12 px-6 rounded-2xl shadow-xl shadow-[#111827]/10 transition-all uppercase text-xs tracking-widest disabled:opacity-50"
                       >
                         <Download className="h-4 w-4 mr-2" />
                         Export {sidebarItems.find(i => i.id === reportModule)?.label}
@@ -2593,7 +2593,7 @@ export default function DashboardPage() {
                         {reportModule === 'banners' && banners.map((banner) => (
                            <tr key={banner._id} className="border-b border-gray-100 last:border-0 hover:bg-white transition-colors">
                              <td className="p-4 font-bold text-sm text-[#111827]">{banner.title}</td>
-                             <td className="p-4 text-xs font-medium text-[#bd9245] uppercase">{banner.isActive ? 'Active' : 'Inactive'}</td>
+                             <td className="p-4 text-xs font-medium text-[#6B1F2A] uppercase">{banner.isActive ? 'Active' : 'Inactive'}</td>
                            </tr>
                         ))}
                         {reportModule === 'enquiries' && enquiries.map((enq) => (
@@ -2670,7 +2670,7 @@ export default function DashboardPage() {
                       <tbody>
                         {enquiries.length > 0 ? (
                           enquiries.map((enq) => (
-                            <tr key={enq._id} className="group hover:bg-[#faf8f3] transition-colors border-b border-gray-50 last:border-0">
+                            <tr key={enq._id} className="group hover:bg-[#F5EFE6] transition-colors border-b border-gray-50 last:border-0">
                               <td className="p-4 text-[10px] font-bold text-gray-500 uppercase">
                                 {new Date(enq.createdAt).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' })}
                               </td>
@@ -2738,13 +2738,13 @@ export default function DashboardPage() {
                     <div className={cn(
                       "p-8 rounded-[32px] border-2 transition-all duration-300 flex flex-col justify-between h-full",
                       siteSettings.popularSection 
-                        ? "bg-white border-[#bd9245]/20 shadow-xl shadow-[#bd9245]/5" 
+                        ? "bg-white border-[#6B1F2A]/20 shadow-xl shadow-[#6B1F2A]/5" 
                         : "bg-gray-50/50 border-gray-100"
                     )}>
                       <div className="flex items-start justify-between mb-6">
                         <div className={cn(
                           "w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg",
-                          siteSettings.popularSection ? "bg-[#bd9245] text-white shadow-[#bd9245]/20" : "bg-gray-200 text-gray-400"
+                          siteSettings.popularSection ? "bg-[#6B1F2A] text-white shadow-[#6B1F2A]/20" : "bg-gray-200 text-gray-400"
                         )}>
                           <Star className="h-7 w-7" />
                         </div>
@@ -2752,7 +2752,7 @@ export default function DashboardPage() {
                           disabled={settingsLoading}
                           checked={siteSettings.popularSection} 
                           onCheckedChange={(val) => updateSetting('popularSection', val)}
-                          className="data-[state=checked]:bg-[#bd9245]"
+                          className="data-[state=checked]:bg-[#6B1F2A]"
                         />
                       </div>
                       <div>
@@ -2777,13 +2777,13 @@ export default function DashboardPage() {
                     <div className={cn(
                       "p-8 rounded-[32px] border-2 transition-all duration-300 flex flex-col justify-between h-full",
                       siteSettings.upcomingSection 
-                        ? "bg-white border-[#bd9245]/20 shadow-xl shadow-[#bd9245]/5" 
+                        ? "bg-white border-[#6B1F2A]/20 shadow-xl shadow-[#6B1F2A]/5" 
                         : "bg-gray-50/50 border-gray-100"
                     )}>
                       <div className="flex items-start justify-between mb-6">
                         <div className={cn(
                           "w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg",
-                          siteSettings.upcomingSection ? "bg-[#bd9245] text-white shadow-[#bd9245]/20" : "bg-gray-200 text-gray-400"
+                          siteSettings.upcomingSection ? "bg-[#6B1F2A] text-white shadow-[#6B1F2A]/20" : "bg-gray-200 text-gray-400"
                         )}>
                           <Compass className="h-7 w-7" />
                         </div>
@@ -2791,11 +2791,11 @@ export default function DashboardPage() {
                           disabled={settingsLoading}
                           checked={siteSettings.upcomingSection} 
                           onCheckedChange={(val) => updateSetting('upcomingSection', val)}
-                          className="data-[state=checked]:bg-[#bd9245]"
+                          className="data-[state=checked]:bg-[#6B1F2A]"
                         />
                       </div>
                       <div>
-                        <h3 className="text-xl font-black text-[#1e1f44] uppercase tracking-tight mb-2">Featured Water Trips</h3>
+                        <h3 className="text-xl font-black text-[#3D1218] uppercase tracking-tight mb-2">Featured Water Trips</h3>
                         <p className="text-sm font-medium text-gray-500 mb-6">Showcase yacht cruises, kayaking, rafting, and other water experiences on the homepage.</p>
                         
                         <div className="flex items-center gap-2">
@@ -2816,13 +2816,13 @@ export default function DashboardPage() {
                     <div className={cn(
                       "p-8 rounded-[32px] border-2 transition-all duration-300 flex flex-col justify-between h-full",
                       siteSettings.destinationsSection 
-                        ? "bg-white border-[#bd9245]/20 shadow-xl shadow-[#bd9245]/5" 
+                        ? "bg-white border-[#6B1F2A]/20 shadow-xl shadow-[#6B1F2A]/5" 
                         : "bg-gray-50/50 border-gray-100"
                     )}>
                       <div className="flex items-start justify-between mb-6">
                         <div className={cn(
                           "w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg",
-                          siteSettings.destinationsSection ? "bg-[#bd9245] text-white shadow-[#bd9245]/20" : "bg-gray-200 text-gray-400"
+                          siteSettings.destinationsSection ? "bg-[#6B1F2A] text-white shadow-[#6B1F2A]/20" : "bg-gray-200 text-gray-400"
                         )}>
                           <MapPin className="h-7 w-7" />
                         </div>
@@ -2830,7 +2830,7 @@ export default function DashboardPage() {
                           disabled={settingsLoading}
                           checked={siteSettings.destinationsSection} 
                           onCheckedChange={(val) => updateSetting('destinationsSection', val)}
-                          className="data-[state=checked]:bg-[#bd9245]"
+                          className="data-[state=checked]:bg-[#6B1F2A]"
                         />
                       </div>
                       <div>
@@ -2855,13 +2855,13 @@ export default function DashboardPage() {
                     <div className={cn(
                       "p-8 rounded-[32px] border-2 transition-all duration-300 flex flex-col justify-between h-full",
                       siteSettings.exploreSection 
-                        ? "bg-white border-[#bd9245]/20 shadow-xl shadow-[#bd9245]/5" 
+                        ? "bg-white border-[#6B1F2A]/20 shadow-xl shadow-[#6B1F2A]/5" 
                         : "bg-gray-50/50 border-gray-100"
                     )}>
                       <div className="flex items-start justify-between mb-6">
                         <div className={cn(
                           "w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg",
-                          siteSettings.exploreSection ? "bg-[#bd9245] text-white shadow-[#bd9245]/20" : "bg-gray-200 text-gray-400"
+                          siteSettings.exploreSection ? "bg-[#6B1F2A] text-white shadow-[#6B1F2A]/20" : "bg-gray-200 text-gray-400"
                         )}>
                           <LayoutDashboard className="h-7 w-7" />
                         </div>
@@ -2869,7 +2869,7 @@ export default function DashboardPage() {
                           disabled={settingsLoading}
                           checked={siteSettings.exploreSection} 
                           onCheckedChange={(val) => updateSetting('exploreSection', val)}
-                          className="data-[state=checked]:bg-[#bd9245]"
+                          className="data-[state=checked]:bg-[#6B1F2A]"
                         />
                       </div>
                       <div>
@@ -2894,13 +2894,13 @@ export default function DashboardPage() {
                     <div className={cn(
                       "p-8 rounded-[32px] border-2 transition-all duration-300 flex flex-col justify-between h-full",
                       siteSettings.testimonialsSection 
-                        ? "bg-white border-[#bd9245]/20 shadow-xl shadow-[#bd9245]/5" 
+                        ? "bg-white border-[#6B1F2A]/20 shadow-xl shadow-[#6B1F2A]/5" 
                         : "bg-gray-50/50 border-gray-100"
                     )}>
                       <div className="flex items-start justify-between mb-6">
                         <div className={cn(
                           "w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg",
-                          siteSettings.testimonialsSection ? "bg-[#bd9245] text-white shadow-[#bd9245]/20" : "bg-gray-200 text-gray-400"
+                          siteSettings.testimonialsSection ? "bg-[#6B1F2A] text-white shadow-[#6B1F2A]/20" : "bg-gray-200 text-gray-400"
                         )}>
                           <Users className="h-7 w-7" />
                         </div>
@@ -2908,7 +2908,7 @@ export default function DashboardPage() {
                           disabled={settingsLoading}
                           checked={siteSettings.testimonialsSection} 
                           onCheckedChange={(val) => updateSetting('testimonialsSection', val)}
-                          className="data-[state=checked]:bg-[#bd9245]"
+                          className="data-[state=checked]:bg-[#6B1F2A]"
                         />
                       </div>
                       <div>
@@ -2929,9 +2929,9 @@ export default function DashboardPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="mt-12 p-6 bg-[#faf8f3] rounded-[32px] border border-gray-100 flex items-center gap-4">
+                  <div className="mt-12 p-6 bg-[#F5EFE6] rounded-[32px] border border-gray-100 flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
-                      <LayoutDashboard className="h-5 w-5 text-[#bd9245]" />
+                      <LayoutDashboard className="h-5 w-5 text-[#6B1F2A]" />
                     </div>
                     <div>
                       <p className="text-[11px] font-black text-[#111827] uppercase tracking-widest">Administrator Pro-Tip</p>
@@ -2955,7 +2955,7 @@ export default function DashboardPage() {
                 <CardContent className="p-8 pt-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* Facebook */}
-                    <div className="p-6 rounded-[32px] bg-[#faf8f3] border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div className="p-6 rounded-[32px] bg-[#F5EFE6] border border-gray-100 shadow-sm transition-all hover:shadow-md">
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-[#1877F2]/10 text-[#1877F2] flex items-center justify-center">
@@ -2981,7 +2981,7 @@ export default function DashboardPage() {
                           className="bg-white border-gray-100 rounded-xl h-11 text-xs font-medium"
                         />
                         {siteSettings.facebookUrl && (
-                          <Link href={siteSettings.facebookUrl} target="_blank" className="text-[9px] text-[#bd9245] flex items-center gap-1 mt-1 font-bold uppercase truncate hover:underline px-1">
+                          <Link href={siteSettings.facebookUrl} target="_blank" className="text-[9px] text-[#6B1F2A] flex items-center gap-1 mt-1 font-bold uppercase truncate hover:underline px-1">
                             <ExternalLink className="h-2.5 w-2.5" /> View Live Profile
                           </Link>
                         )}
@@ -2989,7 +2989,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* Instagram */}
-                    <div className="p-6 rounded-[32px] bg-[#faf8f3] border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div className="p-6 rounded-[32px] bg-[#F5EFE6] border border-gray-100 shadow-sm transition-all hover:shadow-md">
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#f09433]/10 via-[#e6683c]/10 to-[#dc2743]/10 text-[#e6683c] flex items-center justify-center">
@@ -3023,7 +3023,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* Twitter / X */}
-                    <div className="p-6 rounded-[32px] bg-[#faf8f3] border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div className="p-6 rounded-[32px] bg-[#F5EFE6] border border-gray-100 shadow-sm transition-all hover:shadow-md">
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-black/10 text-black flex items-center justify-center">
@@ -3057,7 +3057,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* LinkedIn */}
-                    <div className="p-6 rounded-[32px] bg-[#faf8f3] border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div className="p-6 rounded-[32px] bg-[#F5EFE6] border border-gray-100 shadow-sm transition-all hover:shadow-md">
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-[#0A66C2]/10 text-[#0A66C2] flex items-center justify-center">
@@ -3091,7 +3091,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* YouTube */}
-                    <div className="p-6 rounded-[32px] bg-[#faf8f3] border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div className="p-6 rounded-[32px] bg-[#F5EFE6] border border-gray-100 shadow-sm transition-all hover:shadow-md">
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-red-600/10 text-red-600 flex items-center justify-center">
@@ -3125,7 +3125,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* WhatsApp */}
-                    <div className="p-6 rounded-[32px] bg-[#faf8f3] border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div className="p-6 rounded-[32px] bg-[#F5EFE6] border border-gray-100 shadow-sm transition-all hover:shadow-md">
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-[#25D366]/10 text-[#25D366] flex items-center justify-center">
@@ -3160,7 +3160,7 @@ export default function DashboardPage() {
                   </div>
 
                   <div className="mt-12 p-8 bg-[#111827] rounded-[40px] flex flex-col md:flex-row items-center gap-8 border border-white/5 relative">
-                    <div className="w-20 h-20 rounded-3xl bg-[#bd9245] flex items-center justify-center shadow-xl shadow-[#bd9245]/20 shrink-0">
+                    <div className="w-20 h-20 rounded-3xl bg-[#6B1F2A] flex items-center justify-center shadow-xl shadow-[#6B1F2A]/20 shrink-0">
                       <Share2 className="h-10 w-10 text-white" />
                     </div>
                     <div className="flex-1">
@@ -3171,7 +3171,7 @@ export default function DashboardPage() {
                       <Button 
                         onClick={saveSocialSettings}
                         disabled={settingsLoading}
-                        className="bg-[#bd9245] hover:bg-[#a07835] text-white font-black px-10 py-8 rounded-[24px] shadow-2xl shadow-[#bd9245]/20 transition-all uppercase text-sm tracking-widest flex gap-3 group"
+                        className="bg-[#6B1F2A] hover:bg-[#4A1520] text-white font-black px-10 py-8 rounded-[24px] shadow-2xl shadow-[#6B1F2A]/20 transition-all uppercase text-sm tracking-widest flex gap-3 group"
                       >
                         {settingsLoading ? (
                           <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>

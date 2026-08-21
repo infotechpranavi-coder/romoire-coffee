@@ -203,7 +203,7 @@ const ContactForm = () => {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-[#bd9245] font-bold uppercase tracking-[0.3em] text-sm mb-6">Get In Touch</p>
+            <p className="text-[#6B1F2A] font-bold uppercase tracking-[0.3em] text-sm mb-6">Get In Touch</p>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-[1000] mb-6 leading-none tracking-tighter uppercase">
               Contact Us
             </h1>
@@ -237,7 +237,7 @@ const ContactForm = () => {
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Contact Form */}
               <div>
-                <h2 className="text-3xl font-bold text-[#1e1f44] mb-6">
+                <h2 className="text-3xl font-bold text-[#3D1218] mb-6">
                   Send us a Message via WhatsApp
                 </h2>
                 <Card>
@@ -436,7 +436,7 @@ const ContactForm = () => {
               <div className="space-y-8">
                 {/* Google Maps */}
                 <div>
-                  <h2 className="text-3xl font-bold text-[#1e1f44] mb-6">
+                  <h2 className="text-3xl font-bold text-[#3D1218] mb-6">
                     Find Us
                   </h2>
                   <Card>
@@ -473,7 +473,7 @@ const ContactForm = () => {
 
                 {/* Team Members */}
                 <div>
-                  <h2 className="text-3xl font-bold text-[#1e1f44] mb-6">
+                  <h2 className="text-3xl font-bold text-[#3D1218] mb-6">
                     Our Team
                   </h2>
                   <div className="space-y-4">
@@ -485,7 +485,7 @@ const ContactForm = () => {
                               <Users className="h-6 w-6 text-primary" />
                             </div>
                             <div className="flex-1">
-                              <h3 className="font-semibold text-[#1e1f44]">{member.name}</h3>
+                              <h3 className="font-semibold text-[#3D1218]">{member.name}</h3>
                               <p className="text-sm text-gray-600">{member.role}</p>
                               <div className="flex items-center space-x-4 mt-1">
                                 <a href={`mailto:${member.email}`} className="text-xs text-primary hover:underline">
@@ -513,7 +513,7 @@ const ContactForm = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1e1f44] mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#3D1218] mb-4">
                 Get in Touch
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -527,7 +527,7 @@ const ContactForm = () => {
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
                       <info.icon className="h-8 w-8 text-primary" />
                     </div>
-                    <h3 className="text-xl font-semibold text-[#1e1f44] mb-3">
+                    <h3 className="text-xl font-semibold text-[#3D1218] mb-3">
                       {info.title}
                     </h3>
                     <div className="space-y-1 mb-3">
@@ -555,7 +555,7 @@ const ContactForm = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1e1f44] mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#3D1218] mb-4">
                 Frequently Asked Questions
               </h2>
               <p className="text-xl text-gray-600">

@@ -229,7 +229,7 @@ const CreateTourModal = ({ isOpen, onClose, onTourCreated }: CreateTourModalProp
                             {itinerary.map((day, idx) => (
                                 <div key={day.id} className="p-6 rounded-2xl bg-gray-50/50 border border-gray-100 relative group">
                                     <div className="flex justify-between items-start mb-4">
-                                        <Badge variant="outline" className="bg-white border-gray-200 text-[#bd9245] px-3 py-1 rounded-full font-black uppercase tracking-widest text-[9px]">Day {day.day}</Badge>
+                                        <Badge variant="outline" className="bg-white border-gray-200 text-[#6B1F2A] px-3 py-1 rounded-full font-black uppercase tracking-widest text-[9px]">Day {day.day}</Badge>
                                         {itinerary.length > 1 && (
                                             <Button variant="ghost" size="icon" onClick={() => {
                                                 const newItinerary = itinerary.filter((_, i) => i !== idx).map((d, i) => ({ ...d, day: i + 1 }));
@@ -286,15 +286,15 @@ const CreateTourModal = ({ isOpen, onClose, onTourCreated }: CreateTourModalProp
                         <div className="space-y-4">
                             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1 block">Tour Images</label>
                             <div className="flex flex-col gap-4">
-                                <div className="border-2 border-dashed border-gray-100 rounded-[32px] p-8 text-center cursor-pointer hover:border-[#bd9245] transition-all bg-gray-50/30 group" onClick={() => fileInputRef.current?.click()}>
-                                    <Upload className="h-10 w-10 text-gray-300 mx-auto mb-3 group-hover:text-[#bd9245] transition-colors" />
+                                <div className="border-2 border-dashed border-gray-100 rounded-[32px] p-8 text-center cursor-pointer hover:border-[#6B1F2A] transition-all bg-gray-50/30 group" onClick={() => fileInputRef.current?.click()}>
+                                    <Upload className="h-10 w-10 text-gray-300 mx-auto mb-3 group-hover:text-[#6B1F2A] transition-colors" />
                                     <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Select Professional Images</p>
                                     <p className="text-[9px] text-gray-300 mt-1 uppercase font-bold tracking-tight">{images.length} images selected</p>
                                     <input type="file" multiple hidden ref={fileInputRef} onChange={e => setImages(Array.from(e.target.files || []))} accept="image/*" />
                                 </div>
                                 <div className="flex gap-2">
                                     <Input placeholder="OR Paste Image URL here..." value={currentImageUrl} onChange={e => setCurrentImageUrl(e.target.value)} className="h-12 rounded-xl flex-1" />
-                                    <Button variant="outline" onClick={handleAddUrl} className="h-12 rounded-xl font-bold uppercase text-[10px] tracking-widest px-6 hover:bg-[#bd9245] hover:text-white transition-all">Add URL</Button>
+                                    <Button variant="outline" onClick={handleAddUrl} className="h-12 rounded-xl font-bold uppercase text-[10px] tracking-widest px-6 hover:bg-[#6B1F2A] hover:text-white transition-all">Add URL</Button>
                                 </div>
                                 {externalImageUrls.length > 0 && (
                                     <div className="flex flex-wrap gap-3 mt-2">
@@ -353,7 +353,7 @@ const CreateTourModal = ({ isOpen, onClose, onTourCreated }: CreateTourModalProp
                     {submitError && <p className="text-red-500 text-xs font-bold uppercase tracking-widest mb-2">{submitError}</p>}
                     <div className="flex gap-4 w-full justify-end">
                         <Button variant="ghost" onClick={handleClose} className="rounded-2xl px-8 h-12 font-black uppercase text-xs tracking-widest">Cancel</Button>
-                        <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-[#111827] hover:bg-[#bd9245] rounded-2xl px-12 h-14 font-black uppercase text-xs tracking-widest shadow-xl transition-all">
+                        <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-[#111827] hover:bg-[#6B1F2A] rounded-2xl px-12 h-14 font-black uppercase text-xs tracking-widest shadow-xl transition-all">
                             {isSubmitting ? "Publishing..." : "Publish Tour"}
                         </Button>
                     </div>

@@ -138,8 +138,8 @@ const BlogDetailPage = () => {
           </div>
         )}
 
-        <div className="mt-16 p-8 bg-[#faf8f3] rounded-3xl text-center">
-          <h3 className="text-xl font-bold text-[#1e1f44] mb-3">Ready to plan your next trip?</h3>
+        <div className="mt-16 p-8 bg-[#F5EFE6] rounded-3xl text-center">
+          <h3 className="text-xl font-bold text-[#3D1218] mb-3">Ready to plan your next trip?</h3>
           <p className="text-gray-600 mb-6">Explore curated experiences and packages with us.</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact">

@@ -101,9 +101,9 @@ const NavbarTravel = () => {
 
   const navItemClass = (highlighted: boolean) =>
     useSolidNav
-      ? `relative z-10 px-3 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#bd9245]/40 ${
+      ? `relative z-10 px-3 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B1F2A]/40 ${
           highlighted
-            ? 'bg-[#bd9245]/10 text-[#bd9245] font-bold'
+            ? 'bg-[#6B1F2A]/10 text-[#6B1F2A] font-bold'
             : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
         }`
       : `relative z-10 px-2 py-1 text-sm font-medium transition-all duration-200 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 ${
@@ -224,7 +224,7 @@ const NavbarTravel = () => {
                                 setOpenDropdownIndex(null);
                                 setHoveredIndex(null);
                               }}
-                              className="block px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-[#bd9245] hover:bg-[#bd9245]/5 border-t border-gray-100 mt-1"
+                              className="block px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-[#6B1F2A] hover:bg-[#6B1F2A]/5 border-t border-gray-100 mt-1"
                             >
                               View All Coffee
                             </Link>
@@ -238,7 +238,7 @@ const NavbarTravel = () => {
                                     key={sub.slug}
                                     className={`flex items-center justify-between gap-2 px-4 py-2.5 text-sm transition-colors cursor-default ${
                                       hoveredPackageSub === sub.slug
-                                        ? 'bg-gray-50 text-[#bd9245] font-semibold'
+                                        ? 'bg-gray-50 text-[#6B1F2A] font-semibold'
                                         : 'text-gray-700 hover:bg-gray-50'
                                     }`}
                                     onMouseEnter={() => setHoveredPackageSub(sub.slug)}
@@ -287,7 +287,7 @@ const NavbarTravel = () => {
                                     setHoveredPackageGroup(null);
                                     setHoveredPackageSub(null);
                                   }}
-                                  className="block px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#bd9245] hover:bg-[#bd9245]/5 border-b border-gray-100"
+                                  className="block px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#6B1F2A] hover:bg-[#6B1F2A]/5 border-b border-gray-100"
                                 >
                                   All {activeSub!.label}
                                 </Link>
@@ -303,8 +303,8 @@ const NavbarTravel = () => {
                                     }}
                                     className={`block px-4 py-2.5 text-sm transition-colors ${
                                       pathname === mini.href
-                                        ? 'bg-[#bd9245]/10 text-[#bd9245] font-semibold'
-                                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#bd9245]'
+                                        ? 'bg-[#6B1F2A]/10 text-[#6B1F2A] font-semibold'
+                                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#6B1F2A]'
                                     }`}
                                   >
                                     {mini.label}
@@ -366,8 +366,8 @@ const NavbarTravel = () => {
                               }}
                               className={`block px-4 py-2.5 text-sm font-medium transition-colors ${
                                 pathname === subItem.href || pathname?.startsWith(`${subItem.href}/`)
-                                  ? 'bg-[#bd9245]/10 text-[#bd9245] font-semibold'
-                                  : 'text-gray-700 hover:bg-gray-50 hover:text-[#bd9245]'
+                                  ? 'bg-[#6B1F2A]/10 text-[#6B1F2A] font-semibold'
+                                  : 'text-gray-700 hover:bg-gray-50 hover:text-[#6B1F2A]'
                               }`}
                             >
                               {subItem.name}
@@ -400,7 +400,7 @@ const NavbarTravel = () => {
           <div className="hidden lg:flex items-center space-x-3 relative">
             <div className={`flex items-center transition-all duration-500 overflow-hidden ${isSearchOpen ? 'w-[400px] absolute right-32' : 'w-10'}`}>
               {isSearchOpen ? (
-                <form onSubmit={handleSearch} className="flex items-center w-full bg-white/80 backdrop-blur-xl rounded-full border border-[#bd9245]/30 shadow-sm px-2 overflow-hidden">
+                <form onSubmit={handleSearch} className="flex items-center w-full bg-white/80 backdrop-blur-xl rounded-full border border-[#6B1F2A]/30 shadow-sm px-2 overflow-hidden">
                   <Input
                     autoFocus
                     placeholder="Search coffee beans, roasts, or blends..."
@@ -432,8 +432,8 @@ const NavbarTravel = () => {
               className={`inline-flex h-10 items-center justify-center rounded-full px-6 text-[11px] font-bold uppercase tracking-[0.18em] transition-all ${
                 useSolidNav
                   ? isContactActive || contactHovered
-                    ? 'bg-[#bd9245] text-white'
-                    : 'bg-[#111827] text-white hover:bg-[#bd9245]'
+                    ? 'bg-[#6B1F2A] text-white'
+                    : 'bg-[#111827] text-white hover:bg-[#6B1F2A]'
                   : isContactActive || contactHovered
                     ? 'bg-white text-[#17303f]'
                     : 'bg-[#c8d8e2] text-[#17303f] hover:bg-white'
@@ -446,7 +446,7 @@ const NavbarTravel = () => {
               onClick={() => openForm()}
               className={`${
                 useSolidNav
-                  ? 'bg-[#bd9245] hover:bg-[#a07835] text-gray-900'
+                  ? 'bg-[#6B1F2A] hover:bg-[#4A1520] text-[#F5EFE6]'
                   : 'bg-transparent border border-white/35 text-white hover:bg-white/10 hover:text-white'
               } font-bold px-5 py-2 rounded-full shadow-none h-10 whitespace-nowrap text-[11px] uppercase tracking-[0.16em]`}
             >
@@ -486,7 +486,7 @@ const NavbarTravel = () => {
                   <div key={group.slug}>
                     <Link
                       href={getGroupPageHref(group.slug)}
-                      className="block pl-6 pr-4 pt-3 pb-1 text-[10px] font-black uppercase tracking-widest text-[#bd9245] hover:text-[#a07835]"
+                      className="block pl-6 pr-4 pt-3 pb-1 text-[10px] font-black uppercase tracking-widest text-[#6B1F2A] hover:text-[#4A1520]"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {group.label}
@@ -497,7 +497,7 @@ const NavbarTravel = () => {
                           href={sub.href}
                           className={`block pl-10 pr-4 py-2 text-sm rounded-lg transition-colors ${
                             pathname === sub.href
-                              ? 'text-[#bd9245] font-semibold bg-[#bd9245]/5'
+                              ? 'text-[#6B1F2A] font-semibold bg-[#6B1F2A]/5'
                               : 'text-gray-600 hover:bg-gray-100'
                           }`}
                           onClick={() => setIsMenuOpen(false)}
@@ -511,7 +511,7 @@ const NavbarTravel = () => {
                             href={mini.href}
                             className={`block pl-14 pr-4 py-1.5 text-xs rounded-lg transition-colors ${
                               pathname === mini.href
-                                ? 'text-[#bd9245] font-semibold bg-[#bd9245]/5'
+                                ? 'text-[#6B1F2A] font-semibold bg-[#6B1F2A]/5'
                                 : 'text-gray-500 hover:bg-gray-100'
                             }`}
                             onClick={() => setIsMenuOpen(false)}
@@ -530,7 +530,7 @@ const NavbarTravel = () => {
                     href={subItem.href}
                     className={`block pl-8 pr-4 py-2 text-sm rounded-lg transition-colors ${
                       pathname === subItem.href || pathname?.startsWith(`${subItem.href}/`)
-                        ? 'text-[#bd9245] font-semibold bg-[#bd9245]/5'
+                        ? 'text-[#6B1F2A] font-semibold bg-[#6B1F2A]/5'
                         : 'text-gray-600 hover:bg-gray-100'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
@@ -552,7 +552,7 @@ const NavbarTravel = () => {
                 openForm();
                 setIsMenuOpen(false);
               }}
-              className="w-full bg-[#bd9245] hover:bg-[#a07835] text-gray-900 font-bold mt-4"
+              className="w-full bg-[#6B1F2A] hover:bg-[#4A1520] text-[#F5EFE6] font-bold mt-4"
             >
               Order Now
             </Button>

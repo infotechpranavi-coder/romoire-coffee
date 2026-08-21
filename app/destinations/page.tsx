@@ -153,7 +153,7 @@ const DestinationsPage = () => {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-[#bd9245] font-bold uppercase tracking-[0.3em] text-sm mb-6">Explore Dubai</p>
+            <p className="text-[#6B1F2A] font-bold uppercase tracking-[0.3em] text-sm mb-6">Explore Dubai</p>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-[1000] mb-6 leading-none tracking-tighter uppercase">
               Destinations
             </h1>
@@ -192,7 +192,7 @@ const DestinationsPage = () => {
       <section className="py-12 bg-gray-100">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center text-[#1e1f44] mb-8">
+            <h2 className="text-3xl font-bold text-center text-[#3D1218] mb-8">
               Explore by Category
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -215,7 +215,7 @@ const DestinationsPage = () => {
                         }`}>
                         <IconComponent className="h-6 w-6" />
                       </div>
-                      <h3 className={`text-sm font-semibold mb-1 ${selectedCategory === category.name ? 'text-primary' : 'text-[#1e1f44]'
+                      <h3 className={`text-sm font-semibold mb-1 ${selectedCategory === category.name ? 'text-primary' : 'text-[#3D1218]'
                         }`}>
                         {category.name}
                       </h3>
@@ -254,7 +254,7 @@ const DestinationsPage = () => {
                 <div className="w-24 h-24 mx-auto mb-4 bg-gray-200 rounded-full flex items-center justify-center">
                   <Search className="h-12 w-12 text-gray-400" />
                 </div>
-                <h3 className="text-xl font-semibold text-[#1e1f44] mb-2">No packages found</h3>
+                <h3 className="text-xl font-semibold text-[#3D1218] mb-2">No packages found</h3>
                 <p className="text-gray-600 mb-6">Try adjusting your search criteria</p>
                 <Button onClick={() => {
                   setSearchTerm("");
@@ -274,7 +274,7 @@ const DestinationsPage = () => {
                           <IconComponent className="h-6 w-6" />
                         </div>
                         <div>
-                          <h2 className="text-3xl font-bold text-[#1e1f44]">{categoryName} Packages</h2>
+                          <h2 className="text-3xl font-bold text-[#3D1218]">{categoryName} Packages</h2>
                           <p className="text-gray-600">{categoryPackages.length} package{categoryPackages.length !== 1 ? 's' : ''} available</p>
                         </div>
                       </div>
@@ -298,7 +298,7 @@ const DestinationsPage = () => {
                                 </div>
                               )}
                               <div className="absolute top-4 right-4 space-y-2">
-                                <Badge className="bg-white text-[#1e1f44] block">
+                                <Badge className="bg-white text-[#3D1218] block">
                                   {formatPrice(pkg.price)}
                                 </Badge>
                                 <Badge variant="outline" className="bg-primary/10 text-primary border-primary block">

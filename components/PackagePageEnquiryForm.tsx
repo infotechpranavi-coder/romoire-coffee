@@ -112,7 +112,7 @@ export default function PackagePageEnquiryForm({
   return (
     <div className="rounded-[32px] bg-white border border-gray-100 p-8 md:p-10 shadow-sm">
       <div className="mb-8 text-center max-w-2xl mx-auto">
-        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#bd9245] mb-2">Get a Quote</p>
+        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#6B1F2A] mb-2">Get a Quote</p>
         <h3 className="text-2xl md:text-3xl font-black text-[#111827] uppercase tracking-tight">
           Enquire About {packageName || categoryLabel}
         </h3>
@@ -173,7 +173,7 @@ export default function PackagePageEnquiryForm({
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-[#111827] hover:bg-[#bd9245] text-white font-black uppercase tracking-widest text-xs px-10 h-12 rounded-xl"
+            className="bg-[#111827] hover:bg-[#6B1F2A] text-white font-black uppercase tracking-widest text-xs px-10 h-12 rounded-xl"
           >
             {isSubmitting ? 'Sending...' : (
               <>

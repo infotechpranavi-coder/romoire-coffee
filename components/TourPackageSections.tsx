@@ -51,7 +51,7 @@ export default function TourPackageSections({
   };
 
   return (
-    <div className={embedded ? 'space-y-10' : 'min-h-screen bg-[#faf8f3]'}>
+    <div className={embedded ? 'space-y-10' : 'min-h-screen bg-[#F5EFE6]'}>
       {showHero && (
         <section className="relative text-white pt-28 pb-20 md:pb-24 overflow-hidden">
           <CategoryHeroBackground
@@ -87,7 +87,7 @@ export default function TourPackageSections({
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Button
                   onClick={openEnquiry}
-                  className="bg-[#bd9245] hover:bg-[#a07835] text-white rounded-full px-8 h-12 font-bold"
+                  className="bg-[#6B1F2A] hover:bg-[#4A1520] text-white rounded-full px-8 h-12 font-bold"
                 >
                   Enquire Now
                 </Button>
@@ -115,7 +115,7 @@ export default function TourPackageSections({
             <CardContent className="p-8 grid sm:grid-cols-2 gap-4">
               {packageData.fixedDepartures.map((dep, idx) => (
                 <div key={idx} className="p-4 bg-white rounded-2xl border border-gray-100">
-                  <p className="font-black text-[#bd9245] text-xs uppercase tracking-widest mb-1">{dep.month}</p>
+                  <p className="font-black text-[#6B1F2A] text-xs uppercase tracking-widest mb-1">{dep.month}</p>
                   <p className="text-gray-700 font-semibold">{dep.dates}</p>
                 </div>
               ))}
@@ -138,7 +138,7 @@ export default function TourPackageSections({
                 return (
                   <div key={idx} className="p-6 bg-amber-50/50 rounded-2xl border border-amber-100 text-center">
                     <p className="text-gray-800 font-bold text-sm mb-2">{label}</p>
-                    {price && <p className="text-[#bd9245] font-black text-lg">{price}</p>}
+                    {price && <p className="text-[#6B1F2A] font-black text-lg">{price}</p>}
                   </div>
                 );
               })}
@@ -174,7 +174,7 @@ export default function TourPackageSections({
             <CardContent className="p-8 space-y-3">
               {packageData.shortItinerary.map((day) => (
                 <div key={day.day} className="flex gap-4 p-4 bg-white rounded-xl border border-gray-100">
-                  <div className="w-12 h-12 bg-[#bd9245] rounded-xl flex items-center justify-center text-white font-black shrink-0">
+                  <div className="w-12 h-12 bg-[#6B1F2A] rounded-xl flex items-center justify-center text-white font-black shrink-0">
                     {day.day}
                   </div>
                   <p className="text-gray-800 font-semibold self-center">{day.title}</p>
@@ -189,10 +189,10 @@ export default function TourPackageSections({
           <section className="space-y-6">
             <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tight">Detailed Itinerary</h2>
             {packageData.itinerary.map((day, index) => (
-              <Card key={index} className="border border-[#bd9245]/20 rounded-3xl overflow-hidden">
+              <Card key={index} className="border border-[#6B1F2A]/20 rounded-3xl overflow-hidden">
                 <CardContent className="p-8">
                   <div className="flex items-start gap-6 mb-4">
-                    <div className="w-16 h-16 bg-[#bd9245] rounded-2xl flex flex-col items-center justify-center text-white shrink-0">
+                    <div className="w-16 h-16 bg-[#6B1F2A] rounded-2xl flex flex-col items-center justify-center text-white shrink-0">
                       <span className="text-[9px] font-black uppercase">Day</span>
                       <span className="text-2xl font-black">{day.day}</span>
                     </div>
@@ -310,7 +310,7 @@ export default function TourPackageSections({
               <ul className="space-y-3">
                 {packageData.packageNotes.map((note, idx) => (
                   <li key={idx} className="text-gray-600 text-sm leading-relaxed flex gap-2">
-                    <span className="text-[#bd9245] font-bold shrink-0">*</span>
+                    <span className="text-[#6B1F2A] font-bold shrink-0">*</span>
                     {note}
                   </li>
                 ))}
@@ -351,7 +351,7 @@ function PolicyCard({ title, items }: { title: string; items: string[] }) {
         <ul className="space-y-2">
           {items.map((item, idx) => (
             <li key={idx} className="text-gray-600 text-sm leading-relaxed flex gap-2">
-              <span className="text-[#bd9245] shrink-0">•</span>
+              <span className="text-[#6B1F2A] shrink-0">•</span>
               {item}
             </li>
           ))}

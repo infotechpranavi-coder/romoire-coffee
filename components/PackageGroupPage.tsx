@@ -118,7 +118,7 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#faf8f3] flex items-center justify-center">
+      <div className="min-h-screen bg-[#F5EFE6] flex items-center justify-center">
         <div className="text-center">
           <div className={`animate-spin rounded-full h-12 w-12 border-b-2 ${styles.spinner} mx-auto mb-4`} />
           <p className="text-gray-600">Loading {group.label.toLowerCase()} packages...</p>
@@ -128,7 +128,7 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
   }
 
   return (
-    <div className="min-h-screen bg-[#faf8f3]">
+    <div className="min-h-screen bg-[#F5EFE6]">
       <section className="relative text-white pt-28 pb-20 md:pb-24 overflow-hidden">
         <CategoryHeroBackground
           src={heroImage}
@@ -280,7 +280,7 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-[#faf8f3] border-t border-gray-100">
+      <section className="py-12 md:py-16 bg-[#F5EFE6] border-t border-gray-100">
         <div className="container mx-auto px-4 max-w-5xl">
           <PackagePageEnquiryForm categoryLabel={group.label} categorySlug={group.slug} />
         </div>

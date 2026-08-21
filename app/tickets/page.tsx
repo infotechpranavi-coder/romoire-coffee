@@ -182,7 +182,7 @@ const TicketsPage = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.5)_100%)]" />
-                <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#faf8f3] to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#F5EFE6] to-transparent" />
 
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
@@ -262,7 +262,7 @@ const TicketsPage = () => {
             </section>
 
             {/* Grid Section */}
-            <section className="py-16 bg-[#faf8f3]">
+            <section className="py-16 bg-[#F5EFE6]">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {filteredTickets.map((t, index) => (
@@ -297,15 +297,15 @@ const TicketsPage = () => {
                                 </div>
 
                                 <div className="p-8 pt-2 flex flex-col flex-grow relative">
-                                    <div className="absolute -top-4 left-[-12px] w-6 h-6 rounded-full bg-[#faf8f3]" />
-                                    <div className="absolute -top-4 right-[-12px] w-6 h-6 rounded-full bg-[#faf8f3]" />
+                                    <div className="absolute -top-4 left-[-12px] w-6 h-6 rounded-full bg-[#F5EFE6]" />
+                                    <div className="absolute -top-4 right-[-12px] w-6 h-6 rounded-full bg-[#F5EFE6]" />
                                     <div className="absolute -top-1 left-4 right-4 border-t border-dashed border-gray-200" />
 
                                     <div className="flex-grow pt-4">
                                         <div className="flex justify-between items-start mb-4">
                                             <div>
                                                 <p className="text-[10px] font-bold text-amber-600 uppercase tracking-[0.2em] mb-1">Destination</p>
-                                                <h3 className="text-2xl font-black text-[#1e1f44] leading-tight uppercase tracking-tighter group-hover:text-gray-900 transition-colors truncate max-w-[200px]">{t.location}</h3>
+                                                <h3 className="text-2xl font-black text-[#3D1218] leading-tight uppercase tracking-tighter group-hover:text-gray-900 transition-colors truncate max-w-[200px]">{t.location}</h3>
                                             </div>
                                             <div className="text-right">
                                                 <Plane className="h-6 w-6 text-gray-200 ml-auto rotate-45" />
@@ -315,15 +315,15 @@ const TicketsPage = () => {
                                         <div className="grid grid-cols-2 gap-6 py-4 border-y border-gray-50 mb-6">
                                             <div>
                                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Airline</p>
-                                                <p className="text-sm font-bold text-[#1e1f44]">{t.carrier}</p>
+                                                <p className="text-sm font-bold text-[#3D1218]">{t.carrier}</p>
                                             </div>
                                             <div>
                                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Route</p>
-                                                <p className="text-sm font-bold text-[#1e1f44]">{t.route}</p>
+                                                <p className="text-sm font-bold text-[#3D1218]">{t.route}</p>
                                             </div>
                                             <div>
                                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Class</p>
-                                                <p className="text-sm font-bold text-[#1e1f44]">{t.travelClass}</p>
+                                                <p className="text-sm font-bold text-[#3D1218]">{t.travelClass}</p>
                                             </div>
                                             <div>
                                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">ID</p>
@@ -339,7 +339,7 @@ const TicketsPage = () => {
 
                                 <div className="mt-auto p-8 pt-0">
                                     <Button
-                                        className="w-full bg-[#111827] hover:bg-[#bd9245] text-white font-black py-6 rounded-2xl transition-all duration-300 shadow-lg flex items-center justify-center gap-3 group/btn uppercase tracking-widest text-[10px]"
+                                        className="w-full bg-[#111827] hover:bg-[#6B1F2A] text-white font-black py-6 rounded-2xl transition-all duration-300 shadow-lg flex items-center justify-center gap-3 group/btn uppercase tracking-widest text-[10px]"
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             router.push(`/tickets/${generateSlug(t.title, t._id)}`);

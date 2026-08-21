@@ -72,7 +72,15 @@ export default {
 				'travel-teal': 'hsl(var(--travel-teal))',
 				'travel-navy': 'hsl(var(--travel-navy))',
 				'travel-light-teal': 'hsl(var(--travel-light-teal))',
-				'travel-light-bg': 'hsl(var(--travel-light-bg))'
+				'travel-light-bg': 'hsl(var(--travel-light-bg))',
+				romoire: {
+					burgundy: '#6B1F2A',
+					dark: '#4A1520',
+					deep: '#3D1218',
+					cream: '#F5EFE6',
+					muted: '#E8DFD0',
+					soft: '#FAF6F0',
+				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

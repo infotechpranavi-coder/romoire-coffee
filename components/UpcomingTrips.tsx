@@ -208,7 +208,7 @@ const UpcomingTrips = ({ initialProducts }: UpcomingTripsProps) => {
     <section id="trips" className="bg-white py-16 md:py-20 lg:py-24">
       <div className="container mx-auto px-4">
         <div className="relative mb-10 text-center md:mb-14">
-          <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-[#bd9245] md:text-base">
+          <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-[#6B1F2A] md:text-base">
             Choose your coffee
           </p>
           <div className="relative inline-block">
@@ -235,8 +235,8 @@ const UpcomingTrips = ({ initialProducts }: UpcomingTripsProps) => {
               onClick={() => setActiveTab(tab.key)}
               className={`rounded-full px-5 py-2.5 text-sm font-bold transition-all md:px-6 md:text-base ${
                 activeTab === tab.key
-                  ? 'bg-[#1e1f44] text-white shadow-md'
-                  : 'bg-white text-gray-700 ring-1 ring-gray-200 hover:ring-[#bd9245]/40 hover:text-[#bd9245]'
+                  ? 'bg-[#3D1218] text-white shadow-md'
+                  : 'bg-white text-gray-700 ring-1 ring-gray-200 hover:ring-[#6B1F2A]/40 hover:text-[#6B1F2A]'
               }`}
             >
               {tab.label}
@@ -246,7 +246,7 @@ const UpcomingTrips = ({ initialProducts }: UpcomingTripsProps) => {
 
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20">
-            <Loader2 className="mb-4 h-10 w-10 animate-spin text-[#bd9245]" />
+            <Loader2 className="mb-4 h-10 w-10 animate-spin text-[#6B1F2A]" />
             <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
               Loading new arrivals...
             </p>
@@ -258,7 +258,7 @@ const UpcomingTrips = ({ initialProducts }: UpcomingTripsProps) => {
                 <button
                   type="button"
                   onClick={() => goTo(currentIndex - 1)}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#bd9245] hover:text-[#bd9245]"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#6B1F2A] hover:text-[#6B1F2A]"
                   aria-label="Previous product"
                 >
                   <ChevronLeft className="h-4 w-4" />
@@ -270,7 +270,7 @@ const UpcomingTrips = ({ initialProducts }: UpcomingTripsProps) => {
                       type="button"
                       onClick={() => goTo(i)}
                       className={`h-2 w-2 rounded-full transition-colors ${
-                        i === currentIndex ? 'bg-[#bd9245]' : 'bg-gray-300 hover:bg-gray-400'
+                        i === currentIndex ? 'bg-[#6B1F2A]' : 'bg-gray-300 hover:bg-gray-400'
                       }`}
                       aria-label={`Go to slide ${i + 1}`}
                     />
@@ -279,7 +279,7 @@ const UpcomingTrips = ({ initialProducts }: UpcomingTripsProps) => {
                 <button
                   type="button"
                   onClick={() => setPaused((p) => !p)}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#bd9245] hover:text-[#bd9245]"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#6B1F2A] hover:text-[#6B1F2A]"
                   aria-label={paused ? 'Play slideshow' : 'Pause slideshow'}
                 >
                   <Pause className="h-3.5 w-3.5" />
@@ -287,7 +287,7 @@ const UpcomingTrips = ({ initialProducts }: UpcomingTripsProps) => {
                 <button
                   type="button"
                   onClick={() => goTo(currentIndex + 1)}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#bd9245] hover:text-[#bd9245]"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#6B1F2A] hover:text-[#6B1F2A]"
                   aria-label="Next product"
                 >
                   <ChevronRight className="h-4 w-4" />
@@ -320,7 +320,7 @@ const UpcomingTrips = ({ initialProducts }: UpcomingTripsProps) => {
             <div className="mt-14 flex justify-center">
               <Link
                 href="/packages/category/new-arrivals"
-                className="group inline-flex items-center gap-2 rounded-full border-2 border-[#bd9245] bg-white px-10 py-3.5 text-sm font-bold uppercase tracking-wide text-[#bd9245] transition-all hover:bg-[#bd9245] hover:text-white hover:shadow-lg hover:shadow-[#bd9245]/20"
+                className="group inline-flex items-center gap-2 rounded-full border-2 border-[#6B1F2A] bg-white px-10 py-3.5 text-sm font-bold uppercase tracking-wide text-[#6B1F2A] transition-all hover:bg-[#6B1F2A] hover:text-white hover:shadow-lg hover:shadow-[#6B1F2A]/20"
               >
                 View all products
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

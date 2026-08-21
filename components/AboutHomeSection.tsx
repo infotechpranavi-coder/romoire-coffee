@@ -12,7 +12,7 @@ const signatureFont = Great_Vibes({
   weight: '400',
 });
 
-const iconClass = 'h-12 w-12 text-[#c9a962] stroke-[1.25] md:h-14 md:w-14';
+const iconClass = 'h-12 w-12 text-[#F5EFE6] stroke-[1.25] md:h-14 md:w-14';
 
 function CoffeeBeansIcon({ className }: { className?: string }) {
   return (
@@ -60,8 +60,8 @@ const features = [
   {
     Icon: ({ className }: { className?: string }) => (
       <div className={`relative ${className}`}>
-        <Truck className="h-11 w-11 text-[#c9a962] stroke-[1.25] md:h-12 md:w-12" />
-        <Clock className="absolute -right-1 -bottom-1 h-5 w-5 text-[#c9a962] stroke-[1.5]" />
+        <Truck className="h-11 w-11 text-[#F5EFE6] stroke-[1.25] md:h-12 md:w-12" />
+        <Clock className="absolute -right-1 -bottom-1 h-5 w-5 text-[#F5EFE6] stroke-[1.5]" />
       </div>
     ),
     title: '24/7 fast delivery',
@@ -76,7 +76,7 @@ const AboutHomeSection = () => {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100dvh] items-center overflow-hidden bg-[#2a2a2a] py-16 md:py-20"
+      className="relative flex min-h-[100dvh] items-center overflow-hidden bg-[#4A1520] py-16 md:py-20"
     >
       {/* Faded coffee bean background */}
       <div
@@ -87,7 +87,7 @@ const AboutHomeSection = () => {
           backgroundPosition: 'left center',
         }}
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#2a2a2a] via-[#2a2a2a]/92 to-[#2a2a2a]" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#4A1520] via-[#4A1520]/92 to-[#4A1520]" />
 
       <div className="container relative z-10 mx-auto w-full px-4 py-8 md:py-12">
         <motion.div
@@ -103,19 +103,19 @@ const AboutHomeSection = () => {
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
           >
-            <p className="mb-5 text-lg font-semibold text-[#c9a962] md:mb-6 md:text-xl">
+            <p className="mb-5 text-lg font-semibold text-[#F5EFE6] md:mb-6 md:text-xl">
               Who we are
             </p>
-            <h2 className="mb-8 text-5xl font-bold leading-[1.1] text-white md:text-6xl lg:text-7xl xl:text-[4.5rem]">
+            <h2 className="mb-8 text-5xl font-bold leading-[1.1] text-[#F5EFE6] md:text-6xl lg:text-7xl xl:text-[4.5rem]">
               About {SITE_NAME}
             </h2>
-            <p className="mb-12 text-base leading-[1.9] text-gray-400 md:text-lg md:leading-[1.85] lg:text-xl">
+            <p className="mb-12 text-base leading-[1.9] text-[#E8DFD0]/80 md:text-lg md:leading-[1.85] lg:text-xl">
               Coffee is a brewed drink prepared from roasted beans, which are the seeds of berries from the Coffea
               plant. The genus Coffea is native to tropical Africa and Madagascar, the Comoros, Mauritius, and Réunion
               in the Indian Ocean. At {SITE_NAME}, we select only the finest lots, roast in small batches, and deliver
               every bag at peak freshness.
             </p>
-            <p className={`${signatureFont.className} text-5xl text-white md:text-6xl lg:text-7xl`}>
+            <p className={`${signatureFont.className} text-5xl text-[#F5EFE6] md:text-6xl lg:text-7xl`}>
               {SITE_NAME}
             </p>
           </motion.div>
@@ -130,8 +130,8 @@ const AboutHomeSection = () => {
             {features.map((feature) => (
               <div key={feature.title} className="space-y-5">
                 <feature.Icon className={iconClass} />
-                <h3 className="text-xl font-bold text-white md:text-2xl">{feature.title}</h3>
-                <p className="text-base leading-[1.8] text-gray-400 md:text-lg">{feature.description}</p>
+                <h3 className="text-xl font-bold text-[#F5EFE6] md:text-2xl">{feature.title}</h3>
+                <p className="text-base leading-[1.8] text-[#E8DFD0]/75 md:text-lg">{feature.description}</p>
               </div>
             ))}
           </motion.div>

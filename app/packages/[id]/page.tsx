@@ -2505,7 +2505,7 @@ Key Highlights`,
   const experienceCategory = getCategoryByValue(packageData.packageCategory);
 
   return (
-    <div className={`min-h-screen ${playfair.variable} ${cormorant.variable} ${poppins.variable} font-sans bg-[#faf8f3]`}>
+    <div className={`min-h-screen ${playfair.variable} ${cormorant.variable} ${poppins.variable} font-sans bg-[#F5EFE6]`}>
       {/* Immersive Hero Section */}
       <div className={`relative h-[70vh] md:h-[80vh] w-full overflow-hidden ${isPremium ? 'shadow-2xl' : ''}`}>
         <div className="absolute inset-0">
@@ -2518,11 +2518,11 @@ Key Highlights`,
               priority
             />
           ) : (
-            <div className="w-full h-full bg-[#1e1f44] flex items-center justify-center">
-              <Globe className="h-24 w-24 text-[#bd9245]" />
+            <div className="w-full h-full bg-[#3D1218] flex items-center justify-center">
+              <Globe className="h-24 w-24 text-[#6B1F2A]" />
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1e1f44] via-[#1e1f44]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#3D1218] via-[#3D1218]/40 to-transparent" />
         </div>
 
         {/* Navigation Bar Overlay */}
@@ -2565,17 +2565,17 @@ Key Highlights`,
                     </Badge>
                   ) : null}
                   {isPremium ? (
-                    <Badge className="bg-[#bd9245] text-white border-none px-6 py-2 text-xs font-black uppercase tracking-[0.2em] shadow-xl">
+                    <Badge className="bg-[#6B1F2A] text-white border-none px-6 py-2 text-xs font-black uppercase tracking-[0.2em] shadow-xl">
                       <Sparkles className="h-3 w-3 mr-2" />
                       Premium Experience
                     </Badge>
                   ) : (
-                    <Badge className="bg-[#1e1f44] text-white border-none px-4 py-1.5 text-xs font-black uppercase tracking-[0.1em] shadow-lg">
+                    <Badge className="bg-[#3D1218] text-white border-none px-4 py-1.5 text-xs font-black uppercase tracking-[0.1em] shadow-lg">
                       {isAttractionPackage ? "Exclusive Experience" : isInternational ? "International Journey" : "Domestic Tour"}
                     </Badge>
                   )}
                   <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full border border-white/20 text-sm font-bold text-white shadow-xl">
-                    <Star className="h-4 w-4 fill-[#bd9245] text-[#bd9245]" />
+                    <Star className="h-4 w-4 fill-[#6B1F2A] text-[#6B1F2A]" />
                     <span className="font-black">{packageData.rating}</span>
                     <span className="text-white/70 ml-1 text-xs uppercase tracking-tighter">({packageData.reviews?.length || 0} reviews)</span>
                   </div>
@@ -2591,21 +2591,21 @@ Key Highlights`,
                 )}
 
                 <div className="flex flex-wrap items-center gap-4 text-xs md:text-sm text-white font-black uppercase tracking-[0.2em]">
-                  <div className="flex items-center gap-3 bg-[#1e1f44]/80 backdrop-blur-xl px-6 py-4 rounded-2xl border border-white/10 shadow-2xl transition-all hover:border-[#bd9245]/50 group">
-                    <div className="p-2 bg-[#bd9245]/20 rounded-lg group-hover:bg-[#bd9245]/40 transition-colors">
-                      <MapPin className="h-4 w-4 text-[#bd9245]" />
+                  <div className="flex items-center gap-3 bg-[#3D1218]/80 backdrop-blur-xl px-6 py-4 rounded-2xl border border-white/10 shadow-2xl transition-all hover:border-[#6B1F2A]/50 group">
+                    <div className="p-2 bg-[#6B1F2A]/20 rounded-lg group-hover:bg-[#6B1F2A]/40 transition-colors">
+                      <MapPin className="h-4 w-4 text-[#6B1F2A]" />
                     </div>
                     <span>{packageData.location}</span>
                   </div>
-                  <div className="flex items-center gap-3 bg-[#1e1f44]/80 backdrop-blur-xl px-6 py-4 rounded-2xl border border-white/10 shadow-2xl transition-all hover:border-[#bd9245]/50 group">
-                    <div className="p-2 bg-[#bd9245]/20 rounded-lg group-hover:bg-[#bd9245]/40 transition-colors">
-                      <Clock className="h-4 w-4 text-[#bd9245]" />
+                  <div className="flex items-center gap-3 bg-[#3D1218]/80 backdrop-blur-xl px-6 py-4 rounded-2xl border border-white/10 shadow-2xl transition-all hover:border-[#6B1F2A]/50 group">
+                    <div className="p-2 bg-[#6B1F2A]/20 rounded-lg group-hover:bg-[#6B1F2A]/40 transition-colors">
+                      <Clock className="h-4 w-4 text-[#6B1F2A]" />
                     </div>
                     <span>{packageData.duration}</span>
                   </div>
-                  <div className="flex items-center gap-3 bg-[#1e1f44]/80 backdrop-blur-xl px-6 py-4 rounded-2xl border border-white/10 shadow-2xl transition-all hover:border-[#bd9245]/50 group">
-                    <div className="p-2 bg-[#bd9245]/20 rounded-lg group-hover:bg-[#bd9245]/40 transition-colors">
-                      <Users className="h-4 w-4 text-[#bd9245]" />
+                  <div className="flex items-center gap-3 bg-[#3D1218]/80 backdrop-blur-xl px-6 py-4 rounded-2xl border border-white/10 shadow-2xl transition-all hover:border-[#6B1F2A]/50 group">
+                    <div className="p-2 bg-[#6B1F2A]/20 rounded-lg group-hover:bg-[#6B1F2A]/40 transition-colors">
+                      <Users className="h-4 w-4 text-[#6B1F2A]" />
                     </div>
                     <span>{packageData.capacity}</span>
                   </div>
@@ -2679,7 +2679,7 @@ Key Highlights`,
                             </Badge>
                           </Link>
                         ) : (
-                          <Badge className="bg-[#bd9245] text-white hover:bg-[#bd9245] border-none px-8 py-3 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-2xl shadow-[#bd9245]/30">
+                          <Badge className="bg-[#6B1F2A] text-white hover:bg-[#6B1F2A] border-none px-8 py-3 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-2xl shadow-[#6B1F2A]/30">
                             {packageData.packageCategory} Selection
                           </Badge>
                         )}
@@ -2695,7 +2695,7 @@ Key Highlights`,
                         className="text-6xl md:text-8xl font-black text-white mb-6 uppercase tracking-[-0.04em] leading-[0.9] drop-shadow-2xl"
                       >
                         {packageData.title.split(' ').slice(0, -1).join(' ')} <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bd9245] to-[#f4d06f]">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6B1F2A] to-[#f4d06f]">
                           {packageData.title.split(' ').slice(-1)}
                         </span>
                       </motion.h1>
@@ -2708,14 +2708,14 @@ Key Highlights`,
                       >
                         <span className="flex items-center gap-3">
                           <div className="p-2 bg-white/10 rounded-lg backdrop-blur-xl">
-                            <MapPin className="h-4 w-4 text-[#bd9245]" />
+                            <MapPin className="h-4 w-4 text-[#6B1F2A]" />
                           </div>
                           {packageData.location}
                         </span>
                         <div className="h-1 w-1 bg-white/30 rounded-full" />
                         <span className="flex items-center gap-3">
                           <div className="p-2 bg-white/10 rounded-lg backdrop-blur-xl">
-                            <Clock className="h-4 w-4 text-[#bd9245]" />
+                            <Clock className="h-4 w-4 text-[#6B1F2A]" />
                           </div>
                           {packageData.duration}
                         </span>
@@ -2805,11 +2805,11 @@ Key Highlights`,
                       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 p-8">
                         <div className="space-y-1">
                           <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Pricing</p>
-                          <p className="text-xl font-black text-[#bd9245] tracking-tighter uppercase">On Request</p>
+                          <p className="text-xl font-black text-[#6B1F2A] tracking-tighter uppercase">On Request</p>
                         </div>
                         <div className="space-y-1">
                           <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Experience Vibe</p>
-                          <p className="text-xl font-black text-[#bd9245] tracking-tighter uppercase">Ultimate</p>
+                          <p className="text-xl font-black text-[#6B1F2A] tracking-tighter uppercase">Ultimate</p>
                         </div>
                         <div className="space-y-1">
                           <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Guest Capacity</p>
@@ -2832,8 +2832,8 @@ Key Highlights`,
                       {packageData.keyHighlights && packageData.keyHighlights.length > 0 && (
                         <div className="space-y-8">
                           <div className="flex items-center gap-4">
-                            <div className="p-3 bg-[#bd9245]/10 rounded-2xl">
-                              <Star className="h-6 w-6 text-[#bd9245]" />
+                            <div className="p-3 bg-[#6B1F2A]/10 rounded-2xl">
+                              <Star className="h-6 w-6 text-[#6B1F2A]" />
                             </div>
                             <h3 className="text-2xl font-bold text-gray-900 uppercase tracking-tight">Key Highlights</h3>
                           </div>
@@ -2877,29 +2877,29 @@ Key Highlights`,
                         <div className="mt-16 pt-16 border-t border-gray-100">
                           <div className="flex items-center gap-6 mb-12">
                             <div className="p-4 bg-amber-50 rounded-[24px]">
-                               <Calendar className="h-8 w-8 text-[#bd9245]" />
+                               <Calendar className="h-8 w-8 text-[#6B1F2A]" />
                             </div>
                             <h3 className="text-4xl font-black text-gray-900 uppercase tracking-tighter text-black">Daily Itinerary</h3>
                           </div>
 
                           <div className="space-y-8">
                             {packageData.itinerary.map((day: any, index: number) => (
-                              <div key={index} className="bg-white border border-[#bd9245]/20 rounded-[40px] p-8 md:p-12 shadow-sm transition-all hover:shadow-md">
+                              <div key={index} className="bg-white border border-[#6B1F2A]/20 rounded-[40px] p-8 md:p-12 shadow-sm transition-all hover:shadow-md">
                                 <div className="flex items-center justify-between mb-10">
                                    <div className="flex items-center gap-8">
-                                      <div className="w-20 h-20 bg-[#bd9245] rounded-[28px] flex flex-col items-center justify-center text-white shadow-lg shadow-[#bd9245]/20">
+                                      <div className="w-20 h-20 bg-[#6B1F2A] rounded-[28px] flex flex-col items-center justify-center text-white shadow-lg shadow-[#6B1F2A]/20">
                                         <span className="text-[10px] font-black uppercase tracking-widest leading-none mb-1">Day</span>
                                         <span className="text-3xl font-black">{day.day}</span>
                                       </div>
                                       <h4 className="text-2xl font-black text-gray-900 uppercase tracking-tighter">{day.title}</h4>
                                    </div>
-                                   <div className="h-12 w-12 rounded-full border border-[#bd9245]/20 flex items-center justify-center text-[#bd9245]/60">
+                                   <div className="h-12 w-12 rounded-full border border-[#6B1F2A]/20 flex items-center justify-center text-[#6B1F2A]/60">
                                      <ArrowRight className="h-6 w-6 rotate-90" />
                                    </div>
                                 </div>
 
                                 <div className="flex gap-10 ml-4 md:ml-10">
-                                   <div className="w-px bg-[#bd9245]/20 h-auto self-stretch mt-2 mb-2" />
+                                   <div className="w-px bg-[#6B1F2A]/20 h-auto self-stretch mt-2 mb-2" />
                                    <div className="text-gray-600 text-lg leading-relaxed font-medium py-1">
                                      {day.description.split('\n').filter(Boolean).map((line: string, i: number) => (
                                        <p key={i} className="mb-4 last:mb-0">{line}</p>
@@ -2931,13 +2931,13 @@ Key Highlights`,
                                 <div
                                   key={idx}
                                   className={`p-8 rounded-3xl border-2 transition-all duration-500 group ${isHighlighted
-                                    ? 'bg-[#1e1f44] border-[#1e1f44] text-white shadow-2xl skew-y-1 hover:skew-y-0'
-                                    : 'bg-white border-gray-100 text-[#1e1f44] hover:border-[#bd9245]/30'
+                                    ? 'bg-[#3D1218] border-[#3D1218] text-white shadow-2xl skew-y-1 hover:skew-y-0'
+                                    : 'bg-white border-gray-100 text-[#3D1218] hover:border-[#6B1F2A]/30'
                                     }`}
                                 >
                                   <div className="flex flex-col h-full">
                                     <div className="mb-4">
-                                      <span className={`text-[10px] font-black uppercase tracking-widest mb-2 block ${isHighlighted ? 'text-[#bd9245]' : 'text-gray-400'}`}>
+                                      <span className={`text-[10px] font-black uppercase tracking-widest mb-2 block ${isHighlighted ? 'text-[#6B1F2A]' : 'text-gray-400'}`}>
                                         {isHighlighted ? 'Most Popular' : 'Ticket Category'}
                                       </span>
                                       <h4 className="text-xl font-black uppercase tracking-tighter leading-tight">
@@ -2946,7 +2946,7 @@ Key Highlights`,
                                     </div>
                                     {price ? (
                                       <div className="mt-auto pt-6 border-t border-white/10">
-                                        <p className={`text-sm font-bold uppercase tracking-widest ${isHighlighted ? 'text-[#bd9245]' : 'text-gray-500'}`}>
+                                        <p className={`text-sm font-bold uppercase tracking-widest ${isHighlighted ? 'text-[#6B1F2A]' : 'text-gray-500'}`}>
                                           Contact us for pricing
                                         </p>
                                       </div>
@@ -3172,9 +3172,9 @@ Key Highlights`,
                       <div className="grid md:grid-cols-2 gap-6">
                         {packageData.reviews && packageData.reviews.length > 0 ? (
                           packageData.reviews.map((review: any, idx: number) => (
-                            <div key={idx} className="bg-white border border-gray-100 rounded-[32px] p-8 shadow-sm hover:shadow-xl transition-all duration-500 border-b-4 border-b-[#bd9245]/20">
+                            <div key={idx} className="bg-white border border-gray-100 rounded-[32px] p-8 shadow-sm hover:shadow-xl transition-all duration-500 border-b-4 border-b-[#6B1F2A]/20">
                               <div className="flex items-center gap-4 mb-6">
-                                <div className="h-12 w-12 rounded-2xl bg-gray-900 flex items-center justify-center text-[#bd9245] font-black text-lg shadow-lg">
+                                <div className="h-12 w-12 rounded-2xl bg-gray-900 flex items-center justify-center text-[#6B1F2A] font-black text-lg shadow-lg">
                                   {review.name?.charAt(0) || 'U'}
                                 </div>
                                 <div>
@@ -3406,29 +3406,29 @@ Key Highlights`,
                 <section id="itinerary" className="space-y-10">
                   <div className="flex items-center gap-6 mb-12">
                     <div className="p-4 bg-amber-50 rounded-[24px]">
-                       <Calendar className="h-8 w-8 text-[#bd9245]" />
+                       <Calendar className="h-8 w-8 text-[#6B1F2A]" />
                     </div>
                     <h3 className="text-4xl font-black text-gray-900 uppercase tracking-tighter text-black">Daily Itinerary</h3>
                   </div>
 
                   <div className="space-y-8">
                     {Array.isArray(packageData.itinerary) && packageData.itinerary.map((day, index) => (
-                      <div key={index} className="bg-white border border-[#bd9245]/20 rounded-[40px] p-8 md:p-12 shadow-sm transition-all hover:shadow-md">
+                      <div key={index} className="bg-white border border-[#6B1F2A]/20 rounded-[40px] p-8 md:p-12 shadow-sm transition-all hover:shadow-md">
                         <div className="flex items-center justify-between mb-10">
                            <div className="flex items-center gap-8">
-                              <div className="w-20 h-20 bg-[#bd9245] rounded-[28px] flex flex-col items-center justify-center text-white shadow-lg shadow-[#bd9245]/20">
+                              <div className="w-20 h-20 bg-[#6B1F2A] rounded-[28px] flex flex-col items-center justify-center text-white shadow-lg shadow-[#6B1F2A]/20">
                                 <span className="text-[10px] font-black uppercase tracking-widest leading-none mb-1">Day</span>
                                 <span className="text-3xl font-black">{day.day}</span>
                               </div>
                               <h4 className="text-2xl font-black text-gray-900 uppercase tracking-tighter">{day.title}</h4>
                            </div>
-                           <div className="h-12 w-12 rounded-full border border-[#bd9245]/20 flex items-center justify-center text-[#bd9245]/60">
+                           <div className="h-12 w-12 rounded-full border border-[#6B1F2A]/20 flex items-center justify-center text-[#6B1F2A]/60">
                              <ArrowRight className="h-6 w-6 rotate-90" />
                            </div>
                         </div>
 
                         <div className="flex gap-10 ml-4 md:ml-10">
-                           <div className="w-px bg-[#bd9245]/20 h-auto self-stretch mt-2 mb-2" />
+                           <div className="w-px bg-[#6B1F2A]/20 h-auto self-stretch mt-2 mb-2" />
                            <div className="text-gray-600 text-lg leading-relaxed font-medium py-1">
                              {day.description.split('\n').filter(Boolean).map((line, i) => (
                                <p key={i} className="mb-4 last:mb-0">{line}</p>
@@ -3662,9 +3662,9 @@ Key Highlights`,
                         <div className="grid md:grid-cols-2 gap-6">
                           {packageData.reviews && packageData.reviews.length > 0 ? (
                             packageData.reviews.map((review: any, idx: number) => (
-                              <div key={idx} className="bg-gray-50/30 border border-gray-100 rounded-2xl p-6 hover:bg-white hover:shadow-xl transition-all border-b-4 border-b-[#bd9245]/10">
+                              <div key={idx} className="bg-gray-50/30 border border-gray-100 rounded-2xl p-6 hover:bg-white hover:shadow-xl transition-all border-b-4 border-b-[#6B1F2A]/10">
                                 <div className="flex items-center gap-4 mb-4">
-                                  <div className="h-10 w-10 rounded-xl bg-gray-900 flex items-center justify-center text-[#bd9245] font-black text-sm">
+                                  <div className="h-10 w-10 rounded-xl bg-gray-900 flex items-center justify-center text-[#6B1F2A] font-black text-sm">
                                     {review.name?.charAt(0) || 'U'}
                                   </div>
                                   <div>

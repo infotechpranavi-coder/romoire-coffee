@@ -27,7 +27,7 @@ const FooterLink = ({ href, children }: { href: string; children: ReactNode }) =
       href={href}
       className="group flex items-center gap-2.5 text-gray-700 hover:text-gray-900 transition-colors text-sm font-medium"
     >
-      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#9aab6b] group-hover:bg-[#bd9245] transition-colors" />
+      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#6B1F2A]/35 group-hover:bg-[#6B1F2A] transition-colors" />
       {children}
     </Link>
   </li>
@@ -87,7 +87,7 @@ const Footer = () => {
           sizes="100vw"
           priority={false}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/95 via-55% to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F5EFE6] via-[#F5EFE6]/95 via-55% to-[#6B1F2A]/40" />
       </div>
 
       <div className="relative z-10">
@@ -98,7 +98,7 @@ const Footer = () => {
             <div className="lg:pr-10 space-y-6">
               <div>
                 <BrandLogo size="md" />
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9aab6b] mt-2 pl-0.5">{SITE_TAGLINE}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#6B1F2A] mt-2 pl-0.5">{SITE_TAGLINE}</p>
               </div>
 
               <p className="text-sm leading-relaxed text-gray-600 max-w-xs">
@@ -115,7 +115,7 @@ const Footer = () => {
                         href={url || '#'}
                         target={url ? '_blank' : undefined}
                         rel={url ? 'noopener noreferrer' : undefined}
-                        className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm transition-all hover:border-[#9aab6b] hover:bg-[#f4f7ef]"
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm transition-all hover:border-[#E8DFD0] hover:bg-[#f4f7ef]"
                         aria-label={key}
                       >
                         <Icon className="h-4 w-4" />
@@ -180,7 +180,7 @@ const Footer = () => {
                 />
                 <button
                   type="submit"
-                  className="flex shrink-0 items-center justify-center bg-[#c8d4a8] px-4 transition-colors hover:bg-[#bd9245] hover:text-white"
+                  className="flex shrink-0 items-center justify-center bg-[#6B1F2A] px-4 transition-colors hover:bg-[#6B1F2A] hover:text-white"
                   aria-label="Subscribe"
                 >
                   <ArrowUpRight className="h-5 w-5 text-gray-900" />
