@@ -130,10 +130,10 @@ const NavbarTravel = () => {
       : 'bg-transparent'
       }`}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between min-h-[5.5rem] h-[5.5rem] overflow-visible">
           {/* Logo */}
-          <div className="relative z-50">
-            <BrandLogo variant={useSolidNav ? 'dark' : 'light'} />
+          <div className="relative z-50 flex shrink-0 items-center overflow-visible py-1">
+            <BrandLogo variant={useSolidNav ? 'dark' : 'light'} size="md" />
           </div>
 
           {/* Centered Navigation Pill */}

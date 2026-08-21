@@ -1,6 +1,6 @@
 export const SITE_NAME = 'Romoire';
 export const SITE_TAGLINE = 'Specialty Coffee Roasters';
-export const LOGO_SRC = '/romoire-logo.jpg';
+export const LOGO_SRC = '/20260812_Romoire_Logo-01-removebg-preview.png';
 
 /** Brand palette from the Romoire logo (burgundy + cream) */
 export const BRAND = {

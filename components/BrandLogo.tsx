@@ -10,12 +10,13 @@ type BrandLogoProps = {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   asLink?: boolean;
+  showWordmark?: boolean;
 };
 
 const sizeMap = {
-  sm: { className: 'h-9 w-9 md:h-10 md:w-10', px: 40 },
-  md: { className: 'h-11 w-11 md:h-12 md:w-12', px: 48 },
-  lg: { className: 'h-14 w-14 md:h-16 md:w-16', px: 64 },
+  sm: { box: 'h-10 w-10', px: 40, text: 'text-base md:text-lg' },
+  md: { box: 'h-14 w-14 md:h-16 md:w-16', px: 72, text: 'text-lg md:text-xl' },
+  lg: { box: 'h-16 w-16 md:h-20 md:w-20', px: 80, text: 'text-xl md:text-2xl' },
 };
 
 export default function BrandLogo({
@@ -23,21 +24,19 @@ export default function BrandLogo({
   size = 'md',
   className,
   asLink = true,
+  showWordmark = true,
 }: BrandLogoProps) {
   const dims = sizeMap[size];
+  const isLight = variant === 'light';
 
   const logo = (
-    <span
-      className={cn(
-        'inline-flex items-center gap-2.5 select-none',
-        className
-      )}
-    >
+    <span className={cn('inline-flex items-center gap-3 select-none', className)}>
       <span
         className={cn(
-          'relative shrink-0 overflow-hidden rounded-full shadow-sm ring-1',
-          dims.className,
-          variant === 'light' ? 'ring-white/25' : 'ring-[#6B1F2A]/15'
+          'relative flex shrink-0 items-center justify-center overflow-visible rounded-full',
+          dims.box,
+          // Cream logo needs a burgundy disc on light nav; transparent over dark hero
+          isLight ? 'bg-transparent' : 'bg-[#6B1F2A] p-1.5 shadow-sm'
         )}
       >
         <Image
@@ -45,25 +44,32 @@ export default function BrandLogo({
           alt={SITE_NAME}
           width={dims.px}
           height={dims.px}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
           priority
         />
       </span>
-      <span
-        className={cn(
-          'font-serif text-lg font-semibold tracking-[0.08em] uppercase leading-none md:text-xl',
-          variant === 'light' ? 'text-white' : 'text-[#6B1F2A]'
-        )}
-      >
-        {SITE_NAME}
-      </span>
+      {showWordmark && (
+        <span
+          className={cn(
+            'font-serif font-semibold tracking-[0.12em] uppercase leading-none',
+            dims.text,
+            isLight ? 'text-white' : 'text-[#6B1F2A]'
+          )}
+        >
+          {SITE_NAME}
+        </span>
+      )}
     </span>
   );
 
   if (!asLink) return logo;
 
   return (
-    <Link href="/" className="inline-flex items-center" aria-label={SITE_NAME}>
+    <Link
+      href="/"
+      className="inline-flex shrink-0 items-center overflow-visible"
+      aria-label={SITE_NAME}
+    >
       {logo}
     </Link>
   );
