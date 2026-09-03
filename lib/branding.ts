@@ -24,6 +24,14 @@ export const DEFAULT_ABOUT_TEXT = `${SITE_NAME} is a specialty coffee roaster de
 export const DEFAULT_SERVICES_TEXT =
   'Single-origin beans, Signature blends, Espresso roasts, Whole bean & ground options, Wholesale & subscriptions';
 
+export const CONTACT_EMAIL = 'hello@romoire.coffee';
+export const CONTACT_PHONE = '+91 877919 2482';
+export const CONTACT_PHONE_TEL = 'tel:+918779192482';
+export const CONTACT_EMAIL_MAILTO = 'mailto:hello@romoire.coffee';
+export const CONTACT_WHATSAPP = 'https://wa.me/918779192482';
+export const CONTACT_ADDRESS = 'Navi Mumbai, Maharashtra 400706';
+export const CONTACT_ADDRESS_LINE = 'Head Office — Navi Mumbai, Maharashtra 400706';
+
 /** Replace legacy travel branding in stored product copy when rendering. */
 export function brandedText(text?: string | null): string {
   if (!text) return '';

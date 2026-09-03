@@ -26,12 +26,14 @@ import CategoryHeroBackground from '@/components/CategoryHeroBackground';
 interface TourPackageSectionsProps {
   packageData: PackageData;
   showHero?: boolean;
+  showEnquiry?: boolean;
   embedded?: boolean;
 }
 
 export default function TourPackageSections({
   packageData,
   showHero = true,
+  showEnquiry = true,
   embedded = false,
 }: TourPackageSectionsProps) {
   const { openForm } = useInquiryForm();
@@ -81,21 +83,25 @@ export default function TourPackageSections({
                   From INR {packageData.price?.toLocaleString('en-IN')}/-
                 </Badge>
               </div>
-              <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <Button
-                  onClick={openEnquiry}
-                  className="bg-hazelnut hover:bg-espresso text-white rounded-full px-8 h-12 font-bold"
-                >
-                  Enquire Now
-                </Button>
-                {packageData._id && (
-                  <Link href={`/packages/${packageData._id}`}>
-                    <Button variant="outline" className="rounded-full px-8 h-12 border-white/40 text-white hover:bg-cream/10">
-                      Full Package Page
+              {(showEnquiry || packageData._id) && (
+                <div className="mt-8 flex flex-wrap justify-center gap-4">
+                  {showEnquiry && (
+                    <Button
+                      onClick={openEnquiry}
+                      className="bg-hazelnut hover:bg-espresso text-white rounded-full px-8 h-12 font-bold"
+                    >
+                      Enquire Now
                     </Button>
-                  </Link>
-                )}
-              </div>
+                  )}
+                  {packageData._id && (
+                    <Link href={`/packages/${packageData._id}`}>
+                      <Button variant="outline" className="rounded-full px-8 h-12 border-white/40 text-white hover:bg-cream/10">
+                        Full Package Page
+                      </Button>
+                    </Link>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </section>
