@@ -50,8 +50,21 @@ const BlogSchema = new mongoose.Schema({
     default: 'published',
   },
   tags: [String],
+  sourceType: {
+    type: String,
+    enum: ['manual', 'link'],
+    default: 'manual',
+  },
+  externalUrl: {
+    type: String,
+    default: '',
+  },
 }, { 
   timestamps: true 
 });
 
-export default mongoose.models.Blog || mongoose.model('Blog', BlogSchema);
+if (mongoose.models.Blog) {
+  delete mongoose.models.Blog;
+}
+
+export default mongoose.model('Blog', BlogSchema);

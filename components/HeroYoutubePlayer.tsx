@@ -51,7 +51,11 @@ export default function HeroYoutubePlayer({
 
   useEffect(() => {
     const videoId = getYoutubeVideoId(youtubeUrl);
-    if (!videoId || !isActive) return;
+    if (!videoId || !isActive) {
+      playerRef.current?.destroy();
+      playerRef.current = null;
+      return;
+    }
 
     let cancelled = false;
 
@@ -89,16 +93,25 @@ export default function HeroYoutubePlayer({
     };
   }, [youtubeUrl, isActive, playerId]);
 
-  if (!isActive && poster) {
-    return <img src={poster} alt="" className={`absolute inset-0 ${objectClass}`} aria-hidden />;
-  }
-
   return (
-    <div
-      ref={containerRef}
-      id={playerId}
-      className="pointer-events-none absolute top-1/2 left-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2"
-    />
+    <div className="absolute inset-0 overflow-hidden" aria-hidden={!isActive}>
+      {poster ? (
+        <img
+          src={poster}
+          alt=""
+          className={`absolute inset-0 ${objectClass} transition-opacity duration-700 ${
+            isActive ? 'opacity-0' : 'opacity-100'
+          }`}
+        />
+      ) : null}
+      <div
+        ref={containerRef}
+        id={playerId}
+        className={`pointer-events-none absolute top-1/2 left-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 ${
+          isActive ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+    </div>
   );
 }
 

@@ -57,6 +57,16 @@ const nextConfig = {
         hostname: 'imgs.search.brave.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.yachtgetawaysmumbai.in',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'yachtgetawaysmumbai.in',
+        pathname: '/**',
+      },
     ],
   },
 }

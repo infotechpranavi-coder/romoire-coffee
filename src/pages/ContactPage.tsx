@@ -24,7 +24,7 @@ const ContactPage = () => {
     {
       icon: MapPin,
       title: "Office Address",
-      details: ["Head office- Yaoundé ,Cameroon"],
+      details: ["Head Office — Navi Mumbai, Maharashtra 400706"],
       description: "Visit our office for personalized travel planning"
     },
     {

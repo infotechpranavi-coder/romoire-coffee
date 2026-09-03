@@ -1,6 +1,5 @@
-import connectDB from '../../../lib/mongodb';
+import connectDB, { ensureConnected, getDbUnavailableReason, isConnected } from '../../../lib/mongodb';
 import Package from '../../../models/Package';
-import { isConnected } from '../../../lib/mongodb';
 
 export default async function handler(req, res) {
   const dbConnection = await connectDB();
@@ -19,10 +18,11 @@ export default async function handler(req, res) {
       res.status(404).json({ success: false, error: 'Package not found' });
     }
   } else if (req.method === 'PUT') {
-    if (useDemoData) {
-      return res.status(503).json({ 
-        success: false, 
-        error: 'Database not available. Cannot update package in demo mode.' 
+    const dbReady = await ensureConnected(5);
+    if (!dbReady) {
+      return res.status(503).json({
+        success: false,
+        error: `Database not available. Cannot update package. ${getDbUnavailableReason()}`,
       });
     }
     
@@ -48,10 +48,11 @@ export default async function handler(req, res) {
       res.status(500).json({ success: false, error: error.message, details: error.name });
     }
   } else if (req.method === 'DELETE') {
-    if (useDemoData) {
-      return res.status(503).json({ 
-        success: false, 
-        error: 'Database not available. Cannot delete package in demo mode.' 
+    const dbReady = await ensureConnected(5);
+    if (!dbReady) {
+      return res.status(503).json({
+        success: false,
+        error: `Database not available. Cannot delete package. ${getDbUnavailableReason()}`,
       });
     }
     

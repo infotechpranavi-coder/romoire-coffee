@@ -56,8 +56,8 @@ const samplePackages = [
     location: 'Mauritius',
     place: 'mauritius',
     packageType: 'international',
-    isFeaturedDestination: true,
-    isPopularPackage: true,
+    isFeaturedDestination: false,
+    isPopularPackage: false,
     bookings: 6,
     rating: 4.9,
   }),
@@ -95,7 +95,7 @@ const samplePackages = [
     duration: '30 Minutes',
     location: 'Durban, South Africa',
     place: 'durban',
-    isPopularPackage: true,
+    isPopularPackage: false,
   }),
   packageDefaults('Scuba Diving & Snorkeling (Future)', 'Reef Snorkel & Dive Intro', {
     subtitle: 'Discover underwater marine life',
@@ -114,7 +114,7 @@ const samplePackages = [
     location: 'Southern Africa',
     place: 'southern-africa',
     capacity: '4-12 riders',
-    isPopularPackage: true,
+    isPopularPackage: false,
   }),
   packageDefaults('Domestic North — Leh, Ladakh, Spiti & North East', 'Ladakh Himalayan Bike Expedition', {
     subtitle: 'High-altitude ride through Spiti & Ladakh',
@@ -125,7 +125,7 @@ const samplePackages = [
     place: 'ladakh',
     bookings: 9,
     rating: 4.9,
-    isPopularPackage: true,
+    isPopularPackage: false,
   }),
   packageDefaults('Domestic South — Pondicherry, Kerala & South India', 'Kerala Backwater Bike Tour', {
     subtitle: 'Coastal South India scenic ride',
@@ -183,7 +183,7 @@ const samplePackages = [
     place: 'cape-town',
     bookings: 15,
     rating: 5,
-    isFeaturedDestination: true,
+    isFeaturedDestination: false,
   }),
   packageDefaults('Small aircraft / single engine (Future)', 'Winelands Scenic Flight', {
     subtitle: 'Private light aircraft experience',

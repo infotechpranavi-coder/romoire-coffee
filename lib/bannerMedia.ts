@@ -1,5 +1,24 @@
 export type BannerMediaType = 'image' | 'video' | 'youtube';
 
+type BannerOrderItem = {
+  order?: number;
+  createdAt?: string | Date;
+};
+
+/** Keep homepage slider and dashboard list in the same display-order sequence. */
+export function sortBannersByOrder<T extends BannerOrderItem>(banners: T[] | null | undefined): T[] {
+  if (!Array.isArray(banners)) return [];
+
+  return [...banners].sort((a, b) => {
+    const orderDiff = (a.order ?? 0) - (b.order ?? 0);
+    if (orderDiff !== 0) return orderDiff;
+
+    const aTime = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+    const bTime = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+    return aTime - bTime;
+  });
+}
+
 export function getYoutubeVideoId(url?: string | null): string | null {
   if (!url) return null;
   const trimmed = url.trim();

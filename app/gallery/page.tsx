@@ -44,7 +44,7 @@ export default function GalleryPage() {
             <Camera className="h-4 w-4 text-hazelnut" />
             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">Moments Captured</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-4">
+          <h1 className="page-hero-title text-white tracking-tighter mb-4">
             Our Gallery
           </h1>
           <p className="text-white/60 text-lg max-w-2xl mx-auto font-medium">
@@ -85,7 +85,7 @@ export default function GalleryPage() {
                     unoptimized
                   />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-left">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 sm:p-5 text-left">
                   <h3 className="text-white font-black text-lg uppercase tracking-tight leading-tight">{item.title}</h3>
                   {item.caption && (
                     <p className="text-white/70 text-sm mt-1 line-clamp-2">{item.caption}</p>

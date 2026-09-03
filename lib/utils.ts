@@ -14,14 +14,16 @@ export function cn(...inputs: ClassValue[]) {
  * Returns a sharp Cloudinary / external URL for hero banners.
  * `width` should match viewport × devicePixelRatio (capped at 3840).
  */
-export function getHeroBannerUrl(url: string, publicId?: string, width = 3840): string {
+export function getHeroBannerUrl(url: string, publicId?: string, width = 1920): string {
   if (!url) return url;
 
   if (url.includes('images.unsplash.com')) {
     const upgraded = url
       .replace(/w=\d+/i, `w=${width}`)
-      .replace(/q=\d+/i, 'q=100');
-    return upgraded.includes('w=') ? upgraded : `${upgraded}${upgraded.includes('?') ? '&' : '?'}w=${width}&q=100`;
+      .replace(/q=\d+/i, 'q=75');
+    return upgraded.includes('w=')
+      ? upgraded
+      : `${upgraded}${upgraded.includes('?') ? '&' : '?'}w=${width}&q=75`;
   }
 
   if (!url.includes('res.cloudinary.com')) return url;
@@ -30,12 +32,12 @@ export function getHeroBannerUrl(url: string, publicId?: string, width = 3840): 
   const assetPath = resolveCloudinaryAssetPath(url, publicId);
   if (!cloudName || !assetPath) return url;
 
-  const transforms = `c_limit,w_${width},q_100`;
+  const transforms = `c_limit,w_${width},q_auto:good,f_auto`;
   return `https://res.cloudinary.com/${cloudName}/image/upload/${transforms}/${assetPath}`;
 }
 
 export function getHeroBannerSrcSet(url: string, publicId?: string): string {
-  const widths = [1080, 1920, 2560, 3840];
+  const widths = [1080, 1600, 1920, 2560];
   return widths
     .map((w) => `${getHeroBannerUrl(url, publicId, w)} ${w}w`)
     .join(', ');
@@ -70,13 +72,14 @@ export function readFileAsDataUrl(file: File): Promise<string> {
 }
 
 /**
- * Prepares a banner for upload: upscales small images so full-screen cover
- * does not stretch a tiny bitmap, and caps very large files at 3840px wide.
+ * Prepares a banner for upload at 16:9-friendly size.
+ * Caps width at 1920px and uses JPEG so the payload stays under Vercel's ~4.5MB body limit.
  */
 export function prepareBannerImageForUpload(
   file: File,
   targetMinWidth = 1920,
-  maxWidth = 3840
+  maxWidth = 1920,
+  quality = 0.85
 ): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -110,9 +113,8 @@ export function prepareBannerImageForUpload(
         ctx.imageSmoothingQuality = 'high';
         ctx.drawImage(img, 0, 0, width, height);
 
-        const usePng = file.type === 'image/png';
-        const mime = usePng ? 'image/png' : 'image/jpeg';
-        resolve(canvas.toDataURL(mime, usePng ? undefined : 0.95));
+        // Always JPEG — PNG banners are too large for serverless upload limits
+        resolve(canvas.toDataURL('image/jpeg', quality));
       };
       img.onerror = reject;
       img.src = event.target?.result as string;

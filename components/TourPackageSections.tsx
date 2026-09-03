@@ -22,19 +22,16 @@ import {
 import { PackageData } from '@/lib/types';
 import { useInquiryForm } from '@/contexts/InquiryFormContext';
 import CategoryHeroBackground from '@/components/CategoryHeroBackground';
-import PackagePageEnquiryForm from '@/components/PackagePageEnquiryForm';
 
 interface TourPackageSectionsProps {
   packageData: PackageData;
   showHero?: boolean;
-  showEnquiry?: boolean;
   embedded?: boolean;
 }
 
 export default function TourPackageSections({
   packageData,
   showHero = true,
-  showEnquiry = true,
   embedded = false,
 }: TourPackageSectionsProps) {
   const { openForm } = useInquiryForm();
@@ -328,13 +325,6 @@ export default function TourPackageSections({
         )}
         {packageData.bookingPolicy && packageData.bookingPolicy.length > 0 && (
           <PolicyCard title="Booking Policy" items={packageData.bookingPolicy} />
-        )}
-
-        {showEnquiry && (
-          <PackagePageEnquiryForm
-            categoryLabel={packageData.packageCategory}
-            categorySlug="upcoming-tours"
-          />
         )}
       </div>
     </div>

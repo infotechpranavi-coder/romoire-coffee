@@ -198,6 +198,45 @@ export interface BlogData {
     isFeatured: boolean;
     status: 'draft' | 'published';
     tags?: string[];
+    sourceType?: 'manual' | 'link';
+    externalUrl?: string;
     createdAt: string;
     updatedAt: string;
+}
+
+export interface SiteSettings {
+    popularSection?: boolean;
+    upcomingSection?: boolean;
+    destinationsSection?: boolean;
+    exploreSection?: boolean;
+    testimonialsSection?: boolean;
+    facebookUrl?: string;
+    facebookEnabled?: boolean;
+    instagramUrl?: string;
+    instagramEnabled?: boolean;
+    twitterUrl?: string;
+    twitterEnabled?: boolean;
+    linkedinUrl?: string;
+    linkedinEnabled?: boolean;
+    youtubeUrl?: string;
+    youtubeEnabled?: boolean;
+    whatsappUrl?: string;
+    whatsappEnabled?: boolean;
+    offerPopupEnabled?: boolean;
+    offerPopupTitle?: string;
+    offerPopupSubtitle?: string;
+    offerPopupImageUrl?: string;
+    offerPopupImagePublicId?: string;
+    offerPopupInitialDelaySeconds?: number;
+    offerPopupRepeatIntervalSeconds?: number;
+    /** 'landscape' = 16:9, 'square' = 1:1 */
+    offerPopupAspectRatio?: 'landscape' | 'square';
+    exploreEyebrow?: string;
+    exploreHeadingLine1?: string;
+    exploreHeadingLine2?: string;
+    exploreSubtitle?: string;
+    exploreInclusions?: string[];
+    exploreCtaLabel?: string;
+    explorePhone?: string;
+    explorePhoneLabel?: string;
 }

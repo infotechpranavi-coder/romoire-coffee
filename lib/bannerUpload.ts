@@ -1,47 +1,90 @@
-import { prepareBannerImageForUpload, readFileAsDataUrl } from '@/lib/utils';
+import { prepareBannerImageForUpload } from '@/lib/utils';
 import { getYoutubeVideoId } from '@/lib/bannerMedia';
 import type { BannerMediaType } from '@/lib/bannerMedia';
 
 type MediaAsset = { public_id: string; url: string; alt: string };
 
-async function uploadImageAsset(file: File, title: string): Promise<MediaAsset> {
-  const base64 = await prepareBannerImageForUpload(file);
-  const uploadRes = await fetch('/api/upload', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ data: base64, folder: 'skygo/banners' }),
-  });
-  const uploadData = await uploadRes.json();
-  if (!uploadData.success) {
-    throw new Error(uploadData.error || 'Failed to upload image.');
+/** Max source banner media file size */
+export const MAX_BANNER_UPLOAD_BYTES = 5 * 1024 * 1024; // 5 MB
+
+function dataUrlToFile(dataUrl: string, filename: string): File {
+  const [header, base64] = dataUrl.split(',');
+  const mime = header.match(/:(.*?);/)?.[1] || 'image/jpeg';
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i += 1) {
+    bytes[i] = binary.charCodeAt(i);
   }
+  return new File([bytes], filename, { type: mime });
+}
+
+async function parseUploadResponse(uploadRes: Response) {
+  const raw = await uploadRes.text();
+  let uploadData: {
+    success?: boolean;
+    error?: string;
+    public_id?: string;
+    url?: string;
+  } = {};
+
+  try {
+    uploadData = JSON.parse(raw);
+  } catch {
+    if (uploadRes.status === 413 || /request entity too large/i.test(raw)) {
+      throw new Error('File is too large. Use an image up to 5 MB and try again.');
+    }
+    throw new Error(
+      uploadRes.ok
+        ? 'Upload failed with an unexpected server response.'
+        : `Upload failed (${uploadRes.status}). Please try again.`
+    );
+  }
+
+  if (!uploadRes.ok || !uploadData.success) {
+    throw new Error(uploadData.error || 'Upload failed.');
+  }
+
+  return uploadData;
+}
+
+async function uploadBannerFile(
+  file: File,
+  folder: string
+): Promise<MediaAsset> {
+  if (file.size > MAX_BANNER_UPLOAD_BYTES) {
+    throw new Error('File must be 5 MB or smaller.');
+  }
+
+  const form = new FormData();
+  form.append('file', file);
+  form.append('folder', folder);
+
+  const uploadRes = await fetch('/api/upload/banner', {
+    method: 'POST',
+    body: form,
+  });
+
+  const uploadData = await parseUploadResponse(uploadRes);
   return {
-    public_id: uploadData.public_id,
-    url: uploadData.url,
-    alt: title,
+    public_id: uploadData.public_id || '',
+    url: uploadData.url || '',
+    alt: '',
   };
 }
 
+async function uploadImageAsset(file: File, title: string): Promise<MediaAsset> {
+  const compressedDataUrl = await prepareBannerImageForUpload(file);
+  const compressedFile = dataUrlToFile(
+    compressedDataUrl,
+    file.name.replace(/\.[^.]+$/, '') + '.jpg'
+  );
+  const asset = await uploadBannerFile(compressedFile, 'skygo/banners');
+  return { ...asset, alt: title };
+}
+
 async function uploadVideoAsset(file: File, title: string): Promise<MediaAsset> {
-  const base64 = await readFileAsDataUrl(file);
-  const uploadRes = await fetch('/api/upload', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      data: base64,
-      folder: 'skygo/banners/videos',
-      resourceType: 'video',
-    }),
-  });
-  const uploadData = await uploadRes.json();
-  if (!uploadData.success) {
-    throw new Error(uploadData.error || 'Failed to upload video.');
-  }
-  return {
-    public_id: uploadData.public_id,
-    url: uploadData.url,
-    alt: title,
-  };
+  const asset = await uploadBannerFile(file, 'skygo/banners/videos');
+  return { ...asset, alt: title };
 }
 
 function imageFromUrl(url: string, title: string): MediaAsset {

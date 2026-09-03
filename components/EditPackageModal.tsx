@@ -824,8 +824,8 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
           <div className="flex items-center space-x-2 py-2 px-4 bg-teal-50/50 rounded-2xl border border-dashed border-teal-200">
             <Checkbox id="isFeaturedTripEdit" checked={formData.isFeaturedTrip} onCheckedChange={(checked) => handleCheckboxChange('isFeaturedTrip', !!checked)} />
             <div className="grid gap-1.5 leading-none">
-              <label htmlFor="isFeaturedTripEdit" className="text-sm font-bold uppercase tracking-widest leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Show in Homepage Featured Water Trips Section</label>
-              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">If checked, this package appears in the Featured Water Trips carousel on the home page.</p>
+              <label htmlFor="isFeaturedTripEdit" className="text-sm font-bold uppercase tracking-widest leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Show in Homepage Featured Adventures Section</label>
+              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">If checked, this package appears in the Featured Adventures section on the home page.</p>
             </div>
           </div>
 

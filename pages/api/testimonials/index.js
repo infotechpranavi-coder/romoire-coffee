@@ -11,7 +11,11 @@ export default async function handler(req, res) {
       if (activeOnly === 'true') {
         query = { isActive: true };
       }
-      const testimonials = await Testimonial.find(query).sort({ createdAt: -1 });
+      const testimonials = await Testimonial.find(query).sort({ createdAt: -1 }).lean();
+      res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=60, stale-while-revalidate=300'
+      );
       res.status(200).json({ success: true, data: testimonials });
     } catch (error) {
       res.status(500).json({ success: false, error: error.message });

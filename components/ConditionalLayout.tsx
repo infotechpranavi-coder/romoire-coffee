@@ -1,10 +1,13 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
 import NavbarTravel from "./NavbarTravel"
 import Footer from "./Footer"
 import FloatingButtons from "./FloatingButtons"
 import HomeInquiryWrapper from "./HomeInquiryWrapper"
+
+const OfferPopup = dynamic(() => import("./OfferPopup"), { ssr: false })
 
 export default function ConditionalLayout({
   children,
@@ -27,6 +30,7 @@ export default function ConditionalLayout({
       <Footer />
       <FloatingButtons />
       <HomeInquiryWrapper />
+      <OfferPopup />
     </>
   )
 }

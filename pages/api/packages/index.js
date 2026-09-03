@@ -1,13 +1,13 @@
-import connectDB from '../../../lib/mongodb';
+import { ensureConnected, getDbUnavailableReason } from '../../../lib/mongodb';
 import Package from '../../../models/Package';
 import Settings from '../../../models/Settings';
-import { isConnected } from '../../../lib/mongodb';
 import {
   buildCategoryFilterForSlug,
   buildGroupFilterForSlug,
   buildMiniFilterForSlug,
   getCategoryCatalogFromSettings,
 } from '../../../lib/categoryCatalog';
+import { PACKAGE_CARD_SELECT } from '../../../lib/packageCardFields';
 
 // Demo data for when database is unavailable
 const getDemoPackages = () => {
@@ -130,26 +130,20 @@ const getDemoPackages = () => {
 };
 
 export default async function handler(req, res) {
-  // Force connection attempt and wait a bit longer
-  const dbConnection = await connectDB();
-  const connected = isConnected();
-  const useDemoData = !dbConnection || !connected;
-
-  // Log connection status for debugging
-  if (req.method === 'POST') {
-    console.log('POST Request - Connection Status:', {
-      hasConnection: !!dbConnection,
-      isConnected: connected,
-      useDemoData: useDemoData,
-      hasEnvVar: !!process.env.MONGODB_URI
-    });
-  }
+  // Share one connection attempt across concurrent dashboard requests
+  const dbReady = await ensureConnected(2);
+  const useDemoData = !dbReady;
 
   if (req.method === 'GET') {
     try {
       if (useDemoData) {
         console.warn('Database not connected. Returning empty packages list.');
-        return res.status(200).json({ success: true, data: [], demo: false, error: 'Database connection failed' });
+        return res.status(200).json({
+          success: true,
+          data: [],
+          demo: false,
+          error: 'Database connection failed',
+        });
       }
 
       const { search, popular, featured, featuredTrip, category, group, mini } = req.query;
@@ -162,16 +156,22 @@ export default async function handler(req, res) {
         const miniFilter = buildMiniFilterForSlug(String(mini), catalog);
         if (miniFilter) {
           query = { ...query, ...miniFilter };
+        } else {
+          return res.status(200).json({ success: true, data: [] });
         }
       } else if (category) {
         const categoryFilter = buildCategoryFilterForSlug(String(category), catalog);
         if (categoryFilter) {
           query = { ...query, ...categoryFilter };
+        } else {
+          return res.status(200).json({ success: true, data: [] });
         }
       } else if (group) {
         const groupFilter = buildGroupFilterForSlug(String(group), catalog);
         if (groupFilter) {
           query = { ...query, ...groupFilter };
+        } else {
+          return res.status(200).json({ success: true, data: [] });
         }
       }
 
@@ -201,14 +201,33 @@ export default async function handler(req, res) {
         query.isFeaturedDestination = true;
       }
 
-      // Featured Water Trips carousel on homepage
+      // Featured Adventures carousel on homepage
       if (featuredTrip === 'true') {
         query.isFeaturedTrip = true;
       }
 
-      const packages = await Package.find(query).sort({ createdAt: -1 });
+      const isCardList =
+        popular === 'true' ||
+        featured === 'true' ||
+        featuredTrip === 'true' ||
+        Boolean(search || category || group || mini);
 
-      // Return empty array if no packages found instead of falling back to demo
+      let findQuery = Package.find(query).sort({ createdAt: -1 }).lean();
+
+      if (isCardList) {
+        findQuery = findQuery.select(PACKAGE_CARD_SELECT);
+      }
+
+      if (popular === 'true') findQuery = findQuery.limit(8);
+      if (featured === 'true') findQuery = findQuery.limit(8);
+      if (featuredTrip === 'true') findQuery = findQuery.limit(12);
+
+      const packages = await findQuery;
+
+      res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=60, stale-while-revalidate=300'
+      );
       res.status(200).json({ success: true, data: packages });
     } catch (error) {
       console.error('Error fetching packages:', error.message);
@@ -216,12 +235,9 @@ export default async function handler(req, res) {
     }
   } else if (req.method === 'POST') {
     if (useDemoData) {
-      const reason = !process.env.MONGODB_URI?.trim()
-        ? 'MONGODB_URI is missing. Add it to .env.local (local) or Vercel Environment Variables (production), then restart the server.'
-        : 'MongoDB connection failed. Check Atlas Network Access allows 0.0.0.0/0 and verify your connection string credentials.';
       return res.status(503).json({
         success: false,
-        error: `Database not available. Cannot save package in demo mode. ${reason}`,
+        error: `Database not available. Cannot save package. ${getDbUnavailableReason()}`,
       });
     }
 
