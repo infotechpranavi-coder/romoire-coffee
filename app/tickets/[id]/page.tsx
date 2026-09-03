@@ -160,7 +160,7 @@ const TicketDetailPage = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-white flex items-center justify-center">
+            <div className="min-h-screen bg-cream flex items-center justify-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
             </div>
         );
@@ -168,7 +168,7 @@ const TicketDetailPage = () => {
 
     if (!ticketData) {
         return (
-            <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
+            <div className="min-h-screen bg-cream flex flex-col items-center justify-center p-4">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Flight Details Not Found</h2>
                 <Button onClick={() => router.push('/tickets')} className="bg-gray-900 text-white font-bold px-8 py-4 rounded-xl shadow-lg">
                     Back to Tickets
@@ -199,7 +199,7 @@ const TicketDetailPage = () => {
                 <div className="absolute top-32 left-8 z-10">
                     <Button
                         variant="outline"
-                        className="bg-white/10 border-white/20 text-white backdrop-blur-md hover:bg-white/20 transition-all rounded-full px-6"
+                        className="bg-cream/10 border-white/20 text-white backdrop-blur-md hover:bg-cream/20 transition-all rounded-full px-6"
                         onClick={() => router.back()}
                     >
                         <ChevronLeft className="h-4 w-4 mr-2" />
@@ -222,7 +222,7 @@ const TicketDetailPage = () => {
                                 <Plane className="h-4 w-4" />
                                 {ticketData.carrier}
                             </span>
-                            <span className="h-1 w-1 bg-white/40 rounded-full" />
+                            <span className="h-1 w-1 bg-cream/40 rounded-full" />
                             <span className="flex items-center gap-2">
                                 <Globe className="h-4 w-4" />
                                 {ticketData.travelClass} Elite
@@ -241,7 +241,7 @@ const TicketDetailPage = () => {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="bg-white rounded-[40px] shadow-2xl overflow-hidden border border-gray-100 relative group"
+                            className="bg-cream rounded-[40px] shadow-2xl overflow-hidden border border-gray-100 relative group"
                         >
                             {/* Boarding Pass Notch Effect */}
                             <div className="absolute left-[-20px] top-[180px] w-10 h-10 rounded-full bg-[#fcfcfc] border-r border-gray-100 shadow-inner z-10" />
@@ -259,14 +259,14 @@ const TicketDetailPage = () => {
                                     </div>
                                     <div className="flex flex-col items-end">
                                         <p className="text-white/40 font-bold text-[10px] uppercase tracking-[0.4em] mb-3">Carrier</p>
-                                        <div className="bg-white/10 p-4 rounded-3xl backdrop-blur-md border border-white/10 shadow-lg transition-transform group-hover:rotate-12 duration-500 text-amber-500 text-center">
+                                        <div className="bg-cream/10 p-4 rounded-3xl backdrop-blur-md border border-white/10 shadow-lg transition-transform group-hover:rotate-12 duration-500 text-amber-500 text-center">
                                             <span className="text-xs font-black uppercase">{ticketData.carrier.split(' ')[0]}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="p-10 bg-white">
+                            <div className="p-10 bg-cream">
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 py-12 border-b border-dashed border-gray-200">
                                     <div className="space-y-4">
                                         <p className="text-gray-400 font-bold text-[10px] uppercase tracking-[0.4em]">Origin</p>
@@ -322,7 +322,7 @@ const TicketDetailPage = () => {
 
                         {/* Inclusions / Amenities */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div className="bg-white p-10 rounded-[40px] border border-gray-100 shadow-lg group hover:border-gray-200 transition-all duration-500">
+                            <div className="bg-cream p-10 rounded-[40px] border border-gray-100 shadow-lg group hover:border-gray-200 transition-all duration-500">
                                 <h3 className="text-xl font-black text-gray-900 mb-8 flex items-center gap-4 uppercase tracking-tighter">
                                     <div className="p-3 bg-gray-50 rounded-2xl group-hover:bg-amber-50 transition-colors">
                                         <Utensils className="h-6 w-6 text-gray-400 group-hover:text-amber-600" />
@@ -340,7 +340,7 @@ const TicketDetailPage = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="bg-white p-10 rounded-[40px] border border-gray-100 shadow-lg group hover:border-gray-200 transition-all duration-500">
+                            <div className="bg-cream p-10 rounded-[40px] border border-gray-100 shadow-lg group hover:border-gray-200 transition-all duration-500">
                                 <h3 className="text-xl font-black text-gray-900 mb-8 flex items-center gap-4 uppercase tracking-tighter">
                                     <div className="p-3 bg-gray-50 rounded-2xl group-hover:bg-blue-50 transition-colors">
                                         <Wifi className="h-6 w-6 text-gray-400 group-hover:text-blue-600" />
@@ -362,7 +362,7 @@ const TicketDetailPage = () => {
 
                         {/* Experience Schedule / Itinerary */}
                         {ticketData.itinerary && ticketData.itinerary.length > 0 && (
-                            <div className="bg-white p-12 rounded-[40px] border border-gray-100 shadow-lg">
+                            <div className="bg-cream p-12 rounded-[40px] border border-gray-100 shadow-lg">
                                 <h3 className="text-2xl font-black text-gray-900 mb-8 flex items-center gap-4 uppercase tracking-tighter">
                                     <div className="p-3 bg-gray-50 rounded-2xl">
                                         <Calendar className="h-6 w-6 text-gray-400" />
@@ -382,7 +382,7 @@ const TicketDetailPage = () => {
                         )}
 
                         {/* About Section */}
-                        <div className="bg-white p-12 rounded-[40px] border border-gray-100 shadow-lg">
+                        <div className="bg-cream p-12 rounded-[40px] border border-gray-100 shadow-lg">
                             <h3 className="text-2xl font-black text-gray-900 mb-8 flex items-center gap-4 uppercase tracking-tighter">
                                 <div className="p-3 bg-gray-50 rounded-2xl">
                                     <Info className="h-6 w-6 text-gray-400" />
@@ -408,7 +408,7 @@ const TicketDetailPage = () => {
                     {/* Sidebar - Request Fare Quote */}
                     <div className="lg:col-span-1">
                         <div className="sticky top-10 space-y-8">
-                            <Card className="border border-gray-100 shadow-2xl overflow-hidden bg-white rounded-[40px] border-b-[8px] border-b-gray-900">
+                            <Card className="border border-gray-100 shadow-2xl overflow-hidden bg-cream rounded-[40px] border-b-[8px] border-b-gray-900">
                                 <div className="p-10 text-center bg-gray-50 border-b border-gray-100">
                                     <p className="text-amber-600 text-[10px] font-bold uppercase tracking-[0.4em] mb-4">Starting From</p>
                                     <div className="flex flex-col items-center gap-1">
@@ -451,7 +451,7 @@ const TicketDetailPage = () => {
                             </Card>
 
                             {/* Agent Card */}
-                            <div className="bg-white p-10 rounded-[40px] border border-gray-100 shadow-xl relative overflow-hidden group">
+                            <div className="bg-cream p-10 rounded-[40px] border border-gray-100 shadow-xl relative overflow-hidden group">
                                 <div className="relative z-10 flex items-center gap-6">
                                     <div className="h-16 w-16 bg-gray-900 rounded-3xl flex items-center justify-center text-white shadow-lg transition-transform group-hover:-rotate-12 duration-500">
                                         <Users className="h-8 w-8" />

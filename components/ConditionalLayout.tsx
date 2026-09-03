@@ -21,7 +21,7 @@ export default function ConditionalLayout({
   return (
     <>
       <NavbarTravel />
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-cream">
         {children}
       </main>
       <Footer />

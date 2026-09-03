@@ -81,7 +81,7 @@ const About = () => {
             <Button size="lg" variant="secondary">
               View Packages
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-primary">
+            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-cream hover:text-primary">
               Learn More
             </Button>
           </div>

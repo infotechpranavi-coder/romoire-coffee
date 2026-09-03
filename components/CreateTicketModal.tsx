@@ -131,9 +131,9 @@ const CreateTicketModal = ({ isOpen, onClose, onTicketCreated }: CreateTicketMod
 
     return (
         <Dialog open={isOpen} onOpenChange={handleClose}>
-            <DialogContent className="max-w-4xl p-0 border-none shadow-2xl rounded-[32px] overflow-hidden bg-white">
+            <DialogContent className="max-w-4xl p-0 border-none shadow-2xl rounded-[32px] overflow-hidden bg-cream">
                 <DialogHeader className="p-8 pb-4 bg-gray-50/50">
-                    <DialogTitle className="text-3xl font-black text-[#111827] uppercase tracking-tighter">Add Airline Ticket</DialogTitle>
+                    <DialogTitle className="text-3xl font-black text-espresso uppercase tracking-tighter">Add Airline Ticket</DialogTitle>
                     <DialogDescription className="text-gray-400 font-bold uppercase tracking-widest text-[10px] mt-1">Manage flight inventory with dedicated airline parameters.</DialogDescription>
                 </DialogHeader>
 
@@ -141,7 +141,7 @@ const CreateTicketModal = ({ isOpen, onClose, onTicketCreated }: CreateTicketMod
                     {/* Flight Info */}
                     <Card className="rounded-3xl border-gray-100 shadow-sm overflow-hidden">
                         <CardHeader className="bg-gray-50/50 p-6 border-b border-gray-100">
-                            <CardTitle className="text-sm font-black uppercase tracking-widest text-[#111827]">Flight Information</CardTitle>
+                            <CardTitle className="text-sm font-black uppercase tracking-widest text-espresso">Flight Information</CardTitle>
                         </CardHeader>
                         <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="md:col-span-2 space-y-2">
@@ -183,7 +183,7 @@ const CreateTicketModal = ({ isOpen, onClose, onTicketCreated }: CreateTicketMod
                     {/* Schedule & Policy */}
                     <Card className="rounded-3xl border-gray-100 shadow-sm overflow-hidden">
                         <CardHeader className="bg-gray-50/50 p-6 border-b border-gray-100">
-                            <CardTitle className="text-sm font-black uppercase tracking-widest text-[#111827]">Schedule & Policy</CardTitle>
+                            <CardTitle className="text-sm font-black uppercase tracking-widest text-espresso">Schedule & Policy</CardTitle>
                         </CardHeader>
                         <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
@@ -212,7 +212,7 @@ const CreateTicketModal = ({ isOpen, onClose, onTicketCreated }: CreateTicketMod
                     {/* Daily Itinerary */}
                     <Card className="rounded-3xl border-gray-100 shadow-sm overflow-hidden">
                         <CardHeader className="bg-gray-50/50 p-6 border-b border-gray-100 flex flex-row items-center justify-between">
-                            <CardTitle className="text-sm font-black uppercase tracking-widest text-[#111827]">Entry Itinerary / Schedule</CardTitle>
+                            <CardTitle className="text-sm font-black uppercase tracking-widest text-espresso">Entry Itinerary / Schedule</CardTitle>
                             <Button variant="outline" size="sm" onClick={() => setItinerary([...itinerary, { id: Date.now().toString(), day: itinerary.length + 1, title: "", description: "" }])} className="rounded-xl h-9">
                                 <Plus className="h-4 w-4 mr-2" /> Add Day
                             </Button>
@@ -221,7 +221,7 @@ const CreateTicketModal = ({ isOpen, onClose, onTicketCreated }: CreateTicketMod
                             {itinerary.map((day, idx) => (
                                 <div key={day.id} className="p-6 rounded-2xl bg-gray-50/50 border border-gray-100 relative group">
                                     <div className="flex justify-between items-start mb-4">
-                                        <Badge variant="outline" className="bg-white border-gray-200 text-[#6B1F2A] px-3 py-1 rounded-full font-black uppercase tracking-widest text-[9px]">Day {day.day}</Badge>
+                                        <Badge variant="outline" className="bg-cream border-gray-200 text-hazelnut px-3 py-1 rounded-full font-black uppercase tracking-widest text-[9px]">Day {day.day}</Badge>
                                         {itinerary.length > 1 && (
                                             <Button variant="ghost" size="icon" onClick={() => {
                                                 const newItinerary = itinerary.filter((_, i) => i !== idx).map((d, i) => ({ ...d, day: i + 1 }));
@@ -238,7 +238,7 @@ const CreateTicketModal = ({ isOpen, onClose, onTicketCreated }: CreateTicketMod
                                                 const newItin = [...itinerary];
                                                 newItin[idx].title = e.target.value;
                                                 setItinerary(newItin);
-                                            }} className="h-10 rounded-xl bg-white" />
+                                            }} className="h-10 rounded-xl bg-cream" />
                                         </div>
                                         <div className="space-y-2">
                                             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Day Description</label>
@@ -246,7 +246,7 @@ const CreateTicketModal = ({ isOpen, onClose, onTicketCreated }: CreateTicketMod
                                                 const newItin = [...itinerary];
                                                 newItin[idx].description = e.target.value;
                                                 setItinerary(newItin);
-                                            }} className="min-h-[80px] rounded-xl bg-white" />
+                                            }} className="min-h-[80px] rounded-xl bg-cream" />
                                         </div>
                                     </div>
                                 </div>
@@ -257,19 +257,19 @@ const CreateTicketModal = ({ isOpen, onClose, onTicketCreated }: CreateTicketMod
                     {/* Image Upload */}
                     <Card className="rounded-3xl border-gray-100 shadow-sm overflow-hidden">
                         <CardHeader className="bg-gray-50/50 p-6 border-b border-gray-100">
-                            <CardTitle className="text-sm font-black uppercase tracking-widest text-[#111827]">Promo Images</CardTitle>
+                            <CardTitle className="text-sm font-black uppercase tracking-widest text-espresso">Promo Images</CardTitle>
                         </CardHeader>
                         <CardContent className="p-6 space-y-4">
                             <div className="flex flex-col gap-4">
-                                <div className="border-2 border-dashed border-gray-100 rounded-[32px] p-8 text-center cursor-pointer hover:border-[#6B1F2A] transition-all bg-gray-50/30 group" onClick={() => fileInputRef.current?.click()}>
-                                    <Upload className="h-10 w-10 text-gray-300 mx-auto mb-3 group-hover:text-[#6B1F2A] transition-colors" />
+                                <div className="border-2 border-dashed border-gray-100 rounded-[32px] p-8 text-center cursor-pointer hover:border-hazelnut transition-all bg-gray-50/30 group" onClick={() => fileInputRef.current?.click()}>
+                                    <Upload className="h-10 w-10 text-gray-300 mx-auto mb-3 group-hover:text-hazelnut transition-colors" />
                                     <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Select Professional Images</p>
                                     <p className="text-[9px] text-gray-300 mt-1 uppercase font-bold tracking-tight">{images.length} images selected</p>
                                     <input type="file" multiple hidden ref={fileInputRef} onChange={e => setImages(Array.from(e.target.files || []))} accept="image/*" />
                                 </div>
                                 <div className="flex gap-2">
                                     <Input placeholder="OR Paste Image URL here..." value={currentImageUrl} onChange={e => setCurrentImageUrl(e.target.value)} className="h-12 rounded-xl flex-1" />
-                                    <Button variant="outline" onClick={handleAddUrl} className="h-12 rounded-xl font-bold uppercase text-[10px] tracking-widest px-6 hover:bg-[#6B1F2A] hover:text-white transition-all">Add URL</Button>
+                                    <Button variant="outline" onClick={handleAddUrl} className="h-12 rounded-xl font-bold uppercase text-[10px] tracking-widest px-6 hover:bg-hazelnut hover:text-white transition-all">Add URL</Button>
                                 </div>
                                 {externalImageUrls.length > 0 && (
                                     <div className="flex flex-wrap gap-3 mt-2">
@@ -290,7 +290,7 @@ const CreateTicketModal = ({ isOpen, onClose, onTicketCreated }: CreateTicketMod
                     {submitError && <p className="text-red-500 text-xs font-bold uppercase tracking-widest mb-2">{submitError}</p>}
                     <div className="flex gap-4 w-full justify-end">
                         <Button variant="ghost" onClick={handleClose} className="rounded-2xl px-8 h-12 font-black uppercase text-xs tracking-widest">Cancel</Button>
-                        <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-[#111827] hover:bg-[#6B1F2A] rounded-2xl px-12 h-14 font-black uppercase text-xs tracking-widest shadow-xl transition-all">
+                        <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-espresso hover:bg-hazelnut rounded-2xl px-12 h-14 font-black uppercase text-xs tracking-widest shadow-xl transition-all">
                             {isSubmitting ? "Publishing..." : "Publish Ticket"}
                         </Button>
                     </div>

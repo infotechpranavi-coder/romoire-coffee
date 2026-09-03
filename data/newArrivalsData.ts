@@ -20,8 +20,12 @@ export interface NewArrivalProduct {
   subtitle: string;
   price: number;
   image: string;
+  /** All product images for card gallery */
+  images: string[];
   coffeeType: CoffeeTabKey;
   packageCategory?: string;
+  /** Main category slug from Category Management (e.g. single-origin, blends) */
+  groupSlug?: string;
 }
 
 export { DEFAULT_COFFEE_IMAGE };
@@ -34,6 +38,7 @@ export const NEW_ARRIVALS_SEED_PRODUCTS: NewArrivalProduct[] = [
     subtitle: 'Bright floral notes with bergamot and jasmine — washed process, light-medium roast.',
     price: 18,
     image: COFFEE_IMAGES.beans,
+    images: [COFFEE_IMAGES.beans],
     coffeeType: 'roasted',
     packageCategory: 'Ethiopian Yirgacheffe',
   },
@@ -43,6 +48,7 @@ export const NEW_ARRIVALS_SEED_PRODUCTS: NewArrivalProduct[] = [
     subtitle: 'Unroasted supremo beans — ideal for home roasters seeking caramel sweetness.',
     price: 22,
     image: COFFEE_IMAGES.beansDark,
+    images: [COFFEE_IMAGES.beansDark],
     coffeeType: 'green',
     packageCategory: 'Colombian Supremo',
   },
@@ -52,6 +58,7 @@ export const NEW_ARRIVALS_SEED_PRODUCTS: NewArrivalProduct[] = [
     subtitle: 'Balanced everyday cup with chocolate body and gentle sweetness — whole bean.',
     price: 16,
     image: COFFEE_IMAGES.pour,
+    images: [COFFEE_IMAGES.pour],
     coffeeType: 'blends',
     packageCategory: 'House Blend',
   },
@@ -61,6 +68,7 @@ export const NEW_ARRIVALS_SEED_PRODUCTS: NewArrivalProduct[] = [
     subtitle: 'Dense crema, bold sweetness — roasted for espresso machines and moka pots.',
     price: 15,
     image: COFFEE_IMAGES.espresso,
+    images: [COFFEE_IMAGES.espresso],
     coffeeType: 'roasted',
     packageCategory: 'Espresso Roast',
   },
@@ -70,6 +78,7 @@ export const NEW_ARRIVALS_SEED_PRODUCTS: NewArrivalProduct[] = [
     subtitle: 'Wine-like blackcurrant acidity with a complex, bright finish.',
     price: 19,
     image: COFFEE_IMAGES.cup,
+    images: [COFFEE_IMAGES.cup],
     coffeeType: 'roasted',
     packageCategory: 'Kenyan AA',
   },
@@ -79,6 +88,7 @@ export const NEW_ARRIVALS_SEED_PRODUCTS: NewArrivalProduct[] = [
     subtitle: 'Raw santos beans with nutty profile — perfect base for dark roasts.',
     price: 20,
     image: COFFEE_IMAGES.latte,
+    images: [COFFEE_IMAGES.latte],
     coffeeType: 'green',
     packageCategory: 'Brazilian Santos',
   },
@@ -88,6 +98,7 @@ export const NEW_ARRIVALS_SEED_PRODUCTS: NewArrivalProduct[] = [
     subtitle: 'Layered complexity for pour-over and French press — roaster\'s choice.',
     price: 17,
     image: COFFEE_IMAGES.brew,
+    images: [COFFEE_IMAGES.brew],
     coffeeType: 'blends',
     packageCategory: 'Signature Blend',
   },
@@ -97,6 +108,7 @@ export const NEW_ARRIVALS_SEED_PRODUCTS: NewArrivalProduct[] = [
     subtitle: 'Mild and mellow morning roast with a clean, easy finish.',
     price: 14,
     image: COFFEE_IMAGES.shop,
+    images: [COFFEE_IMAGES.shop],
     coffeeType: 'blends',
     packageCategory: 'Breakfast Blend',
   },
@@ -144,10 +156,15 @@ export function mapPackageToProduct(pkg: {
   const catalog = PACKAGE_EXPERIENCE_CATEGORIES.find(
     (c) => c.value.toLowerCase() === category.toLowerCase()
   );
-  const image = resolveCoffeeImage(
-    pkg.images?.[0]?.url || catalog?.heroImage,
-    index
-  );
+
+  const mappedImages = (pkg.images ?? [])
+    .map((img) => img?.url)
+    .filter((url): url is string => Boolean(url))
+    .map((url, i) => resolveCoffeeImage(url, index + i));
+
+  const fallback = resolveCoffeeImage(catalog?.heroImage, index);
+  const images = mappedImages.length ? mappedImages : [fallback];
+  const image = images[0] || DEFAULT_COFFEE_IMAGE;
 
   return {
     id: pkg._id,
@@ -155,8 +172,10 @@ export function mapPackageToProduct(pkg: {
     subtitle: pkg.subtitle || pkg.about?.slice(0, 120) || 'Premium specialty coffee from Romoire.',
     price: pkg.price && pkg.price < 500 ? pkg.price : 16,
     image,
+    images,
     coffeeType: inferCoffeeType(category),
     packageCategory: category,
+    groupSlug: catalog?.group,
   };
 }
 

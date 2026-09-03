@@ -26,6 +26,9 @@ async function getOrCreateSettings() {
   if (!settings.customSubcategories) settings.customSubcategories = [];
   if (!settings.customMiniCategories) settings.customMiniCategories = [];
   if (!settings.miniCategoryLabelOverrides) settings.miniCategoryLabelOverrides = {};
+  if (!settings.hiddenGroups) settings.hiddenGroups = [];
+  if (!settings.hiddenSubcategories) settings.hiddenSubcategories = [];
+  if (!settings.hiddenMiniCategories) settings.hiddenMiniCategories = [];
   return settings;
 }
 
@@ -306,64 +309,79 @@ export default async function handler(req, res) {
         }
       } else if (action === 'deleteGroup') {
         const slug = String(req.body.slug || '').trim();
-        if (!isCustomGroup(slug, catalog)) {
-          return res.status(400).json({ success: false, error: 'Only custom experience types can be deleted' });
-        }
-
         const navGroups = buildNavGroupsFromCatalog(catalog);
         const group = navGroups.find((item) => item.slug === slug);
-        const subSlugs = group?.items.map((item) => item.slug) ?? [];
 
-        for (const subSlug of subSlugs) {
-          const sub = navGroups.flatMap((g) => g.items).find((item) => item.slug === subSlug);
-          if (!sub) continue;
+        if (!group) {
+          return res.status(404).json({ success: false, error: 'Category not found' });
+        }
+
+        for (const sub of group.items) {
           const count = await Package.countDocuments({
-            packageCategory: { $regex: new RegExp(`^${sub.value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') },
+            packageCategory: { $regex: new RegExp(`^${String(sub.value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') },
           });
           if (count > 0) {
             return res.status(400).json({
               success: false,
-              error: `Cannot delete "${group?.label}" — packages are still assigned to "${sub.label}"`,
+              error: `Cannot delete "${group.label}" — packages are still assigned to "${sub.label}"`,
             });
           }
         }
 
-        refreshed = await updateSettingsById(settings._id, {
-          customGroups: (settings.customGroups || []).filter((group) => group.slug !== slug),
+        const update = {
+          customGroups: (settings.customGroups || []).filter((item) => item.slug !== slug),
           customSubcategories: (settings.customSubcategories || []).filter(
             (sub) => sub.groupSlug !== slug
           ),
           customMiniCategories: (settings.customMiniCategories || []).filter(
             (mini) => mini.groupSlug !== slug
           ),
-        });
+        };
+
+        if (!isCustomGroup(slug, catalog)) {
+          update.hiddenGroups = [...new Set([...(settings.hiddenGroups || []), slug])];
+          update.hiddenSubcategories = [
+            ...new Set([
+              ...(settings.hiddenSubcategories || []),
+              ...group.items.map((item) => item.slug),
+            ]),
+          ];
+        }
+
+        refreshed = await updateSettingsById(settings._id, update);
       } else if (action === 'deleteSubcategory') {
         const slug = String(req.body.slug || '').trim();
-        if (!isCustomSubcategory(slug, catalog)) {
-          return res.status(400).json({ success: false, error: 'Only custom experience pages can be deleted' });
+        const navGroups = buildNavGroupsFromCatalog(catalog);
+        const sub = navGroups.flatMap((g) => g.items).find((item) => item.slug === slug);
+
+        if (!sub) {
+          return res.status(404).json({ success: false, error: 'Subcategory not found' });
         }
 
-        const sub = (settings.customSubcategories || []).find((item) => item.slug === slug);
-        if (sub) {
-          const count = await Package.countDocuments({
-            packageCategory: { $regex: new RegExp(`^${sub.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') },
+        const count = await Package.countDocuments({
+          packageCategory: { $regex: new RegExp(`^${String(sub.value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') },
+        });
+        if (count > 0) {
+          return res.status(400).json({
+            success: false,
+            error: `Cannot delete — ${count} package(s) still use this category`,
           });
-          if (count > 0) {
-            return res.status(400).json({
-              success: false,
-              error: `Cannot delete — ${count} package(s) still use this category`,
-            });
-          }
         }
 
-        refreshed = await updateSettingsById(settings._id, {
+        const update = {
           customSubcategories: (settings.customSubcategories || []).filter(
-            (sub) => sub.slug !== slug
+            (item) => item.slug !== slug
           ),
           customMiniCategories: (settings.customMiniCategories || []).filter(
             (mini) => mini.subcategorySlug !== slug
           ),
-        });
+        };
+
+        if (!isCustomSubcategory(slug, catalog)) {
+          update.hiddenSubcategories = [...new Set([...(settings.hiddenSubcategories || []), slug])];
+        }
+
+        refreshed = await updateSettingsById(settings._id, update);
       } else if (action === 'addMiniCategory') {
         const label = String(req.body.label || '').trim();
         const subcategorySlug = String(req.body.subcategorySlug || '').trim();

@@ -51,7 +51,7 @@ export default function TourPackageSections({
   };
 
   return (
-    <div className={embedded ? 'space-y-10' : 'min-h-screen bg-[#F5EFE6]'}>
+    <div className={embedded ? 'space-y-10' : 'min-h-screen bg-cream'}>
       {showHero && (
         <section className="relative text-white pt-28 pb-20 md:pb-24 overflow-hidden">
           <CategoryHeroBackground
@@ -61,7 +61,7 @@ export default function TourPackageSections({
           />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-6">
+              <div className="inline-flex items-center gap-2 bg-cream/15 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-6">
                 <Compass className="h-4 w-4 text-amber-200" />
                 <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/90">
                   Upcoming Tours
@@ -72,11 +72,11 @@ export default function TourPackageSections({
               </h1>
               <p className="text-lg md:text-xl text-white/90 font-medium mb-6">{packageData.subtitle}</p>
               <div className="flex flex-wrap justify-center gap-3 text-sm">
-                <Badge className="bg-white/20 text-white border-white/30 px-4 py-2">
+                <Badge className="bg-cream/20 text-white border-white/30 px-4 py-2">
                   <Clock className="h-3.5 w-3.5 mr-1.5 inline" />
                   {packageData.duration}
                 </Badge>
-                <Badge className="bg-white/20 text-white border-white/30 px-4 py-2">
+                <Badge className="bg-cream/20 text-white border-white/30 px-4 py-2">
                   <MapPin className="h-3.5 w-3.5 mr-1.5 inline" />
                   {packageData.location}
                 </Badge>
@@ -87,13 +87,13 @@ export default function TourPackageSections({
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Button
                   onClick={openEnquiry}
-                  className="bg-[#6B1F2A] hover:bg-[#4A1520] text-white rounded-full px-8 h-12 font-bold"
+                  className="bg-hazelnut hover:bg-espresso text-white rounded-full px-8 h-12 font-bold"
                 >
                   Enquire Now
                 </Button>
                 {packageData._id && (
                   <Link href={`/packages/${packageData._id}`}>
-                    <Button variant="outline" className="rounded-full px-8 h-12 border-white/40 text-white hover:bg-white/10">
+                    <Button variant="outline" className="rounded-full px-8 h-12 border-white/40 text-white hover:bg-cream/10">
                       Full Package Page
                     </Button>
                   </Link>
@@ -114,8 +114,8 @@ export default function TourPackageSections({
             </div>
             <CardContent className="p-8 grid sm:grid-cols-2 gap-4">
               {packageData.fixedDepartures.map((dep, idx) => (
-                <div key={idx} className="p-4 bg-white rounded-2xl border border-gray-100">
-                  <p className="font-black text-[#6B1F2A] text-xs uppercase tracking-widest mb-1">{dep.month}</p>
+                <div key={idx} className="p-4 bg-cream rounded-2xl border border-gray-100">
+                  <p className="font-black text-hazelnut text-xs uppercase tracking-widest mb-1">{dep.month}</p>
                   <p className="text-gray-700 font-semibold">{dep.dates}</p>
                 </div>
               ))}
@@ -138,7 +138,7 @@ export default function TourPackageSections({
                 return (
                   <div key={idx} className="p-6 bg-amber-50/50 rounded-2xl border border-amber-100 text-center">
                     <p className="text-gray-800 font-bold text-sm mb-2">{label}</p>
-                    {price && <p className="text-[#6B1F2A] font-black text-lg">{price}</p>}
+                    {price && <p className="text-hazelnut font-black text-lg">{price}</p>}
                   </div>
                 );
               })}
@@ -173,8 +173,8 @@ export default function TourPackageSections({
             </div>
             <CardContent className="p-8 space-y-3">
               {packageData.shortItinerary.map((day) => (
-                <div key={day.day} className="flex gap-4 p-4 bg-white rounded-xl border border-gray-100">
-                  <div className="w-12 h-12 bg-[#6B1F2A] rounded-xl flex items-center justify-center text-white font-black shrink-0">
+                <div key={day.day} className="flex gap-4 p-4 bg-cream rounded-xl border border-gray-100">
+                  <div className="w-12 h-12 bg-hazelnut rounded-xl flex items-center justify-center text-white font-black shrink-0">
                     {day.day}
                   </div>
                   <p className="text-gray-800 font-semibold self-center">{day.title}</p>
@@ -189,10 +189,10 @@ export default function TourPackageSections({
           <section className="space-y-6">
             <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tight">Detailed Itinerary</h2>
             {packageData.itinerary.map((day, index) => (
-              <Card key={index} className="border border-[#6B1F2A]/20 rounded-3xl overflow-hidden">
+              <Card key={index} className="border border-hazelnut/20 rounded-3xl overflow-hidden">
                 <CardContent className="p-8">
                   <div className="flex items-start gap-6 mb-4">
-                    <div className="w-16 h-16 bg-[#6B1F2A] rounded-2xl flex flex-col items-center justify-center text-white shrink-0">
+                    <div className="w-16 h-16 bg-hazelnut rounded-2xl flex flex-col items-center justify-center text-white shrink-0">
                       <span className="text-[9px] font-black uppercase">Day</span>
                       <span className="text-2xl font-black">{day.day}</span>
                     </div>
@@ -214,7 +214,7 @@ export default function TourPackageSections({
             </div>
             <CardContent className="p-8 space-y-4">
               {packageData.accommodation.map((stay, idx) => (
-                <div key={idx} className="p-4 bg-white rounded-xl border border-gray-100">
+                <div key={idx} className="p-4 bg-cream rounded-xl border border-gray-100">
                   <p className="font-bold text-gray-900">{stay.city} = {stay.hotel}</p>
                   <p className="text-gray-500 text-sm mt-1">{stay.roomType} • {stay.nights}</p>
                 </div>
@@ -310,7 +310,7 @@ export default function TourPackageSections({
               <ul className="space-y-3">
                 {packageData.packageNotes.map((note, idx) => (
                   <li key={idx} className="text-gray-600 text-sm leading-relaxed flex gap-2">
-                    <span className="text-[#6B1F2A] font-bold shrink-0">*</span>
+                    <span className="text-hazelnut font-bold shrink-0">*</span>
                     {note}
                   </li>
                 ))}
@@ -351,7 +351,7 @@ function PolicyCard({ title, items }: { title: string; items: string[] }) {
         <ul className="space-y-2">
           {items.map((item, idx) => (
             <li key={idx} className="text-gray-600 text-sm leading-relaxed flex gap-2">
-              <span className="text-[#6B1F2A] shrink-0">•</span>
+              <span className="text-hazelnut shrink-0">•</span>
               {item}
             </li>
           ))}

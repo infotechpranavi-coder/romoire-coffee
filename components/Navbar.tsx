@@ -243,7 +243,7 @@ const Navbar = () => {
   return (
     <nav className={`sticky top-0 z-[120] transition-all duration-300 ${isInHeroSection
       ? 'bg-transparent shadow-none border-b-0'
-      : 'bg-white shadow-lg border-b border-gray-300'
+      : 'bg-cream shadow-lg border-b border-gray-300'
       }`}>
       {/* Top Bar */}
       <div className="bg-black text-white py-1">
@@ -360,7 +360,7 @@ const Navbar = () => {
 
               {/* Search Results Dropdown */}
               {isSearchOpen && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-cream border border-gray-200 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
                   {searchResults.length > 0 ? (
                     <div className="p-2">
                       <div className="text-xs text-gray-500 mb-2 px-2">
@@ -405,7 +405,7 @@ const Navbar = () => {
                                   {pkg.rating}/5
                                 </div>
                               </div>
-                              <div className="text-sm font-semibold text-[#6B1F2A] mt-1 uppercase text-[10px] tracking-wider">
+                              <div className="text-sm font-semibold text-hazelnut mt-1 uppercase text-[10px] tracking-wider">
                                 Enquire for quote
                               </div>
                             </div>
@@ -510,7 +510,7 @@ const Navbar = () => {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={`lg:hidden p-2 rounded-md transition-colors ${isInHeroSection
-              ? 'text-white hover:text-gray-200 hover:bg-white/10'
+              ? 'text-white hover:text-gray-200 hover:bg-cream/10'
               : 'text-gray-800 hover:text-black hover:bg-gray-100'
               }`}
           >
@@ -521,7 +521,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-white border-t">
+        <div className="lg:hidden bg-cream border-t">
           <div className="container mx-auto px-4 py-3">
             {/* Mobile Search Bar */}
             <div className="mb-4">
@@ -551,7 +551,7 @@ const Navbar = () => {
 
                 {/* Mobile Search Results */}
                 {isSearchOpen && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-80 overflow-y-auto">
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-cream border border-gray-200 rounded-lg shadow-lg z-50 max-h-80 overflow-y-auto">
                     {searchResults.length > 0 ? (
                       <div className="p-2">
                         <div className="text-xs text-gray-500 mb-2 px-2">
@@ -590,7 +590,7 @@ const Navbar = () => {
                                     <MapPin className="h-3 w-3 mr-1" />
                                     {pkg.location}
                                   </div>
-                                  <div className="text-xs font-semibold text-[#6B1F2A] uppercase tracking-wider">
+                                  <div className="text-xs font-semibold text-hazelnut uppercase tracking-wider">
                                     Enquire
                                   </div>
                                 </div>

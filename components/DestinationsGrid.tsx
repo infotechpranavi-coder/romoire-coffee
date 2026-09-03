@@ -127,7 +127,7 @@ function OptionPills({
 }) {
   return (
     <div className="space-y-1.5">
-      <p className="text-xs font-medium text-gray-700">{label}</p>
+      <p className="text-xs font-medium text-mocha">{label}</p>
       <div className="flex flex-wrap gap-1.5">
         {options.map((opt) => (
           <button
@@ -136,8 +136,8 @@ function OptionPills({
             onClick={() => onChange(opt)}
             className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
               value === opt
-                ? 'border-[#6B1F2A] bg-[#6B1F2A] text-white'
-                : 'border-gray-300 bg-white text-gray-700 hover:border-[#6B1F2A]/50'
+                ? 'border-hazelnut bg-hazelnut text-white'
+                : 'border-vanilla bg-cream text-mocha hover:border-hazelnut/50'
             }`}
           >
             {opt}
@@ -218,10 +218,10 @@ const DestinationsGrid = () => {
   const hasSale = product.originalPrice && product.originalPrice > product.price;
 
   return (
-    <section id="destinations" ref={ref} className="bg-white py-10 md:py-12 lg:py-14">
+    <section id="destinations" ref={ref} className="bg-cream py-10 md:py-12 lg:py-14">
       <div className="container mx-auto px-4">
         {/* Section title */}
-        <h2 className="mb-5 text-center text-3xl font-black tracking-tight text-[#6B1F2A] sm:text-4xl md:mb-6">
+        <h2 className="mb-5 text-center text-3xl font-black tracking-tight text-hazelnut sm:text-4xl md:mb-6">
           ORIGINS
         </h2>
 
@@ -230,7 +230,7 @@ const DestinationsGrid = () => {
           <button
             type="button"
             onClick={() => goTo(currentIndex - 1)}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#6B1F2A] hover:text-[#6B1F2A]"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-vanilla text-mocha/80 transition-colors hover:border-hazelnut hover:text-hazelnut"
             aria-label="Previous origin"
           >
             <ChevronLeft className="h-4 w-4" />
@@ -242,7 +242,7 @@ const DestinationsGrid = () => {
                 type="button"
                 onClick={() => goTo(i)}
                 className={`h-2 w-2 rounded-full transition-colors ${
-                  i === currentIndex ? 'bg-[#6B1F2A]' : 'bg-gray-300 hover:bg-gray-400'
+                  i === currentIndex ? 'bg-hazelnut' : 'bg-vanilla hover:bg-mocha/30'
                 }`}
                 aria-label={`Go to slide ${i + 1}`}
               />
@@ -251,7 +251,7 @@ const DestinationsGrid = () => {
           <button
             type="button"
             onClick={() => setPaused((p) => !p)}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#6B1F2A] hover:text-[#6B1F2A]"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-vanilla text-mocha/80 transition-colors hover:border-hazelnut hover:text-hazelnut"
             aria-label={paused ? 'Play slideshow' : 'Pause slideshow'}
           >
             <Pause className="h-3.5 w-3.5" />
@@ -259,7 +259,7 @@ const DestinationsGrid = () => {
           <button
             type="button"
             onClick={() => goTo(currentIndex + 1)}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-[#6B1F2A] hover:text-[#6B1F2A]"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-vanilla text-mocha/80 transition-colors hover:border-hazelnut hover:text-hazelnut"
             aria-label="Next origin"
           >
             <ChevronRight className="h-4 w-4" />
@@ -270,10 +270,10 @@ const DestinationsGrid = () => {
         <div className="mb-5 flex flex-wrap items-center justify-center gap-4 md:gap-6 lg:gap-8">
           {BADGES.map(({ icon: Icon, label }) => (
             <div key={label} className="flex flex-col items-center gap-1 text-center">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[#6B1F2A] bg-white shadow-sm md:h-12 md:w-12">
-                <Icon className="h-5 w-5 text-[#6B1F2A] md:h-5 md:w-5" strokeWidth={1.5} />
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-hazelnut bg-cream shadow-sm md:h-12 md:w-12">
+                <Icon className="h-5 w-5 text-hazelnut md:h-5 md:w-5" strokeWidth={1.5} />
               </div>
-              <span className="text-[9px] font-bold uppercase tracking-wider text-gray-600 md:text-[10px]">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-mocha/80 md:text-[10px]">
                 {label}
               </span>
             </div>
@@ -281,7 +281,7 @@ const DestinationsGrid = () => {
         </div>
 
         {/* Tagline */}
-        <p className="mx-auto mb-6 max-w-xl text-center text-xs leading-relaxed text-gray-500 md:mb-8 md:text-sm">
+        <p className="mx-auto mb-6 max-w-xl text-center text-xs leading-relaxed text-mocha/70 md:mb-8 md:text-sm">
           Discover exceptional single-origin coffees from the world&apos;s finest growing regions.
           No compromise on taste, ethics, or freshness — roasted in small batches by {SITE_NAME}.
         </p>
@@ -293,7 +293,7 @@ const DestinationsGrid = () => {
           }`}
         >
           {/* Left — product image */}
-          <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl bg-[#F5EFE6] shadow-sm lg:max-w-none">
+          <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl bg-cream shadow-sm lg:max-w-none">
             <Image
               src={imageSrc}
               alt={product.title}
@@ -307,7 +307,7 @@ const DestinationsGrid = () => {
           {/* Right — product details */}
           <div className="flex flex-col">
             <h3
-              className="mb-2 text-2xl font-semibold leading-tight text-[#6B1F2A] md:text-3xl"
+              className="mb-2 text-2xl font-semibold leading-tight text-hazelnut md:text-3xl"
               style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
             >
               {product.title}
@@ -315,21 +315,21 @@ const DestinationsGrid = () => {
 
             <div className="mb-3 flex flex-wrap items-center gap-2">
               {hasSale && (
-                <span className="text-base text-gray-400 line-through">
+                <span className="text-base text-mocha/50 line-through">
                   ${product.originalPrice!.toFixed(2)}
                 </span>
               )}
-              <span className="text-xl font-medium text-gray-900 md:text-2xl">
+              <span className="text-xl font-medium text-espresso md:text-2xl">
                 ${product.price.toFixed(2)}
               </span>
               {hasSale && (
-                <span className="rounded bg-[#6B1F2A] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                <span className="rounded bg-hazelnut px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
                   Sale
                 </span>
               )}
             </div>
 
-            <p className="mb-4 line-clamp-2 text-xs leading-relaxed text-gray-500 md:text-sm">
+            <p className="mb-4 line-clamp-2 text-xs leading-relaxed text-mocha/70 md:text-sm">
               {product.subtitle}
             </p>
 
@@ -341,23 +341,23 @@ const DestinationsGrid = () => {
 
             {/* Quantity */}
             <div className="mb-4">
-              <p className="mb-1.5 text-xs font-medium text-gray-700">Quantity</p>
-              <div className="inline-flex items-center rounded-full border border-gray-300 bg-white">
+              <p className="mb-1.5 text-xs font-medium text-mocha">Quantity</p>
+              <div className="inline-flex items-center rounded-full border border-vanilla bg-cream">
                 <button
                   type="button"
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="flex h-9 w-9 items-center justify-center text-gray-600 hover:text-[#6B1F2A]"
+                  className="flex h-9 w-9 items-center justify-center text-mocha/80 hover:text-hazelnut"
                   aria-label="Decrease quantity"
                 >
                   <Minus className="h-3.5 w-3.5" />
                 </button>
-                <span className="min-w-[2rem] text-center text-base font-semibold text-gray-900">
+                <span className="min-w-[2rem] text-center text-base font-semibold text-espresso">
                   {quantity}
                 </span>
                 <button
                   type="button"
                   onClick={() => setQuantity((q) => q + 1)}
-                  className="flex h-9 w-9 items-center justify-center text-gray-600 hover:text-[#6B1F2A]"
+                  className="flex h-9 w-9 items-center justify-center text-mocha/80 hover:text-hazelnut"
                   aria-label="Increase quantity"
                 >
                   <Plus className="h-3.5 w-3.5" />
@@ -370,14 +370,14 @@ const DestinationsGrid = () => {
               <button
                 type="button"
                 onClick={() => handleOrder(false)}
-                className="flex-1 rounded-full border-2 border-[#6B1F2A] bg-white py-2.5 text-xs font-bold text-[#6B1F2A] transition-colors hover:bg-[#6B1F2A]/5 md:text-sm"
+                className="flex-1 rounded-full border-2 border-hazelnut bg-cream py-2.5 text-xs font-bold text-hazelnut transition-colors hover:bg-hazelnut/5 md:text-sm"
               >
                 Add to cart
               </button>
               <button
                 type="button"
                 onClick={() => handleOrder(true)}
-                className="flex-1 rounded-full bg-[#6B1F2A] py-2.5 text-xs font-bold text-white transition-colors hover:bg-[#4A1520] md:text-sm"
+                className="flex-1 rounded-full bg-hazelnut py-2.5 text-xs font-bold text-white transition-colors hover:bg-espresso md:text-sm"
               >
                 Buy it now
               </button>
@@ -385,7 +385,7 @@ const DestinationsGrid = () => {
 
             <Link
               href={product.link}
-              className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-gray-600 underline-offset-4 hover:text-[#6B1F2A] hover:underline"
+              className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-mocha/80 underline-offset-4 hover:text-hazelnut hover:underline"
             >
               View full details
               <ArrowRight className="h-3.5 w-3.5" />

@@ -38,6 +38,9 @@ export interface CategoryCatalogSettings extends CategoryLabelOverrides {
   customSubcategories?: CustomSubcategoryEntry[];
   customMiniCategories?: CustomMiniCategoryEntry[];
   miniCategoryLabels?: Record<string, string>;
+  hiddenGroups?: string[];
+  hiddenSubcategories?: string[];
+  hiddenMiniCategories?: string[];
 }
 
 const GROUP_ACCENTS: Record<string, PackageExperienceCategory['accent']> = {
@@ -64,6 +67,9 @@ export function getCategoryCatalogFromSettings(
     customSubcategories?: CustomSubcategoryEntry[];
     customMiniCategories?: CustomMiniCategoryEntry[];
     miniCategoryLabelOverrides?: Record<string, string>;
+    hiddenGroups?: string[];
+    hiddenSubcategories?: string[];
+    hiddenMiniCategories?: string[];
   } | null
 ): CategoryCatalogSettings {
   return {
@@ -73,6 +79,9 @@ export function getCategoryCatalogFromSettings(
     customSubcategories: settings?.customSubcategories ?? [],
     customMiniCategories: settings?.customMiniCategories ?? [],
     miniCategoryLabels: settings?.miniCategoryLabelOverrides ?? {},
+    hiddenGroups: settings?.hiddenGroups ?? [],
+    hiddenSubcategories: settings?.hiddenSubcategories ?? [],
+    hiddenMiniCategories: settings?.hiddenMiniCategories ?? [],
   };
 }
 
@@ -128,6 +137,7 @@ function attachMiniCategories(
       ...item,
       miniItems: minis
         .filter((mini) => mini.subcategorySlug === item.slug && mini.groupSlug === group.slug)
+        .filter((mini) => !(catalog.hiddenMiniCategories ?? []).includes(mini.slug))
         .map((mini) => buildMiniCategory(mini, miniLabels[mini.slug])),
     })),
   }));
@@ -141,8 +151,8 @@ export function buildCustomSubcategory(entry: CustomSubcategoryEntry): PackageEx
     slug: entry.slug,
     href: `/packages/category/${entry.slug}`,
     heroTitle: label,
-    heroSubtitle: entry.heroSubtitle?.trim() || `Shop ${label} coffee with ${SITE_NAME}`,
-    heroImage: CATEGORY_IMAGES['yachts-sailing-cruises'],
+    heroSubtitle: entry.heroSubtitle?.trim() || `Browse ${label} coffee with ${SITE_NAME}`,
+    heroImage: CATEGORY_IMAGES['colombian-supremo'],
     emptyMessage: `No ${label} packages yet`,
     accent: defaultAccentForGroup(entry.groupSlug),
     group: entry.groupSlug,
@@ -203,7 +213,17 @@ export function buildNavGroupsFromCatalog(
     }
   }
 
-  return attachMiniCategories(result, catalog ?? {});
+  const hiddenGroups = new Set(catalog?.hiddenGroups ?? []);
+  const hiddenSubs = new Set(catalog?.hiddenSubcategories ?? []);
+
+  const visible = result
+    .filter((group) => !hiddenGroups.has(group.slug))
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((item) => !hiddenSubs.has(item.slug)),
+    }));
+
+  return attachMiniCategories(visible, catalog ?? {});
 }
 
 export function getAllMiniSlugs(catalog?: CategoryCatalogSettings | null): Set<string> {

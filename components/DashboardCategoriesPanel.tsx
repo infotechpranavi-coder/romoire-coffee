@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Plus, Pencil, Trash2, Check, X, FolderTree } from 'lucide-react';
 import { useCategoryLabels } from '@/contexts/CategoryLabelsContext';
-import { isCustomGroup, isCustomMiniCategory, isCustomSubcategory } from '@/lib/categoryCatalog';
+import { isCustomGroup, isCustomMiniCategory } from '@/lib/categoryCatalog';
 import { formatCategoryOptionLabel } from '@/lib/resolveCategoryLabels';
 
 export default function DashboardCategoriesPanel() {
@@ -138,9 +138,9 @@ export default function DashboardCategoriesPanel() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <FolderTree className="h-7 w-7 text-[#6B1F2A]" />
+        <FolderTree className="h-7 w-7 text-hazelnut" />
         <div>
-          <h2 className="text-2xl font-black text-[#111827] tracking-tight uppercase">Category Tree</h2>
+          <h2 className="text-2xl font-black text-espresso tracking-tight uppercase">Category Tree</h2>
           <p className="text-sm text-gray-500">Main category → Subcategory → Mini category</p>
         </div>
       </div>
@@ -160,7 +160,7 @@ export default function DashboardCategoriesPanel() {
                 onChange={(e) => setNewGroupName(e.target.value)}
                 className="h-10 rounded-xl"
               />
-              <Button type="button" onClick={handleAddGroup} disabled={saving || !newGroupName.trim()} className="shrink-0 h-10 rounded-xl bg-[#111827]">
+              <Button type="button" onClick={handleAddGroup} disabled={saving || !newGroupName.trim()} className="shrink-0 h-10 rounded-xl bg-espresso">
                 <Plus className="h-4 w-4" />
               </Button>
             </div>
@@ -169,7 +169,7 @@ export default function DashboardCategoriesPanel() {
                 const isSelected = selectedGroup?.slug === group.slug;
                 const isEditing = editingGroupSlug === group.slug;
                 return (
-                  <div key={group.slug} className={`rounded-xl border p-3 ${isSelected ? 'border-[#6B1F2A] bg-[#6B1F2A]/5' : 'border-gray-100'}`}>
+                  <div key={group.slug} className={`rounded-xl border p-3 ${isSelected ? 'border-hazelnut bg-hazelnut/5' : 'border-gray-100'}`}>
                     {isEditing ? (
                       <div className="flex gap-2">
                         <Input value={groupDraft} onChange={(e) => setGroupDraft(e.target.value)} className="h-9 rounded-lg" />
@@ -184,9 +184,7 @@ export default function DashboardCategoriesPanel() {
                         </button>
                         <div className="flex shrink-0">
                           <Button type="button" size="icon" variant="ghost" className="h-8 w-8" onClick={(e) => { e.stopPropagation(); setEditingGroupSlug(group.slug); setGroupDraft(group.label); }}><Pencil className="h-3.5 w-3.5" /></Button>
-                          {isCustomGroup(group.slug, catalog) && (
-                            <Button type="button" size="icon" variant="ghost" className="h-8 w-8 text-red-500" onClick={() => { if (confirm(`Delete "${group.label}"?`)) deleteGroup(group.slug); }}><Trash2 className="h-3.5 w-3.5" /></Button>
-                          )}
+                          <Button type="button" size="icon" variant="ghost" className="h-8 w-8 text-red-500 hover:bg-red-50 hover:text-red-600" onClick={(e) => { e.stopPropagation(); if (confirm(`Delete "${group.label}" and its subcategories?`)) deleteGroup(group.slug); }}><Trash2 className="h-3.5 w-3.5" /></Button>
                         </div>
                       </div>
                     )}
@@ -205,13 +203,13 @@ export default function DashboardCategoriesPanel() {
           </CardHeader>
           <CardContent className="p-6 pt-2 space-y-3">
             <div className="rounded-xl border border-dashed border-gray-200 p-3 space-y-2 bg-gray-50/50">
-              <Input placeholder="New subcategory" value={newSubName} onChange={(e) => setNewSubName(e.target.value)} className="h-9 rounded-lg bg-white" />
-              <Input placeholder="Description (optional)" value={newSubSubtitle} onChange={(e) => setNewSubSubtitle(e.target.value)} className="h-9 rounded-lg bg-white" />
+              <Input placeholder="New subcategory" value={newSubName} onChange={(e) => setNewSubName(e.target.value)} className="h-9 rounded-lg bg-cream" />
+              <Input placeholder="Description (optional)" value={newSubSubtitle} onChange={(e) => setNewSubSubtitle(e.target.value)} className="h-9 rounded-lg bg-cream" />
               <div className="flex items-center gap-2">
                 <Checkbox id="sub-future" checked={newSubFuture} onCheckedChange={(c) => setNewSubFuture(!!c)} />
                 <label htmlFor="sub-future" className="text-xs text-gray-600">Coming soon</label>
               </div>
-              <Button type="button" onClick={handleAddSubcategory} disabled={saving || !newSubName.trim()} className="w-full h-9 rounded-lg bg-[#6B1F2A] hover:bg-[#a67f3d]">
+              <Button type="button" onClick={handleAddSubcategory} disabled={saving || !newSubName.trim()} className="w-full h-9 rounded-lg bg-hazelnut hover:bg-[#a67f3d]">
                 <Plus className="h-4 w-4 mr-1" /> Add Subcategory
               </Button>
             </div>
@@ -220,7 +218,7 @@ export default function DashboardCategoriesPanel() {
                 const isSelected = selectedSubSlug === sub.slug;
                 const isEditing = editingSubSlug === sub.slug;
                 return (
-                  <div key={sub.slug} className={`rounded-xl border p-3 ${isSelected ? 'border-[#6B1F2A] bg-[#6B1F2A]/5' : 'border-gray-100'}`}>
+                  <div key={sub.slug} className={`rounded-xl border p-3 ${isSelected ? 'border-hazelnut bg-hazelnut/5' : 'border-gray-100'}`}>
                     {isEditing ? (
                       <div className="space-y-2">
                         <Input value={subDraft.label} onChange={(e) => setSubDraft((p) => ({ ...p, label: e.target.value }))} className="h-9 rounded-lg" />
@@ -241,9 +239,7 @@ export default function DashboardCategoriesPanel() {
                         </button>
                         <div className="flex shrink-0">
                           <Button type="button" size="icon" variant="ghost" className="h-8 w-8" onClick={() => { setEditingSubSlug(sub.slug); setSubDraft({ label: sub.label, heroSubtitle: sub.heroSubtitle, isFuture: !!sub.isFuture }); }}><Pencil className="h-3.5 w-3.5" /></Button>
-                          {isCustomSubcategory(sub.slug, catalog) && (
-                            <Button type="button" size="icon" variant="ghost" className="h-8 w-8 text-red-500" onClick={() => { if (confirm(`Delete "${sub.label}"?`)) deleteSubcategory(sub.slug); }}><Trash2 className="h-3.5 w-3.5" /></Button>
-                          )}
+                          <Button type="button" size="icon" variant="ghost" className="h-8 w-8 text-red-500 hover:bg-red-50 hover:text-red-600" onClick={() => { if (confirm(`Delete "${sub.label}"?`)) deleteSubcategory(sub.slug); }}><Trash2 className="h-3.5 w-3.5" /></Button>
                         </div>
                       </div>
                     )}
@@ -262,8 +258,8 @@ export default function DashboardCategoriesPanel() {
           </CardHeader>
           <CardContent className="p-6 pt-2 space-y-3">
             <div className="rounded-xl border border-dashed border-gray-200 p-3 space-y-2 bg-gray-50/50">
-              <Input placeholder="New mini category" value={newMiniName} onChange={(e) => setNewMiniName(e.target.value)} className="h-9 rounded-lg bg-white" disabled={!selectedSub} />
-              <Button type="button" onClick={handleAddMini} disabled={saving || !newMiniName.trim() || !selectedSub} className="w-full h-9 rounded-lg bg-[#111827] hover:bg-[#1f2937]">
+              <Input placeholder="New mini category" value={newMiniName} onChange={(e) => setNewMiniName(e.target.value)} className="h-9 rounded-lg bg-cream" disabled={!selectedSub} />
+              <Button type="button" onClick={handleAddMini} disabled={saving || !newMiniName.trim() || !selectedSub} className="w-full h-9 rounded-lg bg-espresso hover:bg-[#1f2937]">
                 <Plus className="h-4 w-4 mr-1" /> Add Mini Category
               </Button>
             </div>
@@ -287,9 +283,7 @@ export default function DashboardCategoriesPanel() {
                         </div>
                         <div className="flex shrink-0">
                           <Button type="button" size="icon" variant="ghost" className="h-8 w-8" onClick={() => { setEditingMiniSlug(mini.slug); setMiniDraft(mini.label); }}><Pencil className="h-3.5 w-3.5" /></Button>
-                          {isCustomMiniCategory(mini.slug, catalog) && (
-                            <Button type="button" size="icon" variant="ghost" className="h-8 w-8 text-red-500" onClick={() => { if (confirm(`Delete "${mini.label}"?`)) deleteMiniCategory(mini.slug); }}><Trash2 className="h-3.5 w-3.5" /></Button>
-                          )}
+                          <Button type="button" size="icon" variant="ghost" className="h-8 w-8 text-red-500 hover:bg-red-50 hover:text-red-600" onClick={() => { if (confirm(`Delete "${mini.label}"?`)) deleteMiniCategory(mini.slug); }}><Trash2 className="h-3.5 w-3.5" /></Button>
                         </div>
                       </div>
                     )}

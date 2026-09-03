@@ -120,7 +120,7 @@ const CreateGalleryModal = ({ isOpen, onClose, onGalleryCreated }: CreateGallery
         <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
             <DialogContent className="max-w-[400px] w-[calc(100%-2rem)] gap-0 rounded-2xl border-none p-0 shadow-2xl overflow-hidden">
                 <DialogHeader className="px-5 pt-5 pb-3 space-y-1">
-                    <DialogTitle className="text-base font-black uppercase tracking-tight text-[#111827]">
+                    <DialogTitle className="text-base font-black uppercase tracking-tight text-espresso">
                         Add Gallery Image
                     </DialogTitle>
                     <DialogDescription className="text-[11px] text-gray-400">
@@ -178,7 +178,7 @@ const CreateGalleryModal = ({ isOpen, onClose, onGalleryCreated }: CreateGallery
                                     variant="secondary"
                                     size="icon"
                                     onClick={() => { setImage(null); setImagePreview(null); }}
-                                    className="absolute top-2 right-2 h-6 w-6 rounded-full bg-white/90"
+                                    className="absolute top-2 right-2 h-6 w-6 rounded-full bg-cream/90"
                                 >
                                     <X className="h-3 w-3" />
                                 </Button>
@@ -187,7 +187,7 @@ const CreateGalleryModal = ({ isOpen, onClose, onGalleryCreated }: CreateGallery
                             <button
                                 type="button"
                                 onClick={() => fileInputRef.current?.click()}
-                                className="w-full border border-dashed border-gray-200 rounded-xl py-4 flex flex-col items-center gap-1.5 hover:border-[#6B1F2A] transition-colors"
+                                className="w-full border border-dashed border-gray-200 rounded-xl py-4 flex flex-col items-center gap-1.5 hover:border-hazelnut transition-colors"
                             >
                                 <Upload className="h-5 w-5 text-gray-300" />
                                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Upload image</span>
@@ -218,7 +218,7 @@ const CreateGalleryModal = ({ isOpen, onClose, onGalleryCreated }: CreateGallery
                     <Button
                         onClick={handleSubmit}
                         disabled={isSubmitting}
-                        className="bg-[#111827] hover:bg-[#6B1F2A] text-white rounded-lg h-9 text-xs px-5"
+                        className="bg-espresso hover:bg-hazelnut text-white rounded-lg h-9 text-xs px-5"
                     >
                         {isSubmitting ? "Uploading..." : "Add to Gallery"}
                     </Button>

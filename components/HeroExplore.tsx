@@ -5,7 +5,7 @@ import { useInquiryForm } from "../contexts/InquiryFormContext";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BannerData } from "@/lib/types";
-import { SITE_NAME } from "@/lib/branding";
+import { SITE_NAME, SITE_TAGLINE } from "@/lib/branding";
 import { getHeroBannerSrcSet, getHeroBannerUrl } from "@/lib/utils";
 import { getYoutubeThumbnail } from "@/lib/bannerMedia";
 import HeroYoutubePlayer from "@/components/HeroYoutubePlayer";
@@ -200,15 +200,12 @@ const HeroExplore = ({ initialBanners }: HeroExploreProps) => {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative min-h-screen overflow-hidden bg-[#0b1f2d]"
+      className="relative min-h-screen overflow-hidden bg-espresso"
     >
       <div className="absolute inset-0 z-0">
         {banners.map((banner, index) =>
           renderBannerBackground(banner, index, index === currentIndex)
         )}
-
-        <div className="absolute inset-0 z-[2] bg-gradient-to-r from-[#0a2233]/85 via-[#0a2233]/45 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 z-[2] bg-gradient-to-t from-[#0a2233]/35 via-transparent to-[#0a2233]/15 pointer-events-none" />
       </div>
 
       <div className="relative z-20 mx-auto flex min-h-screen max-w-[1400px] flex-col justify-end px-5 pb-12 pt-28 sm:px-8 sm:pb-16 sm:pt-32 lg:px-12 lg:pb-20 lg:pt-36">
@@ -222,20 +219,23 @@ const HeroExplore = ({ initialBanners }: HeroExploreProps) => {
               transition={{ duration: 0.5, ease: 'easeOut' }}
               className="max-w-3xl"
             >
-              <h1 className="text-[clamp(3.5rem,12vw,9rem)] font-black uppercase leading-[0.82] tracking-tighter text-white">
-                {heroTitle}
+              <p className="mb-4 font-body text-xs font-medium uppercase tracking-[0.12em] text-vanilla/90 md:text-sm">
+                {SITE_TAGLINE}
+              </p>
+              <h1 className="font-heading text-[clamp(2.5rem,8vw,5.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-cream">
+                {heroTitle.charAt(0) + heroTitle.slice(1).toLowerCase()}
               </h1>
 
-              <p className="mt-5 max-w-xl text-sm font-medium leading-relaxed text-white/90 sm:text-base md:max-w-md md:text-[17px]">
+              <p className="mt-5 max-w-xl font-body text-sm leading-relaxed text-vanilla/90 sm:text-base md:max-w-md">
                 {description}
               </p>
 
               <button
                 type="button"
                 onClick={handlePrimaryAction}
-                className="mt-6 inline-flex items-center justify-center rounded-full bg-[#c8d8e2] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#17303f] transition hover:bg-white sm:mt-8 sm:px-8 sm:py-3.5 sm:text-xs"
+                className="btn-editorial-dark mt-6 sm:mt-8"
               >
-                {currentBanner.link ? 'View Coffee' : 'Shop Now'}
+                {currentBanner.link ? 'View Coffee' : 'View Products'}
               </button>
             </motion.div>
           </AnimatePresence>
@@ -249,7 +249,7 @@ const HeroExplore = ({ initialBanners }: HeroExploreProps) => {
                   aria-label={`Show banner ${i + 1}`}
                   onClick={() => setCurrentIndex(i)}
                   className={`h-1 rounded-full transition-all duration-300 ${
-                    i === currentIndex ? 'w-10 bg-white' : 'w-6 bg-white/35 hover:bg-white/60'
+                    i === currentIndex ? 'w-10 bg-cream' : 'w-6 bg-cream/35 hover:bg-cream/60'
                   }`}
                 />
               ))}

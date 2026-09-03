@@ -755,7 +755,7 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="max-w-4xl p-0 border-none rounded-[32px] overflow-hidden">
         <DialogHeader className="p-8 pb-4 bg-gray-50/50">
-          <DialogTitle className="text-3xl font-black text-[#111827] uppercase tracking-tighter">Edit Package</DialogTitle>
+          <DialogTitle className="text-3xl font-black text-espresso uppercase tracking-tighter">Edit Package</DialogTitle>
           <DialogDescription className="text-gray-400 font-bold uppercase tracking-widest text-[10px] mt-1">
             Update the details for &quot;{packageData.title}&quot;. Fields marked * are required.
           </DialogDescription>
@@ -1067,7 +1067,7 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
 
             <div className="flex flex-col gap-4">
               <div
-                className="border-2 border-dashed border-gray-200 rounded-2xl p-8 flex flex-col items-center gap-3 bg-gray-50/50 cursor-pointer hover:border-[#6B1F2A] transition-all"
+                className="border-2 border-dashed border-gray-200 rounded-2xl p-8 flex flex-col items-center gap-3 bg-gray-50/50 cursor-pointer hover:border-hazelnut transition-all"
                 onClick={() => fileInputRef.current?.click()}
               >
                 <Upload className="h-8 w-8 text-gray-400" />
@@ -1076,7 +1076,7 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
               </div>
               <div className="flex gap-2">
                 <Input placeholder="OR Paste Image URL here..." value={currentImageUrl} onChange={e => setCurrentImageUrl(e.target.value)} className="h-12 rounded-xl flex-1" />
-                <Button type="button" variant="outline" onClick={handleAddUrl} disabled={totalSelectedImages >= 5} className="h-12 rounded-xl font-bold uppercase text-[10px] tracking-widest px-6 hover:bg-[#6B1F2A] hover:text-white transition-all">Add URL</Button>
+                <Button type="button" variant="outline" onClick={handleAddUrl} disabled={totalSelectedImages >= 5} className="h-12 rounded-xl font-bold uppercase text-[10px] tracking-widest px-6 hover:bg-hazelnut hover:text-white transition-all">Add URL</Button>
               </div>
             </div>
           </div>
@@ -1135,7 +1135,7 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
             <Button
               onClick={handleSubmit}
               disabled={uploading}
-              className="bg-[#111827] hover:bg-[#6B1F2A] rounded-xl px-10 h-12 font-black uppercase text-xs tracking-widest shadow-xl transition-all w-full md:w-auto"
+              className="bg-espresso hover:bg-hazelnut rounded-xl px-10 h-12 font-black uppercase text-xs tracking-widest shadow-xl transition-all w-full md:w-auto"
             >
               {uploading ? (
                 <span className="flex items-center gap-2">

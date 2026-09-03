@@ -13,7 +13,7 @@ import {
   GROUP_HERO_IMAGES,
   accentStyles,
 } from '@/lib/packageExperienceCategories';
-import { upcomingToursPackageSeedData } from '@/lib/umlingLaPackageData';
+import { COFFEE_IMAGES } from '@/lib/coffeeImages';
 import { useCategoryLabels } from '@/contexts/CategoryLabelsContext';
 import { useInquiryForm } from '@/contexts/InquiryFormContext';
 import PackagePageEnquiryForm from '@/components/PackagePageEnquiryForm';
@@ -54,8 +54,11 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
   const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
   const { openForm } = useInquiryForm();
-  const styles = accentStyles[groupAccent[group.slug] ?? 'teal'];
-  const heroImage = GROUP_HERO_IMAGES[group.slug] ?? group.items[0]?.heroImage;
+  const styles = accentStyles[groupAccent[group.slug] ?? 'amber'];
+  const heroImage =
+    GROUP_HERO_IMAGES[group.slug] ??
+    group.items[0]?.heroImage ??
+    COFFEE_IMAGES.hero;
 
   useEffect(() => {
     fetchPackages();
@@ -81,21 +84,7 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
     try {
       const response = await fetch(`/api/packages?group=${encodeURIComponent(group.slug)}`);
       const result = await response.json();
-      let data = result.success && result.data ? result.data : [];
-
-      if (group.slug === 'upcoming-tours' && data.length < upcomingToursPackageSeedData.length) {
-        try {
-          await fetch('/api/packages/seed-upcoming-tours', { method: 'POST' });
-          const retry = await fetch(`/api/packages?group=${encodeURIComponent(group.slug)}`);
-          const retryResult = await retry.json();
-          if (retryResult.success && retryResult.data?.length) {
-            data = retryResult.data;
-          }
-        } catch {
-          // keep empty if seed fails
-        }
-      }
-
+      const data = result.success && result.data ? result.data : [];
       setPackages(data);
     } catch (error) {
       console.error('Error fetching group packages:', error);
@@ -118,7 +107,7 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#F5EFE6] flex items-center justify-center">
+      <div className="min-h-screen bg-cream flex items-center justify-center">
         <div className="text-center">
           <div className={`animate-spin rounded-full h-12 w-12 border-b-2 ${styles.spinner} mx-auto mb-4`} />
           <p className="text-gray-600">Loading {group.label.toLowerCase()} packages...</p>
@@ -128,7 +117,7 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
   }
 
   return (
-    <div className="min-h-screen bg-[#F5EFE6]">
+    <div className="min-h-screen bg-cream">
       <section className="relative text-white pt-28 pb-20 md:pb-24 overflow-hidden">
         <CategoryHeroBackground
           src={heroImage}
@@ -137,7 +126,7 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
         />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-6">
+            <div className="inline-flex items-center gap-2 bg-cream/15 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-6">
               <Compass className={`h-4 w-4 ${styles.icon}`} />
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/90">
                 {SITE_NAME}
@@ -151,7 +140,7 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
         </div>
       </section>
 
-      <section className="py-8 bg-white border-b border-gray-100">
+      <section className="py-8 bg-cream border-b border-gray-100">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap gap-3 justify-center">
             {group.items.map((category) => (
@@ -176,7 +165,7 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
                 <p className={`text-[10px] font-black uppercase tracking-[0.3em] ${styles.muted} mb-1`}>
                   {filteredPackages.length} package{filteredPackages.length !== 1 ? 's' : ''}
                 </p>
-                <h2 className="text-2xl md:text-3xl font-black text-[#111827] uppercase tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-black text-espresso uppercase tracking-tight">
                   {group.label} Packages
                 </h2>
               </div>
@@ -187,14 +176,14 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
                   placeholder={`Search ${group.label.toLowerCase()}...`}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className={`w-full pl-11 pr-4 py-3 rounded-2xl border border-gray-200 bg-white shadow-sm focus:outline-none focus:ring-2 ${styles.focusRing}`}
+                  className={`w-full pl-11 pr-4 py-3 rounded-2xl border border-gray-200 bg-cream shadow-sm focus:outline-none focus:ring-2 ${styles.focusRing}`}
                 />
               </div>
             </div>
 
             {filteredPackages.length === 0 ? (
-              <div className="text-center py-16 rounded-[32px] bg-white border border-gray-100 shadow-sm">
-                <h3 className="text-xl font-bold text-[#111827] mb-2">No packages in {group.label} yet</h3>
+              <div className="text-center py-16 rounded-[32px] bg-cream border border-gray-100 shadow-sm">
+                <h3 className="text-xl font-bold text-espresso mb-2">No packages in {group.label} yet</h3>
                 <p className="text-gray-600 mb-6">Add packages from the dashboard or run the seed API.</p>
                 <Button onClick={() => router.push('/packages')}>View All Categories</Button>
               </div>
@@ -205,7 +194,7 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
                   return (
                     <article
                       key={pkg._id}
-                      className="group relative bg-white rounded-[28px] overflow-hidden shadow-lg shadow-gray-200/60 border border-gray-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
+                      className="group relative bg-cream rounded-[28px] overflow-hidden shadow-lg shadow-gray-200/60 border border-gray-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
                     >
                       <div className="relative aspect-[4/3] overflow-hidden">
                         {pkg.images?.[0] ? (
@@ -232,7 +221,7 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
                           <p className="text-white font-black text-xl leading-tight line-clamp-2">{pkg.title}</p>
                           <p className="text-white/75 text-sm mt-1 line-clamp-1">{pkg.subtitle}</p>
                         </div>
-                        <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm text-[#111827] font-black text-[10px] px-3 py-1.5 rounded-full shadow-lg uppercase tracking-wider">
+                        <div className="absolute top-4 right-4 bg-cream/95 backdrop-blur-sm text-espresso font-black text-[10px] px-3 py-1.5 rounded-full shadow-lg uppercase tracking-wider">
                           Enquire
                         </div>
                       </div>
@@ -280,7 +269,7 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-[#F5EFE6] border-t border-gray-100">
+      <section className="py-12 md:py-16 bg-cream border-t border-gray-100">
         <div className="container mx-auto px-4 max-w-5xl">
           <PackagePageEnquiryForm categoryLabel={group.label} categorySlug={group.slug} />
         </div>

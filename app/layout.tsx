@@ -1,21 +1,38 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Playfair_Display, Cormorant_Garamond, Manrope } from 'next/font/google'
 import './globals.css'
 import { Toaster } from "../components/ui/toaster"
 import { Toaster as Sonner } from "../components/ui/sonner"
 import { TooltipProvider } from "../components/ui/tooltip"
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
-import FloatingButtons from "../components/FloatingButtons"
 import { InquiryFormProvider } from "../contexts/InquiryFormContext"
 import { CategoryLabelsProvider } from "../contexts/CategoryLabelsContext"
 import ConditionalLayout from "../components/ConditionalLayout"
-import { SITE_NAME, SITE_DESCRIPTION, LOGO_SRC } from "../lib/branding"
+import { SITE_NAME, SITE_DESCRIPTION, SITE_TAGLINE, LOGO_SRC } from "../lib/branding"
 
-const inter = Inter({ subsets: ['latin'] })
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-playfair',
+  display: 'swap',
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-cormorant',
+  display: 'swap',
+})
+
+/** Garet fallback — geometric sans similar to reference body type */
+const manrope = Manrope({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-manrope',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
-  title: `${SITE_NAME} | Premium Coffee Beans & Specialty Roasts`,
+  title: `${SITE_NAME} | ${SITE_TAGLINE}`,
   description: SITE_DESCRIPTION,
   icons: {
     icon: LOGO_SRC,
@@ -36,7 +53,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} bg-[#FAF6F0]`} suppressHydrationWarning>
+      <body
+        className={`${playfair.variable} ${cormorant.variable} ${manrope.variable} font-body bg-cream text-foreground antialiased`}
+        style={{ ['--font-garet' as string]: 'var(--font-manrope)' }}
+        suppressHydrationWarning
+      >
         <TooltipProvider>
           <CategoryLabelsProvider>
             <InquiryFormProvider>
@@ -52,4 +73,3 @@ export default function RootLayout({
     </html>
   )
 }
-

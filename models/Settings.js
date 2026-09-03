@@ -30,6 +30,9 @@ const SettingsSchema = new mongoose.Schema({
   customSubcategories: { type: mongoose.Schema.Types.Mixed, default: [] },
   customMiniCategories: { type: mongoose.Schema.Types.Mixed, default: [] },
   miniCategoryLabelOverrides: { type: mongoose.Schema.Types.Mixed, default: {} },
+  hiddenGroups: { type: [String], default: [] },
+  hiddenSubcategories: { type: [String], default: [] },
+  hiddenMiniCategories: { type: [String], default: [] },
 }, { timestamps: true });
 
 if (mongoose.models.Settings) {

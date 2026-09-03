@@ -2,7 +2,6 @@ import HeroExplore from "../components/HeroExplore";
 export const dynamic = 'force-dynamic';
 import AboutHomeSection from "../components/AboutHomeSection";
 import ExploreWithUs from "../components/ExploreWithUs";
-import DestinationsGrid from "../components/DestinationsGrid";
 import UpcomingTrips from "../components/UpcomingTrips";
 import PopularPackages from "../components/PopularPackages";
 import HomeBlogs from "../components/HomeBlogs";
@@ -25,7 +24,6 @@ export default async function Home() {
   let settings = { 
     popularSection: true, 
     upcomingSection: true,
-    destinationsSection: true,
     exploreSection: true,
     testimonialsSection: true
   };
@@ -86,18 +84,13 @@ export default async function Home() {
       <HeroExplore initialBanners={initialBanners} />
       <AboutHomeSection />
       {settings.exploreSection !== false && <ExploreWithUs />}
-      {settings.destinationsSection !== false && <DestinationsGrid />}
       {settings.upcomingSection !== false && (
         <UpcomingTrips
-          initialProducts={
-            initialNewArrivals.length
-              ? initialNewArrivals.map((pkg) => mapPackageToProduct(pkg))
-              : undefined
-          }
+          initialProducts={initialNewArrivals.map((pkg) => mapPackageToProduct(pkg))}
         />
       )}
       {settings.popularSection !== false && <PopularPackages initialPackages={initialPackages} />}
-      <HomeBlogs initialBlogs={initialBlogs.length ? initialBlogs : undefined} />
+      <HomeBlogs initialBlogs={initialBlogs} />
       {settings.testimonialsSection !== false && <ClientFeedback />}
     </div>
   );

@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { LOGO_SRC, SITE_NAME } from '@/lib/branding';
+import { LOGO_SRC, SITE_NAME, SITE_TAGLINE } from '@/lib/branding';
 import { cn } from '@/lib/utils';
 
 type BrandLogoProps = {
@@ -11,12 +11,13 @@ type BrandLogoProps = {
   className?: string;
   asLink?: boolean;
   showWordmark?: boolean;
+  showTagline?: boolean;
 };
 
 const sizeMap = {
-  sm: { box: 'h-10 w-10', px: 40, text: 'text-base md:text-lg' },
-  md: { box: 'h-14 w-14 md:h-16 md:w-16', px: 72, text: 'text-lg md:text-xl' },
-  lg: { box: 'h-16 w-16 md:h-20 md:w-20', px: 80, text: 'text-xl md:text-2xl' },
+  sm: { box: 'h-10 w-10', px: 40, text: 'text-base md:text-lg', tag: 'text-[9px] md:text-[10px]' },
+  md: { box: 'h-14 w-14 md:h-16 md:w-16', px: 72, text: 'text-lg md:text-xl', tag: 'text-[10px] md:text-[11px]' },
+  lg: { box: 'h-16 w-16 md:h-20 md:w-20', px: 80, text: 'text-xl md:text-2xl', tag: 'text-xs md:text-sm' },
 };
 
 export default function BrandLogo({
@@ -25,6 +26,7 @@ export default function BrandLogo({
   className,
   asLink = true,
   showWordmark = true,
+  showTagline = true,
 }: BrandLogoProps) {
   const dims = sizeMap[size];
   const isLight = variant === 'light';
@@ -35,8 +37,7 @@ export default function BrandLogo({
         className={cn(
           'relative flex shrink-0 items-center justify-center overflow-visible rounded-full',
           dims.box,
-          // Cream logo needs a burgundy disc on light nav; transparent over dark hero
-          isLight ? 'bg-transparent' : 'bg-[#6B1F2A] p-1.5 shadow-sm'
+          isLight ? 'bg-transparent' : 'bg-espresso p-1.5 shadow-sm'
         )}
       >
         <Image
@@ -48,15 +49,30 @@ export default function BrandLogo({
           priority
         />
       </span>
-      {showWordmark && (
-        <span
-          className={cn(
-            'font-serif font-semibold tracking-[0.12em] uppercase leading-none',
-            dims.text,
-            isLight ? 'text-white' : 'text-[#6B1F2A]'
+      {(showWordmark || showTagline) && (
+        <span className="flex min-w-0 flex-col items-start justify-center gap-0.5">
+          {showWordmark && (
+            <span
+              className={cn(
+                'font-heading font-semibold tracking-[0.12em] uppercase leading-none',
+                dims.text,
+                isLight ? 'text-white' : 'text-hazelnut'
+              )}
+            >
+              {SITE_NAME}
+            </span>
           )}
-        >
-          {SITE_NAME}
+          {showTagline && (
+            <span
+              className={cn(
+                'font-body font-medium leading-tight tracking-[0.02em]',
+                dims.tag,
+                isLight ? 'text-vanilla/90' : 'text-mocha'
+              )}
+            >
+              {SITE_TAGLINE}
+            </span>
+          )}
         </span>
       )}
     </span>
@@ -68,7 +84,7 @@ export default function BrandLogo({
     <Link
       href="/"
       className="inline-flex shrink-0 items-center overflow-visible"
-      aria-label={SITE_NAME}
+      aria-label={`${SITE_NAME} — ${SITE_TAGLINE}`}
     >
       {logo}
     </Link>

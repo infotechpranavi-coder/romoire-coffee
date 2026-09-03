@@ -110,7 +110,7 @@ const ImageGrid = () => {
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="bg-white/20 hover:bg-white/30 text-white"
+                    className="bg-cream/20 hover:bg-cream/30 text-white"
                     onClick={(e) => {
                       e.stopPropagation();
                       toggleLike(image.id);
@@ -123,7 +123,7 @@ const ImageGrid = () => {
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="bg-white/20 hover:bg-white/30 text-white"
+                    className="bg-cream/20 hover:bg-cream/30 text-white"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <Share2 className="h-4 w-4" />

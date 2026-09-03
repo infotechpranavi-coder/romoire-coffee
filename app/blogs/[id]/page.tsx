@@ -49,7 +49,7 @@ const BlogDetailPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center pt-20">
+      <div className="min-h-screen bg-cream flex items-center justify-center pt-20">
         <div className="text-center">
           <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-gray-900">Loading article...</h2>
@@ -60,7 +60,7 @@ const BlogDetailPage = () => {
 
   if (!blog) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center pt-20">
+      <div className="min-h-screen bg-cream flex items-center justify-center pt-20">
         <div className="text-center max-w-md mx-4">
           <h3 className="text-2xl font-bold text-gray-900 mb-2">Article Not Found</h3>
           <p className="text-gray-600 mb-8">The article you are looking for does not exist or is not published yet.</p>
@@ -79,7 +79,7 @@ const BlogDetailPage = () => {
     .filter(Boolean);
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-cream pt-20">
       <div className="max-w-7xl mx-auto px-4 py-3">
         <Button variant="ghost" onClick={() => router.push('/blogs')} className="text-gray-700 hover:text-gray-900 -ml-2">
           <ArrowLeft className="h-4 w-4 mr-2" />
@@ -138,8 +138,8 @@ const BlogDetailPage = () => {
           </div>
         )}
 
-        <div className="mt-16 p-8 bg-[#F5EFE6] rounded-3xl text-center">
-          <h3 className="text-xl font-bold text-[#3D1218] mb-3">Ready to plan your next trip?</h3>
+        <div className="mt-16 p-8 bg-cream rounded-3xl text-center">
+          <h3 className="text-xl font-bold text-espresso mb-3">Ready to plan your next trip?</h3>
           <p className="text-gray-600 mb-6">Explore curated experiences and packages with us.</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact">

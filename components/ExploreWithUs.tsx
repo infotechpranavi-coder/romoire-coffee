@@ -24,7 +24,7 @@ const ExploreWithUs = () => {
     <section
       id="explore"
       ref={ref}
-      className="py-12 bg-white relative overflow-hidden"
+      className="py-12 bg-cream relative overflow-hidden"
     >
       {/* Subtle dot pattern background */}
       <div className="absolute bottom-0 left-0 w-96 h-96 opacity-5">
@@ -47,7 +47,7 @@ const ExploreWithUs = () => {
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            <p className="text-[#6B1F2A] font-bold text-sm uppercase tracking-wider mb-2">
+            <p className="text-hazelnut font-bold text-sm uppercase tracking-wider mb-2">
               FRESH FROM THE ROASTERY
             </p>
 
@@ -65,7 +65,7 @@ const ExploreWithUs = () => {
               <ul className="space-y-4">
                 {leftColumn.map((item, index) => (
                   <li key={index} className="flex items-center space-x-3">
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#6B1F2A] flex items-center justify-center">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-hazelnut flex items-center justify-center">
                       <Check className="h-3 w-3 text-gray-900" strokeWidth={3} />
                     </div>
                     <span className="text-gray-900 text-base font-medium">{item}</span>
@@ -77,7 +77,7 @@ const ExploreWithUs = () => {
               <ul className="space-y-4">
                 {rightColumn.map((item, index) => (
                   <li key={index} className="flex items-center space-x-3">
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#6B1F2A] flex items-center justify-center">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-hazelnut flex items-center justify-center">
                       <Check className="h-3 w-3 text-gray-900" strokeWidth={3} />
                     </div>
                     <span className="text-gray-900 text-base font-medium">{item}</span>
@@ -90,16 +90,16 @@ const ExploreWithUs = () => {
             <div className="flex items-center gap-6">
               <Button
                 onClick={() => router.push('/packages')}
-                className="bg-[#6B1F2A] hover:bg-[#4A1520] text-[#F5EFE6] font-bold px-8 py-6 rounded-lg text-base"
+                className="bg-hazelnut hover:bg-espresso text-cream font-bold px-8 py-6 rounded-lg text-base"
               >
-                Shop Now
+                View Products
               </Button>
 
               {/* Phone Number */}
               <div className="flex flex-col">
                 <div className="flex items-center space-x-2">
-                  <Phone className="h-5 w-5 text-[#6B1F2A]" />
-                  <a href="tel:+237683577676" className="text-gray-900 text-lg font-semibold hover:text-[#6B1F2A] transition-colors">
+                  <Phone className="h-5 w-5 text-hazelnut" />
+                  <a href="tel:+237683577676" className="text-gray-900 text-lg font-semibold hover:text-hazelnut transition-colors">
                     +237 6 83 57 76 76
                   </a>
                 </div>
@@ -118,7 +118,7 @@ const ExploreWithUs = () => {
             {/* Polaroid Images */}
             <div className="relative h-full">
               {/* Image 1 - Back */}
-              <div className="absolute top-0 left-0 w-64 h-80 bg-white p-4 shadow-2xl transform rotate-[-8deg] z-10">
+              <div className="absolute top-0 left-0 w-64 h-80 bg-cream p-4 shadow-2xl transform rotate-[-8deg] z-10">
                 <div className="relative w-full h-full">
                   <Image
                     src={COFFEE_IMAGES.beans}
@@ -130,7 +130,7 @@ const ExploreWithUs = () => {
               </div>
 
               {/* Image 2 - Middle */}
-              <div className="absolute top-20 left-32 w-64 h-80 bg-white p-4 shadow-2xl transform rotate-[5deg] z-20">
+              <div className="absolute top-20 left-32 w-64 h-80 bg-cream p-4 shadow-2xl transform rotate-[5deg] z-20">
                 <div className="relative w-full h-full">
                   <Image
                     src={COFFEE_IMAGES.beansDark}
@@ -142,7 +142,7 @@ const ExploreWithUs = () => {
               </div>
 
               {/* Image 3 - Front */}
-              <div className="absolute top-40 left-64 w-64 h-80 bg-white p-4 shadow-2xl transform rotate-[-3deg] z-30">
+              <div className="absolute top-40 left-64 w-64 h-80 bg-cream p-4 shadow-2xl transform rotate-[-3deg] z-30">
                 <div className="relative w-full h-full">
                   <Image
                     src={COFFEE_IMAGES.latte}
@@ -155,7 +155,7 @@ const ExploreWithUs = () => {
             </div>
 
             {/* Discount Badge - Professional Circular Seal - Positioned slightly towards the left from previous setup */}
-            <div className="absolute top-[18%] right-2 lg:right-0 z-40 w-36 h-36 bg-[#6B1F2A] rounded-full flex flex-col items-center justify-center shadow-2xl border-4 border-white transition-all duration-500 hover:scale-110 hover:-rotate-12 cursor-pointer"
+            <div className="absolute top-[18%] right-2 lg:right-0 z-40 w-36 h-36 bg-hazelnut rounded-full flex flex-col items-center justify-center shadow-2xl border-4 border-white transition-all duration-500 hover:scale-110 hover:-rotate-12 cursor-pointer"
               style={{
                 boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1)'
               }}>

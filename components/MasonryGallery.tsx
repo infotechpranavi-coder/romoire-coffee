@@ -121,7 +121,7 @@ const MasonryGallery = () => {
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="bg-white/20 hover:bg-white/30 text-white"
+                    className="bg-cream/20 hover:bg-cream/30 text-white"
                     onClick={() => toggleLike(image.id)}
                   >
                     <Heart
@@ -131,14 +131,14 @@ const MasonryGallery = () => {
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="bg-white/20 hover:bg-white/30 text-white"
+                    className="bg-cream/20 hover:bg-cream/30 text-white"
                   >
                     <Eye className="h-4 w-4" />
                   </Button>
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="bg-white/20 hover:bg-white/30 text-white"
+                    className="bg-cream/20 hover:bg-cream/30 text-white"
                   >
                     <Download className="h-4 w-4" />
                   </Button>

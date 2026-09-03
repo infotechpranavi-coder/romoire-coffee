@@ -135,14 +135,14 @@ const ImageCarousel = () => {
       {/* Navigation */}
       <Button
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white border-white/30"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-cream/20 hover:bg-cream/30 text-white border-white/30"
         size="icon"
       >
         <ChevronLeft className="h-6 w-6" />
       </Button>
       <Button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white border-white/30"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-cream/20 hover:bg-cream/30 text-white border-white/30"
         size="icon"
       >
         <ChevronRight className="h-6 w-6" />
@@ -154,7 +154,7 @@ const ImageCarousel = () => {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-white" : "bg-white/50"
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-cream" : "bg-cream/50"
               }`}
           />
         ))}

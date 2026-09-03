@@ -186,7 +186,7 @@ const ContactForm = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cream">
       {/* Hero Section */}
       <section className="relative text-white py-28 md:py-40 overflow-hidden">
         {/* Background Image */}
@@ -203,7 +203,7 @@ const ContactForm = () => {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-[#6B1F2A] font-bold uppercase tracking-[0.3em] text-sm mb-6">Get In Touch</p>
+            <p className="text-hazelnut font-bold uppercase tracking-[0.3em] text-sm mb-6">Get In Touch</p>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-[1000] mb-6 leading-none tracking-tighter uppercase">
               Contact Us
             </h1>
@@ -231,13 +231,13 @@ const ContactForm = () => {
       </section>
 
       {/* Contact Form and Map */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-cream">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Contact Form */}
               <div>
-                <h2 className="text-3xl font-bold text-[#3D1218] mb-6">
+                <h2 className="text-3xl font-bold text-espresso mb-6">
                   Send us a Message via WhatsApp
                 </h2>
                 <Card>
@@ -291,7 +291,7 @@ const ContactForm = () => {
                               }}
                               containerClass="!w-full"
                               inputClass="!w-full !h-[40px] !px-3 !py-2 !pl-[48px] !border !border-gray-200 !rounded-md focus:!ring-2 focus:!ring-black focus:!border-transparent !transition-all text-sm"
-                              buttonClass="!bg-white !border !border-gray-200 !border-r-0 !rounded-l-md hover:!bg-gray-50"
+                              buttonClass="!bg-cream !border !border-gray-200 !border-r-0 !rounded-l-md hover:!bg-gray-50"
                             />
                             <style jsx global>{`
                               .phone-input-container .react-tel-input .selected-flag {
@@ -436,7 +436,7 @@ const ContactForm = () => {
               <div className="space-y-8">
                 {/* Google Maps */}
                 <div>
-                  <h2 className="text-3xl font-bold text-[#3D1218] mb-6">
+                  <h2 className="text-3xl font-bold text-espresso mb-6">
                     Find Us
                   </h2>
                   <Card>
@@ -473,7 +473,7 @@ const ContactForm = () => {
 
                 {/* Team Members */}
                 <div>
-                  <h2 className="text-3xl font-bold text-[#3D1218] mb-6">
+                  <h2 className="text-3xl font-bold text-espresso mb-6">
                     Our Team
                   </h2>
                   <div className="space-y-4">
@@ -485,7 +485,7 @@ const ContactForm = () => {
                               <Users className="h-6 w-6 text-primary" />
                             </div>
                             <div className="flex-1">
-                              <h3 className="font-semibold text-[#3D1218]">{member.name}</h3>
+                              <h3 className="font-semibold text-espresso">{member.name}</h3>
                               <p className="text-sm text-gray-600">{member.role}</p>
                               <div className="flex items-center space-x-4 mt-1">
                                 <a href={`mailto:${member.email}`} className="text-xs text-primary hover:underline">
@@ -509,11 +509,11 @@ const ContactForm = () => {
       </section>
 
       {/* Contact Information */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-cream">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#3D1218] mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-espresso mb-4">
                 Get in Touch
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -527,7 +527,7 @@ const ContactForm = () => {
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
                       <info.icon className="h-8 w-8 text-primary" />
                     </div>
-                    <h3 className="text-xl font-semibold text-[#3D1218] mb-3">
+                    <h3 className="text-xl font-semibold text-espresso mb-3">
                       {info.title}
                     </h3>
                     <div className="space-y-1 mb-3">
@@ -551,11 +551,11 @@ const ContactForm = () => {
 
 
       {/* FAQ Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-cream">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#3D1218] mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-espresso mb-4">
                 Frequently Asked Questions
               </h2>
               <p className="text-xl text-gray-600">
@@ -620,13 +620,13 @@ const ContactForm = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="tel:+237683577676">
-                <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100">
+                <Button size="lg" variant="secondary" className="bg-cream text-primary hover:bg-gray-100">
                   <Phone className="h-5 w-5 mr-2" />
                   Call Us Now
                 </Button>
               </a>
               <a href="mailto:sales@skygovoyages.com">
-                <Button size="lg" variant="outline" className="bg-white text-black border-gray-200 hover:bg-gray-100">
+                <Button size="lg" variant="outline" className="bg-cream text-black border-gray-200 hover:bg-gray-100">
                   <MessageCircle className="h-5 w-5 mr-2 text-black" />
                   Send Email
                 </Button>
@@ -641,7 +641,7 @@ const ContactForm = () => {
 
 const ContactPage = () => {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-white flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mr-2"></div></div>}>
+    <Suspense fallback={<div className="min-h-screen bg-cream flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mr-2"></div></div>}>
       <ContactForm />
     </Suspense>
   );

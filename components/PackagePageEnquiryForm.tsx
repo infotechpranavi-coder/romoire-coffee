@@ -90,11 +90,11 @@ export default function PackagePageEnquiryForm({
 
   if (submitted) {
     return (
-      <div className="rounded-[32px] bg-white border border-green-100 p-10 text-center shadow-sm">
+      <div className="rounded-[32px] bg-cream border border-green-100 p-10 text-center shadow-sm">
         <div className="w-14 h-14 rounded-full bg-green-50 flex items-center justify-center mx-auto mb-4">
           <Mail className="h-7 w-7 text-green-600" />
         </div>
-        <h3 className="text-xl font-black text-[#111827] uppercase tracking-tight mb-2">Enquiry Sent</h3>
+        <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">Enquiry Sent</h3>
         <p className="text-gray-600 text-sm max-w-md mx-auto">
           Thank you! Our team will contact you shortly about {packageName || categoryLabel}.
         </p>
@@ -110,10 +110,10 @@ export default function PackagePageEnquiryForm({
   }
 
   return (
-    <div className="rounded-[32px] bg-white border border-gray-100 p-8 md:p-10 shadow-sm">
+    <div className="rounded-[32px] bg-cream border border-gray-100 p-8 md:p-10 shadow-sm">
       <div className="mb-8 text-center max-w-2xl mx-auto">
-        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#6B1F2A] mb-2">Get a Quote</p>
-        <h3 className="text-2xl md:text-3xl font-black text-[#111827] uppercase tracking-tight">
+        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-hazelnut mb-2">Get a Quote</p>
+        <h3 className="text-2xl md:text-3xl font-black text-espresso uppercase tracking-tight">
           Enquire About {packageName || categoryLabel}
         </h3>
         <p className="text-gray-500 text-sm mt-2">
@@ -173,7 +173,7 @@ export default function PackagePageEnquiryForm({
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-[#111827] hover:bg-[#6B1F2A] text-white font-black uppercase tracking-widest text-xs px-10 h-12 rounded-xl"
+            className="bg-espresso hover:bg-hazelnut text-white font-black uppercase tracking-widest text-xs px-10 h-12 rounded-xl"
           >
             {isSubmitting ? 'Sending...' : (
               <>

@@ -52,7 +52,7 @@ const LoginPage = () => {
           <p className="text-slate-500 mt-2">Sign in to manage your {SITE_NAME} portal</p>
         </div>
 
-        <Card className="shadow-xl border-slate-200/60 bg-white">
+        <Card className="shadow-xl border-slate-200/60 bg-cream">
           <CardHeader className="pb-4">
             <CardTitle className="text-xl font-semibold text-slate-800">
               Admin Login

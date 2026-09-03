@@ -20,11 +20,11 @@ type NavItem = {
 };
 
 const groupHoverStyles: Record<string, string> = {
-  'single-origin': 'bg-amber-50 text-amber-800',
-  roasts: 'bg-orange-50 text-orange-800',
-  blends: 'bg-green-50 text-green-800',
-  specialty: 'bg-violet-50 text-violet-800',
-  subscribe: 'bg-teal-50 text-teal-800',
+  'single-origin': 'bg-vanilla/60 text-espresso',
+  roasts: 'bg-hazelnut/15 text-hazelnut',
+  blends: 'bg-mocha/15 text-mocha',
+  specialty: 'bg-vanilla/40 text-mocha',
+  subscribe: 'bg-vanilla/50 text-espresso',
 };
 
 const NavbarTravel = () => {
@@ -43,7 +43,8 @@ const NavbarTravel = () => {
   const { openForm } = useInquiryForm();
 
   const isBlogDetail = Boolean(pathname?.startsWith('/blogs/') && pathname !== '/blogs');
-  const useSolidNav = isScrolled || isBlogDetail;
+  // Keep a solid, high-contrast nav on every page except the home hero (until scroll).
+  const useSolidNav = isScrolled || isBlogDetail || pathname !== '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,7 +58,7 @@ const NavbarTravel = () => {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     {
-      name: 'Shop',
+      name: 'Products',
       href: '/packages',
       packageGroups: navGroups,
     },
@@ -101,15 +102,15 @@ const NavbarTravel = () => {
 
   const navItemClass = (highlighted: boolean) =>
     useSolidNav
-      ? `relative z-10 px-3 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B1F2A]/40 ${
+      ? `relative z-10 px-3 py-1.5 text-sm font-medium tracking-wide transition-all duration-200 whitespace-nowrap font-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy/30 ${
           highlighted
-            ? 'bg-[#6B1F2A]/10 text-[#6B1F2A] font-bold'
-            : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+            ? 'text-burgundy'
+            : 'text-muted-foreground hover:text-espresso'
         }`
-      : `relative z-10 px-2 py-1 text-sm font-medium transition-all duration-200 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 ${
+      : `relative z-10 px-2 py-1 text-sm font-medium tracking-wide transition-all duration-200 whitespace-nowrap font-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/50 ${
           highlighted
-            ? 'text-white font-semibold'
-            : 'text-white/85 hover:text-white'
+            ? 'text-cream'
+            : 'text-cream/85 hover:text-cream'
         }`;
 
   const handleSearch = (e: React.FormEvent) => {
@@ -126,11 +127,11 @@ const NavbarTravel = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${useSolidNav
-      ? 'bg-white/95 backdrop-blur-md shadow-lg'
+      ? 'bg-cream/95 backdrop-blur-md shadow-lg'
       : 'bg-transparent'
       }`}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between min-h-[5.5rem] h-[5.5rem] overflow-visible">
+        <div className="flex items-center justify-between min-h-[6rem] h-[6rem] overflow-visible">
           {/* Logo */}
           <div className="relative z-50 flex shrink-0 items-center overflow-visible py-1">
             <BrandLogo variant={useSolidNav ? 'dark' : 'light'} size="md" />
@@ -138,10 +139,8 @@ const NavbarTravel = () => {
 
           {/* Centered Navigation Pill */}
           <div className={`hidden lg:flex items-center justify-center flex-1 transition-all duration-300 ${isSearchOpen ? 'opacity-0 pointer-events-none scale-95' : 'opacity-100'}`}>
-            <div className={`relative flex items-center gap-6 xl:gap-8 ${
-              useSolidNav
-                ? 'rounded-full px-2 py-1.5 bg-gray-100/90 border border-gray-200/80'
-                : ''
+            <div className={`relative flex items-center gap-8 xl:gap-10 ${
+              useSolidNav ? '' : ''
             }`}>
               {navigation.map((item, index) => {
                 const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -195,7 +194,7 @@ const NavbarTravel = () => {
                             : 'opacity-0 invisible translate-y-1 pointer-events-none'
                         }`}
                       >
-                        <div className="flex rounded-xl bg-white shadow-2xl border border-gray-100 overflow-hidden">
+                        <div className="flex rounded-xl bg-cream shadow-2xl border border-gray-100 overflow-hidden">
                           <div className="min-w-[200px] py-2">
                             {item.packageGroups.map((group) => (
                               <Link
@@ -224,13 +223,13 @@ const NavbarTravel = () => {
                                 setOpenDropdownIndex(null);
                                 setHoveredIndex(null);
                               }}
-                              className="block px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-[#6B1F2A] hover:bg-[#6B1F2A]/5 border-t border-gray-100 mt-1"
+                              className="block px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-hazelnut hover:bg-hazelnut/5 border-t border-gray-100 mt-1"
                             >
                               View All Coffee
                             </Link>
                           </div>
                           {hoveredPackageGroup && (
-                            <div className="min-w-[280px] max-w-[300px] border-l border-gray-100 py-2 bg-white max-h-[420px] overflow-y-auto">
+                            <div className="min-w-[280px] max-w-[300px] border-l border-gray-100 py-2 bg-cream max-h-[420px] overflow-y-auto">
                               {item.packageGroups
                                 .find((g) => g.slug === hoveredPackageGroup)
                                 ?.items.map((sub) => (
@@ -238,7 +237,7 @@ const NavbarTravel = () => {
                                     key={sub.slug}
                                     className={`flex items-center justify-between gap-2 px-4 py-2.5 text-sm transition-colors cursor-default ${
                                       hoveredPackageSub === sub.slug
-                                        ? 'bg-gray-50 text-[#6B1F2A] font-semibold'
+                                        ? 'bg-gray-50 text-hazelnut font-semibold'
                                         : 'text-gray-700 hover:bg-gray-50'
                                     }`}
                                     onMouseEnter={() => setHoveredPackageSub(sub.slug)}
@@ -278,7 +277,7 @@ const NavbarTravel = () => {
                             const minis = activeSub?.miniItems ?? [];
                             if (!minis.length) return null;
                             return (
-                              <div className="min-w-[240px] max-w-[280px] border-l border-gray-100 py-2 bg-white max-h-[420px] overflow-y-auto">
+                              <div className="min-w-[240px] max-w-[280px] border-l border-gray-100 py-2 bg-cream max-h-[420px] overflow-y-auto">
                                 <Link
                                   href={activeSub!.href}
                                   onClick={() => {
@@ -287,7 +286,7 @@ const NavbarTravel = () => {
                                     setHoveredPackageGroup(null);
                                     setHoveredPackageSub(null);
                                   }}
-                                  className="block px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#6B1F2A] hover:bg-[#6B1F2A]/5 border-b border-gray-100"
+                                  className="block px-4 py-2 text-xs font-bold uppercase tracking-widest text-hazelnut hover:bg-hazelnut/5 border-b border-gray-100"
                                 >
                                   All {activeSub!.label}
                                 </Link>
@@ -303,8 +302,8 @@ const NavbarTravel = () => {
                                     }}
                                     className={`block px-4 py-2.5 text-sm transition-colors ${
                                       pathname === mini.href
-                                        ? 'bg-[#6B1F2A]/10 text-[#6B1F2A] font-semibold'
-                                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#6B1F2A]'
+                                        ? 'bg-hazelnut/10 text-hazelnut font-semibold'
+                                        : 'text-gray-700 hover:bg-gray-50 hover:text-hazelnut'
                                     }`}
                                   >
                                     {mini.label}
@@ -355,7 +354,7 @@ const NavbarTravel = () => {
                             : 'opacity-0 invisible translate-y-1 pointer-events-none'
                         }`}
                       >
-                        <div className="min-w-[260px] rounded-xl bg-white shadow-2xl border border-gray-100 py-1.5 overflow-hidden">
+                        <div className="min-w-[260px] rounded-xl bg-cream shadow-2xl border border-gray-100 py-1.5 overflow-hidden">
                           {item.submenu.map((subItem) => (
                             <Link
                               key={subItem.href}
@@ -366,8 +365,8 @@ const NavbarTravel = () => {
                               }}
                               className={`block px-4 py-2.5 text-sm font-medium transition-colors ${
                                 pathname === subItem.href || pathname?.startsWith(`${subItem.href}/`)
-                                  ? 'bg-[#6B1F2A]/10 text-[#6B1F2A] font-semibold'
-                                  : 'text-gray-700 hover:bg-gray-50 hover:text-[#6B1F2A]'
+                                  ? 'bg-hazelnut/10 text-hazelnut font-semibold'
+                                  : 'text-gray-700 hover:bg-gray-50 hover:text-hazelnut'
                               }`}
                             >
                               {subItem.name}
@@ -400,7 +399,7 @@ const NavbarTravel = () => {
           <div className="hidden lg:flex items-center space-x-3 relative">
             <div className={`flex items-center transition-all duration-500 overflow-hidden ${isSearchOpen ? 'w-[400px] absolute right-32' : 'w-10'}`}>
               {isSearchOpen ? (
-                <form onSubmit={handleSearch} className="flex items-center w-full bg-white/80 backdrop-blur-xl rounded-full border border-[#6B1F2A]/30 shadow-sm px-2 overflow-hidden">
+                <form onSubmit={handleSearch} className="flex items-center w-full bg-cream/80 backdrop-blur-xl rounded-full border border-hazelnut/30 shadow-sm px-2 overflow-hidden">
                   <Input
                     autoFocus
                     placeholder="Search coffee beans, roasts, or blends..."
@@ -417,7 +416,7 @@ const NavbarTravel = () => {
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsSearchOpen(true)}
-                  className={`${useSolidNav ? 'text-gray-700' : 'text-white'} hover:bg-white/10`}
+                  className={`${useSolidNav ? 'text-gray-700' : 'text-white'} hover:bg-cream/10`}
                 >
                   <Search className="h-5 w-5" />
                 </Button>
@@ -432,11 +431,11 @@ const NavbarTravel = () => {
               className={`inline-flex h-10 items-center justify-center rounded-full px-6 text-[11px] font-bold uppercase tracking-[0.18em] transition-all ${
                 useSolidNav
                   ? isContactActive || contactHovered
-                    ? 'bg-[#6B1F2A] text-white'
-                    : 'bg-[#111827] text-white hover:bg-[#6B1F2A]'
+                    ? 'bg-hazelnut text-white'
+                    : 'bg-espresso text-white hover:bg-hazelnut'
                   : isContactActive || contactHovered
-                    ? 'bg-white text-[#17303f]'
-                    : 'bg-[#c8d8e2] text-[#17303f] hover:bg-white'
+                    ? 'bg-cream text-espresso'
+                    : 'bg-vanilla text-espresso hover:bg-cream'
               }`}
             >
               Contact Us
@@ -446,8 +445,8 @@ const NavbarTravel = () => {
               onClick={() => openForm()}
               className={`${
                 useSolidNav
-                  ? 'bg-[#6B1F2A] hover:bg-[#4A1520] text-[#F5EFE6]'
-                  : 'bg-transparent border border-white/35 text-white hover:bg-white/10 hover:text-white'
+                  ? 'bg-hazelnut hover:bg-espresso text-cream'
+                  : 'bg-transparent border border-white/35 text-white hover:bg-cream/10 hover:text-white'
               } font-bold px-5 py-2 rounded-full shadow-none h-10 whitespace-nowrap text-[11px] uppercase tracking-[0.16em]`}
             >
               Order Now
@@ -466,7 +465,7 @@ const NavbarTravel = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-white border-t shadow-lg">
+        <div className="lg:hidden bg-cream border-t shadow-lg">
           <div className="container mx-auto px-4 py-4 space-y-2">
             {navigation.map((item) => (
               <div key={item.name}>
@@ -486,7 +485,7 @@ const NavbarTravel = () => {
                   <div key={group.slug}>
                     <Link
                       href={getGroupPageHref(group.slug)}
-                      className="block pl-6 pr-4 pt-3 pb-1 text-[10px] font-black uppercase tracking-widest text-[#6B1F2A] hover:text-[#4A1520]"
+                      className="block pl-6 pr-4 pt-3 pb-1 text-[10px] font-black uppercase tracking-widest text-hazelnut hover:text-espresso"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {group.label}
@@ -497,7 +496,7 @@ const NavbarTravel = () => {
                           href={sub.href}
                           className={`block pl-10 pr-4 py-2 text-sm rounded-lg transition-colors ${
                             pathname === sub.href
-                              ? 'text-[#6B1F2A] font-semibold bg-[#6B1F2A]/5'
+                              ? 'text-hazelnut font-semibold bg-hazelnut/5'
                               : 'text-gray-600 hover:bg-gray-100'
                           }`}
                           onClick={() => setIsMenuOpen(false)}
@@ -511,7 +510,7 @@ const NavbarTravel = () => {
                             href={mini.href}
                             className={`block pl-14 pr-4 py-1.5 text-xs rounded-lg transition-colors ${
                               pathname === mini.href
-                                ? 'text-[#6B1F2A] font-semibold bg-[#6B1F2A]/5'
+                                ? 'text-hazelnut font-semibold bg-hazelnut/5'
                                 : 'text-gray-500 hover:bg-gray-100'
                             }`}
                             onClick={() => setIsMenuOpen(false)}
@@ -530,7 +529,7 @@ const NavbarTravel = () => {
                     href={subItem.href}
                     className={`block pl-8 pr-4 py-2 text-sm rounded-lg transition-colors ${
                       pathname === subItem.href || pathname?.startsWith(`${subItem.href}/`)
-                        ? 'text-[#6B1F2A] font-semibold bg-[#6B1F2A]/5'
+                        ? 'text-hazelnut font-semibold bg-hazelnut/5'
                         : 'text-gray-600 hover:bg-gray-100'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
@@ -552,7 +551,7 @@ const NavbarTravel = () => {
                 openForm();
                 setIsMenuOpen(false);
               }}
-              className="w-full bg-[#6B1F2A] hover:bg-[#4A1520] text-[#F5EFE6] font-bold mt-4"
+              className="w-full bg-hazelnut hover:bg-espresso text-cream font-bold mt-4"
             >
               Order Now
             </Button>

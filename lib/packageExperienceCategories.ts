@@ -428,7 +428,7 @@ export function packageMatchesNavGroup(
 
 export const accentStyles = {
   amber: {
-    gradient: 'from-amber-900/70 via-amber-800/60 to-amber-900/70',
+    gradient: 'from-amber-950/80 via-amber-900/70 to-espresso/75',
     badge: 'from-amber-500 to-amber-600',
     button: 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700',
     outline: 'border-amber-500 text-amber-600 hover:bg-amber-50',
@@ -492,7 +492,7 @@ export const accentStyles = {
     focusRing: 'focus:ring-green-500/30',
   },
   teal: {
-    gradient: 'from-teal-900/55 via-cyan-900/40 to-teal-900/55',
+    gradient: 'from-teal-950/75 via-cyan-950/65 to-teal-950/75',
     badge: 'from-teal-500 to-cyan-600',
     button: 'bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700',
     outline: 'border-teal-500 text-teal-600 hover:bg-teal-50',

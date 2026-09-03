@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Award, Shield, CheckCircle, Star, Sparkles, Users, Clock, Car, UserCheck, TrendingUp, Heart } from "lucide-react";
+import { MapPin, Award, Shield, Star, Sparkles, Users, Clock, Car, UserCheck, Heart } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { SITE_NAME } from "@/lib/branding";
@@ -18,28 +18,16 @@ const AboutPage = () => {
       image: COFFEE_IMAGES.beans
     },
     {
-      icon: Star,
-      title: "Small-Batch Roasting",
-      description: "Roasted in limited batches for peak flavor and consistent quality",
-      image: COFFEE_IMAGES.beansDark
-    },
-    {
-      icon: Users,
-      title: "Farm Partnerships",
-      description: "Direct relationships with growers who share our commitment to quality",
+      icon: Heart,
+      title: "Completely Dairy Free",
+      description: "Plant-based and dairy-free options crafted for every coffee lover",
       image: COFFEE_IMAGES.pour
     },
     {
       icon: Sparkles,
-      title: "Custom Grind Options",
-      description: "Whole bean or ground for espresso, pour-over, French press, and more",
+      title: "Zero Calorie Sweetener",
+      description: "Naturally sweetened with zero-calorie options for a cleaner cup",
       image: COFFEE_IMAGES.latte
-    },
-    {
-      icon: UserCheck,
-      title: "Roaster Support",
-      description: "Brewing advice and product guidance from our team, order to cup",
-      image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80"
     }
   ];
 
@@ -59,14 +47,6 @@ const AboutPage = () => {
       title: "Transparency Builds Long-Term Trust",
       description: "Honest communication and clear pricing foster lasting relationships"
     }
-  ];
-
-  const valueDifferences = [
-    "Freshly roasted to order",
-    "Ethically sourced beans",
-    "Roast date on every bag",
-    "Whole bean & ground options",
-    "Expert brewing guidance"
   ];
 
   const whyChooseUs = [
@@ -106,11 +86,11 @@ const AboutPage = () => {
         {/* Radial vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.5)_100%)]" />
         {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#F5EFE6] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-cream to-transparent" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
-            <p className="text-[#6B1F2A] font-bold uppercase tracking-[0.3em] text-sm mb-6">Our Story</p>
+            <p className="text-hazelnut font-bold uppercase tracking-[0.3em] text-sm mb-6">Our Story</p>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-[1000] mb-6 leading-none tracking-tighter uppercase">
               About Us
             </h1>
@@ -133,7 +113,7 @@ const AboutPage = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-20 md:py-28 bg-white relative">
+      <section className="py-20 md:py-28 bg-cream relative">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -157,7 +137,7 @@ const AboutPage = () => {
                     Our Story
                   </Badge>
                 </div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D1218] leading-tight">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-espresso leading-tight">
                   About {SITE_NAME}
                 </h2>
                 <div className="space-y-5 text-gray-700 leading-relaxed text-lg">
@@ -167,7 +147,7 @@ const AboutPage = () => {
                   <p>
                     Whether you brew at home or run a café, {SITE_NAME} delivers freshly roasted coffee with transparent sourcing and reliable quality in every bag.
                   </p>
-                  <p className="font-semibold text-[#3D1218]">
+                  <p className="font-semibold text-espresso">
                     We are a passionate roasting team dedicated to quality, transparency, and the craft of great coffee.
                   </p>
                 </div>
@@ -187,7 +167,7 @@ const AboutPage = () => {
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
                 Our Core Values
               </Badge>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D1218] mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-espresso mb-6">
                 Our Philosophy: <span className="text-primary">Absolute Clarity</span>
               </h2>
             </div>
@@ -200,7 +180,7 @@ const AboutPage = () => {
                 <p>
                   We bridge the gap between price and value. We don't simply chase the lowest fare; we pursue the highest standard. Our commitment is to ensure you understand exactly what you are paying for—eliminating uncertainty through transparent pricing, expert vetting, and premium service.
                 </p>
-                <p className="font-semibold text-[#3D1218]">
+                <p className="font-semibold text-espresso">
                   At {SITE_NAME}, we don’t just sell tickets; we deliver peace of mind.
                 </p>
               </div>
@@ -222,12 +202,12 @@ const AboutPage = () => {
             {/* Beliefs Grid */}
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               {beliefs.map((belief, index) => (
-                <Card key={index} className="group border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-xl bg-white/80 backdrop-blur-sm">
+                <Card key={index} className="group border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-xl bg-cream/80 backdrop-blur-sm">
                   <CardContent className="p-8 text-center">
                     <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl mb-6 group-hover:scale-110 transition-transform">
                       <belief.icon className="h-10 w-10 text-primary" />
                     </div>
-                    <h3 className="text-xl font-bold text-[#3D1218] mb-4">
+                    <h3 className="text-xl font-bold text-espresso mb-4">
                       {belief.title}
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
@@ -238,37 +218,12 @@ const AboutPage = () => {
               ))}
             </div>
 
-            {/* Value Differences */}
-            <div className="relative bg-gradient-to-br from-primary/5 via-white to-secondary/5 rounded-3xl p-8 md:p-12 shadow-xl border border-primary/10">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
-              <div className="relative z-10">
-                <div className="text-center mb-10">
-                  <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#3D1218] mb-2">
-                    Sometimes, a modest price difference results in:
-                  </h3>
-                </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                  {valueDifferences.map((item, index) => (
-                    <div key={index} className="flex items-center space-x-4 p-4 bg-white/60 rounded-xl backdrop-blur-sm hover:bg-white/80 transition-colors">
-                      <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
-                        <CheckCircle className="h-6 w-6 text-white" />
-                      </div>
-                      <span className="text-gray-800 font-medium text-lg">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-center text-gray-700 mt-10 text-xl font-semibold italic">
-                  That difference is intentional.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* What Sets Us Apart Section */}
-      <section className="py-20 md:py-28 bg-white relative">
+      <section className="py-20 md:py-28 bg-cream relative">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -276,13 +231,13 @@ const AboutPage = () => {
                 <Star className="h-3 w-3 mr-2" />
                 What Makes Us Different
               </Badge>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D1218] mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-espresso mb-6">
                 What Sets Us Apart
               </h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {whatSetsUsApart.map((item, index) => (
-                <Card key={index} className="group overflow-hidden border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl bg-white">
+                <Card key={index} className="group overflow-hidden border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl bg-cream">
                   <div className="relative h-48 overflow-hidden">
                     <Image
                       src={item.image}
@@ -293,13 +248,13 @@ const AboutPage = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                     <div className="absolute top-4 right-4">
-                      <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/30">
+                      <div className="w-14 h-14 bg-cream/20 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/30">
                         <item.icon className="h-7 w-7 text-white" />
                       </div>
                     </div>
                   </div>
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-[#3D1218] mb-3 group-hover:text-primary transition-colors">
+                    <h3 className="text-xl font-bold text-espresso mb-3 group-hover:text-primary transition-colors">
                       {item.title}
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
@@ -328,7 +283,7 @@ const AboutPage = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/40 to-black/50"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 bg-white/20 backdrop-blur-md text-white border-white/30">
+            <Badge className="mb-6 bg-cream/20 backdrop-blur-md text-white border-white/30">
               <Sparkles className="h-4 w-4 mr-2" />
               Start Brewing
             </Badge>
@@ -340,13 +295,13 @@ const AboutPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100 text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all">
+                <Button size="lg" variant="secondary" className="bg-cream text-primary hover:bg-gray-100 text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all">
                   Book Now
                 </Button>
               </Link>
               <Link href="/packages">
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-6 backdrop-blur-sm bg-white/10">
-                  Shop Coffee
+                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-cream hover:text-primary text-lg px-8 py-6 backdrop-blur-sm bg-cream/10">
+                  View Products
                 </Button>
               </Link>
             </div>

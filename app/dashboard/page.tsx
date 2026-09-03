@@ -1474,7 +1474,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="h-screen bg-[#F5EFE6] flex font-inter overflow-hidden relative">
+    <div className="h-screen bg-cream flex font-inter overflow-hidden relative">
       {/* Sidebar */}
       <aside
         className={cn(
@@ -1484,14 +1484,14 @@ export default function DashboardPage() {
         )}
       >
         {/* Sidebar Background */}
-        <div className="w-72 h-full absolute inset-0 bg-[#111827] z-0 shadow-2xl"></div>
+        <div className="w-72 h-full absolute inset-0 bg-espresso z-0 shadow-2xl"></div>
 
         <div className="relative h-full flex flex-col z-10 w-72">
           {/* Sidebar Header */}
           <div className="p-8 border-b border-white/10">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-white flex items-center justify-center shadow-lg">
+                <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-cream flex items-center justify-center shadow-lg">
                   <Image
                     src={LOGO_SRC}
                     alt={`${SITE_NAME} Logo`}
@@ -1501,7 +1501,7 @@ export default function DashboardPage() {
                 </div>
                 <div>
                   <h2 className="text-lg font-black text-white tracking-tighter uppercase">{SITE_NAME}</h2>
-                  <p className="text-[10px] font-bold text-[#6B1F2A] uppercase tracking-widest">Management</p>
+                  <p className="text-[10px] font-bold text-hazelnut uppercase tracking-widest">Management</p>
                 </div>
               </div>
               <Button
@@ -1527,13 +1527,13 @@ export default function DashboardPage() {
                   className={cn(
                     "w-full flex items-center space-x-4 px-5 py-4 rounded-2xl transition-all duration-300 group",
                     isActive
-                      ? "bg-[#6B1F2A] text-white shadow-xl shadow-[#6B1F2A]/20"
-                      : "text-white/60 hover:bg-white/5 hover:text-white"
+                      ? "bg-hazelnut text-white shadow-xl shadow-hazelnut/20"
+                      : "text-white/60 hover:bg-cream/5 hover:text-white"
                   )}
                 >
                   <div className={cn(
                     "p-2 rounded-lg transition-colors",
-                    isActive ? "bg-white/20" : "bg-white/5 group-hover:bg-white/10"
+                    isActive ? "bg-cream/20" : "bg-cream/5 group-hover:bg-cream/10"
                   )}>
                     <Icon className="h-5 w-5" />
                   </div>
@@ -1545,9 +1545,9 @@ export default function DashboardPage() {
 
           {/* Sidebar Footer */}
           <div className="p-6 border-t border-white/10">
-            <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+            <div className="bg-cream/5 rounded-2xl p-4 border border-white/10">
               <div className="flex items-center space-x-3 mb-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#6B1F2A] to-orange-300 flex items-center justify-center font-bold text-white shadow-lg">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#5A0D0D] to-orange-300 flex items-center justify-center font-bold text-white shadow-lg">
                   AD
                 </div>
                 <div>
@@ -1579,7 +1579,7 @@ export default function DashboardPage() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto scrollbar-hide">
         {/* Header */}
-        <div className="bg-white/50 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200/50">
+        <div className="bg-cream/50 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200/50">
           <div className="px-8 py-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="flex items-center space-x-5">
@@ -1588,13 +1588,13 @@ export default function DashboardPage() {
                     variant="ghost"
                     size="sm"
                     onClick={() => setSidebarOpen(true)}
-                    className="bg-[#111827] text-white hover:bg-[#6B1F2A] rounded-xl p-2 h-auto"
+                    className="bg-espresso text-white hover:bg-hazelnut rounded-xl p-2 h-auto"
                   >
                     <Menu className="h-6 w-6" />
                   </Button>
                 )}
                 <div>
-                  <h1 className="text-4xl font-black text-[#111827] tracking-tighter uppercase">
+                  <h1 className="text-4xl font-black text-espresso tracking-tighter uppercase">
                     {activeView === 'packages' && 'Package Management'}
                     {activeView === 'categories' && 'Category Management'}
                     {activeView === 'tours' && 'Tours Management'}
@@ -1622,17 +1622,17 @@ export default function DashboardPage() {
               </div>
               <div className="flex items-center space-x-4">
                 <div className="hidden sm:flex items-center gap-2 bg-gray-100 p-1.5 rounded-2xl mr-2">
-                  <div className="px-4 py-2 bg-white rounded-xl shadow-sm text-[10px] font-black uppercase text-[#111827] tracking-widest">
+                  <div className="px-4 py-2 bg-cream rounded-xl shadow-sm text-[10px] font-black uppercase text-espresso tracking-widest">
                     v2.1 Stable
                   </div>
                 </div>
                 {(activeView === 'packages' || activeView === 'tours' || activeView === 'tickets') && (
                   <Button
                     onClick={openCreatePackageModal}
-                    className="bg-[#111827] hover:bg-[#6B1F2A] text-white font-black px-6 py-6 rounded-2xl shadow-xl shadow-[#111827]/10 transition-all uppercase text-xs tracking-widest flex gap-3"
+                    className="bg-espresso hover:bg-hazelnut text-white font-black px-6 py-6 rounded-2xl shadow-xl shadow-espresso/10 transition-all uppercase text-xs tracking-widest flex gap-3"
                   >
                     <Plus className="h-5 w-5" />
-                    {activeView === 'packages' ? 'New Package' : activeView === 'tours' ? 'New Tour' : activeView === 'tickets' ? 'New Ticket' : 'New Banner'}
+                    {activeView === 'packages' ? 'New Product' : activeView === 'tours' ? 'New Tour' : activeView === 'tickets' ? 'New Ticket' : 'New Banner'}
                   </Button>
                 )}
               </div>
@@ -1652,8 +1652,8 @@ export default function DashboardPage() {
                     label: 'Enquiries Received',
                     value: enquiries.length,
                     icon: MessageSquare,
-                    color: 'text-[#6B1F2A]',
-                    bg: 'bg-[#6B1F2A]/10'
+                    color: 'text-hazelnut',
+                    bg: 'bg-hazelnut/10'
                   },
                   {
                     label: 'Avg Rating',
@@ -1665,7 +1665,7 @@ export default function DashboardPage() {
                     bg: 'bg-orange-50'
                   },
                 ].map((stat, i) => (
-                  <Card key={i} className="rounded-[40px] border-none shadow-sm p-10 hover:shadow-md transition-all duration-500 bg-white/80 backdrop-blur-sm group">
+                  <Card key={i} className="rounded-[40px] border-none shadow-sm p-10 hover:shadow-md transition-all duration-500 bg-cream/80 backdrop-blur-sm group">
                     <div className="flex items-center justify-between mb-8">
                       <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 duration-500", stat.bg)}>
                         <stat.icon className={cn("h-7 w-7", stat.color)} />
@@ -1676,7 +1676,7 @@ export default function DashboardPage() {
                       </div>
                     </div>
                     <div className="flex flex-col gap-1">
-                      <div className="text-5xl font-black text-[#111827] tracking-tighter leading-none">{stat.value}</div>
+                      <div className="text-5xl font-black text-espresso tracking-tighter leading-none">{stat.value}</div>
                       <div className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em] mt-3 ml-0.5">{stat.label}</div>
                     </div>
                   </Card>
@@ -1688,7 +1688,7 @@ export default function DashboardPage() {
                 <CardHeader className="p-8 pb-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <div>
-                      <CardTitle className="text-2xl font-black text-[#111827] tracking-tight uppercase">EXPERIENCE INVENTORY</CardTitle>
+                      <CardTitle className="text-2xl font-black text-espresso tracking-tight uppercase">EXPERIENCE INVENTORY</CardTitle>
                       <CardDescription className="text-sm font-medium text-gray-400">Total catalog of curated experience packages</CardDescription>
                     </div>
                   </div>
@@ -1703,7 +1703,7 @@ export default function DashboardPage() {
                           Main Category
                         </label>
                         <Select value={groupFilter} onValueChange={handleGroupFilterChange}>
-                          <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-white">
+                          <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-cream">
                             <SelectValue placeholder="All Types" />
                           </SelectTrigger>
                           <SelectContent className="rounded-2xl border-white shadow-xl">
@@ -1723,7 +1723,7 @@ export default function DashboardPage() {
                           Subcategory
                         </label>
                         <Select value={categoryFilter} onValueChange={handleCategoryFilterChange}>
-                          <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-white">
+                          <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-cream">
                             <SelectValue placeholder="All Subcategories" />
                           </SelectTrigger>
                           <SelectContent className="rounded-2xl border-white shadow-xl max-h-72">
@@ -1743,7 +1743,7 @@ export default function DashboardPage() {
                           Mini Category
                         </label>
                         <Select value={miniFilter} onValueChange={setMiniFilter}>
-                          <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-white">
+                          <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-cream">
                             <SelectValue placeholder="All Mini Categories" />
                           </SelectTrigger>
                           <SelectContent className="rounded-2xl border-white shadow-xl max-h-72">
@@ -1763,12 +1763,12 @@ export default function DashboardPage() {
                           Search
                         </label>
                         <div className="relative group">
-                          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#6B1F2A] h-4 w-4 transition-colors" />
+                          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-hazelnut h-4 w-4 transition-colors" />
                           <Input
                             placeholder="Find package..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="h-14 pl-12 pr-4 rounded-2xl border-white shadow-sm focus:ring-[#6B1F2A] focus:border-[#6B1F2A]"
+                            className="h-14 pl-12 pr-4 rounded-2xl border-white shadow-sm focus:ring-[#5A0D0D] focus:border-hazelnut"
                           />
                         </div>
                       </div>
@@ -1779,7 +1779,7 @@ export default function DashboardPage() {
                           Region
                         </label>
                         <Select value={placeFilter} onValueChange={setPlaceFilter}>
-                          <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-white">
+                          <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-cream">
                             <SelectValue placeholder="All Regions" />
                           </SelectTrigger>
                           <SelectContent className="rounded-2xl border-white shadow-xl">
@@ -1833,7 +1833,7 @@ export default function DashboardPage() {
                       <tbody>
                         {filteredPackages.length > 0 ? (
                           filteredPackages.map((pkg) => (
-                            <tr key={pkg._id} className="group hover:bg-[#F5EFE6] transition-colors">
+                            <tr key={pkg._id} className="group hover:bg-cream transition-colors">
                               <td className="p-4">
                                 <div className="flex items-center space-x-4">
                                   {pkg.images && pkg.images.length > 0 ? (
@@ -1850,7 +1850,7 @@ export default function DashboardPage() {
                                     </div>
                                   )}
                                   <div className="min-w-0">
-                                    <div className="font-bold text-[#111827] truncate leading-tight tracking-tight uppercase text-sm">{pkg.title}</div>
+                                    <div className="font-bold text-espresso truncate leading-tight tracking-tight uppercase text-sm">{pkg.title}</div>
                                     <div className="text-[10px] font-bold text-gray-400 mt-0.5 truncate uppercase tracking-widest">{pkg.subtitle?.substring(0, 30)}...</div>
                                   </div>
                                 </div>
@@ -1871,21 +1871,21 @@ export default function DashboardPage() {
                               </td>
                               <td className="p-4">
                                 <div className="flex flex-col">
-                                  <span className="text-xs font-bold text-[#111827] uppercase tracking-tighter italic">{getFormattedPlace(pkg.place)}</span>
+                                  <span className="text-xs font-bold text-espresso uppercase tracking-tighter italic">{getFormattedPlace(pkg.place)}</span>
                                   <span className="text-[10px] font-medium text-gray-400">{pkg.location || "Global HQ"}</span>
                                 </div>
                               </td>
                               <td className="p-4">
                                 <div className="flex items-center gap-2 text-xs font-bold text-gray-500 bg-gray-50 px-3 py-1.5 rounded-xl w-fit">
-                                  <Clock className="h-3 w-3 text-[#6B1F2A]" />
+                                  <Clock className="h-3 w-3 text-hazelnut" />
                                   {pkg.duration?.split(' ')[0]}D / {pkg.duration?.split(' ')[3]}N
                                 </div>
                               </td>
                               <td className="p-4">
-                                <div className="text-sm font-black text-[#111827] tracking-tight">
+                                <div className="text-sm font-black text-espresso tracking-tight">
                                   R {pkg.price?.toLocaleString()}
                                 </div>
-                                <div className="text-[9px] font-bold text-[#6B1F2A] uppercase tracking-widest">Premium Tier</div>
+                                <div className="text-[9px] font-bold text-hazelnut uppercase tracking-widest">Premium Tier</div>
                               </td>
                               <td className="p-4">
                                 <div className="flex items-center gap-1.5 bg-orange-50 px-3 py-1.5 rounded-xl w-fit">
@@ -1900,7 +1900,7 @@ export default function DashboardPage() {
                                       <Button
                                         variant="ghost"
                                         size="sm"
-                                        className="w-10 h-10 rounded-xl bg-white border border-gray-100 hover:bg-[#6B1F2A] hover:text-white shadow-sm flex items-center justify-center p-0 transition-all"
+                                        className="w-10 h-10 rounded-xl bg-cream border border-gray-100 hover:bg-hazelnut hover:text-white shadow-sm flex items-center justify-center p-0 transition-all"
                                       >
                                         <Menu className="h-5 w-5" />
                                       </Button>
@@ -1910,7 +1910,7 @@ export default function DashboardPage() {
                                         <Edit className="h-4 w-4 text-blue-500" /> Modify Package
                                       </DropdownMenuItem>
                                       <DropdownMenuItem onClick={() => handleDuplicatePackage(pkg)} className="rounded-xl flex gap-3 font-bold text-xs uppercase tracking-widest p-3">
-                                        <Copy className="h-4 w-4 text-[#6B1F2A]" /> Clone Entry
+                                        <Copy className="h-4 w-4 text-hazelnut" /> Clone Entry
                                       </DropdownMenuItem>
                                       <DropdownMenuItem onClick={() => handleExportSinglePackageToWord(pkg)} className="rounded-xl flex gap-3 font-bold text-xs uppercase tracking-widest p-3">
                                         <Download className="h-4 w-4 text-emerald-500" /> Export Doc
@@ -1938,7 +1938,7 @@ export default function DashboardPage() {
                                         <Plus className="h-4 w-4 mr-2" />
                                         Create Your First Package
                                       </Button>
-                                      <Button onClick={handleSeedPackages} disabled={seedingPackages} size="sm" variant="outline" className="rounded-xl border-[#6B1F2A] text-[#6B1F2A] hover:bg-[#6B1F2A] hover:text-white">
+                                      <Button onClick={handleSeedPackages} disabled={seedingPackages} size="sm" variant="outline" className="rounded-xl border-hazelnut text-hazelnut hover:bg-hazelnut hover:text-white">
                                         {seedingPackages ? 'Adding...' : '✨ Add Sample Packages'}
                                       </Button>
                                     </div>
@@ -1983,7 +1983,7 @@ export default function DashboardPage() {
                 <CardHeader className="p-8 pb-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <div>
-                      <CardTitle className="text-2xl font-black text-[#111827] tracking-tight uppercase">Tours Inventory</CardTitle>
+                      <CardTitle className="text-2xl font-black text-espresso tracking-tight uppercase">Tours Inventory</CardTitle>
                       <CardDescription className="text-sm font-medium text-gray-400">Total catalog of curated guided tours</CardDescription>
                     </div>
                   </div>
@@ -2003,7 +2003,7 @@ export default function DashboardPage() {
                       </thead>
                       <tbody>
                         {tours.length > 0 ? tours.map((tour) => (
-                          <tr key={tour._id} className="group hover:bg-[#F5EFE6] transition-colors border-b border-gray-50 last:border-0">
+                          <tr key={tour._id} className="group hover:bg-cream transition-colors border-b border-gray-50 last:border-0">
                             <td className="p-4">
                               <div className="flex items-center space-x-3">
                                 {tour.images?.[0] ? (
@@ -2011,12 +2011,12 @@ export default function DashboardPage() {
                                 ) : (
                                   <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center"><Compass className="h-5 w-5 text-gray-300" /></div>
                                 )}
-                                <div className="font-bold text-sm text-[#111827]">{tour.title}</div>
+                                <div className="font-bold text-sm text-espresso">{tour.title}</div>
                               </div>
                             </td>
                             <td className="p-4"><Badge variant="outline" className="rounded-lg text-[10px] uppercase font-black">{tour.tourType}</Badge></td>
                             <td className="p-4 text-xs font-bold text-gray-500 uppercase">{tour.location}</td>
-                            <td className="p-4 text-sm font-black text-[#111827]">R {tour.price?.toLocaleString()}</td>
+                            <td className="p-4 text-sm font-black text-espresso">R {tour.price?.toLocaleString()}</td>
                             <td className="p-4">
                               <div className="flex items-center gap-1 text-orange-500 font-black text-xs">
                                 <Star className="h-3 w-3 fill-current" /> {tour.rating || 5.0}
@@ -2036,10 +2036,10 @@ export default function DashboardPage() {
                                 <Compass className="h-12 w-12 text-gray-200" />
                                 <p className="font-bold text-gray-500">No tours yet</p>
                                 <div className="flex gap-3">
-                                  <Button onClick={() => setIsCreateTourModalOpen(true)} size="sm" className="bg-[#111827] text-white rounded-xl">
+                                  <Button onClick={() => setIsCreateTourModalOpen(true)} size="sm" className="bg-espresso text-white rounded-xl">
                                     <Plus className="h-4 w-4 mr-2" /> Create Tour
                                   </Button>
-                                  <Button onClick={handleSeedTours} disabled={seedingTours} size="sm" variant="outline" className="rounded-xl border-[#6B1F2A] text-[#6B1F2A] hover:bg-[#6B1F2A] hover:text-white">
+                                  <Button onClick={handleSeedTours} disabled={seedingTours} size="sm" variant="outline" className="rounded-xl border-hazelnut text-hazelnut hover:bg-hazelnut hover:text-white">
                                     {seedingTours ? 'Adding...' : '✨ Add Sample Tours'}
                                   </Button>
                                 </div>
@@ -2061,7 +2061,7 @@ export default function DashboardPage() {
                 <CardHeader className="p-8 pb-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <div>
-                      <CardTitle className="text-2xl font-black text-[#111827] tracking-tight uppercase">Tickets Inventory</CardTitle>
+                      <CardTitle className="text-2xl font-black text-espresso tracking-tight uppercase">Tickets Inventory</CardTitle>
                       <CardDescription className="text-sm font-medium text-gray-400">Available flight tickets and airline inventory</CardDescription>
                     </div>
                   </div>
@@ -2081,23 +2081,23 @@ export default function DashboardPage() {
                       </thead>
                       <tbody>
                         {tickets.length > 0 ? tickets.map((ticket) => (
-                          <tr key={ticket._id} className="group hover:bg-[#F5EFE6] transition-colors border-b border-gray-50 last:border-0">
+                          <tr key={ticket._id} className="group hover:bg-cream transition-colors border-b border-gray-50 last:border-0">
                             <td className="p-4">
                               <div className="flex items-center space-x-3">
                                 {ticket.images?.[0] ? (
                                   <img src={ticket.images[0].url} className="w-10 h-10 rounded-xl object-cover" alt="" />
                                 ) : (
                                   <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center">
-                                    <Plane className="h-5 w-5 text-[#6B1F2A]" />
+                                    <Plane className="h-5 w-5 text-hazelnut" />
                                   </div>
                                 )}
-                                <div className="font-bold text-sm text-[#111827]">{ticket.title}</div>
+                                <div className="font-bold text-sm text-espresso">{ticket.title}</div>
                               </div>
                             </td>
                             <td className="p-4 text-xs font-bold uppercase">{ticket.carrier}</td>
                             <td className="p-4 text-xs font-bold text-gray-500">{ticket.route}</td>
                             <td className="p-4"><Badge className="bg-blue-50 text-blue-600 rounded-lg text-[10px] uppercase font-black">{ticket.travelClass}</Badge></td>
-                            <td className="p-4 text-sm font-black text-[#111827]">R {ticket.price?.toLocaleString()}</td>
+                            <td className="p-4 text-sm font-black text-espresso">R {ticket.price?.toLocaleString()}</td>
                             <td className="p-4 text-center">
                               <div className="flex items-center justify-center gap-2">
                                 <Button variant="ghost" size="sm" onClick={() => { setSelectedTicket(ticket); setIsEditTicketModalOpen(true); }} className="text-blue-500 hover:bg-blue-50 rounded-xl"><Edit className="h-4 w-4" /></Button>
@@ -2112,10 +2112,10 @@ export default function DashboardPage() {
                                 <Plane className="h-12 w-12 text-gray-200" />
                                 <p className="font-bold text-gray-500">No tickets yet</p>
                                 <div className="flex gap-3">
-                                  <Button onClick={() => setIsCreateTicketModalOpen(true)} size="sm" className="bg-[#111827] text-white rounded-xl">
+                                  <Button onClick={() => setIsCreateTicketModalOpen(true)} size="sm" className="bg-espresso text-white rounded-xl">
                                     <Plus className="h-4 w-4 mr-2" /> Create Ticket
                                   </Button>
-                                  <Button onClick={handleSeedTickets} disabled={seedingTickets} size="sm" variant="outline" className="rounded-xl border-[#6B1F2A] text-[#6B1F2A] hover:bg-[#6B1F2A] hover:text-white">
+                                  <Button onClick={handleSeedTickets} disabled={seedingTickets} size="sm" variant="outline" className="rounded-xl border-hazelnut text-hazelnut hover:bg-hazelnut hover:text-white">
                                     {seedingTickets ? 'Adding...' : '✨ Add Sample Tickets'}
                                   </Button>
                                 </div>
@@ -2137,14 +2137,14 @@ export default function DashboardPage() {
                 <CardHeader className="p-8 pb-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <div>
-                      <CardTitle className="text-2xl font-black text-[#111827] tracking-tight uppercase">Home Page Banners</CardTitle>
+                      <CardTitle className="text-2xl font-black text-espresso tracking-tight uppercase">Home Page Banners</CardTitle>
                       <CardDescription className="text-sm font-medium text-gray-400">Manage the hero slider banners on the home page — multiple banners create a slideshow</CardDescription>
                     </div>
                     <div className="flex gap-3">
-                      <Button onClick={handleSeedBanners} disabled={seedingBanners} variant="outline" className="rounded-2xl border-[#6B1F2A] text-[#6B1F2A] hover:bg-[#6B1F2A] hover:text-white font-black uppercase tracking-widest text-xs h-12 px-6">
+                      <Button onClick={handleSeedBanners} disabled={seedingBanners} variant="outline" className="rounded-2xl border-hazelnut text-hazelnut hover:bg-hazelnut hover:text-white font-black uppercase tracking-widest text-xs h-12 px-6">
                         {seedingBanners ? 'Adding...' : '✨ Add Sample Banners'}
                       </Button>
-                      <Button onClick={() => setIsCreateBannerModalOpen(true)} className="bg-[#111827] hover:bg-[#6B1F2A] text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs shadow-xl flex gap-2">
+                      <Button onClick={() => setIsCreateBannerModalOpen(true)} className="bg-espresso hover:bg-hazelnut text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs shadow-xl flex gap-2">
                         <Plus className="h-4 w-4" /> New Banner
                       </Button>
                     </div>
@@ -2168,7 +2168,7 @@ export default function DashboardPage() {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                           <div className="absolute bottom-4 left-4 right-4">
                             <h4 className="text-white font-black text-lg uppercase tracking-tighter leading-none">{banner.title}</h4>
-                            <p className="text-[#6B1F2A] font-bold text-[10px] uppercase tracking-widest mt-1">{banner.subtitle}</p>
+                            <p className="text-hazelnut font-bold text-[10px] uppercase tracking-widest mt-1">{banner.subtitle}</p>
                           </div>
                           <div className="absolute top-4 left-4 flex flex-col gap-2">
                             <Badge className={cn(
@@ -2177,16 +2177,16 @@ export default function DashboardPage() {
                             )}>
                               {banner.isActive ? 'Active' : 'Inactive'}
                             </Badge>
-                            <Badge className="rounded-lg px-2 py-0.5 text-[9px] font-black uppercase tracking-widest border-none bg-[#111827]/80 text-white">
+                            <Badge className="rounded-lg px-2 py-0.5 text-[9px] font-black uppercase tracking-widest border-none bg-espresso/80 text-white">
                               {mediaLabel}
                             </Badge>
                           </div>
                           <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <Button variant="secondary" size="icon" onClick={() => { setSelectedBanner(banner); setIsEditBannerModalOpen(true); }} className="h-8 w-8 rounded-lg bg-white/90 text-[#111827] hover:bg-[#6B1F2A] hover:text-white"><Edit className="h-4 w-4" /></Button>
-                            <Button variant="secondary" size="icon" onClick={() => handleDeleteBanner(banner)} className="h-8 w-8 rounded-lg bg-white/90 text-red-500 hover:bg-red-500 hover:text-white"><Trash2 className="h-4 w-4" /></Button>
+                            <Button variant="secondary" size="icon" onClick={() => { setSelectedBanner(banner); setIsEditBannerModalOpen(true); }} className="h-8 w-8 rounded-lg bg-cream/90 text-espresso hover:bg-hazelnut hover:text-white"><Edit className="h-4 w-4" /></Button>
+                            <Button variant="secondary" size="icon" onClick={() => handleDeleteBanner(banner)} className="h-8 w-8 rounded-lg bg-cream/90 text-red-500 hover:bg-red-500 hover:text-white"><Trash2 className="h-4 w-4" /></Button>
                           </div>
                         </div>
-                        <CardContent className="p-4 bg-white flex justify-between items-center">
+                        <CardContent className="p-4 bg-cream flex justify-between items-center">
                           <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
                             <Clock className="h-3 w-3" /> Order: {banner.order}
                           </div>
@@ -2200,10 +2200,10 @@ export default function DashboardPage() {
                     {banners.length === 0 && (
                       <div className="col-span-full py-20 text-center border-2 border-dashed border-gray-100 rounded-[40px] bg-gray-50/30">
                         <ImageIcon className="h-12 w-12 text-gray-200 mx-auto mb-4" />
-                        <h4 className="text-[#111827] font-black uppercase tracking-tighter text-xl">No Banners Found</h4>
+                        <h4 className="text-espresso font-black uppercase tracking-tighter text-xl">No Banners Found</h4>
                         <p className="text-gray-400 text-sm font-medium mt-2">Add sample banners to instantly populate the homepage slider, or create your own custom banners.</p>
                         <div className="flex justify-center gap-3 mt-6">
-                          <Button onClick={handleSeedBanners} disabled={seedingBanners} className="bg-[#6B1F2A] hover:bg-[#111827] text-white rounded-2xl px-8 h-12 font-black uppercase tracking-widest text-[10px] transition-all">
+                          <Button onClick={handleSeedBanners} disabled={seedingBanners} className="bg-hazelnut hover:bg-espresso text-white rounded-2xl px-8 h-12 font-black uppercase tracking-widest text-[10px] transition-all">
                             {seedingBanners ? 'Adding...' : '✨ Add Sample Banners'}
                           </Button>
                           <Button onClick={() => setIsCreateBannerModalOpen(true)} variant="outline" className="rounded-2xl px-8 h-12 font-black uppercase tracking-widest text-[10px]">
@@ -2224,19 +2224,19 @@ export default function DashboardPage() {
                 <CardHeader className="p-8 pb-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <div>
-                      <CardTitle className="text-2xl font-black text-[#111827] tracking-tight uppercase">Gallery Images</CardTitle>
+                      <CardTitle className="text-2xl font-black text-espresso tracking-tight uppercase">Gallery Images</CardTitle>
                       <CardDescription className="text-sm font-medium text-gray-400">
                         Upload photos that appear on the public gallery page at /gallery
                       </CardDescription>
                     </div>
                     <div className="flex gap-3">
-                      <Button asChild variant="outline" className="rounded-2xl border-[#6B1F2A] text-[#6B1F2A] hover:bg-[#6B1F2A] hover:text-white font-black uppercase tracking-widest text-xs h-12 px-6">
+                      <Button asChild variant="outline" className="rounded-2xl border-hazelnut text-hazelnut hover:bg-hazelnut hover:text-white font-black uppercase tracking-widest text-xs h-12 px-6">
                         <Link href="/gallery" target="_blank">
                           <ExternalLink className="h-4 w-4 mr-2 inline" />
                           View Gallery
                         </Link>
                       </Button>
-                      <Button onClick={() => setIsCreateGalleryModalOpen(true)} className="bg-[#111827] hover:bg-[#6B1F2A] text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs shadow-xl flex gap-2">
+                      <Button onClick={() => setIsCreateGalleryModalOpen(true)} className="bg-espresso hover:bg-hazelnut text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs shadow-xl flex gap-2">
                         <Plus className="h-4 w-4" /> Upload Image
                       </Button>
                     </div>
@@ -2268,17 +2268,17 @@ export default function DashboardPage() {
                               variant="secondary"
                               size="icon"
                               onClick={() => handleToggleGalleryActive(item)}
-                              className="h-8 w-8 rounded-lg bg-white/90 text-[#111827] hover:bg-[#6B1F2A] hover:text-white"
+                              className="h-8 w-8 rounded-lg bg-cream/90 text-espresso hover:bg-hazelnut hover:text-white"
                               title={item.isActive ? 'Hide from gallery' : 'Show on gallery'}
                             >
                               {item.isActive ? <X className="h-4 w-4" /> : <Check className="h-4 w-4" />}
                             </Button>
-                            <Button variant="secondary" size="icon" onClick={() => handleDeleteGalleryItem(item)} className="h-8 w-8 rounded-lg bg-white/90 text-red-500 hover:bg-red-500 hover:text-white">
+                            <Button variant="secondary" size="icon" onClick={() => handleDeleteGalleryItem(item)} className="h-8 w-8 rounded-lg bg-cream/90 text-red-500 hover:bg-red-500 hover:text-white">
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </div>
                         </div>
-                        <CardContent className="p-3 bg-white flex justify-between items-center">
+                        <CardContent className="p-3 bg-cream flex justify-between items-center">
                           <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
                             <Clock className="h-3 w-3" /> Order: {item.order ?? 0}
                           </div>
@@ -2291,9 +2291,9 @@ export default function DashboardPage() {
                     {galleryItems.length === 0 && (
                       <div className="col-span-full py-20 text-center border-2 border-dashed border-gray-100 rounded-[40px] bg-gray-50/30">
                         <LayoutGrid className="h-12 w-12 text-gray-200 mx-auto mb-4" />
-                        <h4 className="text-[#111827] font-black uppercase tracking-tighter text-xl">No Gallery Images Yet</h4>
+                        <h4 className="text-espresso font-black uppercase tracking-tighter text-xl">No Gallery Images Yet</h4>
                         <p className="text-gray-400 text-sm font-medium mt-2">Upload your first photo to populate the gallery page.</p>
-                        <Button onClick={() => setIsCreateGalleryModalOpen(true)} className="mt-6 bg-[#6B1F2A] hover:bg-[#111827] text-white rounded-2xl px-8 h-12 font-black uppercase tracking-widest text-[10px]">
+                        <Button onClick={() => setIsCreateGalleryModalOpen(true)} className="mt-6 bg-hazelnut hover:bg-espresso text-white rounded-2xl px-8 h-12 font-black uppercase tracking-widest text-[10px]">
                           Upload First Image
                         </Button>
                       </div>
@@ -2310,10 +2310,10 @@ export default function DashboardPage() {
                 <CardHeader className="p-8 pb-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <div>
-                      <CardTitle className="text-2xl font-black text-[#111827] tracking-tight uppercase">Guest Feedback</CardTitle>
+                      <CardTitle className="text-2xl font-black text-espresso tracking-tight uppercase">Guest Feedback</CardTitle>
                       <CardDescription className="text-sm font-medium text-gray-400">Manage client testimonials shown on the homepage</CardDescription>
                     </div>
-                    <Button onClick={() => setIsCreateTestimonialModalOpen(true)} className="bg-[#111827] hover:bg-[#6B1F2A] text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs transition-all shadow-xl shadow-[#111827]/10 flex items-center gap-2">
+                    <Button onClick={() => setIsCreateTestimonialModalOpen(true)} className="bg-espresso hover:bg-hazelnut text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs transition-all shadow-xl shadow-espresso/10 flex items-center gap-2">
                       <Plus className="h-4 w-4" />
                       Add Feedback
                     </Button>
@@ -2333,7 +2333,7 @@ export default function DashboardPage() {
                       <tbody>
                         {testimonials.length > 0 ? (
                           testimonials.map((testimonial) => (
-                            <tr key={testimonial._id} className="group hover:bg-[#F5EFE6] transition-colors border-b border-gray-50 last:border-0">
+                            <tr key={testimonial._id} className="group hover:bg-cream transition-colors border-b border-gray-50 last:border-0">
                                <td className="p-4">
                                   <div className="flex items-center gap-4">
                                      {testimonial.image?.url ? (
@@ -2346,7 +2346,7 @@ export default function DashboardPage() {
                                         </div>
                                      )}
                                      <div>
-                                        <div className="font-bold text-sm text-[#111827]">{testimonial.name}</div>
+                                        <div className="font-bold text-sm text-espresso">{testimonial.name}</div>
                                         <div className="text-xs text-gray-500 uppercase">{testimonial.role}</div>
                                      </div>
                                   </div>
@@ -2397,14 +2397,14 @@ export default function DashboardPage() {
                 <CardHeader className="p-8 pb-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <div>
-                      <CardTitle className="text-2xl font-black text-[#111827] tracking-tight uppercase">Content Studio</CardTitle>
+                      <CardTitle className="text-2xl font-black text-espresso tracking-tight uppercase">Content Studio</CardTitle>
                       <CardDescription className="text-sm font-medium text-gray-400">Manage your travel blog narratives, tips, and experiences</CardDescription>
                     </div>
                     <div className="flex gap-3">
-                      <Button onClick={handleSeedBlogs} disabled={seedingBlogs} variant="outline" className="rounded-2xl border-[#6B1F2A] text-[#6B1F2A] hover:bg-[#6B1F2A] hover:text-white font-black uppercase tracking-widest text-xs h-12 px-6">
+                      <Button onClick={handleSeedBlogs} disabled={seedingBlogs} variant="outline" className="rounded-2xl border-hazelnut text-hazelnut hover:bg-hazelnut hover:text-white font-black uppercase tracking-widest text-xs h-12 px-6">
                         {seedingBlogs ? 'Adding...' : '✨ Seed Stories'}
                       </Button>
-                      <Button onClick={() => setIsCreateBlogModalOpen(true)} className="bg-[#111827] hover:bg-[#6B1F2A] text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs shadow-xl flex gap-2">
+                      <Button onClick={() => setIsCreateBlogModalOpen(true)} className="bg-espresso hover:bg-hazelnut text-white rounded-2xl px-6 h-12 font-black uppercase tracking-widest text-xs shadow-xl flex gap-2">
                         <Plus className="h-4 w-4" /> New Narrative
                       </Button>
                     </div>
@@ -2433,11 +2433,11 @@ export default function DashboardPage() {
                                   </div>
                                 ) : (
                                   <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center">
-                                    <FileText className="h-6 w-6 text-[#6B1F2A]" />
+                                    <FileText className="h-6 w-6 text-hazelnut" />
                                   </div>
                                 )}
                                 <div>
-                                  <div className="font-bold text-sm text-[#111827] line-clamp-1">{blog.title}</div>
+                                  <div className="font-bold text-sm text-espresso line-clamp-1">{blog.title}</div>
                                   <div className="text-[10px] text-gray-400 font-medium">/{blog.slug}</div>
                                 </div>
                               </div>
@@ -2472,7 +2472,7 @@ export default function DashboardPage() {
                               <div className="flex flex-col items-center gap-4">
                                 <FileText className="h-12 w-12 text-gray-200" />
                                 <p className="font-bold text-gray-500 uppercase tracking-widest text-xs">No narratives published yet</p>
-                                <Button onClick={() => setIsCreateBlogModalOpen(true)} className="bg-[#111827] text-white rounded-2xl px-8">
+                                <Button onClick={() => setIsCreateBlogModalOpen(true)} className="bg-espresso text-white rounded-2xl px-8">
                                   <Plus className="h-4 w-4 mr-2" /> Start Writing
                                 </Button>
                               </div>
@@ -2493,12 +2493,12 @@ export default function DashboardPage() {
                 <CardHeader className="p-8 pb-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <div>
-                      <CardTitle className="text-2xl font-black text-[#111827] tracking-tight uppercase">System Reports</CardTitle>
+                      <CardTitle className="text-2xl font-black text-espresso tracking-tight uppercase">System Reports</CardTitle>
                       <CardDescription className="text-sm font-medium text-gray-400">Preview and generate data insights across all modules</CardDescription>
                     </div>
                     <div className="flex flex-col sm:flex-row items-center gap-4">
                       <Select value={reportModule} onValueChange={(val: DashboardView) => setReportModule(val)}>
-                        <SelectTrigger className="w-full sm:w-[220px] h-12 rounded-2xl border-gray-100 shadow-sm font-bold bg-white text-[#111827]">
+                        <SelectTrigger className="w-full sm:w-[220px] h-12 rounded-2xl border-gray-100 shadow-sm font-bold bg-cream text-espresso">
                           <SelectValue placeholder="Select Module" />
                         </SelectTrigger>
                         <SelectContent className="rounded-2xl border-gray-100 shadow-xl">
@@ -2513,7 +2513,7 @@ export default function DashboardPage() {
                       <Button
                         onClick={reportModule === 'packages' ? handleExportToWord : undefined}
                         disabled={reportModule !== 'packages'}
-                        className="w-full sm:w-auto bg-[#111827] hover:bg-[#6B1F2A] text-white font-black h-12 px-6 rounded-2xl shadow-xl shadow-[#111827]/10 transition-all uppercase text-xs tracking-widest disabled:opacity-50"
+                        className="w-full sm:w-auto bg-espresso hover:bg-hazelnut text-white font-black h-12 px-6 rounded-2xl shadow-xl shadow-espresso/10 transition-all uppercase text-xs tracking-widest disabled:opacity-50"
                       >
                         <Download className="h-4 w-4 mr-2" />
                         Export {sidebarItems.find(i => i.id === reportModule)?.label}
@@ -2569,40 +2569,40 @@ export default function DashboardPage() {
                       </thead>
                       <tbody>
                         {reportModule === 'packages' && packages.map((pkg) => (
-                           <tr key={pkg._id} className="border-b border-gray-100 last:border-0 hover:bg-white transition-colors">
-                             <td className="p-4 font-bold text-sm text-[#111827]">{pkg.title}</td>
+                           <tr key={pkg._id} className="border-b border-gray-100 last:border-0 hover:bg-cream transition-colors">
+                             <td className="p-4 font-bold text-sm text-espresso">{pkg.title}</td>
                              <td className="p-4 text-xs font-medium text-gray-500 uppercase">{pkg.packageType}</td>
                              <td className="p-4 text-xs font-medium text-gray-500 uppercase">{pkg.place}</td>
-                             <td className="p-4 text-xs font-black text-[#111827]">R {pkg.price}</td>
+                             <td className="p-4 text-xs font-black text-espresso">R {pkg.price}</td>
                            </tr>
                         ))}
                         {reportModule === 'tours' && tours.map((tour) => (
-                           <tr key={tour._id} className="border-b border-gray-100 last:border-0 hover:bg-white transition-colors">
-                             <td className="p-4 font-bold text-sm text-[#111827]">{tour.title}</td>
+                           <tr key={tour._id} className="border-b border-gray-100 last:border-0 hover:bg-cream transition-colors">
+                             <td className="p-4 font-bold text-sm text-espresso">{tour.title}</td>
                              <td className="p-4 text-xs font-medium text-gray-500">{tour.duration}</td>
-                             <td className="p-4 text-xs font-black text-[#111827]">R {tour.price}</td>
+                             <td className="p-4 text-xs font-black text-espresso">R {tour.price}</td>
                            </tr>
                         ))}
                         {reportModule === 'tickets' && tickets.map((ticket) => (
-                           <tr key={ticket._id} className="border-b border-gray-100 last:border-0 hover:bg-white transition-colors">
-                             <td className="p-4 font-bold text-sm text-[#111827]">{ticket.title}</td>
+                           <tr key={ticket._id} className="border-b border-gray-100 last:border-0 hover:bg-cream transition-colors">
+                             <td className="p-4 font-bold text-sm text-espresso">{ticket.title}</td>
                              <td className="p-4 text-xs font-medium text-gray-500">{(ticket as any).classType || 'Economy'}</td>
-                             <td className="p-4 text-xs font-black text-[#111827]">R {ticket.price}</td>
+                             <td className="p-4 text-xs font-black text-espresso">R {ticket.price}</td>
                            </tr>
                         ))}
                         {reportModule === 'banners' && banners.map((banner) => (
-                           <tr key={banner._id} className="border-b border-gray-100 last:border-0 hover:bg-white transition-colors">
-                             <td className="p-4 font-bold text-sm text-[#111827]">{banner.title}</td>
-                             <td className="p-4 text-xs font-medium text-[#6B1F2A] uppercase">{banner.isActive ? 'Active' : 'Inactive'}</td>
+                           <tr key={banner._id} className="border-b border-gray-100 last:border-0 hover:bg-cream transition-colors">
+                             <td className="p-4 font-bold text-sm text-espresso">{banner.title}</td>
+                             <td className="p-4 text-xs font-medium text-hazelnut uppercase">{banner.isActive ? 'Active' : 'Inactive'}</td>
                            </tr>
                         ))}
                         {reportModule === 'enquiries' && enquiries.map((enq) => (
-                           <tr key={enq._id} className="border-b border-gray-100 last:border-0 hover:bg-white transition-colors">
+                           <tr key={enq._id} className="border-b border-gray-100 last:border-0 hover:bg-cream transition-colors">
                               <td className="p-4 text-xs font-bold text-gray-500 uppercase">
                                 {new Date(enq.createdAt).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' })}
                               </td>
                               <td className="p-4">
-                                <div className="font-bold text-sm text-[#111827]">{enq.name}</div>
+                                <div className="font-bold text-sm text-espresso">{enq.name}</div>
                                 <div className="text-xs text-gray-500">{enq.email}</div>
                               </td>
                               <td className="p-4 align-top">
@@ -2649,7 +2649,7 @@ export default function DashboardPage() {
                 <CardHeader className="p-8 pb-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <div>
-                      <CardTitle className="text-2xl font-black text-[#111827] tracking-tight uppercase">Customer Enquiries</CardTitle>
+                      <CardTitle className="text-2xl font-black text-espresso tracking-tight uppercase">Customer Enquiries</CardTitle>
                       <CardDescription className="text-sm font-medium text-gray-400">Package enquiries from category pages, detail pages, and the contact form</CardDescription>
                     </div>
                   </div>
@@ -2670,12 +2670,12 @@ export default function DashboardPage() {
                       <tbody>
                         {enquiries.length > 0 ? (
                           enquiries.map((enq) => (
-                            <tr key={enq._id} className="group hover:bg-[#F5EFE6] transition-colors border-b border-gray-50 last:border-0">
+                            <tr key={enq._id} className="group hover:bg-cream transition-colors border-b border-gray-50 last:border-0">
                               <td className="p-4 text-[10px] font-bold text-gray-500 uppercase">
                                 {new Date(enq.createdAt).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' })}
                               </td>
                               <td className="p-4">
-                                <div className="font-bold text-sm text-[#111827]">{enq.name}</div>
+                                <div className="font-bold text-sm text-espresso">{enq.name}</div>
                                 <div className="text-xs text-gray-500">{enq.email}</div>
                                 <div className="text-xs text-gray-500">{enq.phone}</div>
                               </td>
@@ -2700,7 +2700,7 @@ export default function DashboardPage() {
                                     setSelectedEnquiry(enq);
                                     setIsReplyModalOpen(true);
                                   }}
-                                  className="text-[10px] font-black uppercase tracking-widest text-[#111827] border-gray-200 hover:bg-gray-50 h-8 rounded-xl"
+                                  className="text-[10px] font-black uppercase tracking-widest text-espresso border-gray-200 hover:bg-gray-50 h-8 rounded-xl"
                                 >
                                   Reply
                                 </Button>
@@ -2728,7 +2728,7 @@ export default function DashboardPage() {
               <Card className="rounded-[40px] border-white shadow-sm overflow-hidden">
                 <CardHeader className="p-8 pb-4">
                   <div>
-                    <CardTitle className="text-2xl font-black text-[#111827] tracking-tight uppercase">Home Page Configuration</CardTitle>
+                    <CardTitle className="text-2xl font-black text-espresso tracking-tight uppercase">Home Page Configuration</CardTitle>
                     <CardDescription className="text-sm font-medium text-gray-400 font-bold uppercase tracking-widest mt-1">Control the visibility of dynamic sections on your main landing page</CardDescription>
                   </div>
                 </CardHeader>
@@ -2738,13 +2738,13 @@ export default function DashboardPage() {
                     <div className={cn(
                       "p-8 rounded-[32px] border-2 transition-all duration-300 flex flex-col justify-between h-full",
                       siteSettings.popularSection 
-                        ? "bg-white border-[#6B1F2A]/20 shadow-xl shadow-[#6B1F2A]/5" 
+                        ? "bg-cream border-hazelnut/20 shadow-xl shadow-[#5A0D0D]/5" 
                         : "bg-gray-50/50 border-gray-100"
                     )}>
                       <div className="flex items-start justify-between mb-6">
                         <div className={cn(
                           "w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg",
-                          siteSettings.popularSection ? "bg-[#6B1F2A] text-white shadow-[#6B1F2A]/20" : "bg-gray-200 text-gray-400"
+                          siteSettings.popularSection ? "bg-hazelnut text-white shadow-hazelnut/20" : "bg-gray-200 text-gray-400"
                         )}>
                           <Star className="h-7 w-7" />
                         </div>
@@ -2752,11 +2752,11 @@ export default function DashboardPage() {
                           disabled={settingsLoading}
                           checked={siteSettings.popularSection} 
                           onCheckedChange={(val) => updateSetting('popularSection', val)}
-                          className="data-[state=checked]:bg-[#6B1F2A]"
+                          className="data-[state=checked]:bg-hazelnut"
                         />
                       </div>
                       <div>
-                        <h3 className="text-xl font-black text-[#111827] uppercase tracking-tight mb-2">Popular Packages</h3>
+                        <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">Popular Packages</h3>
                         <p className="text-sm font-medium text-gray-500 mb-6">Display the curated collection of top-rated travel packages on the home screen.</p>
                         
                         <div className="flex items-center gap-2">
@@ -2777,13 +2777,13 @@ export default function DashboardPage() {
                     <div className={cn(
                       "p-8 rounded-[32px] border-2 transition-all duration-300 flex flex-col justify-between h-full",
                       siteSettings.upcomingSection 
-                        ? "bg-white border-[#6B1F2A]/20 shadow-xl shadow-[#6B1F2A]/5" 
+                        ? "bg-cream border-hazelnut/20 shadow-xl shadow-[#5A0D0D]/5" 
                         : "bg-gray-50/50 border-gray-100"
                     )}>
                       <div className="flex items-start justify-between mb-6">
                         <div className={cn(
                           "w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg",
-                          siteSettings.upcomingSection ? "bg-[#6B1F2A] text-white shadow-[#6B1F2A]/20" : "bg-gray-200 text-gray-400"
+                          siteSettings.upcomingSection ? "bg-hazelnut text-white shadow-hazelnut/20" : "bg-gray-200 text-gray-400"
                         )}>
                           <Compass className="h-7 w-7" />
                         </div>
@@ -2791,11 +2791,11 @@ export default function DashboardPage() {
                           disabled={settingsLoading}
                           checked={siteSettings.upcomingSection} 
                           onCheckedChange={(val) => updateSetting('upcomingSection', val)}
-                          className="data-[state=checked]:bg-[#6B1F2A]"
+                          className="data-[state=checked]:bg-hazelnut"
                         />
                       </div>
                       <div>
-                        <h3 className="text-xl font-black text-[#3D1218] uppercase tracking-tight mb-2">Featured Water Trips</h3>
+                        <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">Featured Water Trips</h3>
                         <p className="text-sm font-medium text-gray-500 mb-6">Showcase yacht cruises, kayaking, rafting, and other water experiences on the homepage.</p>
                         
                         <div className="flex items-center gap-2">
@@ -2816,13 +2816,13 @@ export default function DashboardPage() {
                     <div className={cn(
                       "p-8 rounded-[32px] border-2 transition-all duration-300 flex flex-col justify-between h-full",
                       siteSettings.destinationsSection 
-                        ? "bg-white border-[#6B1F2A]/20 shadow-xl shadow-[#6B1F2A]/5" 
+                        ? "bg-cream border-hazelnut/20 shadow-xl shadow-[#5A0D0D]/5" 
                         : "bg-gray-50/50 border-gray-100"
                     )}>
                       <div className="flex items-start justify-between mb-6">
                         <div className={cn(
                           "w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg",
-                          siteSettings.destinationsSection ? "bg-[#6B1F2A] text-white shadow-[#6B1F2A]/20" : "bg-gray-200 text-gray-400"
+                          siteSettings.destinationsSection ? "bg-hazelnut text-white shadow-hazelnut/20" : "bg-gray-200 text-gray-400"
                         )}>
                           <MapPin className="h-7 w-7" />
                         </div>
@@ -2830,11 +2830,11 @@ export default function DashboardPage() {
                           disabled={settingsLoading}
                           checked={siteSettings.destinationsSection} 
                           onCheckedChange={(val) => updateSetting('destinationsSection', val)}
-                          className="data-[state=checked]:bg-[#6B1F2A]"
+                          className="data-[state=checked]:bg-hazelnut"
                         />
                       </div>
                       <div>
-                        <h3 className="text-xl font-black text-[#111827] uppercase tracking-tight mb-2">Destinations Grid</h3>
+                        <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">Destinations Grid</h3>
                         <p className="text-sm font-medium text-gray-500 mb-6">Manage visibility of the global destinations gallery and featured location cards.</p>
                         
                         <div className="flex items-center gap-2">
@@ -2855,13 +2855,13 @@ export default function DashboardPage() {
                     <div className={cn(
                       "p-8 rounded-[32px] border-2 transition-all duration-300 flex flex-col justify-between h-full",
                       siteSettings.exploreSection 
-                        ? "bg-white border-[#6B1F2A]/20 shadow-xl shadow-[#6B1F2A]/5" 
+                        ? "bg-cream border-hazelnut/20 shadow-xl shadow-[#5A0D0D]/5" 
                         : "bg-gray-50/50 border-gray-100"
                     )}>
                       <div className="flex items-start justify-between mb-6">
                         <div className={cn(
                           "w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg",
-                          siteSettings.exploreSection ? "bg-[#6B1F2A] text-white shadow-[#6B1F2A]/20" : "bg-gray-200 text-gray-400"
+                          siteSettings.exploreSection ? "bg-hazelnut text-white shadow-hazelnut/20" : "bg-gray-200 text-gray-400"
                         )}>
                           <LayoutDashboard className="h-7 w-7" />
                         </div>
@@ -2869,11 +2869,11 @@ export default function DashboardPage() {
                           disabled={settingsLoading}
                           checked={siteSettings.exploreSection} 
                           onCheckedChange={(val) => updateSetting('exploreSection', val)}
-                          className="data-[state=checked]:bg-[#6B1F2A]"
+                          className="data-[state=checked]:bg-hazelnut"
                         />
                       </div>
                       <div>
-                        <h3 className="text-xl font-black text-[#111827] uppercase tracking-tight mb-2">Explore Us</h3>
+                        <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">Explore Us</h3>
                         <p className="text-sm font-medium text-gray-500 mb-6">Toggle the main branding and mission statement section below the hero banner.</p>
                         
                         <div className="flex items-center gap-2">
@@ -2894,13 +2894,13 @@ export default function DashboardPage() {
                     <div className={cn(
                       "p-8 rounded-[32px] border-2 transition-all duration-300 flex flex-col justify-between h-full",
                       siteSettings.testimonialsSection 
-                        ? "bg-white border-[#6B1F2A]/20 shadow-xl shadow-[#6B1F2A]/5" 
+                        ? "bg-cream border-hazelnut/20 shadow-xl shadow-[#5A0D0D]/5" 
                         : "bg-gray-50/50 border-gray-100"
                     )}>
                       <div className="flex items-start justify-between mb-6">
                         <div className={cn(
                           "w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg",
-                          siteSettings.testimonialsSection ? "bg-[#6B1F2A] text-white shadow-[#6B1F2A]/20" : "bg-gray-200 text-gray-400"
+                          siteSettings.testimonialsSection ? "bg-hazelnut text-white shadow-hazelnut/20" : "bg-gray-200 text-gray-400"
                         )}>
                           <Users className="h-7 w-7" />
                         </div>
@@ -2908,11 +2908,11 @@ export default function DashboardPage() {
                           disabled={settingsLoading}
                           checked={siteSettings.testimonialsSection} 
                           onCheckedChange={(val) => updateSetting('testimonialsSection', val)}
-                          className="data-[state=checked]:bg-[#6B1F2A]"
+                          className="data-[state=checked]:bg-hazelnut"
                         />
                       </div>
                       <div>
-                        <h3 className="text-xl font-black text-[#111827] uppercase tracking-tight mb-2">Client Feedback</h3>
+                        <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">Client Feedback</h3>
                         <p className="text-sm font-medium text-gray-500 mb-6">Show or hide the customer testimonials and travel reviews section.</p>
                         
                         <div className="flex items-center gap-2">
@@ -2929,12 +2929,12 @@ export default function DashboardPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="mt-12 p-6 bg-[#F5EFE6] rounded-[32px] border border-gray-100 flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
-                      <LayoutDashboard className="h-5 w-5 text-[#6B1F2A]" />
+                  <div className="mt-12 p-6 bg-cream rounded-[32px] border border-gray-100 flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-cream flex items-center justify-center shadow-sm">
+                      <LayoutDashboard className="h-5 w-5 text-hazelnut" />
                     </div>
                     <div>
-                      <p className="text-[11px] font-black text-[#111827] uppercase tracking-widest">Administrator Pro-Tip</p>
+                      <p className="text-[11px] font-black text-espresso uppercase tracking-widest">Administrator Pro-Tip</p>
                       <p className="text-xs text-gray-500 font-medium">Changes made here reflect immediately on the frontend without requiring a redeploy.</p>
                     </div>
                   </div>
@@ -2948,14 +2948,14 @@ export default function DashboardPage() {
               <Card className="rounded-[40px] border-white shadow-sm overflow-hidden">
                 <CardHeader className="p-8 pb-4">
                   <div>
-                    <CardTitle className="text-2xl font-black text-[#111827] tracking-tight uppercase">Social Media Presence</CardTitle>
+                    <CardTitle className="text-2xl font-black text-espresso tracking-tight uppercase">Social Media Presence</CardTitle>
                     <CardDescription className="text-sm font-medium text-gray-400 font-bold uppercase tracking-widest mt-1">Manage your brand's digital touchpoints and profile links across the web</CardDescription>
                   </div>
                 </CardHeader>
                 <CardContent className="p-8 pt-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* Facebook */}
-                    <div className="p-6 rounded-[32px] bg-[#F5EFE6] border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div className="p-6 rounded-[32px] bg-cream border border-gray-100 shadow-sm transition-all hover:shadow-md">
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-[#1877F2]/10 text-[#1877F2] flex items-center justify-center">
@@ -2963,7 +2963,7 @@ export default function DashboardPage() {
                           </div>
                           <div>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Platform</p>
-                            <p className="text-sm font-black text-[#111827] uppercase">Facebook</p>
+                            <p className="text-sm font-black text-espresso uppercase">Facebook</p>
                           </div>
                         </div>
                         <Switch 
@@ -2978,10 +2978,10 @@ export default function DashboardPage() {
                           value={siteSettings.facebookUrl || ""}
                           onChange={(e) => setSiteSettings({...siteSettings, facebookUrl: e.target.value})}
                           placeholder="https://facebook.com/..."
-                          className="bg-white border-gray-100 rounded-xl h-11 text-xs font-medium"
+                          className="bg-cream border-gray-100 rounded-xl h-11 text-xs font-medium"
                         />
                         {siteSettings.facebookUrl && (
-                          <Link href={siteSettings.facebookUrl} target="_blank" className="text-[9px] text-[#6B1F2A] flex items-center gap-1 mt-1 font-bold uppercase truncate hover:underline px-1">
+                          <Link href={siteSettings.facebookUrl} target="_blank" className="text-[9px] text-hazelnut flex items-center gap-1 mt-1 font-bold uppercase truncate hover:underline px-1">
                             <ExternalLink className="h-2.5 w-2.5" /> View Live Profile
                           </Link>
                         )}
@@ -2989,7 +2989,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* Instagram */}
-                    <div className="p-6 rounded-[32px] bg-[#F5EFE6] border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div className="p-6 rounded-[32px] bg-cream border border-gray-100 shadow-sm transition-all hover:shadow-md">
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#f09433]/10 via-[#e6683c]/10 to-[#dc2743]/10 text-[#e6683c] flex items-center justify-center">
@@ -2997,7 +2997,7 @@ export default function DashboardPage() {
                           </div>
                           <div>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Platform</p>
-                            <p className="text-sm font-black text-[#111827] uppercase">Instagram</p>
+                            <p className="text-sm font-black text-espresso uppercase">Instagram</p>
                           </div>
                         </div>
                         <Switch 
@@ -3012,7 +3012,7 @@ export default function DashboardPage() {
                           value={siteSettings.instagramUrl || ""}
                           onChange={(e) => setSiteSettings({...siteSettings, instagramUrl: e.target.value})}
                           placeholder="https://instagram.com/..."
-                          className="bg-white border-gray-100 rounded-xl h-11 text-xs font-medium"
+                          className="bg-cream border-gray-100 rounded-xl h-11 text-xs font-medium"
                         />
                         {siteSettings.instagramUrl && (
                           <Link href={siteSettings.instagramUrl} target="_blank" className="text-[9px] text-[#e6683c] flex items-center gap-1 mt-1 font-bold uppercase truncate hover:underline px-1">
@@ -3023,7 +3023,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* Twitter / X */}
-                    <div className="p-6 rounded-[32px] bg-[#F5EFE6] border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div className="p-6 rounded-[32px] bg-cream border border-gray-100 shadow-sm transition-all hover:shadow-md">
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-black/10 text-black flex items-center justify-center">
@@ -3031,7 +3031,7 @@ export default function DashboardPage() {
                           </div>
                           <div>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Platform</p>
-                            <p className="text-sm font-black text-[#111827] uppercase">X / Twitter</p>
+                            <p className="text-sm font-black text-espresso uppercase">X / Twitter</p>
                           </div>
                         </div>
                         <Switch 
@@ -3046,7 +3046,7 @@ export default function DashboardPage() {
                           value={siteSettings.twitterUrl || ""}
                           onChange={(e) => setSiteSettings({...siteSettings, twitterUrl: e.target.value})}
                           placeholder="https://x.com/..."
-                          className="bg-white border-gray-100 rounded-xl h-11 text-xs font-medium"
+                          className="bg-cream border-gray-100 rounded-xl h-11 text-xs font-medium"
                         />
                         {siteSettings.twitterUrl && (
                           <Link href={siteSettings.twitterUrl} target="_blank" className="text-[9px] text-gray-500 flex items-center gap-1 mt-1 font-bold uppercase truncate hover:underline px-1">
@@ -3057,7 +3057,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* LinkedIn */}
-                    <div className="p-6 rounded-[32px] bg-[#F5EFE6] border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div className="p-6 rounded-[32px] bg-cream border border-gray-100 shadow-sm transition-all hover:shadow-md">
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-[#0A66C2]/10 text-[#0A66C2] flex items-center justify-center">
@@ -3065,7 +3065,7 @@ export default function DashboardPage() {
                           </div>
                           <div>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Platform</p>
-                            <p className="text-sm font-black text-[#111827] uppercase">LinkedIn</p>
+                            <p className="text-sm font-black text-espresso uppercase">LinkedIn</p>
                           </div>
                         </div>
                         <Switch 
@@ -3080,7 +3080,7 @@ export default function DashboardPage() {
                           value={siteSettings.linkedinUrl || ""}
                           onChange={(e) => setSiteSettings({...siteSettings, linkedinUrl: e.target.value})}
                           placeholder="https://linkedin.com/in/..."
-                          className="bg-white border-gray-100 rounded-xl h-11 text-xs font-medium"
+                          className="bg-cream border-gray-100 rounded-xl h-11 text-xs font-medium"
                         />
                         {siteSettings.linkedinUrl && (
                           <Link href={siteSettings.linkedinUrl} target="_blank" className="text-[9px] text-[#0A66C2] flex items-center gap-1 mt-1 font-bold uppercase truncate hover:underline px-1">
@@ -3091,7 +3091,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* YouTube */}
-                    <div className="p-6 rounded-[32px] bg-[#F5EFE6] border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div className="p-6 rounded-[32px] bg-cream border border-gray-100 shadow-sm transition-all hover:shadow-md">
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-red-600/10 text-red-600 flex items-center justify-center">
@@ -3099,7 +3099,7 @@ export default function DashboardPage() {
                           </div>
                           <div>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Platform</p>
-                            <p className="text-sm font-black text-[#111827] uppercase">YouTube</p>
+                            <p className="text-sm font-black text-espresso uppercase">YouTube</p>
                           </div>
                         </div>
                         <Switch 
@@ -3114,7 +3114,7 @@ export default function DashboardPage() {
                           value={siteSettings.youtubeUrl || ""}
                           onChange={(e) => setSiteSettings({...siteSettings, youtubeUrl: e.target.value})}
                           placeholder="https://youtube.com/c/..."
-                          className="bg-white border-gray-100 rounded-xl h-11 text-xs font-medium"
+                          className="bg-cream border-gray-100 rounded-xl h-11 text-xs font-medium"
                         />
                         {siteSettings.youtubeUrl && (
                           <Link href={siteSettings.youtubeUrl} target="_blank" className="text-[9px] text-red-600 flex items-center gap-1 mt-1 font-bold uppercase truncate hover:underline px-1">
@@ -3125,7 +3125,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* WhatsApp */}
-                    <div className="p-6 rounded-[32px] bg-[#F5EFE6] border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div className="p-6 rounded-[32px] bg-cream border border-gray-100 shadow-sm transition-all hover:shadow-md">
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-[#25D366]/10 text-[#25D366] flex items-center justify-center">
@@ -3133,7 +3133,7 @@ export default function DashboardPage() {
                           </div>
                           <div>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Platform</p>
-                            <p className="text-sm font-black text-[#111827] uppercase">WhatsApp Business</p>
+                            <p className="text-sm font-black text-espresso uppercase">WhatsApp Business</p>
                           </div>
                         </div>
                         <Switch 
@@ -3148,7 +3148,7 @@ export default function DashboardPage() {
                           value={siteSettings.whatsappUrl || ""}
                           onChange={(e) => setSiteSettings({...siteSettings, whatsappUrl: e.target.value})}
                           placeholder="https://wa.me/237..."
-                          className="bg-white border-gray-100 rounded-xl h-11 text-xs font-medium"
+                          className="bg-cream border-gray-100 rounded-xl h-11 text-xs font-medium"
                         />
                         {siteSettings.whatsappUrl && (
                           <Link href={siteSettings.whatsappUrl} target="_blank" className="text-[9px] text-[#25D366] flex items-center gap-1 mt-1 font-bold uppercase truncate hover:underline px-1">
@@ -3159,8 +3159,8 @@ export default function DashboardPage() {
                     </div>
                   </div>
 
-                  <div className="mt-12 p-8 bg-[#111827] rounded-[40px] flex flex-col md:flex-row items-center gap-8 border border-white/5 relative">
-                    <div className="w-20 h-20 rounded-3xl bg-[#6B1F2A] flex items-center justify-center shadow-xl shadow-[#6B1F2A]/20 shrink-0">
+                  <div className="mt-12 p-8 bg-espresso rounded-[40px] flex flex-col md:flex-row items-center gap-8 border border-white/5 relative">
+                    <div className="w-20 h-20 rounded-3xl bg-hazelnut flex items-center justify-center shadow-xl shadow-hazelnut/20 shrink-0">
                       <Share2 className="h-10 w-10 text-white" />
                     </div>
                     <div className="flex-1">
@@ -3171,7 +3171,7 @@ export default function DashboardPage() {
                       <Button 
                         onClick={saveSocialSettings}
                         disabled={settingsLoading}
-                        className="bg-[#6B1F2A] hover:bg-[#4A1520] text-white font-black px-10 py-8 rounded-[24px] shadow-2xl shadow-[#6B1F2A]/20 transition-all uppercase text-sm tracking-widest flex gap-3 group"
+                        className="bg-hazelnut hover:bg-espresso text-white font-black px-10 py-8 rounded-[24px] shadow-2xl shadow-hazelnut/20 transition-all uppercase text-sm tracking-widest flex gap-3 group"
                       >
                         {settingsLoading ? (
                           <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>

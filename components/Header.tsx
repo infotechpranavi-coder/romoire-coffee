@@ -48,7 +48,7 @@ const Header = () => {
           title="Contact us on WhatsApp"
         >
           <MessageCircle className="h-6 w-6" />
-          <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-white text-gray-800 px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+          <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-cream text-gray-800 px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
             Chat on WhatsApp
           </div>
         </button>
@@ -154,7 +154,7 @@ const Header = () => {
                       Packages
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <ul className="grid w-[280px] gap-3 p-4 md:w-[320px] md:grid-cols-1 lg:w-[360px] bg-white rounded-lg shadow-lg max-h-[70vh] overflow-y-auto">
+                      <ul className="grid w-[280px] gap-3 p-4 md:w-[320px] md:grid-cols-1 lg:w-[360px] bg-cream rounded-lg shadow-lg max-h-[70vh] overflow-y-auto">
                         <li>
                           <NavigationMenuLink asChild>
                             <Link

@@ -108,7 +108,7 @@ const BlogsPage = () => {
               <Badge className="bg-primary text-white">{blog.category}</Badge>
               <span className="text-sm text-gray-600">{getReadTime(blog.content)}</span>
             </div>
-            <h3 className={`font-bold text-[#3D1218] mb-3 ${large ? "text-2xl" : "text-lg line-clamp-2"}`}>
+            <h3 className={`font-bold text-espresso mb-3 ${large ? "text-2xl" : "text-lg line-clamp-2"}`}>
               {blog.title}
             </h3>
             <p className={`text-gray-600 mb-4 leading-relaxed ${large ? "" : "text-sm line-clamp-3"}`}>
@@ -129,7 +129,7 @@ const BlogsPage = () => {
                   <User className="h-4 w-4 text-gray-400" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-[#3D1218]">{blog.author}</p>
+                  <p className="text-sm font-medium text-espresso">{blog.author}</p>
                   <p className="text-xs text-gray-600">{formatDate(blog.createdAt)}</p>
                 </div>
               </div>
@@ -145,7 +145,7 @@ const BlogsPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cream">
       {/* Hero */}
       <section className="relative text-white py-28 md:py-40 overflow-hidden">
         <div
@@ -154,11 +154,11 @@ const BlogsPage = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.5)_100%)]" />
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#F5EFE6] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-cream to-transparent" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
-            <p className="text-[#6B1F2A] font-bold uppercase tracking-[0.3em] text-sm mb-6">Travel Insights</p>
+            <p className="text-hazelnut font-bold uppercase tracking-[0.3em] text-sm mb-6">Travel Insights</p>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-[1000] mb-6 leading-none tracking-tighter uppercase">
               Travel Blog
             </h1>
@@ -224,16 +224,16 @@ const BlogsPage = () => {
         </div>
       ) : filteredBlogs.length === 0 ? (
         <div className="container mx-auto px-4 py-24 text-center">
-          <h2 className="text-2xl font-bold text-[#3D1218] mb-2">No Articles Yet</h2>
+          <h2 className="text-2xl font-bold text-espresso mb-2">No Articles Yet</h2>
           <p className="text-gray-500">Published blog posts from the dashboard will appear here.</p>
         </div>
       ) : (
         <>
           {featuredBlog && (
-            <section className="py-12 bg-white">
+            <section className="py-12 bg-cream">
               <div className="container mx-auto px-4">
                 <div className="max-w-6xl mx-auto">
-                  <h2 className="text-3xl font-bold text-center text-[#3D1218] mb-8">
+                  <h2 className="text-3xl font-bold text-center text-espresso mb-8">
                     {featuredBlog.isFeatured ? "Featured Article" : "Latest Article"}
                   </h2>
                   <BlogCard blog={featuredBlog} large />
@@ -243,10 +243,10 @@ const BlogsPage = () => {
           )}
 
           {remainingBlogs.length > 0 && (
-            <section className="py-12 bg-[#F5EFE6]">
+            <section className="py-12 bg-cream">
               <div className="container mx-auto px-4">
                 <div className="max-w-6xl mx-auto">
-                  <h2 className="text-2xl font-bold text-[#3D1218] mb-8">More Articles</h2>
+                  <h2 className="text-2xl font-bold text-espresso mb-8">More Articles</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {remainingBlogs.map((blog) => (
                       <BlogCard key={blog._id} blog={blog} />
@@ -270,9 +270,9 @@ const BlogsPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
               <Input
                 placeholder="Enter your email"
-                className="bg-white text-[#3D1218] placeholder-gray-500"
+                className="bg-cream text-espresso placeholder-gray-500"
               />
-              <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100">
+              <Button size="lg" variant="secondary" className="bg-cream text-primary hover:bg-gray-100">
                 Subscribe
               </Button>
             </div>

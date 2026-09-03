@@ -106,7 +106,7 @@ export default function PackageExperiencePage({ category: baseCategory, miniCate
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#F5EFE6] flex items-center justify-center">
+      <div className="min-h-screen bg-cream flex items-center justify-center">
         <div className="text-center">
           <div className={`animate-spin rounded-full h-12 w-12 border-b-2 ${styles.spinner} mx-auto mb-4`} />
           <p className="text-gray-600">Loading {category.label.toLowerCase()}...</p>
@@ -116,7 +116,7 @@ export default function PackageExperiencePage({ category: baseCategory, miniCate
   }
 
   return (
-    <div className="min-h-screen bg-[#F5EFE6]">
+    <div className="min-h-screen bg-cream">
       <section className="relative text-white pt-28 pb-20 md:pb-24 overflow-hidden">
         <CategoryHeroBackground
           src={category.heroImage}
@@ -125,7 +125,7 @@ export default function PackageExperiencePage({ category: baseCategory, miniCate
         />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-6">
+            <div className="inline-flex items-center gap-2 bg-cream/15 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-6">
               <Compass className={`h-4 w-4 ${styles.icon}`} />
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/90">
                 {groupLabel}
@@ -148,7 +148,7 @@ export default function PackageExperiencePage({ category: baseCategory, miniCate
             <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center mb-10">
               <div>
                 <p className={`text-[10px] font-black uppercase tracking-[0.3em] ${styles.muted} mb-1`}>{SITE_NAME}</p>
-                <h2 className="text-2xl md:text-3xl font-black text-[#111827] uppercase tracking-tight">{category.label}</h2>
+                <h2 className="text-2xl md:text-3xl font-black text-espresso uppercase tracking-tight">{category.label}</h2>
               </div>
               <div className="relative w-full sm:w-80">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -157,26 +157,26 @@ export default function PackageExperiencePage({ category: baseCategory, miniCate
                   placeholder={`Search ${category.label.toLowerCase()}...`}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className={`w-full pl-11 pr-4 py-3 rounded-2xl border border-gray-200 bg-white shadow-sm focus:outline-none focus:ring-2 ${styles.focusRing}`}
+                  className={`w-full pl-11 pr-4 py-3 rounded-2xl border border-gray-200 bg-cream shadow-sm focus:outline-none focus:ring-2 ${styles.focusRing}`}
                 />
               </div>
             </div>
 
             {category.isFuture && filteredPackages.length === 0 ? (
-              <div className={`text-center py-16 rounded-[32px] bg-white border border-dashed ${styles.ring}`}>
+              <div className={`text-center py-16 rounded-[32px] bg-cream border border-dashed ${styles.ring}`}>
                 <Compass className={`h-14 w-14 ${styles.emptyIcon} mx-auto mb-4`} />
-                <h3 className="text-xl font-black text-[#111827] uppercase tracking-tight mb-2">{category.label}</h3>
+                <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">{category.label}</h3>
                 <p className="text-gray-500 max-w-md mx-auto">This experience category is launching soon. Contact us to register your interest.</p>
                 <Link href="/contact" className="inline-block mt-6">
                   <Button className={styles.button}>Contact Us</Button>
                 </Link>
               </div>
             ) : filteredPackages.length === 0 ? (
-              <div className="text-center py-16 rounded-[32px] bg-white border border-gray-100 shadow-sm">
+              <div className="text-center py-16 rounded-[32px] bg-cream border border-gray-100 shadow-sm">
                 <div className={`w-20 h-20 mx-auto mb-4 ${styles.emptyBg} rounded-full flex items-center justify-center`}>
                   <Search className={`h-10 w-10 ${styles.emptyIcon}`} />
                 </div>
-                <h3 className="text-xl font-bold text-[#111827] mb-2">{category.emptyMessage}</h3>
+                <h3 className="text-xl font-bold text-espresso mb-2">{category.emptyMessage}</h3>
                 <p className="text-gray-600 mb-6">Check back soon or explore other experiences.</p>
                 <Button onClick={() => router.push('/packages')}>View All Packages</Button>
               </div>
@@ -185,7 +185,7 @@ export default function PackageExperiencePage({ category: baseCategory, miniCate
                 {filteredPackages.map((pkg) => (
                   <article
                     key={pkg._id}
-                    className="group relative bg-white rounded-[28px] overflow-hidden shadow-lg shadow-gray-200/60 border border-gray-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
+                    className="group relative bg-cream rounded-[28px] overflow-hidden shadow-lg shadow-gray-200/60 border border-gray-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden">
                       {pkg.images?.[0] ? (
@@ -210,7 +210,7 @@ export default function PackageExperiencePage({ category: baseCategory, miniCate
                         <p className="text-white font-black text-xl leading-tight line-clamp-2">{pkg.title}</p>
                         <p className="text-white/75 text-sm mt-1 line-clamp-1">{pkg.subtitle}</p>
                       </div>
-                      <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm text-[#111827] font-black text-[10px] px-3 py-1.5 rounded-full shadow-lg uppercase tracking-wider">
+                      <div className="absolute top-4 right-4 bg-cream/95 backdrop-blur-sm text-espresso font-black text-[10px] px-3 py-1.5 rounded-full shadow-lg uppercase tracking-wider">
                         Enquire
                       </div>
                     </div>
@@ -258,7 +258,7 @@ export default function PackageExperiencePage({ category: baseCategory, miniCate
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-white border-t border-gray-100">
+      <section className="py-12 md:py-16 bg-cream border-t border-gray-100">
         <div className="container mx-auto px-4 max-w-5xl">
           <PackagePageEnquiryForm
             categoryLabel={category.label}

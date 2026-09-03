@@ -27,10 +27,10 @@ export default function GalleryPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F5EFE6]">
+    <div className="min-h-screen bg-cream">
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[#111827]" />
+        <div className="absolute inset-0 bg-espresso" />
         <div
           className="absolute inset-0 opacity-20"
           style={{
@@ -40,8 +40,8 @@ export default function GalleryPage() {
           }}
         />
         <div className="relative container mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-6">
-            <Camera className="h-4 w-4 text-[#6B1F2A]" />
+          <div className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-6">
+            <Camera className="h-4 w-4 text-hazelnut" />
             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">Moments Captured</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-4">
@@ -57,13 +57,13 @@ export default function GalleryPage() {
       <section className="container mx-auto px-6 py-16">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-32 gap-4">
-            <Loader2 className="h-10 w-10 animate-spin text-[#6B1F2A]" />
+            <Loader2 className="h-10 w-10 animate-spin text-hazelnut" />
             <p className="text-gray-400 font-medium">Loading gallery...</p>
           </div>
         ) : items.length === 0 ? (
-          <div className="text-center py-32 border-2 border-dashed border-gray-200 rounded-[40px] bg-white">
+          <div className="text-center py-32 border-2 border-dashed border-gray-200 rounded-[40px] bg-cream">
             <Camera className="h-14 w-14 text-gray-200 mx-auto mb-4" />
-            <h2 className="text-2xl font-black text-[#111827] uppercase tracking-tight">Gallery Coming Soon</h2>
+            <h2 className="text-2xl font-black text-espresso uppercase tracking-tight">Gallery Coming Soon</h2>
             <p className="text-gray-400 mt-2 font-medium">New photos will appear here shortly.</p>
           </div>
         ) : (
@@ -73,7 +73,7 @@ export default function GalleryPage() {
                 key={item._id}
                 type="button"
                 onClick={() => setSelected(item)}
-                className="group relative w-full break-inside-avoid rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-[#6B1F2A]"
+                className="group relative w-full break-inside-avoid rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-[#5A0D0D]"
               >
                 <div className="relative w-full" style={{ minHeight: '200px' }}>
                   <Image

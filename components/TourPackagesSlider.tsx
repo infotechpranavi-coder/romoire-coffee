@@ -125,12 +125,12 @@ const TourPackagesSlider = () => {
                             {slide.description}
                           </p>
                           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-                            <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                            <div className="bg-cream/20 backdrop-blur-sm rounded-lg px-4 py-2">
                               <span className="text-yellow-300 font-semibold text-lg">
                                 {slide.price}
                               </span>
                             </div>
-                            <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                            <div className="bg-cream/20 backdrop-blur-sm rounded-lg px-4 py-2">
                               <span className="text-white font-medium">
                                 {slide.duration}
                               </span>
@@ -155,14 +155,14 @@ const TourPackagesSlider = () => {
             {/* Navigation Buttons */}
             <Button
               onClick={goToPrevious}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white border-white/30 backdrop-blur-sm"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-cream/20 hover:bg-cream/30 text-white border-white/30 backdrop-blur-sm"
               size="icon"
             >
               <ChevronLeft className="h-6 w-6" />
             </Button>
             <Button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white border-white/30 backdrop-blur-sm"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-cream/20 hover:bg-cream/30 text-white border-white/30 backdrop-blur-sm"
               size="icon"
             >
               <ChevronRight className="h-6 w-6" />
@@ -176,7 +176,7 @@ const TourPackagesSlider = () => {
                   onClick={() => goToSlide(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
                     ? "bg-yellow-400 scale-125"
-                    : "bg-white/50 hover:bg-white/70"
+                    : "bg-cream/50 hover:bg-cream/70"
                     }`}
                 />
               ))}

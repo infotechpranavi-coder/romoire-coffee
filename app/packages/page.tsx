@@ -40,7 +40,7 @@ const PackagesPage = () => {
   const totalCategories = PACKAGE_EXPERIENCE_CATEGORIES.length;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cream">
       <section className="relative text-white pt-28 pb-20 md:pb-28 overflow-hidden min-h-[420px]">
         <div className="absolute inset-0 grid grid-cols-2 md:grid-cols-4">
           {PACKAGE_NAV_GROUPS.map((group) => (
@@ -53,17 +53,17 @@ const PackagesPage = () => {
             </div>
           ))}
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-[#3D1218]/85 via-[#3D1218]/50 to-[#3D1218]/80" />
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#F5EFE6] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-espresso/85 via-espresso/50 to-espresso/80" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-cream to-transparent" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-6">
+            <div className="inline-flex items-center gap-2 bg-cream/15 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-6">
               <Coffee className="h-4 w-4 text-amber-200" />
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/90">{SITE_NAME} Coffee</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-black mb-6 leading-none tracking-tight uppercase">
-              Shop Coffee Beans
+              Products
             </h1>
             <p className="text-lg md:text-xl mb-10 text-white/85 max-w-2xl mx-auto font-medium">
               Browse by origin, roast profile, blend, or subscription — whole bean and ground options available
@@ -79,12 +79,12 @@ const PackagesPage = () => {
         </div>
       </section>
 
-      <section className="py-10 bg-[#F5EFE6]">
+      <section className="py-10 bg-cream">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-8">
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#6B1F2A] mb-2">Shop by Collection</p>
-              <h2 className="text-3xl font-black text-[#3D1218] mb-3 uppercase tracking-tight">All Coffee Categories</h2>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-hazelnut mb-2">Browse by Collection</p>
+              <h2 className="text-3xl font-black text-espresso mb-3 uppercase tracking-tight">All Coffee Categories</h2>
               <p className="text-gray-600 mb-6">Single Origin, Roasts, Blends, Specialty, and Subscriptions</p>
               <div className="relative max-w-md mx-auto">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -92,13 +92,13 @@ const PackagesPage = () => {
                   placeholder="Search coffee beans, roasts, origins..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-11 h-12 rounded-full border-gray-200 bg-white shadow-sm"
+                  className="pl-11 h-12 rounded-full border-gray-200 bg-cream shadow-sm"
                 />
               </div>
             </div>
 
             {filteredGroups.length === 0 ? (
-              <div className="text-center py-16 rounded-[32px] bg-white border border-gray-100">
+              <div className="text-center py-16 rounded-[32px] bg-cream border border-gray-100">
                 <p className="text-gray-500 mb-4">No experience categories match your search.</p>
                 <Button variant="outline" onClick={() => setSearchTerm("")} className="rounded-full">
                   Clear search
@@ -113,7 +113,7 @@ const PackagesPage = () => {
                       <Link
                         key={category.slug}
                         href={category.href}
-                        className="group rounded-[24px] overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                        className="group rounded-[24px] overflow-hidden border border-gray-200 bg-cream shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
                       >
                         <div className="relative h-44 overflow-hidden">
                         <div
@@ -151,7 +151,7 @@ const PackagesPage = () => {
               We can create a custom package tailored to your specific needs and preferences
             </p>
             <Link href="/contact">
-              <Button size="lg" className="bg-[#6B1F2A] hover:bg-[#4A1520] text-white font-bold rounded-full px-10">
+              <Button size="lg" className="bg-hazelnut hover:bg-espresso text-white font-bold rounded-full px-10">
                 Contact Us
               </Button>
             </Link>

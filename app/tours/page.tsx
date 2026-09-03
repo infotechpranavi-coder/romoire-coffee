@@ -154,7 +154,7 @@ const ToursPage = () => {
 
     if (loading && packages.length === 0) {
         return (
-            <div className="min-h-screen bg-white flex items-center justify-center">
+            <div className="min-h-screen bg-cream flex items-center justify-center">
                 <div className="text-center">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
                     <p className="text-gray-600">Loading tours...</p>
@@ -164,7 +164,7 @@ const ToursPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-cream">
             {/* Hero Section */}
             <section className="relative text-white py-28 md:py-40 overflow-hidden">
                 <div
@@ -175,7 +175,7 @@ const ToursPage = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.5)_100%)]" />
-                <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#F5EFE6] to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-cream to-transparent" />
 
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
@@ -200,7 +200,7 @@ const ToursPage = () => {
             </section>
 
             {/* Filters Section */}
-            <section className="py-8 bg-white border-b">
+            <section className="py-8 bg-cream border-b">
                 <div className="container mx-auto px-4">
                     <div className="max-w-6xl mx-auto">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -241,13 +241,13 @@ const ToursPage = () => {
             </section>
 
             {/* Tours Grid */}
-            <section className="py-16 bg-[#F5EFE6]">
+            <section className="py-16 bg-cream">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {filteredPackages.map((pkg, index) => (
                             <motion.div
                                 key={pkg._id}
-                                className="group bg-white rounded-[32px] overflow-hidden shadow-[0_10px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_70px_rgba(0,0,0,0.1)] transition-all duration-700 cursor-pointer flex flex-col"
+                                className="group bg-cream rounded-[32px] overflow-hidden shadow-[0_10px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_70px_rgba(0,0,0,0.1)] transition-all duration-700 cursor-pointer flex flex-col"
                                 onClick={() => router.push(`/tours/${generateSlug(pkg.title, pkg._id)}`)}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -265,7 +265,7 @@ const ToursPage = () => {
                                 <div className="p-6 flex flex-col flex-grow">
                                     <div className="flex-grow">
                                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">{pkg.duration} &nbsp;·&nbsp; {pkg.location}</p>
-                                        <h3 className="text-xl font-black text-[#3D1218] leading-tight mb-2 uppercase tracking-tighter group-hover:text-[#6B1F2A] transition-colors">{pkg.title}</h3>
+                                        <h3 className="text-xl font-black text-espresso leading-tight mb-2 uppercase tracking-tighter group-hover:text-hazelnut transition-colors">{pkg.title}</h3>
                                         <div className="flex items-center gap-1 mb-3">
                                             {[...Array(5)].map((_, i) => <Star key={i} className={`w-3 h-3 ${i < Math.round(pkg.rating || 5) ? 'fill-amber-400 text-amber-400' : 'fill-gray-200 text-gray-200'}`} />)}
                                         </div>

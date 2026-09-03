@@ -2,152 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    /* White */
-    --foreground: 0 0% 0%;
-    /* Black */
+    /* Coconut Variant palette */
+    --color-espresso: 30 73% 16%;
+    --color-vanilla: 28 38% 75%;
+    --color-mocha: 22 37% 38%;
+    --color-hazelnut: 28 50% 40%;
+    --color-cream: 30 33% 95%;
+    --color-burgundy: 0 76% 20%;
+    --color-text: 24 22% 14%;
+    --color-muted: 22 18% 39%;
 
-    --card: 0 0% 96%;
-    /* Light grey for cards */
-    --card-foreground: 0 0% 0%;
-    /* Black text on cards */
+    --background: 30 33% 95%;
+    --foreground: 24 22% 14%;
 
-    --popover: 0 0% 100%;
-    /* White */
-    --popover-foreground: 0 0% 0%;
-    /* Black */
+    --card: 30 33% 95%;
+    --card-foreground: 24 22% 14%;
 
-    --primary: 351 55% 27%;
-    /* Romoire burgundy */
-    --primary-foreground: 36 33% 93%;
-    /* Cream text on primary */
+    --popover: 30 33% 95%;
+    --popover-foreground: 24 22% 14%;
 
-    --secondary: 0 0% 50%;
-    /* Medium grey */
-    --secondary-foreground: 0 0% 100%;
-    /* White text */
+    --primary: 28 50% 40%;
+    --primary-foreground: 30 33% 95%;
 
-    --muted: 0 0% 96%;
-    /* Light grey */
-    --muted-foreground: 0 0% 45%;
-    /* Dark grey text */
+    --secondary: 28 38% 75%;
+    --secondary-foreground: 30 73% 16%;
 
-    --accent: 0 0% 90%;
-    /* Light grey accent */
-    --accent-foreground: 0 0% 0%;
-    /* Black text */
+    --muted: 28 38% 90%;
+    --muted-foreground: 22 18% 39%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: 28 38% 75%;
+    --accent-foreground: 30 73% 16%;
 
-    --border: 0 0% 85%;
-    /* Light grey border */
-    --input: 0 0% 96%;
-    /* Light grey input */
-    --ring: 0 0% 0%;
-    /* Black ring */
+    --destructive: 0 65% 35%;
+    --destructive-foreground: 30 33% 95%;
 
-    /* Brand palette — from Romoire logo (burgundy + cream) */
-    --brand-dark: #3D1218;
-    /* Deep burgundy — primary text & dark UI */
-    --brand-mid: #6B1F2A;
-    /* Logo burgundy — accents & CTAs */
-    --brand-gold: #6B1F2A;
-    /* Alias: accent matches logo burgundy */
-    --brand-cream: #F5EFE6;
-    /* Logo cream */
+    --border: 30 73% 16% / 0.12;
+    --input: 30 33% 95%;
+    --ring: 22 37% 38%;
+
+    --brand-dark: #4C2B08;
+    --brand-mid: #85593E;
+    --brand-gold: #996133;
+    --brand-cream: #F8F3EF;
     --brand-green: #22c55e;
-    /* Green - kept for prices & positive indicators */
 
-    /* Travel website specific colors (mapped to Romoire) */
-    --travel-teal: 351 55% 27%;
-    /* Burgundy */
-    --travel-navy: 351 55% 16%;
-    /* Deep burgundy */
-    --travel-light-teal: 36 33% 93%;
-    /* Cream tint */
-    --travel-light-bg: 36 40% 96%;
-    /* Soft cream */
+    --travel-teal: 28 50% 40%;
+    --travel-navy: 30 73% 16%;
+    --travel-light-teal: 28 38% 75%;
+    --travel-light-bg: 30 33% 95%;
 
-    /* Animation variables */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --radius: 0.25rem;
 
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-    /* Light grey */
-
-    --sidebar-foreground: 0 0% 0%;
-    /* Black */
-
-    --sidebar-primary: 0 0% 0%;
-    /* Black */
-
-    --sidebar-primary-foreground: 0 0% 100%;
-    /* White */
-
-    --sidebar-accent: 0 0% 95%;
-    /* Light grey */
-
-    --sidebar-accent-foreground: 0 0% 0%;
-    /* Black */
-
-    --sidebar-border: 0 0% 85%;
-    /* Light grey */
-
-    --sidebar-ring: 0 0% 0%;
-    /* Black */
+    --sidebar-background: 30 33% 95%;
+    --sidebar-foreground: 24 22% 14%;
+    --sidebar-primary: 28 50% 40%;
+    --sidebar-primary-foreground: 30 33% 95%;
+    --sidebar-accent: 28 38% 90%;
+    --sidebar-accent-foreground: 24 22% 14%;
+    --sidebar-border: 30 73% 16% / 0.12;
+    --sidebar-ring: 22 37% 38%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 200 80% 50%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 220 100% 25%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 200 80% 50%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 200 80% 50%;
-
-    /* Travel website specific colors */
-    --travel-teal: 200 80% 50%;
-    --travel-navy: 220 100% 25%;
-    --travel-light-teal: 180 40% 85%;
-    --travel-light-bg: 200 20% 98%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: 30 73% 16%;
+    --foreground: 30 33% 95%;
+    --card: 30 73% 16%;
+    --card-foreground: 30 33% 95%;
+    --popover: 30 73% 16%;
+    --popover-foreground: 30 33% 95%;
+    --primary: 28 38% 75%;
+    --primary-foreground: 30 73% 16%;
+    --secondary: 22 37% 38%;
+    --secondary-foreground: 30 33% 95%;
+    --muted: 22 37% 25%;
+    --muted-foreground: 28 38% 75%;
+    --accent: 22 37% 38%;
+    --accent-foreground: 30 33% 95%;
+    --border: 28 38% 75% / 0.15;
+    --input: 22 37% 25%;
+    --ring: 28 38% 75%;
+    --sidebar-background: 30 73% 14%;
+    --sidebar-foreground: 30 33% 95%;
+    --sidebar-primary: 28 38% 75%;
+    --sidebar-primary-foreground: 30 73% 16%;
+    --sidebar-accent: 22 37% 25%;
+    --sidebar-accent-foreground: 30 33% 95%;
+    --sidebar-border: 28 38% 75% / 0.15;
+    --sidebar-ring: 28 38% 75%;
   }
 }
 
@@ -175,21 +119,64 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-white text-foreground;
+    @apply bg-cream text-foreground font-body antialiased;
   }
 
-  /* Ensure sections use white background */
-  section {
-    @apply bg-white;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading tracking-[-0.02em];
   }
 
-  /* Main content areas */
   main {
-    @apply bg-white;
+    @apply bg-cream;
   }
 }
 
-/* Animation utilities */
+@layer components {
+  .btn-editorial {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3 font-body text-sm font-medium tracking-[0.02em] transition-all duration-300;
+    @apply bg-hazelnut text-cream hover:-translate-y-0.5 hover:bg-hazelnut/90;
+  }
+
+  .btn-editorial-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-hazelnut bg-transparent px-6 py-3 font-body text-sm font-medium tracking-[0.02em] text-hazelnut transition-all duration-300;
+    @apply hover:-translate-y-0.5 hover:bg-hazelnut/5;
+  }
+
+  .btn-editorial-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-vanilla px-6 py-3 font-body text-sm font-medium tracking-[0.02em] text-espresso transition-all duration-300;
+    @apply hover:-translate-y-0.5 hover:bg-vanilla/90;
+  }
+
+  .card-editorial {
+    @apply rounded-sm border border-espresso/15 bg-cream shadow-[0_8px_30px_rgba(76,43,8,0.08)] transition-all duration-300;
+    @apply hover:border-mocha/30 hover:shadow-[0_12px_36px_rgba(76,43,8,0.1)];
+  }
+
+  .section-light {
+    @apply bg-cream;
+  }
+
+  .section-vanilla {
+    @apply bg-vanilla/40;
+  }
+
+  .section-dark {
+    @apply bg-espresso text-cream;
+  }
+
+  .section-burgundy {
+    @apply bg-mocha text-cream;
+  }
+
+  .input-editorial {
+    @apply w-full rounded-sm border border-espresso/15 bg-cream px-4 py-3 font-body text-sm text-foreground placeholder:text-muted;
+    @apply focus:border-mocha focus:outline-none focus:ring-1 focus:ring-mocha/30;
+  }
+}
+
 @layer utilities {
   .fade-in {
     animation: fade-in 0.6s ease-out forwards;
@@ -199,66 +186,39 @@ All colors MUST be HSL.
     animation: slide-up 0.8s ease-out forwards;
   }
 
-  .scale-in {
-    animation: scale-in 0.5s ease-out forwards;
-  }
-
   .hover-lift {
     transition: var(--transition-smooth);
   }
 
   .hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(76, 43, 8, 0.08);
   }
 
-  /* Card micro-interactions */
   .card-hover {
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
   }
 
   .card-hover:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(76, 43, 8, 0.1);
   }
 
-  .card-hover img {
-    transition: transform 0.7s ease-out;
-  }
-
-  .card-hover:hover img {
-    transform: scale(1.02);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-
-    .card-hover,
-    .card-hover:hover,
-    .card-hover img,
-    .card-hover:hover img {
-      transform: none !important;
-      transition: none !important;
-    }
-  }
-
-  /* Hide scrollbar for Chrome, Safari and Opera */
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
 
-  /* Hide scrollbar for IE, Edge and Firefox */
   .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -268,23 +228,10 @@ All colors MUST be HSL.
 @keyframes slide-up {
   from {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(32px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
   }
 }

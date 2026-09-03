@@ -79,7 +79,7 @@ const DetailCard = ({
       )}
       <h3 className="text-lg font-bold tracking-tight text-gray-900">{title}</h3>
     </div>
-    <CardContent className="p-5 bg-white">
+    <CardContent className="p-5 bg-cream">
       {children}
     </CardContent>
   </Card>
@@ -118,13 +118,13 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
 
               <div className="absolute bottom-4 left-5 right-5 z-10">
                 <div className="flex flex-wrap gap-2 mb-3">
-                  <Badge className="bg-[#6B1F2A] text-white hover:bg-[#6B1F2A] border-none px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
+                  <Badge className="bg-hazelnut text-white hover:bg-hazelnut border-none px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
                     {resolveCategoryByValue(packageData.packageCategory)?.label || packageData.packageCategory}
                   </Badge>
-                  <Badge className="bg-white/10 backdrop-blur-md text-white border-white/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
+                  <Badge className="bg-cream/10 backdrop-blur-md text-white border-white/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
                     {packageData.duration}
                   </Badge>
-                  <Badge className="bg-white/10 backdrop-blur-md text-white border-white/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
+                  <Badge className="bg-cream/10 backdrop-blur-md text-white border-white/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
                     {packageData.location}
                   </Badge>
                 </div>
@@ -157,7 +157,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {packageData.ideaFor.split(',').map((tag, idx) => (
-                          <Badge key={idx} variant="outline" className="bg-white/80 border-emerald-100 text-emerald-700 font-bold px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest">
+                          <Badge key={idx} variant="outline" className="bg-cream/80 border-emerald-100 text-emerald-700 font-bold px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest">
                             {tag.trim()}
                           </Badge>
                         ))}
@@ -174,13 +174,13 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                       <div className="flex flex-wrap gap-2">
                         {typeof packageData.services === 'string' ? (
                           packageData.services.split(',').map((s, idx) => (
-                            <Badge key={idx} variant="outline" className="bg-white/80 border-blue-100 text-blue-700 font-bold px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest">
+                            <Badge key={idx} variant="outline" className="bg-cream/80 border-blue-100 text-blue-700 font-bold px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest">
                               {s.trim()}
                             </Badge>
                           ))
                         ) : (
                           packageData.services.map((s, idx) => (
-                            <Badge key={idx} variant="outline" className="bg-white/80 border-blue-100 text-blue-700 font-bold px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest">
+                            <Badge key={idx} variant="outline" className="bg-cream/80 border-blue-100 text-blue-700 font-bold px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest">
                               {s}
                             </Badge>
                           ))
@@ -365,7 +365,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                           <span className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-1 relative z-10">Day</span>
                           <span className="text-3xl font-bold relative z-10">{day.day}</span>
                         </div>
-                        <div className="p-5 bg-white flex-grow flex flex-col justify-center">
+                        <div className="p-5 bg-cream flex-grow flex flex-col justify-center">
                           <h4 className="text-base font-bold text-gray-900 mb-2 tracking-tight leading-tight">{day.title}</h4>
                           <div className="space-y-1">
                             {day.description.split('\n').map((line, lIdx) => (
@@ -392,7 +392,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                     </div>
                     Inclusions
                   </h3>
-                  <div className="p-10 rounded-[40px] bg-white border border-gray-100 shadow-sm space-y-8 overflow-hidden relative group">
+                  <div className="p-10 rounded-[40px] bg-cream border border-gray-100 shadow-sm space-y-8 overflow-hidden relative group">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50/50 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-1000" />
                     {Array.isArray(packageData.inclusions) && typeof packageData.inclusions[0] === 'object' ? (
                       (packageData.inclusions as any[]).map((group, idx) => (
@@ -429,7 +429,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                     </div>
                     Exclusions
                   </h3>
-                  <div className="p-10 rounded-[40px] bg-white border border-gray-100 shadow-sm space-y-8 overflow-hidden relative group">
+                  <div className="p-10 rounded-[40px] bg-cream border border-gray-100 shadow-sm space-y-8 overflow-hidden relative group">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-rose-50/50 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-1000" />
                     {Array.isArray(packageData.exclusions) && typeof packageData.exclusions[0] === 'object' ? (
                       (packageData.exclusions as any[]).map((group, idx) => (
@@ -471,7 +471,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                         </div>
                         Logistics
                       </h3>
-                      <div className="p-10 rounded-[40px] bg-white border border-gray-100 shadow-sm space-y-6">
+                      <div className="p-10 rounded-[40px] bg-cream border border-gray-100 shadow-sm space-y-6">
                         {packageData.transportation.map((t, idx) => (
                           <div key={idx} className="pb-6 border-b border-gray-50 last:border-0 last:pb-0">
                             <p className="font-black text-gray-900 text-sm uppercase mb-1">{t.type}</p>
@@ -492,7 +492,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                         </div>
                         Stay Details
                       </h3>
-                      <div className="p-10 rounded-[40px] bg-white border border-gray-100 shadow-sm space-y-6">
+                      <div className="p-10 rounded-[40px] bg-cream border border-gray-100 shadow-sm space-y-6">
                         {packageData.accommodation.map((a, idx) => (
                           <div key={idx} className="pb-6 border-b border-gray-50 last:border-0 last:pb-0">
                             <p className="font-black text-gray-900 text-sm uppercase mb-1">{a.city}: {a.hotel}</p>
@@ -516,7 +516,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {packageData.faqs.map((faq, idx) => (
-                      <div key={idx} className="bg-white border border-gray-100 rounded-[32px] p-8 shadow-sm hover:shadow-lg transition-all">
+                      <div key={idx} className="bg-cream border border-gray-100 rounded-[32px] p-8 shadow-sm hover:shadow-lg transition-all">
                         <div className="flex items-start gap-4">
                           <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center shrink-0 mt-1">
                             <Plus className="h-4 w-4 text-indigo-600" />
@@ -537,17 +537,17 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                 <div className="space-y-10 pt-8">
                   <div className="flex items-center gap-4 pb-4 border-b border-gray-100">
                     <div className="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center shadow-inner">
-                      <Star className="h-7 w-7 text-[#6B1F2A]" />
+                      <Star className="h-7 w-7 text-hazelnut" />
                     </div>
                     <h2 className="text-3xl font-black text-gray-900 tracking-tight">Guest Feedback & Reviews</h2>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {packageData.reviews.map((review, idx) => (
-                      <Card key={idx} className="p-10 border-none bg-white shadow-sm rounded-[32px] hover:shadow-xl hover:-translate-y-1 transition-all">
+                      <Card key={idx} className="p-10 border-none bg-cream shadow-sm rounded-[32px] hover:shadow-xl hover:-translate-y-1 transition-all">
                         <div className="flex items-center justify-between mb-6">
                           <div className="flex items-center gap-5">
-                            <div className="w-14 h-14 rounded-full bg-[#6B1F2A]/10 flex items-center justify-center font-black text-[#6B1F2A] text-xl shadow-inner">
+                            <div className="w-14 h-14 rounded-full bg-hazelnut/10 flex items-center justify-center font-black text-hazelnut text-xl shadow-inner">
                               {review.name.charAt(0)}
                             </div>
                             <div>
@@ -559,7 +559,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                             {[...Array(5)].map((_, i) => (
                               <Star
                                 key={i}
-                                className={cn("h-4 w-4", i < review.rating ? "fill-[#6B1F2A] text-[#6B1F2A]" : "fill-gray-200 text-gray-200")}
+                                className={cn("h-4 w-4", i < review.rating ? "fill-hazelnut text-hazelnut" : "fill-gray-200 text-gray-200")}
                               />
                             ))}
                           </div>
@@ -577,11 +577,11 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
         </div>
 
         {/* Footer Action Bar */}
-        <div className="p-5 bg-white border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-b-2xl z-30">
+        <div className="p-5 bg-cream border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-b-2xl z-30">
           <div className="text-center sm:text-left">
             <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Package Investment</p>
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-[#6B1F2A] tracking-tight uppercase text-sm">Enquire for Quote</span>
+              <span className="text-2xl font-bold text-hazelnut tracking-tight uppercase text-sm">Enquire for Quote</span>
               <span className="text-gray-400 font-medium text-sm">/ Complete Journey</span>
             </div>
           </div>
@@ -593,7 +593,7 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
             >
               Close Details
             </Button>
-            <Button className="w-full sm:w-auto bg-[#6B1F2A] hover:bg-[#a67e3a] text-white font-bold uppercase tracking-widest h-10 px-6 rounded-xl shadow-lg shadow-[#6B1F2A]/20 group transition-all text-[10px]">
+            <Button className="w-full sm:w-auto bg-hazelnut hover:bg-[#a67e3a] text-white font-bold uppercase tracking-widest h-10 px-6 rounded-xl shadow-lg shadow-hazelnut/20 group transition-all text-[10px]">
               Reservations & Support <TrendingUp className="ml-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Button>
           </div>

@@ -132,9 +132,9 @@ const CreateBannerModal = ({ isOpen, onClose, onBannerCreated }: CreateBannerMod
 
     return (
         <Dialog open={isOpen} onOpenChange={handleClose}>
-            <DialogContent className="max-w-2xl rounded-[32px] border-none shadow-2xl p-0 bg-white overflow-hidden">
+            <DialogContent className="max-w-2xl rounded-[32px] border-none shadow-2xl p-0 bg-cream overflow-hidden">
                 <DialogHeader className="p-8 pb-4 bg-gray-50/50">
-                    <DialogTitle className="text-3xl font-black text-[#111827] uppercase tracking-tighter">Add Home Banner</DialogTitle>
+                    <DialogTitle className="text-3xl font-black text-espresso uppercase tracking-tighter">Add Home Banner</DialogTitle>
                     <DialogDescription className="text-gray-400 font-bold uppercase tracking-widest text-[10px] mt-1">Create a hero banner with image, uploaded video, or YouTube background.</DialogDescription>
                 </DialogHeader>
 
@@ -208,7 +208,7 @@ const CreateBannerModal = ({ isOpen, onClose, onBannerCreated }: CreateBannerMod
                             id="isActive"
                             checked={formData.isActive}
                             onChange={(e) => handleInputChange("isActive", e.target.checked)}
-                            className="w-4 h-4 rounded border-gray-300 text-[#6B1F2A] focus:ring-[#6B1F2A]"
+                            className="w-4 h-4 rounded border-gray-300 text-hazelnut focus:ring-[#5A0D0D]"
                         />
                         <label htmlFor="isActive" className="text-sm font-bold text-gray-700 uppercase tracking-widest">Active Banner</label>
                     </div>
@@ -221,7 +221,7 @@ const CreateBannerModal = ({ isOpen, onClose, onBannerCreated }: CreateBannerMod
                         <Button
                             onClick={handleSubmit}
                             disabled={isSubmitting}
-                            className="bg-[#111827] hover:bg-[#6B1F2A] rounded-xl px-10 h-12 font-black uppercase text-xs tracking-widest shadow-xl transition-all"
+                            className="bg-espresso hover:bg-hazelnut rounded-xl px-10 h-12 font-black uppercase text-xs tracking-widest shadow-xl transition-all"
                         >
                             {isSubmitting ? "Creating..." : "Create Banner"}
                         </Button>

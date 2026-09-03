@@ -148,7 +148,7 @@ const InquiryFormPopup = ({ isOpen, onClose, productInfo }: InquiryFormPopupProp
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[200] flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl w-full max-h-[85vh] sm:max-h-[90vh] overflow-y-auto">
+      <div className="bg-cream rounded-2xl shadow-2xl max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl w-full max-h-[85vh] sm:max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="bg-gradient-to-r from-secondary to-primary text-white p-3 sm:p-6 rounded-t-2xl relative">
           <button
@@ -218,7 +218,7 @@ const InquiryFormPopup = ({ isOpen, onClose, productInfo }: InquiryFormPopupProp
                     }}
                     containerClass="!w-full"
                     inputClass="!w-full !h-[38px] sm:!h-[48px] !px-2 sm:!px-4 !py-1.5 sm:!py-3 !pl-[48px] sm:!pl-[58px] !border !border-gray-300 !rounded-lg focus:!ring-2 focus:!ring-secondary focus:!border-transparent !transition-all !text-xs sm:!text-base"
-                    buttonClass="!bg-white !border !border-gray-300 !border-r-0 !rounded-l-lg hover:!bg-gray-50"
+                    buttonClass="!bg-cream !border !border-gray-300 !border-r-0 !rounded-l-lg hover:!bg-gray-50"
                   />
                   <style jsx global>{`
                     .phone-input-container .react-tel-input .selected-flag {

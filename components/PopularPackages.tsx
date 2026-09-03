@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { ArrowRight, Star, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { popularPackages as staticPackages } from "@/data/homeData";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -49,11 +48,15 @@ const PopularPackages = ({ initialPackages }: PopularPackagesProps) => {
 
   if (isLoading) {
     return (
-      <div className="py-24 bg-[#F5EFE6] flex flex-col items-center justify-center min-h-[400px]">
-        <Loader2 className="w-12 h-12 text-[#6B1F2A] animate-spin mb-4" />
-        <p className="text-[#3D1218] font-bold uppercase tracking-widest text-sm">Loading coffees...</p>
+      <div className="py-24 bg-cream flex flex-col items-center justify-center min-h-[400px]">
+        <Loader2 className="w-12 h-12 text-hazelnut animate-spin mb-4" />
+        <p className="text-espresso font-bold uppercase tracking-widest text-sm">Loading coffees...</p>
       </div>
     );
+  }
+
+  if (!packages.length) {
+    return null;
   }
 
   // Split packages into two columns as per the original design
@@ -64,27 +67,15 @@ const PopularPackages = ({ initialPackages }: PopularPackagesProps) => {
   return (
     <section
       id="packages"
-      className="py-24 bg-[#F5EFE6]"
+      className="py-24 bg-cream"
     >
       <div className="container mx-auto px-4">
-        {/* Force single column for anything below very large desktop to avoid overlap */}
-        <style jsx>{`
-          .popular-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-          }
-          @media (min-width: 1440px) {
-            .popular-grid {
-              grid-template-columns: 1fr 1fr;
-            }
-          }
-        `}</style>
-        <div className="popular-grid gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
 
           {/* Left Column: Title + 2 Cards */}
-          <div className="space-y-8 2xl:pr-4">
-            <div className="mb-6 md:mb-10 lg:overflow-hidden">
-              <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-[1000] text-[#3D1218] leading-[0.9] tracking-tighter uppercase break-words">
+          <div className="space-y-6 lg:space-y-8 lg:pr-2">
+            <div className="mb-4 md:mb-6 lg:mb-8">
+              <h2 className="text-5xl sm:text-6xl lg:text-[3.25rem] xl:text-7xl 2xl:text-8xl font-[1000] text-espresso leading-[0.9] tracking-tighter uppercase">
                 POPULAR<br />COFFEES
               </h2>
             </div>
@@ -101,7 +92,7 @@ const PopularPackages = ({ initialPackages }: PopularPackagesProps) => {
           </div>
 
           {/* Right Column: 3 Cards + View All Button (With Offset) */}
-          <div className="space-y-8 2xl:pt-20">
+          <div className="space-y-6 lg:space-y-8 lg:pt-4 xl:pt-12">
             {col2.map((pkg, idx) => (
               <PackageCard
                 key={pkg._id || pkg.id}
@@ -116,11 +107,11 @@ const PopularPackages = ({ initialPackages }: PopularPackagesProps) => {
             <div className="pt-8 pl-4">
               <Button
                 variant="ghost"
-                className="group flex items-center gap-3 text-[#3D1218] font-black text-xl uppercase tracking-tighter hover:bg-transparent hover:text-[#6B1F2A] transition-all duration-300"
+                className="group flex items-center gap-3 text-espresso font-black text-xl uppercase tracking-tighter hover:bg-transparent hover:text-hazelnut transition-all duration-300"
                 onClick={() => router.push('/packages')}
               >
-                <span>Shop All Coffee</span>
-                <div className="w-10 h-10 rounded-full border border-[#6B1F2A]/10 flex items-center justify-center group-hover:bg-[#6B1F2A] group-hover:border-[#6B1F2A] transition-all">
+                <span>View All Products</span>
+                <div className="w-10 h-10 rounded-full border border-hazelnut/10 flex items-center justify-center group-hover:bg-hazelnut group-hover:border-hazelnut transition-all">
                   <ArrowRight className="w-5 h-5" />
                 </div>
               </Button>
@@ -147,7 +138,7 @@ const PackageCard = ({ pkg, index, router, openForm }: any) => {
 
     return (
       <motion.div
-        className="group bg-white rounded-[40px] overflow-hidden p-3 shadow-[0_10px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_70px_rgba(0,0,0,0.1)] transition-all duration-700 cursor-pointer flex flex-col sm:flex-row h-full sm:h-[320px] border border-white"
+        className="group bg-cream rounded-[28px] lg:rounded-[32px] xl:rounded-[40px] overflow-hidden p-2.5 lg:p-3 shadow-[0_10px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_70px_rgba(0,0,0,0.1)] transition-all duration-700 cursor-pointer flex flex-col sm:flex-row h-full sm:h-[260px] lg:h-[240px] xl:h-[280px] 2xl:h-[320px] border border-white"
         onClick={() => router.push(route)}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -155,28 +146,28 @@ const PackageCard = ({ pkg, index, router, openForm }: any) => {
       transition={{ duration: 0.6, delay: index * 0.1 }}
     >
       {/* Image Section */}
-      <div className="relative w-full sm:w-[260px] h-[200px] sm:h-full flex-shrink-0">
+      <div className="relative w-full sm:w-[180px] lg:w-[150px] xl:w-[200px] 2xl:w-[260px] h-[200px] sm:h-full flex-shrink-0">
         <Image
           src={imageUrl}
           alt={pkg.title}
           fill
-          className="object-cover rounded-[30px] transform group-hover:scale-105 transition-transform duration-1000"
-          sizes="(max-width: 640px) 100vw, 260px"
+          className="object-cover rounded-[22px] lg:rounded-[24px] xl:rounded-[30px] transform group-hover:scale-105 transition-transform duration-1000"
+          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 180px, 260px"
         />
       </div>
 
       {/* Info Section */}
-      <div className="p-6 flex flex-col justify-between flex-grow">
+      <div className="p-4 lg:p-4 xl:p-6 flex flex-col justify-between flex-grow min-w-0">
         <div>
           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">
             {pkg.duration} &nbsp;·&nbsp; SPECIALTY ROAST
           </p>
-          <h3 className="text-xl md:text-2xl font-black text-[#3D1218] leading-[1.1] mb-2 uppercase tracking-tighter group-hover:text-[#6B1F2A] transition-colors">
+          <h3 className="text-lg lg:text-xl xl:text-2xl font-black text-espresso leading-[1.1] mb-2 uppercase tracking-tighter group-hover:text-hazelnut transition-colors line-clamp-2">
             {pkg.title}
           </h3>
-          <div className="flex items-center gap-1 mb-3">
+          <div className="flex items-center gap-1 mb-2 xl:mb-3">
             {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-3 h-3 fill-[#6B1F2A] text-[#6B1F2A]" />
+              <Star key={i} className="w-3 h-3 fill-hazelnut text-hazelnut" />
             ))}
             <span className="text-[10px] font-bold text-gray-300 ml-1">Verified Roast</span>
           </div>
@@ -185,9 +176,9 @@ const PackageCard = ({ pkg, index, router, openForm }: any) => {
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 mt-4">
+        <div className="flex flex-col sm:flex-row gap-2 xl:gap-3 mt-3 xl:mt-4">
           <Button
-            className="flex-1 bg-[#6B1F2A] hover:bg-[#4A1520] text-white font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
+            className="flex-1 bg-hazelnut hover:bg-espresso text-white font-bold py-3 xl:py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 text-xs xl:text-sm"
             onClick={(e) => {
               e.stopPropagation();
               router.push(route);
@@ -198,7 +189,7 @@ const PackageCard = ({ pkg, index, router, openForm }: any) => {
           </Button>
           <Button
             variant="outline"
-            className="flex-1 border-[#3D1218] text-[#3D1218] hover:bg-[#3D1218] hover:text-white font-bold py-4 rounded-xl transition-all duration-300"
+            className="flex-1 border-espresso text-espresso hover:bg-espresso hover:text-white font-bold py-3 xl:py-4 rounded-xl transition-all duration-300 text-xs xl:text-sm"
             onClick={(e) => {
               e.stopPropagation();
               openForm({

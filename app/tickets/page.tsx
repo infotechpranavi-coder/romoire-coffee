@@ -161,9 +161,9 @@ const TicketsPage = () => {
 
     if (loading && tickets.length === 0) {
         return (
-            <div className="min-h-screen bg-white flex items-center justify-center">
+            <div className="min-h-screen bg-cream flex items-center justify-center">
                 <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#111827] mx-auto mb-4"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-espresso mx-auto mb-4"></div>
                     <p className="text-gray-600 font-bold uppercase tracking-widest text-[10px]">Searching flights...</p>
                 </div>
             </div>
@@ -171,7 +171,7 @@ const TicketsPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-cream">
             {/* Hero Section */}
             <section className="relative text-white py-28 md:py-40 overflow-hidden">
                 <div
@@ -182,7 +182,7 @@ const TicketsPage = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.5)_100%)]" />
-                <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#F5EFE6] to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-cream to-transparent" />
 
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
@@ -216,7 +216,7 @@ const TicketsPage = () => {
             </section>
 
             {/* Filters Section */}
-            <section className="py-8 bg-white border-b">
+            <section className="py-8 bg-cream border-b">
                 <div className="container mx-auto px-4">
                     <div className="max-w-6xl mx-auto">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -262,13 +262,13 @@ const TicketsPage = () => {
             </section>
 
             {/* Grid Section */}
-            <section className="py-16 bg-[#F5EFE6]">
+            <section className="py-16 bg-cream">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {filteredTickets.map((t, index) => (
                             <motion.div
                                 key={t._id}
-                                className="group bg-white rounded-[32px] overflow-hidden shadow-[0_10px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_70px_rgba(0,0,0,0.1)] transition-all duration-700 cursor-pointer flex flex-col border border-gray-100"
+                                className="group bg-cream rounded-[32px] overflow-hidden shadow-[0_10px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_70px_rgba(0,0,0,0.1)] transition-all duration-700 cursor-pointer flex flex-col border border-gray-100"
                                 onClick={() => router.push(`/tickets/${generateSlug(t.title, t._id)}`)}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -286,26 +286,26 @@ const TicketsPage = () => {
                                     )}
                                     <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
                                     <div className="absolute top-6 left-6">
-                                        <Badge className="bg-white/90 backdrop-blur-sm text-amber-600 border-none font-bold px-3 py-1 shadow-sm">
+                                        <Badge className="bg-cream/90 backdrop-blur-sm text-amber-600 border-none font-bold px-3 py-1 shadow-sm">
                                             {t.isAvailable ? 'Available Now' : 'Limited Seats'}
                                         </Badge>
                                     </div>
                                     <div className="absolute bottom-4 right-6 text-right">
-                                        <div className="text-2xl font-black text-[#111827]">{formatPrice(t.price)}</div>
+                                        <div className="text-2xl font-black text-espresso">{formatPrice(t.price)}</div>
                                         <div className="text-[10px] font-bold text-amber-600 uppercase tracking-widest">Inclusive Fee</div>
                                     </div>
                                 </div>
 
                                 <div className="p-8 pt-2 flex flex-col flex-grow relative">
-                                    <div className="absolute -top-4 left-[-12px] w-6 h-6 rounded-full bg-[#F5EFE6]" />
-                                    <div className="absolute -top-4 right-[-12px] w-6 h-6 rounded-full bg-[#F5EFE6]" />
+                                    <div className="absolute -top-4 left-[-12px] w-6 h-6 rounded-full bg-cream" />
+                                    <div className="absolute -top-4 right-[-12px] w-6 h-6 rounded-full bg-cream" />
                                     <div className="absolute -top-1 left-4 right-4 border-t border-dashed border-gray-200" />
 
                                     <div className="flex-grow pt-4">
                                         <div className="flex justify-between items-start mb-4">
                                             <div>
                                                 <p className="text-[10px] font-bold text-amber-600 uppercase tracking-[0.2em] mb-1">Destination</p>
-                                                <h3 className="text-2xl font-black text-[#3D1218] leading-tight uppercase tracking-tighter group-hover:text-gray-900 transition-colors truncate max-w-[200px]">{t.location}</h3>
+                                                <h3 className="text-2xl font-black text-espresso leading-tight uppercase tracking-tighter group-hover:text-gray-900 transition-colors truncate max-w-[200px]">{t.location}</h3>
                                             </div>
                                             <div className="text-right">
                                                 <Plane className="h-6 w-6 text-gray-200 ml-auto rotate-45" />
@@ -315,15 +315,15 @@ const TicketsPage = () => {
                                         <div className="grid grid-cols-2 gap-6 py-4 border-y border-gray-50 mb-6">
                                             <div>
                                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Airline</p>
-                                                <p className="text-sm font-bold text-[#3D1218]">{t.carrier}</p>
+                                                <p className="text-sm font-bold text-espresso">{t.carrier}</p>
                                             </div>
                                             <div>
                                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Route</p>
-                                                <p className="text-sm font-bold text-[#3D1218]">{t.route}</p>
+                                                <p className="text-sm font-bold text-espresso">{t.route}</p>
                                             </div>
                                             <div>
                                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Class</p>
-                                                <p className="text-sm font-bold text-[#3D1218]">{t.travelClass}</p>
+                                                <p className="text-sm font-bold text-espresso">{t.travelClass}</p>
                                             </div>
                                             <div>
                                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">ID</p>
@@ -339,7 +339,7 @@ const TicketsPage = () => {
 
                                 <div className="mt-auto p-8 pt-0">
                                     <Button
-                                        className="w-full bg-[#111827] hover:bg-[#6B1F2A] text-white font-black py-6 rounded-2xl transition-all duration-300 shadow-lg flex items-center justify-center gap-3 group/btn uppercase tracking-widest text-[10px]"
+                                        className="w-full bg-espresso hover:bg-hazelnut text-white font-black py-6 rounded-2xl transition-all duration-300 shadow-lg flex items-center justify-center gap-3 group/btn uppercase tracking-widest text-[10px]"
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             router.push(`/tickets/${generateSlug(t.title, t._id)}`);
