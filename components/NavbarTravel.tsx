@@ -247,7 +247,7 @@ const NavbarTravel = () => {
                             : 'opacity-0 invisible translate-y-1.5 pointer-events-none'
                         }`}
                       >
-                        <div className="w-[660px] lg:w-[740px] rounded-2xl bg-[#FDFBF7] shadow-[0_25px_65px_-15px_rgba(74,21,21,0.22)] border border-[#EADBCE] overflow-hidden text-left">
+                        <div className="w-[620px] lg:w-[680px] rounded-2xl bg-[#FDFBF7] shadow-[0_25px_65px_-15px_rgba(74,21,21,0.22)] border border-[#EADBCE] overflow-hidden text-left">
                           {/* Top Bar */}
                           <div className="px-6 py-3 bg-[#F6EFE6] border-b border-[#EADBCE]/80 flex items-center justify-between">
                             <div className="flex items-center gap-2.5">
@@ -256,12 +256,20 @@ const NavbarTravel = () => {
                                 Romoire Coffee Premixes
                               </span>
                             </div>
-                            <span className="text-[10px] uppercase font-semibold tracking-wider text-muted-foreground bg-[#EADBCE]/45 px-2.5 py-0.5 rounded-full">
-                              Dairy-Free • No Refined Sugar
-                            </span>
+                            <Link
+                              href="/packages"
+                              onClick={() => {
+                                setOpenDropdownIndex(null);
+                                setHoveredIndex(null);
+                              }}
+                              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-burgundy hover:text-espresso transition-colors group"
+                            >
+                              <span>Explore All</span>
+                              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                            </Link>
                           </div>
 
-                          {/* Categories Grid */}
+                          {/* Categories Grid - Only Product Names */}
                           <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-[#EADBCE]/60">
                             {categorySections.map((section, sIdx) => (
                               <div
@@ -269,14 +277,11 @@ const NavbarTravel = () => {
                                 className={`${sIdx > 0 ? 'md:pl-6 pt-4 md:pt-0' : ''} flex flex-col`}
                               >
                                 {/* Category Header */}
-                                <div className="flex items-center gap-2 mb-3.5 pb-2 border-b border-[#EADBCE]/60">
-                                  <div className="w-2 h-2 rounded-full bg-burgundy" />
+                                <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#EADBCE]/60">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-burgundy" />
                                   <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-burgundy font-serif">
                                     {section.category}
                                   </h4>
-                                  <span className="ml-auto text-[10px] font-semibold text-muted-foreground bg-[#F6EFE6] px-1.5 py-0.5 rounded border border-[#EADBCE]">
-                                    {section.products.length}
-                                  </span>
                                 </div>
 
                                 {/* Product Names List */}
@@ -289,47 +294,15 @@ const NavbarTravel = () => {
                                           setOpenDropdownIndex(null);
                                           setHoveredIndex(null);
                                         }}
-                                        className="group flex flex-col p-2 rounded-lg hover:bg-[#F5EDE3] transition-colors"
+                                        className="block px-2.5 py-1.5 rounded-lg text-sm font-medium text-gray-800 hover:text-burgundy hover:bg-[#F5EDE3] transition-colors leading-snug"
                                       >
-                                        <div className="flex items-baseline justify-between gap-1.5">
-                                          <span className="text-sm font-medium text-gray-900 group-hover:text-burgundy group-hover:font-semibold transition-colors leading-snug">
-                                            {prod.title}
-                                          </span>
-                                          {prod.price && (
-                                            <span className="text-xs font-semibold text-hazelnut group-hover:text-burgundy shrink-0">
-                                              ₹{prod.price}
-                                            </span>
-                                          )}
-                                        </div>
-                                        {prod.subtitle && (
-                                          <span className="text-[11px] text-gray-500 line-clamp-1 mt-0.5 font-light">
-                                            {prod.subtitle}
-                                          </span>
-                                        )}
+                                        {prod.title}
                                       </Link>
                                     </li>
                                   ))}
                                 </ul>
                               </div>
                             ))}
-                          </div>
-
-                          {/* Bottom Bar */}
-                          <div className="px-6 py-3 bg-[#F6EFE6]/90 border-t border-[#EADBCE]/80 flex items-center justify-between">
-                            <span className="text-xs text-muted-foreground italic">
-                              Handcrafted single-serve sachets with instant hot water preparation
-                            </span>
-                            <Link
-                              href="/packages"
-                              onClick={() => {
-                                setOpenDropdownIndex(null);
-                                setHoveredIndex(null);
-                              }}
-                              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-burgundy hover:text-espresso transition-colors group"
-                            >
-                              <span>Explore All Products</span>
-                              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                            </Link>
                           </div>
                         </div>
                       </div>
@@ -467,14 +440,9 @@ const NavbarTravel = () => {
                                 key={prod._id}
                                 href={`/packages/${prod._id}`}
                                 onClick={() => setIsMenuOpen(false)}
-                                className="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-sm text-gray-800 hover:bg-[#F5EDE3] hover:text-burgundy transition-colors"
+                                className="block px-2.5 py-1.5 rounded-lg text-xs font-medium text-gray-800 hover:bg-[#F5EDE3] hover:text-burgundy transition-colors"
                               >
-                                <span className="font-medium text-xs text-gray-900">{prod.title}</span>
-                                {prod.price && (
-                                  <span className="text-xs font-semibold text-hazelnut">
-                                    ₹{prod.price}
-                                  </span>
-                                )}
+                                {prod.title}
                               </Link>
                             ))}
                           </div>
