@@ -113,42 +113,45 @@ export default function HomePage() {
     fetch('/api/packages')
       .then((res) => res.json())
       .then((data) => {
-        if (data?.success && Array.isArray(data?.data)) {
-          setDbPackages(data.data)
-        } else if (Array.isArray(data)) {
-          setDbPackages(data)
+        const list = data?.success && Array.isArray(data?.data) ? data.data : Array.isArray(data) ? data : []
+        setDbPackages(list)
+        if (list.length > 0) {
+          setSelectedHeroFlavour(list[0]._id)
         }
       })
       .catch((err) => console.error('Failed to fetch packages:', err))
       .finally(() => setLoadingPackages(false))
   }, [])
 
-  const selectedDbProduct = dbPackages.find((p) => p._id === selectedHeroFlavour)
+  const selectedDbProduct = dbPackages.find((p) => p._id === selectedHeroFlavour) || dbPackages[0]
   const activeFlavour = selectedDbProduct
     ? {
         id: selectedDbProduct._id,
         name: selectedDbProduct.title,
-        badge: selectedDbProduct.packageCategory || 'Added Product',
+        badge: selectedDbProduct.packageCategory || 'Single Origin',
         notes: selectedDbProduct.packageCategory || selectedDbProduct.subtitle || 'Specialty Coffee',
-        desc: selectedDbProduct.about || selectedDbProduct.tourDetails || selectedDbProduct.subtitle || '',
+        desc: selectedDbProduct.about || selectedDbProduct.tourDetails || selectedDbProduct.subtitle || 'Single origin Arabica coffee, crafted without refined sugar or dairy.',
         price: `₹${selectedDbProduct.price}`,
         perCup: selectedDbProduct.duration || 'Single Origin',
         sachets: selectedDbProduct.capacity || 'Pre-measured 20g',
         image: selectedDbProduct.images?.[0]?.url || '/images/romoire/coffee_sachets.jpg',
       }
-    : FLAVOURS[selectedHeroFlavour] || FLAVOURS.all
+    : {
+        id: 'coffee',
+        name: 'Single Origin Coffee',
+        badge: 'Single Origin',
+        notes: 'Chikmagalur Arabica',
+        desc: 'Single origin Arabica, coconut milk and monk fruit.',
+        price: '₹1000',
+        perCup: 'Single Origin',
+        sachets: 'Pre-measured 20g',
+        image: '/images/romoire/coffee_sachets.jpg',
+      }
 
-  const heroPills = [
-    { id: 'all', label: 'All four' },
-    ...dbPackages.map((pkg) => ({
-      id: pkg._id,
-      label: pkg.title,
-    })),
-    { id: 'vanilla', label: 'Vanilla' },
-    { id: 'espresso', label: 'Espresso' },
-    { id: 'mocha', label: 'Mocha' },
-    { id: 'hazelnut', label: 'Hazelnut' },
-  ]
+  const heroPills = dbPackages.map((pkg) => ({
+    id: pkg._id,
+    label: pkg.title,
+  }))
 
   const handleAddToCart = (productName: string, price: string) => {
     toast.success(`Added ${productName} (${price}) to cart!`, {
@@ -227,9 +230,7 @@ export default function HomePage() {
                   onClick={() => handleAddToCart(activeFlavour.name, activeFlavour.price)}
                   className="btn-romoire w-full text-center py-4 text-[13px] tracking-[1.8px] shadow-sm"
                 >
-                  {selectedHeroFlavour === 'all'
-                    ? 'Add the Discovery Box'
-                    : `Add ${activeFlavour.name} Box`}
+                  Add {activeFlavour.name} to cart
                 </button>
                 <p className="text-xs text-ink-mute text-center">
                   Free shipping over ₹999 across India
@@ -607,205 +608,84 @@ export default function HomePage() {
               </h2>
             </div>
             <p className="text-base text-ink-soft max-w-[430px] leading-[1.7]">
-              Four flavours, one method. Every one of them a coffee premix with no refined sugar, 20g, single-serve, ready in about a minute.
+              Every blend crafted with single-origin Arabica, dairy-free coconut milk, and zero refined sugar. Single-serve, ready in about a minute.
             </p>
           </div>
 
-          {/* Cards Grid: Dynamic Added Products + Signature Flavours */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
-            {/* Added Products from Database / Dashboard */}
-            {dbPackages.map((pkg) => {
-              const imgUrl = pkg.images?.[0]?.url || '/images/romoire/coffee_sachets.jpg'
-              const priceText = `₹${pkg.price}`
-              const categoryText = pkg.packageCategory || pkg.subtitle || 'Specialty Coffee'
-              const descText =
-                pkg.about || pkg.tourDetails || pkg.subtitle || 'Single origin Arabica coffee, crafted without refined sugar or dairy.'
+          {/* Cards Grid: ONLY Dynamic Added Products from Database */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-7">
+            {loadingPackages ? (
+              <div className="col-span-full py-16 text-center text-ink-mute font-light text-base">
+                Loading products...
+              </div>
+            ) : dbPackages.length === 0 ? (
+              <div className="col-span-full py-16 text-center text-ink-mute font-light text-base">
+                No products found in the collection.
+              </div>
+            ) : (
+              dbPackages.map((pkg) => {
+                const imgUrl = pkg.images?.[0]?.url || '/images/romoire/coffee_sachets.jpg'
+                const priceText = `₹${pkg.price}`
+                const categoryText = pkg.packageCategory || pkg.subtitle || 'Specialty Coffee'
+                const descText =
+                  pkg.about || pkg.tourDetails || pkg.subtitle || 'Single origin Arabica coffee, crafted without refined sugar or dairy.'
 
-              return (
-                <article
-                  key={pkg._id}
-                  className="border border-line rounded-sm p-6 bg-white flex flex-col gap-3.5 hover:shadow-[0_8px_28px_rgba(102,24,24,0.1)] transition-all group"
-                >
-                  <Link
-                    href={`/packages/${pkg._id}`}
-                    className="relative h-[210px] rounded-sm overflow-hidden border border-line bg-sand/30 block"
+                return (
+                  <article
+                    key={pkg._id}
+                    className="border border-line rounded-sm p-6 bg-white flex flex-col gap-3.5 hover:shadow-[0_8px_28px_rgba(102,24,24,0.1)] transition-all group"
                   >
-                    <img
-                      src={imgUrl}
-                      alt={pkg.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <span className="absolute top-2.5 right-2.5 bg-maroon text-cream text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-medium shadow-sm">
-                      {pkg.packageCategory || 'Added Product'}
-                    </span>
-                  </Link>
-
-                  <Link href={`/packages/${pkg._id}`} className="hover:text-maroon-deep transition-colors">
-                    <h3 className="font-playfair text-2xl text-maroon font-medium line-clamp-1">
-                      {pkg.title}
-                    </h3>
-                  </Link>
-                  <p className="text-[11.5px] uppercase tracking-[1.8px] text-[#8A3A3A] font-medium line-clamp-1">
-                    {categoryText}
-                  </p>
-                  <p className="text-sm leading-[1.65] text-ink-soft flex-grow line-clamp-3">
-                    {descText}
-                  </p>
-
-                  <div className="flex items-baseline justify-between pt-1">
-                    <p className="font-playfair text-xl text-maroon font-medium">
-                      {priceText}
-                    </p>
                     <Link
                       href={`/packages/${pkg._id}`}
-                      className="text-xs uppercase tracking-wider text-ink-mute hover:text-maroon underline underline-offset-4"
+                      className="relative h-[210px] rounded-sm overflow-hidden border border-line bg-sand/30 block"
                     >
-                      View details →
+                      <img
+                        src={imgUrl}
+                        alt={pkg.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      {pkg.packageCategory && (
+                        <span className="absolute top-2.5 right-2.5 bg-maroon text-cream text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-medium shadow-sm">
+                          {pkg.packageCategory}
+                        </span>
+                      )}
                     </Link>
-                  </div>
 
-                  <button
-                    type="button"
-                    onClick={() => handleAddToCart(pkg.title, priceText)}
-                    className="btn-romoire py-3.5 text-xs text-center w-full"
-                  >
-                    Add to cart
-                  </button>
-                </article>
-              )
-            })}
+                    <Link href={`/packages/${pkg._id}`} className="hover:text-maroon-deep transition-colors">
+                      <h3 className="font-playfair text-2xl text-maroon font-medium line-clamp-1">
+                        {pkg.title}
+                      </h3>
+                    </Link>
+                    <p className="text-[11.5px] uppercase tracking-[1.8px] text-[#8A3A3A] font-medium line-clamp-1">
+                      {categoryText}
+                    </p>
+                    <p className="text-sm leading-[1.65] text-ink-soft flex-grow line-clamp-3">
+                      {descText}
+                    </p>
 
-            {/* Signature Romoire Flavours */}
-            {/* Card 1: Vanilla */}
-            <article className="border border-line rounded-sm p-6 bg-white flex flex-col gap-3.5 hover:shadow-[0_8px_28px_rgba(102,24,24,0.1)] transition-all">
-              <div className="relative h-[210px] rounded-sm overflow-hidden border border-line bg-sand/30">
-                <Image
-                  src="/images/romoire/flavor_vanilla.jpg"
-                  alt="Vanilla Cappuccino Premix"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="font-playfair text-2xl text-maroon font-medium">Vanilla</h3>
-              <p className="text-[11.5px] uppercase tracking-[1.8px] text-[#8A3A3A] font-medium">
-                Smooth · Creamy · Delicate
-              </p>
-              <p className="text-sm leading-[1.65] text-ink-soft flex-grow">
-                Soft and rounded, with the vanilla sitting just under the coffee. Start here if a cappuccino is your usual order.
-              </p>
-              <p className="font-playfair text-xl text-maroon font-medium">₹449</p>
-              <button
-                type="button"
-                onClick={() => handleAddToCart('Vanilla Box (5 Sachets)', '₹449')}
-                className="btn-romoire py-3.5 text-xs text-center"
-              >
-                Add to cart
-              </button>
-            </article>
+                    <div className="flex items-baseline justify-between pt-1">
+                      <p className="font-playfair text-xl text-maroon font-medium">
+                        {priceText}
+                      </p>
+                      <Link
+                        href={`/packages/${pkg._id}`}
+                        className="text-xs uppercase tracking-wider text-ink-mute hover:text-maroon underline underline-offset-4"
+                      >
+                        View details →
+                      </Link>
+                    </div>
 
-            {/* Card 2: Espresso */}
-            <article className="border border-line rounded-sm p-6 bg-white flex flex-col gap-3.5 hover:shadow-[0_8px_28px_rgba(102,24,24,0.1)] transition-all">
-              <div className="relative h-[210px] rounded-sm overflow-hidden border border-line bg-sand/30">
-                <Image
-                  src="/images/romoire/flavor_espresso.jpg"
-                  alt="Espresso Cappuccino Premix"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="font-playfair text-2xl text-maroon font-medium">Espresso</h3>
-              <p className="text-[11.5px] uppercase tracking-[1.8px] text-[#8A3A3A] font-medium">
-                Bold · Clean · Direct
-              </p>
-              <p className="text-sm leading-[1.65] text-ink-soft flex-grow">
-                The least sweet of the four and the closest to a straight café shot. For people who want the coffee in front, not behind.
-              </p>
-              <p className="font-playfair text-xl text-maroon font-medium">₹449</p>
-              <button
-                type="button"
-                onClick={() => handleAddToCart('Espresso Box (5 Sachets)', '₹449')}
-                className="btn-romoire py-3.5 text-xs text-center"
-              >
-                Add to cart
-              </button>
-            </article>
-
-            {/* Card 3: Mocha */}
-            <article className="border border-line rounded-sm p-6 bg-white flex flex-col gap-3.5 hover:shadow-[0_8px_28px_rgba(102,24,24,0.1)] transition-all">
-              <div className="relative h-[210px] rounded-sm overflow-hidden border border-line bg-sand/30">
-                <Image
-                  src="/images/romoire/flavor_mocha.jpg"
-                  alt="Mocha Cappuccino Premix"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="font-playfair text-2xl text-maroon font-medium">Mocha</h3>
-              <p className="text-[11.5px] uppercase tracking-[1.8px] text-[#8A3A3A] font-medium">
-                Rich · Cocoa · Indulgent
-              </p>
-              <p className="text-sm leading-[1.65] text-ink-soft flex-grow">
-                Rich and indulgent, with cocoa laid over the coffee rather than on top of it. Enough for an afternoon, without turning into a dessert.
-              </p>
-              <p className="font-playfair text-xl text-maroon font-medium">₹449</p>
-              <button
-                type="button"
-                onClick={() => handleAddToCart('Mocha Box (5 Sachets)', '₹449')}
-                className="btn-romoire py-3.5 text-xs text-center"
-              >
-                Add to cart
-              </button>
-            </article>
-
-            {/* Card 4: Hazelnut */}
-            <article className="border border-line rounded-sm p-6 bg-white flex flex-col gap-3.5 hover:shadow-[0_8px_28px_rgba(102,24,24,0.1)] transition-all">
-              <div className="relative h-[210px] rounded-sm overflow-hidden border border-line bg-sand/30">
-                <Image
-                  src="/images/romoire/flavor_hazelnut.jpg"
-                  alt="Hazelnut Cappuccino Premix"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="font-playfair text-2xl text-maroon font-medium">Hazelnut</h3>
-              <p className="text-[11.5px] uppercase tracking-[1.8px] text-[#8A3A3A] font-medium">
-                Warm · Roasted · Indulgent
-              </p>
-              <p className="text-sm leading-[1.65] text-ink-soft flex-grow">
-                Roasted hazelnut carried right through the finish — rich, warm and indulgent. The one people reach for when the weather turns.
-              </p>
-              <p className="font-playfair text-xl text-maroon font-medium">₹449</p>
-              <button
-                type="button"
-                onClick={() => handleAddToCart('Hazelnut Box (5 Sachets)', '₹449')}
-                className="btn-romoire py-3.5 text-xs text-center"
-              >
-                Add to cart
-              </button>
-            </article>
-          </div>
-
-          {/* Discovery Box Banner */}
-          <div className="mt-10 bg-maroon text-cream rounded-sm p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex flex-col gap-3 max-w-[640px]">
-              <span className="eyebrow eyebrow-light">Best first order</span>
-              <h3 className="font-playfair text-2xl sm:text-3xl lg:text-4xl leading-[1.18] font-medium">
-                Not sure where to start? Start with all four.
-              </h3>
-              <p className="text-base text-[#F0DBC4] leading-[1.7]">
-                The Discovery Box — five sachets, all four flavours, one box. Find the one you’ll keep buying before you commit to a full box of it.
-              </p>
-            </div>
-            <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
-              <p className="font-playfair text-4xl text-cream font-medium">₹499</p>
-              <button
-                type="button"
-                onClick={() => handleAddToCart('Discovery Box (All Four)', '₹499')}
-                className="btn-romoire-light btn-romoire text-xs uppercase tracking-[1.8px] py-4 px-8"
-              >
-                Add the Discovery Box
-              </button>
-            </div>
+                    <button
+                      type="button"
+                      onClick={() => handleAddToCart(pkg.title, priceText)}
+                      className="btn-romoire py-3.5 text-xs text-center w-full"
+                    >
+                      Add to cart
+                    </button>
+                  </article>
+                )
+              })
+            )}
           </div>
         </div>
       </section>
