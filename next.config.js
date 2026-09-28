@@ -69,6 +69,31 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    optimizePackageImports: [
+      'lucide-react',
+      'framer-motion',
+      'date-fns',
+      'recharts',
+      '@radix-ui/react-accordion',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-popover',
+      '@radix-ui/react-select',
+      '@radix-ui/react-tabs',
+      '@radix-ui/react-tooltip',
+    ],
+  },
+  webpack: (config, { dev }) => {
+    if (dev) {
+      // Disable persistent pack-file disk cache in dev mode on Windows.
+      // Webpack's PackFileCacheStrategy causes RangeError: Array buffer allocation failed
+      // and ENOENT/EPERM rename errors when serializing large gz chunks.
+      config.cache = false;
+    }
+    return config;
+  },
 }
 
 module.exports = nextConfig
+
