@@ -6,76 +6,6 @@ import Link from 'next/link'
 import { toast } from 'sonner'
 import { Menu, X, Star, Check, ChevronDown, ArrowRight } from 'lucide-react'
 
-// Flavour data for interactive buy module and range cards
-interface Flavour {
-  id: string
-  name: string
-  badge: string
-  notes: string
-  desc: string
-  price: string
-  perCup: string
-  sachets: string
-  image: string
-}
-
-const FLAVOURS: Record<string, Flavour> = {
-  all: {
-    id: 'all',
-    name: 'Discovery Box',
-    badge: 'All four flavours',
-    notes: '5 Sachets · Assorted · Best first order',
-    desc: 'The Discovery Box — five sachets, all four flavours, one box. Find the one you will keep buying before you commit to a full box of it.',
-    price: '₹499',
-    perCup: '₹99 a cup',
-    sachets: '5 sachets · 20g each',
-    image: '/images/romoire/discovery_box.jpg',
-  },
-  vanilla: {
-    id: 'vanilla',
-    name: 'Vanilla',
-    badge: 'Vanilla Cappuccino',
-    notes: 'Smooth · Creamy · Delicate',
-    desc: 'Soft and rounded, with the vanilla sitting just under the coffee. Start here if a cappuccino is your usual order.',
-    price: '₹449',
-    perCup: '₹89 a cup',
-    sachets: '5 sachets · 20g each',
-    image: '/images/romoire/flavor_vanilla.jpg',
-  },
-  espresso: {
-    id: 'espresso',
-    name: 'Espresso',
-    badge: 'Espresso Cappuccino',
-    notes: 'Bold · Clean · Direct',
-    desc: 'The least sweet of the four and the closest to a straight café shot. For people who want the coffee in front, not behind.',
-    price: '₹449',
-    perCup: '₹89 a cup',
-    sachets: '5 sachets · 20g each',
-    image: '/images/romoire/flavor_espresso.jpg',
-  },
-  mocha: {
-    id: 'mocha',
-    name: 'Mocha',
-    badge: 'Mocha Cappuccino',
-    notes: 'Rich · Cocoa · Indulgent',
-    desc: 'Rich and indulgent, with cocoa laid over the coffee rather than on top of it. Enough for an afternoon, without turning into a dessert.',
-    price: '₹449',
-    perCup: '₹89 a cup',
-    sachets: '5 sachets · 20g each',
-    image: '/images/romoire/flavor_mocha.jpg',
-  },
-  hazelnut: {
-    id: 'hazelnut',
-    name: 'Hazelnut',
-    badge: 'Hazelnut Cappuccino',
-    notes: 'Warm · Roasted · Indulgent',
-    desc: 'Roasted hazelnut carried right through the finish — rich, warm and indulgent. The one people reach for when the weather turns.',
-    price: '₹449',
-    perCup: '₹89 a cup',
-    sachets: '5 sachets · 20g each',
-    image: '/images/romoire/flavor_hazelnut.jpg',
-  },
-}
 
 const FAQS = [
   {
@@ -101,7 +31,7 @@ const FAQS = [
 ]
 
 export default function HomePage() {
-  const [selectedHeroFlavour, setSelectedHeroFlavour] = useState<string>('all')
+  const [selectedProductId, setSelectedProductId] = useState<string>('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(0)
   const [emailInput, setEmailInput] = useState('')
@@ -116,42 +46,14 @@ export default function HomePage() {
         const list = data?.success && Array.isArray(data?.data) ? data.data : Array.isArray(data) ? data : []
         setDbPackages(list)
         if (list.length > 0) {
-          setSelectedHeroFlavour(list[0]._id)
+          setSelectedProductId(list[0]._id)
         }
       })
       .catch((err) => console.error('Failed to fetch packages:', err))
       .finally(() => setLoadingPackages(false))
   }, [])
 
-  const selectedDbProduct = dbPackages.find((p) => p._id === selectedHeroFlavour) || dbPackages[0]
-  const activeFlavour = selectedDbProduct
-    ? {
-        id: selectedDbProduct._id,
-        name: selectedDbProduct.title,
-        badge: selectedDbProduct.packageCategory || 'Single Origin',
-        notes: selectedDbProduct.packageCategory || selectedDbProduct.subtitle || 'Specialty Coffee',
-        desc: selectedDbProduct.about || selectedDbProduct.tourDetails || selectedDbProduct.subtitle || 'Single origin Arabica coffee, crafted without refined sugar or dairy.',
-        price: `₹${selectedDbProduct.price}`,
-        perCup: selectedDbProduct.duration || 'Single Origin',
-        sachets: selectedDbProduct.capacity || 'Pre-measured 20g',
-        image: selectedDbProduct.images?.[0]?.url || '/images/romoire/coffee_sachets.jpg',
-      }
-    : {
-        id: 'coffee',
-        name: 'Single Origin Coffee',
-        badge: 'Single Origin',
-        notes: 'Chikmagalur Arabica',
-        desc: 'Single origin Arabica, coconut milk and monk fruit.',
-        price: '₹1000',
-        perCup: 'Single Origin',
-        sachets: 'Pre-measured 20g',
-        image: '/images/romoire/coffee_sachets.jpg',
-      }
-
-  const heroPills = dbPackages.map((pkg) => ({
-    id: pkg._id,
-    label: pkg.title,
-  }))
+  const currentProduct = dbPackages.find((p) => p._id === selectedProductId) || dbPackages[0]
 
   const handleAddToCart = (productName: string, price: string) => {
     toast.success(`Added ${productName} (${price}) to cart!`, {
@@ -193,45 +95,59 @@ export default function HomePage() {
                   Start here
                 </span>
 
-                {/* Flavour Pills */}
-                <div className="flex flex-wrap gap-2" role="group" aria-label="Choose a flavour">
-                  {heroPills.map((p) => {
-                    const isActive = selectedHeroFlavour === p.id
-                    return (
-                      <button
-                        key={p.id}
-                        type="button"
-                        onClick={() => setSelectedHeroFlavour(p.id)}
-                        className={`text-[13px] tracking-wide px-4 py-2 rounded-full border transition-all ${
-                          isActive
-                            ? 'bg-maroon border-maroon text-cream font-medium shadow-sm'
-                            : 'bg-white border-maroon/30 text-ink-soft hover:border-maroon hover:text-maroon'
-                        }`}
-                      >
-                        {p.label}
-                      </button>
-                    )
-                  })}
-                </div>
+                {loadingPackages ? (
+                  <div className="py-8 flex flex-col items-center justify-center gap-2">
+                    <div className="w-5 h-5 border-2 border-maroon border-t-transparent rounded-full animate-spin" />
+                    <span className="text-xs text-ink-mute">Loading collection...</span>
+                  </div>
+                ) : currentProduct ? (
+                  <>
+                    {/* Dynamic Product Pills */}
+                    <div className="flex flex-wrap gap-2" role="group" aria-label="Choose a product">
+                      {dbPackages.map((p) => {
+                        const isActive = (selectedProductId || dbPackages[0]?._id) === p._id
+                        return (
+                          <button
+                            key={p._id}
+                            type="button"
+                            onClick={() => setSelectedProductId(p._id)}
+                            className={`text-[13px] tracking-wide px-4 py-2 rounded-full border transition-all ${
+                              isActive
+                                ? 'bg-maroon border-maroon text-cream font-medium shadow-sm'
+                                : 'bg-white border-maroon/30 text-ink-soft hover:border-maroon hover:text-maroon'
+                            }`}
+                          >
+                            {p.title}
+                          </button>
+                        )
+                      })}
+                    </div>
 
-                {/* Price and Details */}
-                <div className="flex items-baseline justify-between gap-4 flex-wrap pt-1 border-t border-line/50">
-                  <span className="font-playfair text-3xl text-maroon font-medium">
-                    {activeFlavour.price}
-                  </span>
-                  <span className="text-sm text-ink-mute">
-                    {activeFlavour.sachets} · {activeFlavour.perCup}
-                  </span>
-                </div>
+                    {/* Price and Details */}
+                    <div className="flex items-baseline justify-between gap-4 flex-wrap pt-1 border-t border-line/50">
+                      <span className="font-playfair text-3xl text-maroon font-medium">
+                        ₹{currentProduct.price}
+                      </span>
+                      <span className="text-sm text-ink-mute">
+                        {currentProduct.packageCategory || 'Single Origin'} · {currentProduct.duration || currentProduct.capacity || 'Pre-measured 20g'}
+                      </span>
+                    </div>
 
-                {/* Add CTA */}
-                <button
-                  type="button"
-                  onClick={() => handleAddToCart(activeFlavour.name, activeFlavour.price)}
-                  className="btn-romoire w-full text-center py-4 text-[13px] tracking-[1.8px] shadow-sm"
-                >
-                  Add {activeFlavour.name} to cart
-                </button>
+                    {/* Add CTA */}
+                    <button
+                      type="button"
+                      onClick={() => handleAddToCart(currentProduct.title, `₹${currentProduct.price}`)}
+                      className="btn-romoire w-full text-center py-4 text-[13px] tracking-[1.8px] shadow-sm uppercase font-medium"
+                    >
+                      Add {currentProduct.title} to cart
+                    </button>
+                  </>
+                ) : (
+                  <div className="py-6 text-center text-sm text-ink-mute">
+                    No products currently available.
+                  </div>
+                )}
+
                 <p className="text-xs text-ink-mute text-center">
                   Free shipping over ₹999 across India
                 </p>
