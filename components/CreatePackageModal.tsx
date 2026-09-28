@@ -573,7 +573,7 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
                       </Button>
                     )}
                   </div>
-                  {cat.items.map((item, idx) => (
+                  {(Array.isArray(cat.items) ? cat.items : [String(cat.items || "")]).map((item, idx) => (
                     <div key={idx} className="flex gap-2 pl-4">
                       <Input
                         className="h-8 text-sm"
@@ -583,7 +583,7 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
                           setInclusions((p) =>
                             p.map((c) =>
                               c.id === cat.id
-                                ? { ...c, items: c.items.map((x, j) => (j === idx ? e.target.value : x)) }
+                                ? { ...c, items: (Array.isArray(c.items) ? c.items : [String(c.items || "")]).map((x, j) => (j === idx ? e.target.value : x)) }
                                 : c
                             )
                           )
@@ -596,7 +596,7 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
                           className="h-8 w-8"
                           onClick={() =>
                             setInclusions((p) =>
-                              p.map((c) => (c.id === cat.id ? { ...c, items: c.items.filter((_, j) => j !== idx) } : c))
+                              p.map((c) => (c.id === cat.id ? { ...c, items: (Array.isArray(c.items) ? c.items : [String(c.items || "")]).filter((_, j) => j !== idx) } : c))
                             )
                           }
                         >
@@ -610,7 +610,7 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
                     size="sm"
                     className="ml-4 h-7 text-xs"
                     onClick={() =>
-                      setInclusions((p) => p.map((c) => (c.id === cat.id ? { ...c, items: [...c.items, ""] } : c)))
+                      setInclusions((p) => p.map((c) => (c.id === cat.id ? { ...c, items: [...(Array.isArray(c.items) ? c.items : [String(c.items || "")]), ""] } : c)))
                     }
                   >
                     <Plus className="h-3 w-3 mr-1" /> Add Item
@@ -650,7 +650,7 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
                       </Button>
                     )}
                   </div>
-                  {cat.items.map((item, idx) => (
+                  {(Array.isArray(cat.items) ? cat.items : [String(cat.items || "")]).map((item, idx) => (
                     <div key={idx} className="flex gap-2 pl-4">
                       <Input
                         className="h-8 text-sm"
@@ -660,20 +660,20 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
                           setExclusions((p) =>
                             p.map((c) =>
                               c.id === cat.id
-                                ? { ...c, items: c.items.map((x, j) => (j === idx ? e.target.value : x)) }
+                                ? { ...c, items: (Array.isArray(c.items) ? c.items : [String(c.items || "")]).map((x, j) => (j === idx ? e.target.value : x)) }
                                 : c
                             )
                           )
                         }
                       />
-                      {cat.items.length > 1 && (
+                      {(Array.isArray(cat.items) ? cat.items : [String(cat.items || "")]).length > 1 && (
                         <Button
                           variant="ghost"
                           size="icon"
                           className="h-8 w-8"
                           onClick={() =>
                             setExclusions((p) =>
-                              p.map((c) => (c.id === cat.id ? { ...c, items: c.items.filter((_, j) => j !== idx) } : c))
+                              p.map((c) => (c.id === cat.id ? { ...c, items: (Array.isArray(c.items) ? c.items : [String(c.items || "")]).filter((_, j) => j !== idx) } : c))
                             )
                           }
                         >

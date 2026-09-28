@@ -395,19 +395,26 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                   <div className="p-10 rounded-[40px] bg-cream border border-gray-100 shadow-sm space-y-8 overflow-hidden relative group">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50/50 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-1000" />
                     {Array.isArray(packageData.inclusions) && typeof packageData.inclusions[0] === 'object' ? (
-                      (packageData.inclusions as any[]).map((group, idx) => (
-                        <div key={idx} className="space-y-4 relative z-10">
-                          <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em]">{group.category}</h4>
-                          <ul className="grid grid-cols-1 gap-3">
-                            {group.items.map((item: string, i: number) => (
-                              <li key={i} className="text-lg font-bold text-gray-700 flex items-start gap-4">
-                                <span className="mt-2.5 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))
+                      (packageData.inclusions as any[]).map((group, idx) => {
+                        const safeItems: string[] = Array.isArray(group.items)
+                          ? group.items
+                          : typeof group.items === 'string'
+                          ? group.items.split('\n').map((s: string) => s.trim()).filter(Boolean)
+                          : [];
+                        return (
+                          <div key={idx} className="space-y-4 relative z-10">
+                            <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em]">{group.category}</h4>
+                            <ul className="grid grid-cols-1 gap-3">
+                              {safeItems.map((item: string, i: number) => (
+                                <li key={i} className="text-lg font-bold text-gray-700 flex items-start gap-4">
+                                  <span className="mt-2.5 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        );
+                      })
                     ) : (
                       <ul className="grid grid-cols-1 gap-4 relative z-10">
                         {(packageData.inclusions as string[])?.map((item, idx) => (
@@ -432,19 +439,26 @@ const PackageDetailModal = ({ isOpen, onClose, packageData }: PackageDetailModal
                   <div className="p-10 rounded-[40px] bg-cream border border-gray-100 shadow-sm space-y-8 overflow-hidden relative group">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-rose-50/50 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-1000" />
                     {Array.isArray(packageData.exclusions) && typeof packageData.exclusions[0] === 'object' ? (
-                      (packageData.exclusions as any[]).map((group, idx) => (
-                        <div key={idx} className="space-y-4 relative z-10">
-                          <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em]">{group.category}</h4>
-                          <ul className="grid grid-cols-1 gap-3">
-                            {group.items.map((item: string, i: number) => (
-                              <li key={i} className="text-lg font-bold text-gray-700 flex items-start gap-4">
-                                <span className="mt-2.5 w-2 h-2 rounded-full bg-rose-300 shrink-0" />
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))
+                      (packageData.exclusions as any[]).map((group, idx) => {
+                        const safeItems: string[] = Array.isArray(group.items)
+                          ? group.items
+                          : typeof group.items === 'string'
+                          ? group.items.split('\n').map((s: string) => s.trim()).filter(Boolean)
+                          : [];
+                        return (
+                          <div key={idx} className="space-y-4 relative z-10">
+                            <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em]">{group.category}</h4>
+                            <ul className="grid grid-cols-1 gap-3">
+                              {safeItems.map((item: string, i: number) => (
+                                <li key={i} className="text-lg font-bold text-gray-700 flex items-start gap-4">
+                                  <span className="mt-2.5 w-2 h-2 rounded-full bg-rose-300 shrink-0" />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        );
+                      })
                     ) : (
                       <ul className="grid grid-cols-1 gap-4 relative z-10">
                         {(packageData.exclusions as string[])?.map((item, idx) => (

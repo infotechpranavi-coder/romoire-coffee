@@ -3019,13 +3019,18 @@ Key Highlights`,
                           <div className="grid gap-6">
                             {packageData.inclusions.map((item: any, idx: number) => {
                               if (typeof item === 'object' && 'category' in item) {
+                                const safeSubs = Array.isArray(item.items)
+                                  ? item.items
+                                  : typeof item.items === 'string'
+                                  ? item.items.split('\n').map((s: string) => s.trim()).filter(Boolean)
+                                  : [];
                                 return (
                                   <div key={idx} className="group/item">
                                     <h5 className="font-black text-[10px] text-green-700 uppercase tracking-[0.2em] mb-3 opacity-60">
                                       {item.category}
                                     </h5>
                                     <ul className="space-y-2">
-                                      {item.items.map((subItem: string, subIdx: number) => (
+                                      {safeSubs.map((subItem: string, subIdx: number) => (
                                         <li key={subIdx} className="flex items-start gap-3 group-hover/item:translate-x-1 transition-transform">
                                           <div className="h-1.5 w-1.5 bg-green-400 rounded-full mt-2 shrink-0" />
                                           <span className="text-gray-600 text-base font-bold uppercase tracking-tight">{subItem}</span>
@@ -3058,13 +3063,18 @@ Key Highlights`,
                           <div className="grid gap-6">
                             {packageData.exclusions.map((item: any, idx: number) => {
                               if (typeof item === 'object' && 'category' in item) {
+                                const safeSubs = Array.isArray(item.items)
+                                  ? item.items
+                                  : typeof item.items === 'string'
+                                  ? item.items.split('\n').map((s: string) => s.trim()).filter(Boolean)
+                                  : [];
                                 return (
                                   <div key={idx} className="group/item">
                                     <h5 className="font-black text-[10px] text-orange-700 uppercase tracking-[0.2em] mb-3 opacity-60">
                                       {item.category}
                                     </h5>
                                     <ul className="space-y-2">
-                                      {item.items.map((subItem: string, subIdx: number) => (
+                                      {safeSubs.map((subItem: string, subIdx: number) => (
                                         <li key={subIdx} className="flex items-start gap-3 group-hover/item:translate-x-1 transition-transform">
                                           <div className="h-1.5 w-1.5 bg-orange-300 rounded-full mt-2 shrink-0" />
                                           <span className="text-gray-600 text-sm font-bold uppercase tracking-tight">{subItem}</span>
@@ -3457,11 +3467,16 @@ Key Highlights`,
                             <div className="space-y-4">
                               {packageData.inclusions?.map((item, idx) => {
                                 if (typeof item === 'object' && 'category' in item) {
+                                  const safeSubs = Array.isArray(item.items)
+                                    ? item.items
+                                    : typeof item.items === 'string'
+                                    ? item.items.split('\n').map((s: string) => s.trim()).filter(Boolean)
+                                    : [];
                                   return (
                                     <div key={idx} className="bg-gray-50/50 p-5 rounded-2xl border border-gray-100">
                                       <p className="font-black text-gray-900 text-[10px] uppercase tracking-widest mb-3 text-green-700">{item.category}</p>
                                       <ul className="space-y-3">
-                                        {item.items.map((subItem, subIdx) => (
+                                        {safeSubs.map((subItem, subIdx) => (
                                           <li key={subIdx} className="flex items-start gap-3 text-gray-600 text-base font-medium">
                                             <div className="h-1.5 w-1.5 bg-green-500 rounded-full mt-2 shrink-0" />
                                             <span>{subItem}</span>
@@ -3490,11 +3505,16 @@ Key Highlights`,
                             <div className="space-y-4">
                               {packageData.exclusions?.map((item, idx) => {
                                 if (typeof item === 'object' && 'category' in item) {
+                                  const safeSubs = Array.isArray(item.items)
+                                    ? item.items
+                                    : typeof item.items === 'string'
+                                    ? item.items.split('\n').map((s: string) => s.trim()).filter(Boolean)
+                                    : [];
                                   return (
                                     <div key={idx} className="bg-gray-50/50 p-5 rounded-2xl border border-gray-100">
                                       <p className="font-black text-gray-900 text-[10px] uppercase tracking-widest mb-3 text-red-700">{item.category}</p>
                                       <ul className="space-y-3">
-                                        {item.items.map((subItem, subIdx) => (
+                                        {safeSubs.map((subItem, subIdx) => (
                                           <li key={subIdx} className="flex items-start gap-3 text-gray-600 text-base font-medium">
                                             <div className="h-1.5 w-1.5 bg-red-400 rounded-full mt-2 shrink-0" />
                                             <span>{subItem}</span>

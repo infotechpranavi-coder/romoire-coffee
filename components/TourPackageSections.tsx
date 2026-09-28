@@ -254,10 +254,15 @@ export default function TourPackageSections({
               </div>
               <CardContent className="p-6">
                 {packageData.inclusions.map((item, idx) => {
-                  if (typeof item === 'object' && 'items' in item) {
+                  if (typeof item === 'object' && item !== null && 'items' in item) {
+                    const safeSubs = Array.isArray((item as any).items)
+                      ? (item as any).items
+                      : typeof (item as any).items === 'string'
+                      ? (item as any).items.split('\n').map((s: string) => s.trim()).filter(Boolean)
+                      : [];
                     return (
                       <ul key={idx} className="space-y-2">
-                        {item.items.map((sub, subIdx) => (
+                        {safeSubs.map((sub: string, subIdx: number) => (
                           <li key={subIdx} className="flex gap-2 text-gray-700 text-sm">
                             <span className="text-green-500 shrink-0">•</span>
                             {sub}
@@ -281,10 +286,15 @@ export default function TourPackageSections({
               </div>
               <CardContent className="p-6">
                 {packageData.exclusions.map((item, idx) => {
-                  if (typeof item === 'object' && 'items' in item) {
+                  if (typeof item === 'object' && item !== null && 'items' in item) {
+                    const safeSubs = Array.isArray((item as any).items)
+                      ? (item as any).items
+                      : typeof (item as any).items === 'string'
+                      ? (item as any).items.split('\n').map((s: string) => s.trim()).filter(Boolean)
+                      : [];
                     return (
                       <ul key={idx} className="space-y-2">
-                        {item.items.map((sub, subIdx) => (
+                        {safeSubs.map((sub: string, subIdx: number) => (
                           <li key={subIdx} className="flex gap-2 text-gray-700 text-sm">
                             <span className="text-red-400 shrink-0">•</span>
                             {sub}

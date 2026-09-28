@@ -201,32 +201,49 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
         })) || []
       );
 
+      const parseItems = (raw: any): string[] => {
+        if (Array.isArray(raw)) {
+          const list = raw
+            .map((i) => (typeof i === 'string' ? i : (i?.title || i?.item || JSON.stringify(i) || "")))
+            .filter((i) => typeof i === 'string' && i.trim() !== "");
+          return list.length > 0 ? list : [""];
+        }
+        if (typeof raw === 'string' && raw.trim()) {
+          if (raw.includes('\n')) {
+            const list = raw.split('\n').map((s) => s.trim()).filter(Boolean);
+            return list.length > 0 ? list : [raw.trim()];
+          }
+          return [raw.trim()];
+        }
+        return [""];
+      };
+
       // Handle both string array and structured inclusions/exclusions
       if (packageData.inclusions && Array.isArray(packageData.inclusions)) {
-        if (packageData.inclusions.length > 0 && typeof packageData.inclusions[0] === 'object' && 'category' in packageData.inclusions[0]) {
-          setInclusions((packageData.inclusions as Array<{ category: string; items: string[] }>).map((item, index) => ({
+        if (packageData.inclusions.length > 0 && typeof packageData.inclusions[0] === 'object' && packageData.inclusions[0] !== null && 'category' in packageData.inclusions[0]) {
+          setInclusions((packageData.inclusions as Array<{ category?: string; items?: any }>).map((item, index) => ({
             id: `inc_${index}`,
             category: item.category || "",
-            items: item.items || [""]
+            items: parseItems(item.items)
           })));
         } else {
           // Convert string array to structured format
-          setInclusions([{ id: "1", category: "General", items: (packageData.inclusions as string[]).filter(i => i.trim() !== "") }]);
+          setInclusions([{ id: "1", category: "General", items: parseItems(packageData.inclusions) }]);
         }
       } else {
         setInclusions([{ id: "1", category: "", items: [""] }]);
       }
 
       if (packageData.exclusions && Array.isArray(packageData.exclusions)) {
-        if (packageData.exclusions.length > 0 && typeof packageData.exclusions[0] === 'object' && 'category' in packageData.exclusions[0]) {
-          setExclusions((packageData.exclusions as Array<{ category: string; items: string[] }>).map((item, index) => ({
+        if (packageData.exclusions.length > 0 && typeof packageData.exclusions[0] === 'object' && packageData.exclusions[0] !== null && 'category' in packageData.exclusions[0]) {
+          setExclusions((packageData.exclusions as Array<{ category?: string; items?: any }>).map((item, index) => ({
             id: `exc_${index}`,
             category: item.category || "",
-            items: item.items || [""]
+            items: parseItems(item.items)
           })));
         } else {
           // Convert string array to structured format
-          setExclusions([{ id: "1", category: "General", items: (packageData.exclusions as string[]).filter(i => i.trim() !== "") }]);
+          setExclusions([{ id: "1", category: "General", items: parseItems(packageData.exclusions) }]);
         }
       } else {
         setExclusions([{ id: "1", category: "", items: [""] }]);
@@ -394,25 +411,27 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
   };
 
   const addInclusionItem = (categoryId: string) => {
-    setInclusions(prev => prev.map(item =>
-      item.id === categoryId ? { ...item, items: [...item.items, ""] } : item
-    ));
+    setInclusions(prev => prev.map(item => {
+      if (item.id !== categoryId) return item;
+      const currentItems = Array.isArray(item.items) ? item.items : [String(item.items || "")];
+      return { ...item, items: [...currentItems, ""] };
+    }));
   };
 
   const removeInclusionItem = (categoryId: string, itemIndex: number) => {
-    setInclusions(prev => prev.map(item =>
-      item.id === categoryId
-        ? { ...item, items: item.items.filter((_, i) => i !== itemIndex) }
-        : item
-    ));
+    setInclusions(prev => prev.map(item => {
+      if (item.id !== categoryId) return item;
+      const currentItems = Array.isArray(item.items) ? item.items : [String(item.items || "")];
+      return { ...item, items: currentItems.filter((_, i) => i !== itemIndex) };
+    }));
   };
 
   const updateInclusionItem = (categoryId: string, itemIndex: number, value: string) => {
-    setInclusions(prev => prev.map(item =>
-      item.id === categoryId
-        ? { ...item, items: item.items.map((itm, i) => i === itemIndex ? value : itm) }
-        : item
-    ));
+    setInclusions(prev => prev.map(item => {
+      if (item.id !== categoryId) return item;
+      const currentItems = Array.isArray(item.items) ? item.items : [String(item.items || "")];
+      return { ...item, items: currentItems.map((itm, i) => i === itemIndex ? value : itm) };
+    }));
   };
 
   // Exclusions functions
@@ -434,25 +453,27 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
   };
 
   const addExclusionItem = (categoryId: string) => {
-    setExclusions(prev => prev.map(item =>
-      item.id === categoryId ? { ...item, items: [...item.items, ""] } : item
-    ));
+    setExclusions(prev => prev.map(item => {
+      if (item.id !== categoryId) return item;
+      const currentItems = Array.isArray(item.items) ? item.items : [String(item.items || "")];
+      return { ...item, items: [...currentItems, ""] };
+    }));
   };
 
   const removeExclusionItem = (categoryId: string, itemIndex: number) => {
-    setExclusions(prev => prev.map(item =>
-      item.id === categoryId
-        ? { ...item, items: item.items.filter((_, i) => i !== itemIndex) }
-        : item
-    ));
+    setExclusions(prev => prev.map(item => {
+      if (item.id !== categoryId) return item;
+      const currentItems = Array.isArray(item.items) ? item.items : [String(item.items || "")];
+      return { ...item, items: currentItems.filter((_, i) => i !== itemIndex) };
+    }));
   };
 
   const updateExclusionItem = (categoryId: string, itemIndex: number, value: string) => {
-    setExclusions(prev => prev.map(item =>
-      item.id === categoryId
-        ? { ...item, items: item.items.map((itm, i) => i === itemIndex ? value : itm) }
-        : item
-    ));
+    setExclusions(prev => prev.map(item => {
+      if (item.id !== categoryId) return item;
+      const currentItems = Array.isArray(item.items) ? item.items : [String(item.items || "")];
+      return { ...item, items: currentItems.map((itm, i) => i === itemIndex ? value : itm) };
+    }));
   };
 
   // New fields helper functions
@@ -633,17 +654,17 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
           nights: item.nights
         })),
         inclusions: inclusions
-          .filter(item => item.category.trim() !== "" || item.items.some(i => i.trim() !== ""))
           .map(item => ({
-            category: item.category,
-            items: item.items.filter(i => i.trim() !== "")
-          })),
+            category: item.category || "",
+            items: (Array.isArray(item.items) ? item.items : [String(item.items || "")]).filter(i => typeof i === 'string' && i.trim() !== "")
+          }))
+          .filter(item => item.category.trim() !== "" || item.items.length > 0),
         exclusions: exclusions
-          .filter(item => item.category.trim() !== "" || item.items.some(i => i.trim() !== ""))
           .map(item => ({
-            category: item.category,
-            items: item.items.filter(i => i.trim() !== "")
-          })),
+            category: item.category || "",
+            items: (Array.isArray(item.items) ? item.items : [String(item.items || "")]).filter(i => typeof i === 'string' && i.trim() !== "")
+          }))
+          .filter(item => item.category.trim() !== "" || item.items.length > 0),
         faqs: faqs.filter(f => f.question.trim() !== "").map(f => ({ question: f.question, answer: f.answer })),
         fixedDepartures: fixedDepartures
           .filter((row) => row.month.trim() || row.dates.trim())
@@ -927,50 +948,64 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
 
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-green-700">âœ“ Inclusions</label>
+              <label className="text-sm font-medium text-green-700">✓ Inclusions</label>
               <Button type="button" variant="outline" size="sm" onClick={addInclusionCategory}><Plus className="h-4 w-4 mr-1" /> Add Category</Button>
             </div>
-            {inclusions.map((cat) => (
-              <Card key={cat.id} className="border-green-100">
-                <CardContent className="pt-4 space-y-2">
-                  <div className="flex gap-2">
-                    <Input placeholder="Category name (e.g. Transfers, Meals)" value={cat.category} onChange={(e) => updateInclusionCategory(cat.id, e.target.value)} />
-                    {inclusions.length > 1 && <Button variant="ghost" size="icon" onClick={() => removeInclusionCategory(cat.id)}><Minus className="h-4 w-4 text-red-500" /></Button>}
-                  </div>
-                  {cat.items.map((item, idx) => (
-                    <div key={idx} className="flex gap-2 pl-4">
-                      <Input className="h-8 text-sm" placeholder={`Item ${idx + 1}`} value={item} onChange={(e) => updateInclusionItem(cat.id, idx, e.target.value)} />
-                      {cat.items.length > 1 && <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => removeInclusionItem(cat.id, idx)}><X className="h-3 w-3 text-red-400" /></Button>}
+            {inclusions.map((cat) => {
+              const safeItems = Array.isArray(cat.items)
+                ? cat.items
+                : typeof cat.items === 'string' && cat.items
+                ? [cat.items]
+                : [""];
+              return (
+                <Card key={cat.id} className="border-green-100">
+                  <CardContent className="pt-4 space-y-2">
+                    <div className="flex gap-2">
+                      <Input placeholder="Category name (e.g. Transfers, Meals)" value={cat.category} onChange={(e) => updateInclusionCategory(cat.id, e.target.value)} />
+                      {inclusions.length > 1 && <Button variant="ghost" size="icon" onClick={() => removeInclusionCategory(cat.id)}><Minus className="h-4 w-4 text-red-500" /></Button>}
                     </div>
-                  ))}
-                  <Button variant="ghost" size="sm" className="ml-4 h-7 text-xs" onClick={() => addInclusionItem(cat.id)}><Plus className="h-3 w-3 mr-1" /> Add Item</Button>
-                </CardContent>
-              </Card>
-            ))}
+                    {safeItems.map((item, idx) => (
+                      <div key={idx} className="flex gap-2 pl-4">
+                        <Input className="h-8 text-sm" placeholder={`Item ${idx + 1}`} value={item} onChange={(e) => updateInclusionItem(cat.id, idx, e.target.value)} />
+                        {safeItems.length > 1 && <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => removeInclusionItem(cat.id, idx)}><X className="h-3 w-3 text-red-400" /></Button>}
+                      </div>
+                    ))}
+                    <Button variant="ghost" size="sm" className="ml-4 h-7 text-xs" onClick={() => addInclusionItem(cat.id)}><Plus className="h-3 w-3 mr-1" /> Add Item</Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
 
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-red-700">âœ— Exclusions</label>
+              <label className="text-sm font-medium text-red-700">✗ Exclusions</label>
               <Button type="button" variant="outline" size="sm" onClick={addExclusionCategory}><Plus className="h-4 w-4 mr-1" /> Add Category</Button>
             </div>
-            {exclusions.map((cat) => (
-              <Card key={cat.id} className="border-red-100">
-                <CardContent className="pt-4 space-y-2">
-                  <div className="flex gap-2">
-                    <Input placeholder="Category name (e.g. Airfare, Visa)" value={cat.category} onChange={(e) => updateExclusionCategory(cat.id, e.target.value)} />
-                    {exclusions.length > 1 && <Button variant="ghost" size="icon" onClick={() => removeExclusionCategory(cat.id)}><Minus className="h-4 w-4 text-red-500" /></Button>}
-                  </div>
-                  {cat.items.map((item, idx) => (
-                    <div key={idx} className="flex gap-2 pl-4">
-                      <Input className="h-8 text-sm" placeholder={`Item ${idx + 1}`} value={item} onChange={(e) => updateExclusionItem(cat.id, idx, e.target.value)} />
-                      {cat.items.length > 1 && <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => removeExclusionItem(cat.id, idx)}><X className="h-3 w-3 text-red-400" /></Button>}
+            {exclusions.map((cat) => {
+              const safeItems = Array.isArray(cat.items)
+                ? cat.items
+                : typeof cat.items === 'string' && cat.items
+                ? [cat.items]
+                : [""];
+              return (
+                <Card key={cat.id} className="border-red-100">
+                  <CardContent className="pt-4 space-y-2">
+                    <div className="flex gap-2">
+                      <Input placeholder="Category name (e.g. Airfare, Visa)" value={cat.category} onChange={(e) => updateExclusionCategory(cat.id, e.target.value)} />
+                      {exclusions.length > 1 && <Button variant="ghost" size="icon" onClick={() => removeExclusionCategory(cat.id)}><Minus className="h-4 w-4 text-red-500" /></Button>}
                     </div>
-                  ))}
-                  <Button variant="ghost" size="sm" className="ml-4 h-7 text-xs" onClick={() => addExclusionItem(cat.id)}><Plus className="h-3 w-3 mr-1" /> Add Item</Button>
-                </CardContent>
-              </Card>
-            ))}
+                    {safeItems.map((item, idx) => (
+                      <div key={idx} className="flex gap-2 pl-4">
+                        <Input className="h-8 text-sm" placeholder={`Item ${idx + 1}`} value={item} onChange={(e) => updateExclusionItem(cat.id, idx, e.target.value)} />
+                        {safeItems.length > 1 && <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => removeExclusionItem(cat.id, idx)}><X className="h-3 w-3 text-red-400" /></Button>}
+                      </div>
+                    ))}
+                    <Button variant="ghost" size="sm" className="ml-4 h-7 text-xs" onClick={() => addExclusionItem(cat.id)}><Plus className="h-3 w-3 mr-1" /> Add Item</Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
 
           <div className="space-y-4">
