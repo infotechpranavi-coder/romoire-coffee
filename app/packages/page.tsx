@@ -1,165 +1,338 @@
 'use client'
 
-import { SITE_NAME } from "@/lib/branding";
-import { useEffect, useMemo, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Search, ArrowRight, Coffee } from "lucide-react";
-import Link from "next/link";
-import {
-  PACKAGE_NAV_GROUPS,
-  GROUP_HERO_IMAGES,
-  PACKAGE_EXPERIENCE_CATEGORIES,
-} from "@/lib/packageExperienceCategories";
+import { useEffect, useMemo, useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { toast } from 'sonner'
+import { Search, ShoppingBag, ArrowRight, Sparkles, Check, Coffee } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 
-const PackagesPage = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+interface PackageProduct {
+  _id: string
+  title: string
+  subtitle?: string
+  about?: string
+  tourDetails?: string
+  price: number | string
+  duration?: string
+  capacity?: string
+  packageCategory?: string
+  packageMiniCategory?: string
+  images?: Array<{ url: string; alt?: string }>
+  rating?: number
+  bookings?: number
+}
 
+export default function PackagesPage() {
+  const [products, setProducts] = useState<PackageProduct[]>([])
+  const [loading, setLoading] = useState(true)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState<string>('All')
+
+  // Fetch dynamic products directly from database API
   useEffect(() => {
-    const searchParam = new URLSearchParams(window.location.search).get("search");
-    if (searchParam) setSearchTerm(searchParam);
-  }, []);
+    let cancelled = false
 
-  const filteredGroups = useMemo(() => {
-    const query = searchTerm.trim().toLowerCase();
-    if (!query) return PACKAGE_NAV_GROUPS;
+    async function loadProducts() {
+      try {
+        setLoading(true)
+        const res = await fetch('/api/packages', { cache: 'no-store' })
+        const json = await res.json()
+        if (!cancelled) {
+          const list = json?.success && Array.isArray(json?.data) ? json.data : Array.isArray(json) ? json : []
+          setProducts(list)
+        }
+      } catch (err) {
+        console.error('Failed to load products:', err)
+        if (!cancelled) setProducts([])
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
 
-    return PACKAGE_NAV_GROUPS.map((group) => ({
-      ...group,
-      items: group.items.filter(
-        (category) =>
-          category.label.toLowerCase().includes(query) ||
-          category.heroTitle.toLowerCase().includes(query) ||
-          category.heroSubtitle.toLowerCase().includes(query) ||
-          group.label.toLowerCase().includes(query)
-      ),
-    })).filter((group) => group.items.length > 0);
-  }, [searchTerm]);
+    loadProducts()
 
-  const totalCategories = PACKAGE_EXPERIENCE_CATEGORIES.length;
+    // Sync search query from URL if present
+    if (typeof window !== 'undefined') {
+      const q = new URLSearchParams(window.location.search).get('search')
+      if (q) setSearchTerm(q)
+    }
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  // Dynamic categories computed from the active products
+  const categories = useMemo(() => {
+    const set = new Set<string>()
+    products.forEach((p) => {
+      if (p.packageCategory?.trim()) {
+        set.add(p.packageCategory.trim())
+      }
+    })
+    return ['All', ...Array.from(set)]
+  }, [products])
+
+  // Filter products by search and category
+  const filteredProducts = useMemo(() => {
+    const q = searchTerm.trim().toLowerCase()
+    return products.filter((p) => {
+      const matchesSearch =
+        !q ||
+        (p.title && p.title.toLowerCase().includes(q)) ||
+        (p.subtitle && p.subtitle.toLowerCase().includes(q)) ||
+        (p.about && p.about.toLowerCase().includes(q)) ||
+        (p.packageCategory && p.packageCategory.toLowerCase().includes(q))
+
+      const matchesCategory =
+        selectedCategory === 'All' ||
+        (p.packageCategory && p.packageCategory.trim().toLowerCase() === selectedCategory.toLowerCase())
+
+      return matchesSearch && matchesCategory
+    })
+  }, [products, searchTerm, selectedCategory])
+
+  const handleAddToCart = (productName: string, price: string) => {
+    toast.success(`Added ${productName} (${price}) to cart!`, {
+      description: 'Free express shipping across India on orders over ₹999.',
+    })
+  }
 
   return (
-    <div className="min-h-screen bg-cream">
-      <section className="relative text-white pt-28 pb-20 md:pb-28 overflow-hidden min-h-[420px]">
-        <div className="absolute inset-0 grid grid-cols-2 md:grid-cols-4">
-          {PACKAGE_NAV_GROUPS.map((group) => (
-            <div
-              key={group.slug}
-              className="relative bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: `url('${GROUP_HERO_IMAGES[group.slug] ?? group.items[0]?.heroImage}')` }}
-            >
-              <div className="absolute inset-0 bg-black/45" />
-            </div>
-          ))}
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-espresso/85 via-espresso/50 to-espresso/80" />
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-cream to-transparent" />
+    <div className="min-h-screen bg-[#FDFBF7] text-ink font-body antialiased selection:bg-maroon selection:text-cream">
+      {/* ============ HEADER HERO ============ */}
+      <section className="bg-maroon-deep text-cream pt-28 pb-16 md:pt-36 md:pb-20 relative overflow-hidden border-b border-maroon">
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#C5A880_1px,transparent_1px)] [background-size:24px_24px]" />
+        
+        <div className="wrap relative z-10 text-center max-w-[820px] mx-auto flex flex-col items-center gap-5">
+          <div className="inline-flex items-center gap-2 bg-cream/15 backdrop-blur-md border border-cream/25 rounded-full px-4 py-1.5 text-cream text-[11px] uppercase tracking-[2px] font-medium">
+            <Coffee className="w-3.5 h-3.5 text-gold" />
+            <span>The Romoire Collection</span>
+          </div>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-cream/15 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-6">
-              <Coffee className="h-4 w-4 text-amber-200" />
-              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/90">{SITE_NAME} Coffee</span>
+          <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl text-cream font-medium leading-[1.12]">
+            Our Premix Products
+          </h1>
+
+          <p className="text-base sm:text-lg text-[#F0DBC4] max-w-[620px] leading-[1.7]">
+            Every blend crafted with single-origin Arabica from Chikmagalur, rich coconut milk solids, and natural monk fruit sweetness. Dairy free, lactose free, no refined sugar.
+          </p>
+
+          <div className="flex flex-wrap justify-center items-center gap-6 pt-2 text-xs uppercase tracking-[2px] text-[#E2BFA6] font-light">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold" /> 100% Arabica
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold" /> Coconut Milk Crema
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold" /> Ready in 60 Seconds
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ CONTROLS: SEARCH & CATEGORY FILTER ============ */}
+      <section className="py-8 border-b border-line/60 bg-white sticky top-24 z-30 shadow-[0_2px_12px_rgba(74,21,21,0.04)]">
+        <div className="wrap">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Category Pills */}
+            <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 scrollbar-none" role="tablist">
+              {categories.map((cat) => {
+                const isActive = selectedCategory === cat
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`text-xs uppercase tracking-[1.4px] px-4 py-2 rounded-full border transition-all whitespace-nowrap font-medium ${
+                      isActive
+                        ? 'bg-maroon border-maroon text-cream shadow-sm'
+                        : 'bg-cream/40 border-line text-ink-soft hover:border-maroon/50 hover:text-maroon'
+                    }`}
+                  >
+                    {cat === 'All' ? 'All Products' : cat}
+                  </button>
+                )
+              })}
             </div>
-            <h1 className="text-5xl md:text-7xl font-black mb-6 leading-none tracking-tight uppercase">
-              Products
-            </h1>
-            <p className="text-lg md:text-xl mb-10 text-white/85 max-w-2xl mx-auto font-medium">
-              Browse by origin, roast profile, blend, or subscription — whole bean and ground options available
-            </p>
-            <div className="flex flex-wrap justify-center gap-6 text-white/60 text-sm font-bold uppercase tracking-widest">
-              <span>{totalCategories} Coffee Collections</span>
-              <span className="text-white/30">·</span>
-              <span>Freshly Roasted</span>
-              <span className="text-white/30">·</span>
-              <span>Ethically Sourced</span>
+
+            {/* Search Input */}
+            <div className="relative w-full md:w-72 shrink-0">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-mute w-4 h-4" />
+              <Input
+                type="text"
+                placeholder="Search premix, flavours..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 pr-4 h-10 rounded-full border-line bg-cream/30 focus-visible:ring-maroon text-xs tracking-wide"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-10 bg-cream">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-8">
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-hazelnut mb-2">Browse by Collection</p>
-              <h2 className="text-3xl font-black text-espresso mb-3 uppercase tracking-tight">All Coffee Categories</h2>
-              <p className="text-gray-600 mb-6">Single Origin, Roasts, Blends, Specialty, and Subscriptions</p>
-              <div className="relative max-w-md mx-auto">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
-                <Input
-                  placeholder="Search coffee beans, roasts, origins..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-11 h-12 rounded-full border-gray-200 bg-cream shadow-sm"
-                />
-              </div>
+      {/* ============ PRODUCT GRID ============ */}
+      <section className="py-14 md:py-20">
+        <div className="wrap">
+          {loading ? (
+            <div className="py-24 flex flex-col items-center justify-center gap-3">
+              <div className="w-8 h-8 border-3 border-maroon border-t-transparent rounded-full animate-spin" />
+              <p className="text-sm font-medium text-ink-mute uppercase tracking-widest">
+                Loading products...
+              </p>
             </div>
-
-            {filteredGroups.length === 0 ? (
-              <div className="text-center py-16 rounded-[32px] bg-cream border border-gray-100">
-                <p className="text-gray-500 mb-4">No experience categories match your search.</p>
-                <Button variant="outline" onClick={() => setSearchTerm("")} className="rounded-full">
-                  Clear search
+          ) : filteredProducts.length === 0 ? (
+            <div className="py-20 text-center max-w-md mx-auto flex flex-col items-center gap-4 bg-white border border-line rounded-sm p-8 shadow-sm">
+              <Coffee className="w-10 h-10 text-gold stroke-[1.2]" />
+              <h3 className="font-playfair text-2xl text-maroon font-medium">No Products Found</h3>
+              <p className="text-sm text-ink-soft leading-relaxed">
+                {searchTerm
+                  ? `No premix products matched "${searchTerm}". Try a different keyword.`
+                  : 'No products are currently listed in this category.'}
+              </p>
+              {(searchTerm || selectedCategory !== 'All') && (
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setSearchTerm('')
+                    setSelectedCategory('All')
+                  }}
+                  className="rounded-full border-maroon text-maroon hover:bg-maroon hover:text-cream text-xs uppercase tracking-wider font-medium px-6 mt-2"
+                >
+                  Reset filters
                 </Button>
-              </div>
-            ) : (
-              filteredGroups.map((group) => (
-                <div key={group.slug} id={group.slug} className="mb-8 scroll-mt-28">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-4">{group.label}</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {group.items.map((category) => (
-                      <Link
-                        key={category.slug}
-                        href={category.href}
-                        className="group rounded-[24px] overflow-hidden border border-gray-200 bg-cream shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
-                      >
-                        <div className="relative h-44 overflow-hidden">
-                        <div
-                          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                          style={{ backgroundImage: `url('${category.heroImage}')` }}
-                          role="img"
-                          aria-label={category.label}
-                        />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
-                          {category.isFuture && (
-                            <Badge className="absolute top-3 right-3 bg-amber-500/90 text-white border-none text-[9px] uppercase tracking-wider">
-                              Future
-                            </Badge>
-                          )}
-                          <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between gap-2">
-                            <p className="text-white font-black text-sm leading-tight">{category.label}</p>
-                            <ArrowRight className="h-4 w-4 text-white/80 shrink-0 group-hover:translate-x-0.5 transition-transform" />
-                          </div>
-                        </div>
+              )}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+              {filteredProducts.map((pkg) => {
+                const imgUrl = pkg.images?.[0]?.url || '/images/romoire/coffee_sachets.jpg'
+                const priceText = `₹${pkg.price}`
+                const sachetInfo = pkg.duration || pkg.capacity || '5 Sachets · 20g each'
+                const categoryLabel = pkg.packageCategory || pkg.subtitle || 'Plant-based Premix'
+                const desc =
+                  pkg.about ||
+                  pkg.tourDetails ||
+                  pkg.subtitle ||
+                  'Single origin Arabica coffee premix with coconut milk and monk fruit sweetness.'
+
+                return (
+                  <article
+                    key={pkg._id}
+                    className="border border-line rounded-sm p-6 bg-white flex flex-col gap-4 hover:shadow-[0_10px_32px_rgba(102,24,24,0.12)] transition-all duration-300 group"
+                  >
+                    {/* Visual Container */}
+                    <Link
+                      href={`/packages/${pkg._id}`}
+                      className="relative h-[230px] rounded-sm overflow-hidden border border-line bg-sand/30 block"
+                    >
+                      <img
+                        src={imgUrl}
+                        alt={pkg.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      {pkg.packageCategory && (
+                        <span className="absolute top-3 right-3 bg-maroon text-cream text-[10.5px] uppercase tracking-wider px-3 py-0.5 rounded-full font-medium shadow-sm">
+                          {pkg.packageCategory}
+                        </span>
+                      )}
+                    </Link>
+
+                    {/* Meta info */}
+                    <div className="flex flex-col gap-1.5 flex-grow">
+                      <p className="text-[11px] uppercase tracking-[1.8px] text-[#8A3A3A] font-medium">
+                        {categoryLabel}
+                      </p>
+                      
+                      <Link href={`/packages/${pkg._id}`} className="hover:text-maroon-deep transition-colors">
+                        <h3 className="font-playfair text-2xl text-maroon font-medium line-clamp-1">
+                          {pkg.title}
+                        </h3>
                       </Link>
-                    ))}
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
+
+                      <p className="text-xs text-ink-mute font-medium">
+                        {sachetInfo}
+                      </p>
+
+                      <p className="text-sm leading-[1.65] text-ink-soft line-clamp-2 mt-1">
+                        {desc}
+                      </p>
+                    </div>
+
+                    {/* Price and Details */}
+                    <div className="flex items-baseline justify-between pt-2 border-t border-line/60">
+                      <div>
+                        <span className="font-playfair text-2xl text-maroon font-medium">
+                          {priceText}
+                        </span>
+                        <span className="text-[11px] text-ink-mute ml-1">incl. taxes</span>
+                      </div>
+                      <Link
+                        href={`/packages/${pkg._id}`}
+                        className="text-xs uppercase tracking-wider text-ink-mute hover:text-maroon underline underline-offset-4 font-medium"
+                      >
+                        Details →
+                      </Link>
+                    </div>
+
+                    {/* Add to Cart CTA */}
+                    <button
+                      type="button"
+                      onClick={() => handleAddToCart(pkg.title, priceText)}
+                      className="btn-romoire py-3.5 text-xs text-center w-full uppercase tracking-[1.6px] font-medium flex items-center justify-center gap-2 shadow-sm"
+                    >
+                      <ShoppingBag className="w-3.5 h-3.5" />
+                      Add to cart
+                    </button>
+                  </article>
+                )
+              })}
+            </div>
+          )}
         </div>
       </section>
 
-      <section className="py-16 bg-primary text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Can&apos;t Find What You&apos;re Looking For?</h2>
-            <p className="text-xl mb-8 opacity-90">
-              We can create a custom package tailored to your specific needs and preferences
-            </p>
-            <Link href="/contact">
-              <Button size="lg" className="bg-hazelnut hover:bg-espresso text-white font-bold rounded-full px-10">
-                Contact Us
-              </Button>
-            </Link>
+      {/* ============ WHY ROMOIRE STRIP ============ */}
+      <section className="bg-sand/30 py-16 border-t border-line">
+        <div className="wrap">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
+            <div className="flex flex-col items-center gap-2.5">
+              <span className="w-10 h-10 rounded-full bg-cream border border-maroon/20 flex items-center justify-center text-maroon font-playfair font-medium text-lg shadow-sm">
+                01
+              </span>
+              <h4 className="font-playfair text-xl text-maroon font-medium">100% Arabica</h4>
+              <p className="text-xs text-ink-soft leading-relaxed max-w-xs">
+                Single-origin beans directly from Karnataka’s Chikmagalur hills. No chicory, no artificial essence.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center gap-2.5">
+              <span className="w-10 h-10 rounded-full bg-cream border border-maroon/20 flex items-center justify-center text-maroon font-playfair font-medium text-lg shadow-sm">
+                02
+              </span>
+              <h4 className="font-playfair text-xl text-maroon font-medium">Zero Dairy & Lactose</h4>
+              <p className="text-xs text-ink-soft leading-relaxed max-w-xs">
+                Pure spray-dried coconut milk gives a rich, velvety café froth with just hot water and 30 seconds stirring.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center gap-2.5">
+              <span className="w-10 h-10 rounded-full bg-cream border border-maroon/20 flex items-center justify-center text-maroon font-playfair font-medium text-lg shadow-sm">
+                03
+              </span>
+              <h4 className="font-playfair text-xl text-maroon font-medium">Monk Fruit Sweetness</h4>
+              <p className="text-xs text-ink-soft leading-relaxed max-w-xs">
+                Subtle natural plant extract with zero refined sugar and zero calories. Clean taste that lets coffee lead.
+              </p>
+            </div>
           </div>
         </div>
       </section>
     </div>
-  );
-};
-
-export default PackagesPage;
+  )
+}

@@ -32,7 +32,14 @@ export default function OfferPopup() {
       const initialDelayMs = Math.max(0, popupSettings.offerPopupInitialDelaySeconds ?? 3) * 1000;
       const repeatMs = Math.max(10, popupSettings.offerPopupRepeatIntervalSeconds ?? 320) * 1000;
 
-      const dismissedRaw = localStorage.getItem(DISMISS_STORAGE_KEY);
+      let dismissedRaw: string | null = null;
+      try {
+        if (typeof window !== 'undefined') {
+          dismissedRaw = localStorage.getItem(DISMISS_STORAGE_KEY);
+        }
+      } catch (err) {
+        // Safe fallback if cookies/storage blocked
+      }
       const dismissedAt = dismissedRaw ? Number(dismissedRaw) : null;
 
       // First visit: wait "Show After". After a dismissal: wait out the rest
@@ -72,7 +79,13 @@ export default function OfferPopup() {
   }, [clearTimer, schedulePopup]);
 
   const handleClose = () => {
-    localStorage.setItem(DISMISS_STORAGE_KEY, String(Date.now()));
+    try {
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(DISMISS_STORAGE_KEY, String(Date.now()));
+      }
+    } catch (err) {
+      // Safe fallback
+    }
     setOpen(false);
     clearTimer();
 

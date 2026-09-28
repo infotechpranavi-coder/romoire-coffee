@@ -71,10 +71,10 @@ const NavbarTravel = () => {
     if (packageGroups?.length) {
       const groupHrefs = packageGroups.flatMap((group) => [
         getGroupPageHref(group.slug),
-        ...group.items.flatMap((item) => [
+        ...(group.items?.flatMap((item) => [
           item.href,
           ...(item.miniItems?.map((mini) => mini.href) ?? []),
-        ]),
+        ]) ?? []),
       ]);
       return (
         pathname === href ||
@@ -163,9 +163,11 @@ const NavbarTravel = () => {
                       onMouseEnter={() => {
                         setHoveredIndex(index);
                         setOpenDropdownIndex(index);
-                        const firstGroup = item.packageGroups![0];
-                        setHoveredPackageGroup(firstGroup.slug);
-                        setHoveredPackageSub(firstGroup.items[0]?.slug ?? null);
+                        const firstGroup = item.packageGroups?.[0];
+                        if (firstGroup) {
+                          setHoveredPackageGroup(firstGroup.slug);
+                          setHoveredPackageSub(firstGroup.items?.[0]?.slug ?? null);
+                        }
                       }}
                       onMouseLeave={() => {
                         setHoveredIndex(null);
@@ -232,7 +234,7 @@ const NavbarTravel = () => {
                             <div className="min-w-[280px] max-w-[300px] border-l border-gray-100 py-2 bg-cream max-h-[420px] overflow-y-auto">
                               {item.packageGroups
                                 .find((g) => g.slug === hoveredPackageGroup)
-                                ?.items.map((sub) => (
+                                ?.items?.map((sub) => (
                                   <div
                                     key={sub.slug}
                                     className={`flex items-center justify-between gap-2 px-4 py-2.5 text-sm transition-colors cursor-default ${
@@ -273,13 +275,14 @@ const NavbarTravel = () => {
                           {hoveredPackageGroup && hoveredPackageSub && (() => {
                             const activeSub = item.packageGroups
                               ?.find((g) => g.slug === hoveredPackageGroup)
-                              ?.items.find((s) => s.slug === hoveredPackageSub);
-                            const minis = activeSub?.miniItems ?? [];
+                              ?.items?.find((s) => s.slug === hoveredPackageSub);
+                            if (!activeSub) return null;
+                            const minis = activeSub.miniItems ?? [];
                             if (!minis.length) return null;
                             return (
                               <div className="min-w-[240px] max-w-[280px] border-l border-gray-100 py-2 bg-cream max-h-[420px] overflow-y-auto">
                                 <Link
-                                  href={activeSub!.href}
+                                  href={activeSub.href}
                                   onClick={() => {
                                     setOpenDropdownIndex(null);
                                     setHoveredIndex(null);
@@ -288,7 +291,7 @@ const NavbarTravel = () => {
                                   }}
                                   className="block px-4 py-2 text-xs font-bold uppercase tracking-widest text-hazelnut hover:bg-hazelnut/5 border-b border-gray-100"
                                 >
-                                  All {activeSub!.label}
+                                  All {activeSub.label}
                                 </Link>
                                 {minis.map((mini) => (
                                   <Link
@@ -490,7 +493,7 @@ const NavbarTravel = () => {
                     >
                       {group.label}
                     </Link>
-                    {group.items.map((sub) => (
+                    {group.items?.map((sub) => (
                       <div key={sub.href}>
                         <Link
                           href={sub.href}

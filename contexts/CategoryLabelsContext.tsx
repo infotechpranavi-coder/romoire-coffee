@@ -64,7 +64,12 @@ function applyResponse(
     customMiniCategories: [],
   };
   setCatalog(catalog);
-  setNavGroups(data.navGroups ?? buildNavGroupsFromCatalog(catalog));
+  const rawGroups = data.navGroups ?? buildNavGroupsFromCatalog(catalog);
+  const safeGroups = (Array.isArray(rawGroups) ? rawGroups : []).map((g) => ({
+    ...g,
+    items: Array.isArray(g.items) ? g.items : [],
+  }));
+  setNavGroups(safeGroups);
 }
 
 export function CategoryLabelsProvider({ children }: { children: ReactNode }) {
