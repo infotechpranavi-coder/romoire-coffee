@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Romoire | Dairy Free Coffee Premix India | No Refined Sugar</title>
+<meta name="description" content="Romoire is a plant based cappuccino premix made with single origin Arabica, coconut milk and monk fruit. Dairy free, lactose free, vegan friendly and no refined sugar. One sachet, hot water, one minute.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap">
+<style>
+/* ---------------------------------------------------------
+   ROMOIRE — HOMEPAGE
+   Colour: white is the base. Cream highlights. Maroon states.
+   Type: Playfair Display / Cormorant Garamond / Garet
+         (Garet stood in by Outfit — see the dev note.)
+   No lockup tagline. Wordmark only.
+--------------------------------------------------------- */
+:root{
+  --maroon:#661818; --maroon-mid:#5A1616; --maroon-deep:#4E1212;
+  --cream:#FFF2DE; --sand:#F7E8D2; --gold:#B98D4E; --white:#FFFFFF;
+  --ink:#2E211C; --ink-soft:#5A433A; --ink-mute:#7A5C4E;
+  --line:rgba(102,24,24,0.14); --max:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--white);color:var(--ink);
+  font-family:'Outfit','Garet','Avenir Next',sans-serif;font-weight:300;font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:500;margin:0;line-height:1.1}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+a{color:var(--maroon)}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+.eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#8A3A3A;font-weight:400}
+.eyebrow-light{color:#E2BFA6}
+.btn{display:inline-block;text-decoration:none;text-align:center;background:var(--maroon);color:var(--cream);
+  font-size:13px;letter-spacing:1.8px;text-transform:uppercase;font-weight:400;padding:18px 38px;
+  border:1px solid var(--maroon);border-radius:2px;transition:background .18s ease,color .18s ease;cursor:pointer}
+.btn:hover{background:var(--maroon-deep);border-color:var(--maroon-deep)}
+.btn-light{background:var(--cream);color:var(--maroon);border-color:var(--cream)}
+.btn-light:hover{background:var(--white);color:var(--maroon-deep)}
+.btn-ghost-light{background:transparent;color:var(--cream);border-color:rgba(255,242,222,.55)}
+.btn-ghost-light:hover{background:var(--cream);color:var(--maroon)}
+.btn-full{display:block;width:100%}
+.link{text-decoration:none;color:var(--maroon);font-size:14px;letter-spacing:1.2px;
+  border-bottom:1px solid rgba(102,24,24,.35);padding-bottom:4px}
+.link:hover{border-bottom-color:var(--maroon)}
+
+.s{padding:96px 0}
+.s-white{background:var(--white)}
+.s-cream{background:var(--cream)}
+.s-maroon{background:var(--maroon);color:var(--cream)}
+.s-maroon-mid{background:var(--maroon-mid);color:var(--cream)}
+.s-maroon-deep{background:var(--maroon-deep);color:var(--cream)}
+.s-maroon h2,.s-maroon-mid h2,.s-maroon-deep h2,.s-maroon h3,.s-maroon-mid h3,.s-maroon-deep h3{color:var(--cream)}
+
+.ph{background:var(--sand);border:1px dashed rgba(102,24,24,.35);border-radius:3px;display:flex;
+  flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px;text-align:center;
+  color:#6B4A3E;font-size:14px;line-height:1.55}
+.ph svg{stroke:#8A3A3A}
+.ph-on-cream{background:#F3E2C6}
+
+/* announcement + header */
+.ann{background:var(--maroon-deep);color:var(--cream);text-align:center;
+  font-size:12px;letter-spacing:1.6px;text-transform:uppercase;padding:11px 16px}
+.hdr{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:1px solid var(--line)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 32px;max-width:var(--max);margin:0 auto}
+.mark{text-decoration:none;font-family:'Playfair Display',serif;font-weight:500;font-size:25px;
+  letter-spacing:8px;color:var(--maroon)}
+.nav{display:flex;align-items:center;gap:32px}
+.nav a{text-decoration:none;color:var(--ink-soft);font-size:12.5px;letter-spacing:1.6px;text-transform:uppercase}
+.nav a:hover{color:var(--maroon)}
+.nav .btn{padding:13px 24px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.02fr 1fr;gap:60px;align-items:center;padding:74px 0 86px}
+.hero h1{font-size:clamp(38px,4.7vw,64px);color:var(--maroon);line-height:1.06}
+.hero .sub{font-size:18.5px;color:var(--ink-soft);max-width:490px;line-height:1.7}
+.hero-col{display:flex;flex-direction:column;gap:24px}
+.hero .ph{min-height:540px}
+
+/* buy module */
+.buy{border:1px solid var(--line);border-radius:3px;padding:24px;background:var(--white);
+  display:flex;flex-direction:column;gap:16px;max-width:490px;box-shadow:0 6px 24px rgba(102,24,24,.06)}
+.buy .label{font-size:11.5px;letter-spacing:2.2px;text-transform:uppercase;color:#8A3A3A}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-family:inherit;font-size:13px;letter-spacing:.4px;padding:10px 16px;border-radius:999px;
+  border:1px solid rgba(102,24,24,.28);background:var(--white);color:var(--ink-soft);cursor:pointer}
+.pill:hover{border-color:var(--maroon);color:var(--maroon)}
+.pill[aria-pressed="true"]{background:var(--maroon);border-color:var(--maroon);color:var(--cream)}
+.buy .row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.buy .price{font-family:'Playfair Display',serif;font-size:28px;color:var(--maroon)}
+.buy .unit{font-size:13.5px;color:var(--ink-mute)}
+.buy .micro{font-size:13px;color:var(--ink-mute);text-align:center}
+
+/* trust strip */
+.trust{background:var(--maroon);color:var(--cream)}
+.trust ul{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:22px 32px;max-width:var(--max);margin:0 auto;flex-wrap:wrap}
+.trust li{font-size:12.5px;letter-spacing:2.4px;text-transform:uppercase}
+
+/* layout helpers */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.two-wide{grid-template-columns:1fr 1.15fr}
+.head{display:flex;flex-direction:column;gap:14px;margin-bottom:48px}
+.head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.head h2{font-size:clamp(32px,3.6vw,50px)}
+.head .note{font-size:16px;color:var(--ink-soft);max-width:430px;line-height:1.7}
+.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
+
+.tile h3{font-size:22px;margin:12px 0 8px}
+.tile p{font-size:15.5px;line-height:1.7;color:#EBD4BE}
+.tile svg{stroke:#E9C9A8}
+.story p{font-size:17.5px;line-height:1.78;color:#F3DFCB}
+.story .flat{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:#E9C9A8}
+
+.step{display:flex;gap:20px;align-items:flex-start}
+.step .num{font-family:'Playfair Display',serif;font-size:30px;color:var(--gold);line-height:1;width:40px;flex-shrink:0}
+.step h3{font-size:20px;color:var(--maroon);margin-bottom:5px}
+.step p{font-size:15.5px;color:var(--ink-soft);line-height:1.65}
+
+.who h3{font-size:24px;margin-bottom:12px}
+.who p{font-size:16px;line-height:1.75;color:#F0DBC4}
+.who .rule{width:40px;height:2px;background:var(--gold);margin-bottom:22px}
+
+.card{background:var(--white);border:1px solid var(--line);border-radius:3px;
+  padding:24px;display:flex;flex-direction:column;gap:14px;transition:box-shadow .18s ease}
+.card:hover{box-shadow:0 8px 28px rgba(102,24,24,.1)}
+.card .shot{height:210px;border-radius:2px}
+.card h3{font-size:25px;color:var(--maroon)}
+.card .notes{font-size:11.5px;letter-spacing:1.8px;text-transform:uppercase;color:#8A3A3A}
+.card p.desc{font-size:14.5px;line-height:1.65;color:var(--ink-soft);flex-grow:1}
+.card .price{font-family:'Playfair Display',serif;font-size:21px;color:var(--maroon)}
+.card .btn{padding:15px}
+
+.disc{margin-top:40px;background:var(--maroon);color:var(--cream);border-radius:3px;
+  padding:48px 52px;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.disc h3{font-size:clamp(26px,3vw,38px);line-height:1.15;max-width:640px}
+.disc p{font-size:16.5px;line-height:1.7;color:#F0DBC4;max-width:640px;margin-top:10px}
+.disc .right{display:flex;flex-direction:column;align-items:flex-end;gap:16px}
+.disc .price{font-family:'Playfair Display',serif;font-size:38px}
+
+.panel{border-radius:3px;padding:38px 40px}
+.panel-in{background:var(--white);border:1px solid var(--line)}
+.panel-out{background:var(--maroon);color:var(--cream)}
+.panel h3{font-family:'Outfit',sans-serif;font-weight:500;font-size:13px;letter-spacing:2.4px;
+  text-transform:uppercase;margin-bottom:24px;color:var(--maroon)}
+.panel-out h3{color:#E9C9A8}
+.panel li{display:flex;gap:14px;align-items:flex-start;margin-bottom:17px;font-size:16px;line-height:1.6}
+.panel li:last-child{margin-bottom:0}
+.panel svg{flex-shrink:0;margin-top:4px}
+.panel-in svg{stroke:var(--maroon)}
+.panel-out svg{stroke:#E9C9A8}
+.panel-out li{color:#F3DFCB}
+.kcal{font-size:14.5px;line-height:1.6;color:#E2BFA6;margin-top:26px;
+  border-top:1px solid rgba(255,242,222,.25);padding-top:18px}
+
+.founder{text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px}
+.founder .quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(26px,3vw,38px);
+  line-height:1.3;max-width:860px}
+.founder p.body{font-size:16.5px;line-height:1.75;color:#F0DBC4;max-width:720px}
+.founder .sig{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:30px;color:#E9C9A8}
+.founder .name{font-size:12.5px;letter-spacing:1.8px;text-transform:uppercase;color:#E2BFA6}
+
+.rev{background:var(--cream);border-radius:3px;padding:32px;display:flex;flex-direction:column;gap:18px;margin:0}
+.rev blockquote{margin:0;font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.5;color:var(--ink);flex-grow:1}
+.rev figcaption{font-size:12.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-mute)}
+.stars{display:flex;gap:4px}
+.stars svg{stroke:var(--gold)}
+
+.faq-q h3{font-size:19px;color:var(--maroon);margin-bottom:9px}
+.faq-q p{font-size:15.5px;line-height:1.7;color:var(--ink-soft)}
+
+.closing{text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px;padding:104px 0}
+.closing h2{font-size:clamp(34px,4.4vw,56px);line-height:1.14}
+.closing p{font-size:17.5px;line-height:1.7;color:#F0DBC4;max-width:580px}
+
+.ftr{background:var(--white);border-top:1px solid var(--line);padding:64px 0 0}
+.ftr-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.6fr;gap:56px}
+.ftr h4{font-family:'Outfit',sans-serif;font-weight:500;font-size:12px;letter-spacing:2.2px;
+  text-transform:uppercase;color:var(--maroon);margin-bottom:16px}
+.ftr a{display:block;text-decoration:none;font-size:14.5px;color:var(--ink-soft);margin-bottom:11px}
+.ftr a:hover{color:var(--maroon)}
+.ftr .blurb{font-size:15px;line-height:1.7;color:var(--ink-soft)}
+.ftr .legal{font-size:13px;line-height:1.7;color:var(--ink-mute);margin-top:16px}
+.signup{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.signup input{flex:1 1 200px;font-family:inherit;font-size:14.5px;padding:15px 16px;
+  border:1px solid rgba(102,24,24,.3);background:var(--white);color:var(--ink);border-radius:2px}
+.signup button{background:var(--maroon);color:var(--cream);border:none;font-family:inherit;
+  font-size:12px;letter-spacing:1.6px;text-transform:uppercase;padding:15px 24px;border-radius:2px;cursor:pointer}
+.ftr-base{border-top:1px solid var(--line);margin-top:48px;padding:22px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.ftr-base p{font-size:13px;color:var(--ink-mute)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.mock{background:#2E211C;color:#EFE3D6;font-size:13px;line-height:1.6;padding:14px 32px;text-align:center}
+.mock b{color:#E9C9A8;font-weight:500}
+
+@media (max-width:1040px){
+  .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero{grid-template-columns:1fr;gap:40px}
+  .hero .ph{min-height:340px;order:-1}
+  .buy{max-width:none}
+  .two,.two-wide{grid-template-columns:1fr;gap:40px}
+  .ftr-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .nav a:not(.btn){display:none}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .s{padding:64px 0}
+  .wrap{padding:0 20px}
+  .hdr-in{padding:16px 20px}
+  .mark{font-size:21px;letter-spacing:6px}
+  .grid-3,.grid-2{grid-template-columns:1fr;gap:28px}
+  .grid-4{gap:16px}
+  .trust ul{justify-content:flex-start;gap:8px 20px;padding:18px 20px}
+  .trust li{font-size:10.5px;letter-spacing:1.4px}
+  .disc{padding:32px 24px}
+  .disc .right{align-items:flex-start}
+  .panel{padding:28px 24px}
+  .closing{padding:72px 0}
+  .card .shot{height:150px}
+  .card h3{font-size:21px}
+}
+</style>
+</head>
+<body>
+
+<div class="mock">
+  <b>Mockup for development.</b> Dashed blocks are image placeholders. Text in [square brackets] is waiting on a real number or a decision. Body type is stood in by Outfit — Garet is a paid font that free web services cannot serve.
+</div>
+
+<div class="ann">Free shipping across India on orders over [₹ THRESHOLD]</div>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <a class="mark" href="#top">ROMOIRE</a>
+    <nav class="nav">
+      <a href="#range">Shop</a>
+      <a href="romoire-about-us.html">Our story</a>
+      <a href="#ingredients">Ingredients</a>
+      <a href="#faq">FAQ</a>
+      <a href="#footer">Contact</a>
+      <a class="btn" href="#range">Order now</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="s-white">
+  <div class="wrap hero">
+    <div class="hero-col">
+      <span class="eyebrow">Plant-based coffee premix · 5 single-serve sachets</span>
+      <h1>Café taste.<br>No dairy. No refined sugar.</h1>
+      <p class="sub">Single origin Arabica, coconut milk and monk fruit — a plant based cappuccino premix that needs nothing but hot water. One sachet, one cup, about a minute.</p>
+
+      <div class="buy">
+        <span class="label">Start here</span>
+        <div class="pills" role="group" aria-label="Choose a flavour">
+          <button type="button" class="pill" aria-pressed="true">All four</button>
+          <button type="button" class="pill" aria-pressed="false">Vanilla</button>
+          <button type="button" class="pill" aria-pressed="false">Espresso</button>
+          <button type="button" class="pill" aria-pressed="false">Mocha</button>
+          <button type="button" class="pill" aria-pressed="false">Hazelnut</button>
+        </div>
+        <div class="row">
+          <span class="price">[₹ PRICE]</span>
+          <span class="unit">5 sachets · 20g each · [₹ XX] a cup</span>
+        </div>
+        <a class="btn btn-full" href="#range">Add the Discovery Box</a>
+        <p class="micro">Free shipping over [₹ THRESHOLD]</p>
+      </div>
+
+      <a class="link" href="romoire-about-us.html" style="align-self:flex-start">Why we made it →</a>
+    </div>
+
+    <div class="ph">
+      <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 9h13v6a5 5 0 0 1-5 5h-3a5 5 0 0 1-5-5V9Z"/><path d="M17 10h1.4a2.6 2.6 0 0 1 0 5.2H17"/><path d="M8 2.5v3M12 2.5v3"/>
+      </svg>
+      <p><b>[HERO — VIDEO LOOP]</b><br>Five seconds, silent, autoplay, looping: sachet tearing, hot water going in, froth building. Pull the poster still from the final frame of this same shoot so the still and the loop match.<br><br>Fallback still: two cups — the finished one large and sharp in front, the one being poured behind and slightly soft.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="trust">
+  <ul>
+    <li>Dairy free</li>
+    <li>Lactose free</li>
+    <li>No refined sugar</li>
+    <li>100% Arabica</li>
+    <li>Monk fruit sweetened</li>
+    <li>Vegan friendly</li>
+    <li>Made in India</li>
+  </ul>
+</section>
+
+<!-- ============ ABOUT ROMOIRE ============ -->
+<section id="story" class="s s-maroon-mid">
+  <div class="wrap two two-wide">
+    <div class="story" style="display:flex;flex-direction:column;gap:24px">
+      <span class="eyebrow eyebrow-light">Who we are</span>
+      <h2 style="font-size:clamp(32px,3.8vw,50px)">Made because<br>I couldn't find it.</h2>
+      <p>Romoire started on the road — long flights, early mornings, and no dairy free coffee worth drinking. So I built one. 100% Arabica, no chicory. Coconut milk for real café body and a proper froth. Monk fruit instead of sugar. No dairy, no lactose, no compromise on how it tastes.</p>
+      <p class="flat">Café taste. No dairy. No refined sugar.</p>
+      <a class="btn btn-ghost-light" href="romoire-about-us.html" style="align-self:flex-start">Read our story</a>
+    </div>
+    <div class="grid-2" style="gap:40px 44px">
+      <div class="tile">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20c0-8.5 6.2-14 15-14 0 8.5-5.5 14.5-14 14.5H4V20Z"/><path d="M4.5 19.5 12.5 11.5"/></svg>
+        <h3>Single origin Arabica</h3>
+        <p>From the hills of Chikmagalur, Karnataka. One region, one bean. No chicory, no fillers, no blend of whatever was cheapest that month.</p>
+      </div>
+      <div class="tile">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11h14v5.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 4 16.5V11Z"/><path d="M18 12h1.3a2.4 2.4 0 0 1 0 4.8H18"/><path d="M6 8.2c0-1.4 1.6-1.4 1.6-2.8M10.2 8.2c0-1.4 1.6-1.4 1.6-2.8M14.4 8.2c0-1.4 1.6-1.4 1.6-2.8"/></svg>
+        <h3>Real café froth</h3>
+        <p>A thick, stable head that makes a cappuccino feel like a cappuccino — built from hot water and thirty seconds of stirring. No milk, no frother, no machine.</p>
+      </div>
+      <div class="tile">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3 3.4 5 6.2 5 8.8a5 5 0 0 1-10 0C7 9.2 9 6.4 12 3Z"/><path d="M9.6 12.4c0 1.5 1.1 2.6 2.4 2.6"/></svg>
+        <h3>Sweetened with monk fruit</h3>
+        <p>A monk fruit coffee carries its sweetness from a plant extract with no calories of its own. No refined sugar anywhere in the sachet, and the sweetness sits behind the coffee rather than in front of it.</p>
+      </div>
+      <div class="tile">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 6.5h10v13a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 7 19.5v-13Z"/><path d="M7 6.5 8.7 4l1.7 2.5L12 4l1.6 2.5L15.3 4 17 6.5"/></svg>
+        <h3>One sachet, one cup</h3>
+        <p>20g, pre-measured, sealed. It fits in a laptop bag, a hotel drawer or a desk. Nothing to weigh, nothing to carry, nothing to plug in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW TO MAKE IT ============ -->
+<section id="how" class="s s-white">
+  <div class="wrap two">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <span class="eyebrow">How to make it</span>
+      <h2 style="font-size:clamp(32px,3.8vw,52px);color:var(--maroon)">A proper cappuccino.<br>From one sachet.</h2>
+      <p style="font-size:17.5px;line-height:1.72;color:var(--ink-soft)">No frother. No milk. No machine. The froth comes from the sachet, not from equipment — which is the whole reason this works in a hotel room at six in the morning.</p>
+      <div style="display:flex;flex-direction:column;gap:22px;margin-top:4px">
+        <div class="step"><span class="num">01</span><div><h3>Tear</h3><p>One sachet into your cup. 20g, pre-measured — nothing to spoon or weigh.</p></div></div>
+        <div class="step"><span class="num">02</span><div><h3>Pour</h3><p>180 ml hot water, just off the boil. Water only — no milk needed, dairy or plant.</p></div></div>
+        <div class="step"><span class="num">03</span><div><h3>Stir</h3><p>The froth builds as you go, then settles into a thick, even head.</p></div></div>
+      </div>
+    </div>
+
+    <div style="background:var(--sand);border:1px dashed rgba(102,24,24,.35);border-radius:3px;padding:30px;display:flex;flex-direction:column;gap:20px">
+      <span class="eyebrow">Artwork slot — for your designer</span>
+      <div class="grid-3" style="gap:18px;min-height:280px">
+        <div class="ph ph-on-cream" style="padding:18px;font-size:13px">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 7h9v13a1.4 1.4 0 0 1-1.4 1.4H8.9A1.4 1.4 0 0 1 7.5 20V7Z"/><path d="M7.5 7 9.1 4.6l1.5 2.4 1.4-2.4 1.5 2.4L15 4.6 16.5 7"/></svg>
+          <p>[Sachet being torn]</p>
+        </div>
+        <div class="ph ph-on-cream" style="padding:18px;font-size:13px">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c2.8 3.2 4.6 5.8 4.6 8.2a4.6 4.6 0 0 1-9.2 0c0-2.4 1.8-5 4.6-8.2Z"/><path d="M9.8 12.6c0 1.4 1 2.4 2.2 2.4"/></svg>
+          <p>[Hot water pouring]</p>
+        </div>
+        <div class="ph ph-on-cream" style="padding:18px;font-size:13px">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 10.5h13V17a4 4 0 0 1-4 4h-5a4 4 0 0 1-4-4v-6.5Z"/><path d="M17.5 11.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.2"/><path d="M6.6 8c0-1.3 1.5-1.3 1.5-2.6M10.5 8c0-1.3 1.5-1.3 1.5-2.6M14.4 8c0-1.3 1.5-1.3 1.5-2.6"/></svg>
+          <p>[Finished cup, froth]</p>
+        </div>
+      </div>
+      <p style="font-size:14px;line-height:1.65;color:#6B4A3E">Line illustration in maroon on cream, matching the botanical pattern from the brand deck.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO IT'S FOR ============ -->
+<section class="s s-maroon">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow eyebrow-light">Who it's for</span>
+      <h2 style="font-size:clamp(32px,3.8vw,50px)">However you take your coffee.</h2>
+      <p style="font-size:17.5px;line-height:1.7;color:#F0DBC4;max-width:620px">Romoire isn't only for people who've given something up. It's for anyone who wants a café cup without the café.</p>
+    </div>
+    <div class="grid-3 who">
+      <div>
+        <div class="rule"></div>
+        <h3>If you buy your coffee out</h3>
+        <p>A café cappuccino costs [₹250] and a walk to get it. This is the same eleven o'clock cup, without either — and it's waiting in your drawer.</p>
+      </div>
+      <div>
+        <div class="rule"></div>
+        <h3>If you already buy premix</h3>
+        <p>The difference is what isn't in it. No milk powder, no refined sugar, no chicory bulking out the coffee. A lactose free instant coffee that doesn't taste like one.</p>
+      </div>
+      <div>
+        <div class="rule"></div>
+        <h3>If you brew at home</h3>
+        <p>You already know what good coffee tastes like, which is exactly why most instant disappoints you. This is for the mornings when the grinder and the ten minutes aren't happening.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE RANGE ============ -->
+<section id="range" class="s s-white">
+  <div class="wrap">
+    <div class="head head-row">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <span class="eyebrow">The range</span>
+        <h2 style="color:var(--maroon)">Choose your flavour.</h2>
+      </div>
+      <p class="note">Four flavours, one method. Every one of them a coffee premix with no refined sugar, 20g, single-serve, ready in about a minute.</p>
+    </div>
+
+    <div class="grid-4">
+      <article class="card">
+        <div class="ph shot"><p>[Vanilla sachet]</p></div>
+        <h3>Vanilla</h3>
+        <p class="notes">Smooth · Creamy · Delicate</p>
+        <p class="desc">Soft and rounded, with the vanilla sitting just under the coffee. Start here if a cappuccino is your usual order.</p>
+        <p class="price">[₹ PRICE]</p>
+        <a class="btn" href="#range">Add to cart</a>
+      </article>
+      <article class="card">
+        <div class="ph shot"><p>[Espresso sachet]</p></div>
+        <h3>Espresso</h3>
+        <p class="notes">Bold · Clean · Direct</p>
+        <p class="desc">The least sweet of the four and the closest to a straight café shot. For people who want the coffee in front, not behind.</p>
+        <p class="price">[₹ PRICE]</p>
+        <a class="btn" href="#range">Add to cart</a>
+      </article>
+      <article class="card">
+        <div class="ph shot"><p>[Mocha sachet]</p></div>
+        <h3>Mocha</h3>
+        <p class="notes">Rich · Cocoa · Indulgent</p>
+        <p class="desc">Rich and indulgent, with cocoa laid over the coffee rather than on top of it. Enough for an afternoon, without turning into a dessert.</p>
+        <p class="price">[₹ PRICE]</p>
+        <a class="btn" href="#range">Add to cart</a>
+      </article>
+      <article class="card">
+        <div class="ph shot"><p>[Hazelnut sachet]</p></div>
+        <h3>Hazelnut</h3>
+        <p class="notes">Warm · Roasted · Indulgent</p>
+        <p class="desc">Roasted hazelnut carried right through the finish — rich, warm and indulgent. The one people reach for when the weather turns.</p>
+        <p class="price">[₹ PRICE]</p>
+        <a class="btn" href="#range">Add to cart</a>
+      </article>
+    </div>
+
+    <div class="disc">
+      <div>
+        <span class="eyebrow eyebrow-light">Best first order</span>
+        <h3 style="margin-top:12px">Not sure where to start? Start with all four.</h3>
+        <p>The Discovery Box — five sachets, all four flavours, one box. Find the one you'll keep buying before you commit to a full box of it.</p>
+      </div>
+      <div class="right">
+        <p class="price">[₹ PRICE]</p>
+        <a class="btn btn-light" href="#range">Add the Discovery Box</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IN / NEVER ============ -->
+<section id="ingredients" class="s s-cream">
+  <div class="wrap">
+    <div class="head" style="max-width:720px">
+      <span class="eyebrow">Ingredients</span>
+      <h2 style="color:var(--maroon)">What goes in. And what stays out.</h2>
+      <p style="font-size:17px;line-height:1.75;color:var(--ink-soft);margin-top:4px">Romoire is a dairy free coffee premix made in India. Three ingredients do the work, and the list of what we leave out is almost as short.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel panel-in">
+        <h3>In every sachet</h3>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5"/></svg><span>Single origin Arabica from Chikmagalur — no chicory, no fillers</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5"/></svg><span>Coconut milk, for genuine café body and the froth</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5"/></svg><span>Monk fruit, a plant-based sweetener with no calories of its own</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5"/></svg><span>One sachet, one cup, hot water — that's the whole method</span></li>
+        </ul>
+      </div>
+      <div class="panel panel-out">
+        <h3>Never</h3>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M6.2 6.2 17.8 17.8"/></svg><span>Dairy, milk solids or lactose</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M6.2 6.2 17.8 17.8"/></svg><span>Refined sugar</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M6.2 6.2 17.8 17.8"/></svg><span>Preservatives</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M6.2 6.2 17.8 17.8"/></svg><span>Added artificial colours</span></li>
+        </ul>
+        <p class="kcal">[X] kcal per prepared cup. Full nutritional panel on every box.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHIKMAGALUR ============ -->
+<section class="s s-white">
+  <div class="wrap two">
+    <div class="ph" style="min-height:360px">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6.5-6 6.5-11a6.5 6.5 0 1 0-13 0c0 5 6.5 11 6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+      <p>[IMAGE — Chikmagalur estate, or a close crop of the green beans. One image only, licensed and real. A generic stock plantation is worse than no image.]</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <span class="eyebrow">Made in India</span>
+      <h2 style="font-size:clamp(30px,3.6vw,46px);color:var(--maroon)">Single origin.<br>Chikmagalur.</h2>
+      <p style="font-size:17px;line-height:1.75;color:var(--ink-soft)">Our Arabica comes from one place: Chikmagalur, in the hills of Karnataka, where coffee was first planted in India nearly four hundred years ago. Single origin — not a blend of whatever beans were cheapest that month.</p>
+      <p style="font-size:17px;line-height:1.75;color:var(--ink-soft)">Sourced and made in India, start to finish. The beans, the formulation, the production.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOUNDER ============ -->
+<section class="s s-maroon">
+  <div class="wrap founder">
+    <span class="eyebrow eyebrow-light">The person behind it</span>
+    <p class="quote">I set out to find a cup of coffee I could actually drink, and ended up making it myself.</p>
+    <p class="body">It took eight months and more formulations than I care to count before one of them met the standard. That formulation is what's in the box, and every batch since has been held to it.</p>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:10px">
+      <p class="sig">[Signature image]</p>
+      <p class="name">Sonakshi Raj · Founder, Romoire</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="s s-white">
+  <div class="wrap">
+    <div class="head head-row">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span class="eyebrow">Reviews</span>
+        <h2 style="color:var(--maroon)">What people say</h2>
+      </div>
+      <a class="link" href="#range">Read all reviews →</a>
+    </div>
+    <div class="grid-3">
+      <figure class="rev">
+        <div class="stars" aria-label="Rating placeholder">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+        </div>
+        <blockquote>[Aim for a quote that names the froth — it's the claim people don't believe until they try it.]</blockquote>
+        <figcaption>[Name] · [City]</figcaption>
+      </figure>
+      <figure class="rev">
+        <div class="stars" aria-label="Rating placeholder">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+        </div>
+        <blockquote>[Aim for a lactose-intolerant or vegan customer saying what they used to drink instead.]</blockquote>
+        <figcaption>[Name] · [City]</figcaption>
+      </figure>
+      <figure class="rev">
+        <div class="stars" aria-label="Rating placeholder">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="m12 3.5 2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8L12 3.5Z"/></svg>
+        </div>
+        <blockquote>[Aim for a travel or office quote — someone who carries it in a bag. That's the origin story, confirmed by a stranger.]</blockquote>
+        <figcaption>[Name] · [City]</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="s s-cream">
+  <div class="wrap two two-wide">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <span class="eyebrow">FAQ</span>
+      <h2 style="font-size:clamp(30px,3.6vw,44px);color:var(--maroon)">What to expect.</h2>
+      <p style="font-size:16px;line-height:1.7;color:var(--ink-soft)">The froth, the monk fruit, and what's actually in the sachet.</p>
+      <a class="link" href="#footer" style="align-self:flex-start;margin-top:4px">Ask a question →</a>
+    </div>
+    <div class="grid-2" style="gap:32px 44px">
+      <div class="faq-q">
+        <h3>Does it really froth without milk or a frother?</h3>
+        <p>Yes. The coconut milk solids build a thick, stable head with hot water and thirty seconds of stirring. One sachet makes one cup, and nothing else is needed — no dairy, no frother, no machine.</p>
+      </div>
+      <div class="faq-q">
+        <h3>Is this just instant coffee?</h3>
+        <p>No. Most instant is bulked out with chicory, milk powder and sugar. Romoire is single origin Arabica with coconut milk and monk fruit, and nothing else. It dissolves as fast as instant. That is where the resemblance ends.</p>
+      </div>
+      <div class="faq-q">
+        <h3>What does monk fruit taste like?</h3>
+        <p>Clean and rounded, without the metallic finish some sweeteners leave. A monk fruit coffee takes its sweetness from a plant extract rather than sugar, so it sits behind the coffee instead of in front of it. It isn't sugar and doesn't pretend to be.</p>
+      </div>
+      <div class="faq-q">
+        <h3>Does it contain any dairy?</h3>
+        <p>None. No milk powder, no milk solids, no lactose. The body and the froth come from coconut milk, which is why this is a dairy free coffee premix rather than an ordinary one with the milk taken out. [Add the dairy-free facility line only if the line is dedicated.]</p>
+      </div>
+      <div class="faq-q">
+        <h3>Where does the coffee come from?</h3>
+        <p>One place: Chikmagalur, in the hills of Karnataka. Single origin Arabica, sourced and made in India — the beans, the formulation and the production.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="s-maroon-deep">
+  <div class="wrap closing">
+    <h2>Real coffee. Anywhere you are.</h2>
+    <p>Five sachets. Four flavours. One minute each. Start with the Discovery Box and find the one you'll keep buying.</p>
+    <a class="btn btn-light" href="#range">Shop the range</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="footer" class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <p style="font-family:'Playfair Display',serif;font-size:23px;letter-spacing:6px;color:var(--maroon);margin-bottom:14px">ROMOIRE</p>
+        <p class="blurb">A dairy free coffee premix from India. Single origin Arabica from Chikmagalur, coconut milk and monk fruit — vegan friendly, lactose free, and no refined sugar.</p>
+        <p class="legal">Ravance Ventures LLP · FSSAI Licence No. [NUMBER]<br>[Registered address, Mumbai 400053]</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="#range">Vanilla</a><a href="#range">Espresso</a><a href="#range">Mocha</a><a href="#range">Hazelnut</a><a href="#range">Discovery Box</a>
+      </div>
+      <div>
+        <h4>Romoire</h4>
+        <a href="romoire-about-us.html">Our story</a><a href="#ingredients">Ingredients</a><a href="#how">How to make it</a><a href="#faq">FAQ</a><a href="#footer">Shipping &amp; returns</a>
+      </div>
+      <div>
+        <h4>Join the list</h4>
+        <p class="blurb">One email when something new lands, and nothing else. No newsletters about coffee culture.</p>
+        <div class="signup">
+          <label class="sr" for="email">Email address</label>
+          <input id="email" type="email" placeholder="Your email address">
+          <button type="button">Notify me</button>
+        </div>
+        <p class="legal">hello@romoire.com · +91 [NUMBER]</p>
+      </div>
+    </div>
+    <div class="ftr-base">
+      <p>© 2026 Romoire. All rights reserved.</p>
+      <p>UPI · Cards · Net banking</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Flavour pills — mockup behaviour only
+  document.querySelectorAll('.pills .pill').forEach(function (p) {
+    p.addEventListener('click', function () {
+      document.querySelectorAll('.pills .pill').forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
+      p.setAttribute('aria-pressed', 'true');
+    });
+  });
+</script>
+
+</body>
+</html>

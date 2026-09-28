@@ -1,16 +1,30 @@
-/** Romoire editorial design system — Coconut Variant palette */
+/** Romoire editorial design system — Maroon, Cream, Sand & Gold palette */
 export const TOKENS = {
-  espresso: '#4C2B08',
-  vanilla: '#D7BDA6',
-  mocha: '#85593E',
-  hazelnut: '#996133',
-  cream: '#F8F3EF',
-  burgundy: '#5A0D0D',
-  text: '#2E211B',
-  muted: '#745F52',
-  border: 'rgba(76, 43, 8, 0.12)',
-  borderStrong: 'rgba(133, 89, 62, 0.2)',
-  shadow: '0 8px 30px rgba(76, 43, 8, 0.08)',
+  maroon: '#661818',
+  maroonMid: '#5A1616',
+  maroonDeep: '#4E1212',
+  cream: '#FFF2DE',
+  sand: '#F7E8D2',
+  gold: '#B98D4E',
+  white: '#FFFFFF',
+  ink: '#2E211C',
+  inkSoft: '#5A433A',
+  inkMute: '#7A5C4E',
+  line: 'rgba(102, 24, 24, 0.14)',
+  border: 'rgba(102, 24, 24, 0.14)',
+  borderStrong: 'rgba(102, 24, 24, 0.28)',
+  shadow: '0 6px 24px rgba(102, 24, 24, 0.06)',
+  max: '1240px',
+
+  // Backward compatibility aliases for existing subcomponents
+  espresso: '#661818',
+  vanilla: '#F7E8D2',
+  mocha: '#5A1616',
+  hazelnut: '#B98D4E',
+  burgundy: '#4E1212',
+  text: '#2E211C',
+  muted: '#7A5C4E',
 } as const;
 
 export const BOTANICAL_IMAGE = '/botanical-leaves.jpg';
+

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Cormorant_Garamond, Manrope } from 'next/font/google'
+import { Playfair_Display, Cormorant_Garamond, Outfit, Manrope } from 'next/font/google'
 import './globals.css'
 import { Toaster } from "../components/ui/toaster"
 import { Toaster as Sonner } from "../components/ui/sonner"
@@ -19,11 +19,18 @@ const playfair = Playfair_Display({
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
   variable: '--font-cormorant',
   display: 'swap',
 })
 
-/** Garet fallback — geometric sans similar to reference body type */
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-outfit',
+  display: 'swap',
+})
+
 const manrope = Manrope({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
@@ -32,8 +39,8 @@ const manrope = Manrope({
 })
 
 export const metadata: Metadata = {
-  title: `${SITE_NAME} | ${SITE_TAGLINE}`,
-  description: SITE_DESCRIPTION,
+  title: 'Romoire | Dairy Free Coffee Premix India | No Refined Sugar',
+  description: 'Romoire is a plant based cappuccino premix made with single origin Arabica, coconut milk and monk fruit. Dairy free, lactose free, vegan friendly and no refined sugar. One sachet, hot water, one minute.',
   icons: {
     icon: LOGO_SRC,
     apple: LOGO_SRC,
@@ -54,8 +61,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${playfair.variable} ${cormorant.variable} ${manrope.variable} font-body bg-cream text-foreground antialiased`}
-        style={{ ['--font-garet' as string]: 'var(--font-manrope)' }}
+        className={`${playfair.variable} ${cormorant.variable} ${outfit.variable} ${manrope.variable} font-body bg-white text-ink antialiased`}
+        style={{
+          ['--font-garet' as string]: 'var(--font-outfit)',
+          ['--font-outfit' as string]: 'var(--font-outfit)',
+        }}
         suppressHydrationWarning
       >
         <TooltipProvider>

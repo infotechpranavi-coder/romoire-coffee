@@ -43,8 +43,8 @@ const NavbarTravel = () => {
   const { openForm } = useInquiryForm();
 
   const isBlogDetail = Boolean(pathname?.startsWith('/blogs/') && pathname !== '/blogs');
-  // Keep a solid, high-contrast nav on every page except the home hero (until scroll).
-  const useSolidNav = isScrolled || isBlogDetail || pathname !== '/';
+  // Keep a solid, high-contrast nav on every page including home.
+  const useSolidNav = true;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -127,7 +127,7 @@ const NavbarTravel = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${useSolidNav
-      ? 'bg-cream/95 backdrop-blur-md shadow-lg'
+      ? 'bg-vanilla/95 backdrop-blur-md border-b border-mocha/20 shadow-[0_8px_30px_rgba(76,43,8,0.10)]'
       : 'bg-transparent'
       }`}>
       <div className="container mx-auto px-4">
@@ -465,7 +465,7 @@ const NavbarTravel = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-cream border-t shadow-lg">
+        <div className="lg:hidden bg-vanilla border-t border-mocha/20 shadow-[0_8px_30px_rgba(76,43,8,0.10)]">
           <div className="container mx-auto px-4 py-4 space-y-2">
             {navigation.map((item) => (
               <div key={item.name}>

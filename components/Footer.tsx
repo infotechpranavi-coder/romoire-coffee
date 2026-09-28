@@ -88,7 +88,7 @@ const Footer = () => {
   ].filter((item) => item.enabled);
 
   return (
-    <footer className="relative overflow-hidden bg-espresso font-body text-vanilla">
+    <footer id="footer" className="relative overflow-hidden bg-espresso font-body text-vanilla">
       <div className="relative z-10">
         <div className="container mx-auto px-4 pt-14 pb-10 md:pt-16 md:pb-14">
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">

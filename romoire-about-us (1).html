@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Story | Romoire | Dairy Free Coffee Premix, Made in India</title>
+<meta name="description" content="Why Romoire exists: a vegan friendly, lactose free instant coffee built on single origin Arabica from Chikmagalur, coconut milk and monk fruit. No dairy, no refined sugar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap">
+<style>
+/* ---------------------------------------------------------
+   ROMOIRE — OUR STORY
+   Same system as the homepage. No lockup tagline.
+--------------------------------------------------------- */
+:root{
+  --maroon:#661818; --maroon-mid:#5A1616; --maroon-deep:#4E1212;
+  --cream:#FFF2DE; --sand:#F7E8D2; --gold:#B98D4E; --white:#FFFFFF;
+  --ink:#2E211C; --ink-soft:#5A433A; --ink-mute:#7A5C4E;
+  --line:rgba(102,24,24,0.14); --max:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--white);color:var(--ink);
+  font-family:'Outfit','Garet','Avenir Next',sans-serif;font-weight:300;font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:500;margin:0;line-height:1.12}
+p{margin:0}
+a{color:var(--maroon)}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+.narrow{max-width:800px;margin:0 auto;padding:0 32px}
+.eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#8A3A3A;font-weight:400}
+.eyebrow-light{color:#E2BFA6}
+.btn{display:inline-block;text-decoration:none;text-align:center;background:var(--maroon);color:var(--cream);
+  font-size:13px;letter-spacing:1.8px;text-transform:uppercase;font-weight:400;padding:18px 38px;
+  border:1px solid var(--maroon);border-radius:2px;transition:background .18s ease,color .18s ease}
+.btn:hover{background:var(--maroon-deep);border-color:var(--maroon-deep)}
+.btn-light{background:var(--cream);color:var(--maroon);border-color:var(--cream)}
+.btn-light:hover{background:var(--white);color:var(--maroon-deep)}
+.link{text-decoration:none;color:var(--maroon);font-size:15px;letter-spacing:1.1px;
+  border-bottom:1px solid rgba(102,24,24,.35);padding-bottom:4px}
+.link:hover{border-bottom-color:var(--maroon)}
+
+.s{padding:96px 0}
+.s-white{background:var(--white)}
+.s-cream{background:var(--cream)}
+.s-maroon{background:var(--maroon);color:var(--cream)}
+.s-maroon-mid{background:var(--maroon-mid);color:var(--cream)}
+.s-maroon-deep{background:var(--maroon-deep);color:var(--cream)}
+.s-maroon h2,.s-maroon-mid h2,.s-maroon-deep h2{color:var(--cream)}
+
+.ph{background:var(--sand);border:1px dashed rgba(102,24,24,.35);border-radius:3px;display:flex;
+  flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px;text-align:center;
+  color:#6B4A3E;font-size:14px;line-height:1.55}
+.ph svg{stroke:#8A3A3A}
+
+.hdr{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:1px solid var(--line)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 32px;max-width:var(--max);margin:0 auto}
+.mark{text-decoration:none;font-family:'Playfair Display',serif;font-weight:500;font-size:25px;
+  letter-spacing:8px;color:var(--maroon)}
+.nav{display:flex;align-items:center;gap:32px}
+.nav a{text-decoration:none;color:var(--ink-soft);font-size:12.5px;letter-spacing:1.6px;text-transform:uppercase}
+.nav a:hover{color:var(--maroon)}
+.nav .btn{padding:13px 24px}
+
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:84px 0}
+.hero h1{font-size:clamp(36px,4.6vw,62px);color:var(--maroon);line-height:1.08}
+.hero p{font-size:19px;line-height:1.65;color:var(--ink-soft);max-width:470px}
+.hero .ph{min-height:460px}
+
+.story-body p{font-size:18.5px;line-height:1.85;color:var(--ink-soft);margin-bottom:24px}
+.story-body p:last-child{margin-bottom:0}
+.story-body .beat{font-family:'Playfair Display',serif;font-size:26px;color:var(--maroon);line-height:1.4}
+
+.pillar{display:flex;flex-direction:column;gap:12px}
+.pillar h3{font-size:24px;color:var(--maroon)}
+.pillar p{font-size:16px;line-height:1.75;color:var(--ink-soft)}
+.pillar .rule{width:38px;height:2px;background:var(--gold)}
+
+.founder-body p{font-size:18px;line-height:1.85;color:#F3DFCB;margin-bottom:22px}
+.founder-body p:last-child{margin-bottom:0}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px}
+.head{display:flex;flex-direction:column;gap:14px;margin-bottom:48px}
+.head h2{font-size:clamp(30px,3.6vw,48px)}
+
+.closing{text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px;padding:104px 0}
+.closing h2{font-size:clamp(34px,4.4vw,56px);line-height:1.14}
+
+.ftr{background:var(--white);border-top:1px solid var(--line);padding:56px 0}
+.ftr-in{display:flex;align-items:flex-start;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.ftr p{font-size:14px;line-height:1.7;color:var(--ink-mute)}
+.ftr .wordmark{font-family:'Playfair Display',serif;font-size:23px;letter-spacing:6px;color:var(--maroon);margin-bottom:10px}
+.ftr .blurb{font-size:14.5px;line-height:1.7;color:var(--ink-soft);max-width:360px}
+
+.mock{background:#2E211C;color:#EFE3D6;font-size:13px;line-height:1.6;padding:14px 32px;text-align:center}
+.mock b{color:#E9C9A8;font-weight:500}
+
+@media (max-width:1040px){
+  .hero{grid-template-columns:1fr;gap:40px}
+  .hero .ph{min-height:300px;order:-1}
+  .two{grid-template-columns:1fr;gap:40px}
+  .nav a:not(.btn){display:none}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .s{padding:64px 0}
+  .wrap,.narrow{padding:0 20px}
+  .hdr-in{padding:16px 20px}
+  .mark{font-size:21px;letter-spacing:6px}
+  .grid-3{grid-template-columns:1fr;gap:32px}
+  .story-body p{font-size:17px}
+  .closing{padding:72px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="mock">
+  <b>Mockup for development.</b> Dashed blocks are image placeholders. Text in [square brackets] is waiting on a real number or a decision. Body type is stood in by Outfit — Garet is a paid font that free web services cannot serve.
+</div>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <a class="mark" href="romoire-homepage.html">ROMOIRE</a>
+    <nav class="nav">
+      <a href="romoire-homepage.html#range">Shop</a>
+      <a href="#top">Our story</a>
+      <a href="romoire-homepage.html#ingredients">Ingredients</a>
+      <a href="romoire-homepage.html#faq">FAQ</a>
+      <a href="#footer">Contact</a>
+      <a class="btn" href="romoire-homepage.html#range">Order now</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="s-white">
+  <div class="wrap hero">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <span class="eyebrow">Our story</span>
+      <h1>Good coffee shouldn't depend on where you are.</h1>
+      <p>Single origin Arabica. Real café froth. No dairy, no refined sugar. One sachet, anywhere you are.</p>
+    </div>
+    <div class="ph">
+      <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 9h13v6a5 5 0 0 1-5 5h-3a5 5 0 0 1-5-5V9Z"/><path d="M17 10h1.4a2.6 2.6 0 0 1 0 5.2H17"/><path d="M8 2.5v3M12 2.5v3"/>
+      </svg>
+      <p>[THE HERO IMAGE — one cup, shot from just above, froth filling the frame. Sachet in soft focus behind it. This is the shot worth paying for.]</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IT STARTED ON THE ROAD ============ -->
+<section class="s s-cream">
+  <div class="wrap two">
+    <div>
+      <div class="head" style="margin-bottom:32px">
+        <span class="eyebrow">The problem</span>
+        <h2 style="color:var(--maroon)">It started on the road.</h2>
+      </div>
+      <div class="story-body">
+        <p>Romoire began in airport lounges at 6 a.m., in cars between meetings, in hotel rooms where the only coffee was a sachet of something forgettable.</p>
+        <p>I love coffee: the aroma, the body, the first sip of a properly made cappuccino. So when I had to give up dairy, I went looking for a premix that could still deliver that.</p>
+        <p>I came up empty. What I could find was built on milk powder, or dissolved into something thin and chalky, or buried the coffee under sugar. Nothing gave me all three things I wanted in the same cup: café taste, no dairy, and no refined sugar.</p>
+        <p class="beat">So I made it.</p>
+      </div>
+    </div>
+    <div class="ph" style="min-height:440px;background:#F3E2C6">
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4.5 10.5h13V17a4 4 0 0 1-4 4h-5a4 4 0 0 1-4-4v-6.5Z"/><path d="M17.5 11.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.2"/>
+        <path d="M6.6 8c0-1.3 1.5-1.3 1.5-2.6M10.5 8c0-1.3 1.5-1.3 1.5-2.6M14.4 8c0-1.3 1.5-1.3 1.5-2.6"/>
+      </svg>
+      <p>[HANDS MAKING THE CUP — pouring or stirring, froth forming. Your hands, not a model's. Shot against cream.]</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THREE THINGS ============ -->
+<section class="s s-white">
+  <div class="wrap">
+    <div class="head" style="max-width:760px">
+      <span class="eyebrow">The standard</span>
+      <h2 style="color:var(--maroon)">Three things. No trade-offs between them.</h2>
+      <p style="font-size:18px;line-height:1.75;color:var(--ink-soft);margin-top:6px">Most dairy free coffee asks you to give something up. Cleaner ingredients, but a thinner cup. No sugar, but no pleasure either. Romoire was built to refuse that trade.</p>
+    </div>
+    <div class="grid-3">
+      <div class="pillar">
+        <div class="rule"></div>
+        <h3>It has to taste like a café.</h3>
+        <p>Single origin Arabica from Chikmagalur, with no chicory and no fillers. Coconut milk that gives the cup real body instead of just colour. And a proper froth: the thick, stable layer that makes a cappuccino feel like a cappuccino, from nothing but hot water and thirty seconds of stirring. Rich and indulgent, in a plant based cappuccino premix.</p>
+      </div>
+      <div class="pillar">
+        <div class="rule"></div>
+        <h3>It has to be completely dairy-free.</h3>
+        <p>No milk powder, no milk solids, no lactose. Not a version of something else with the dairy taken out, but built this way from the first batch — vegan friendly, and lactose free by design rather than by subtraction.</p>
+      </div>
+      <div class="pillar">
+        <div class="rule"></div>
+        <h3>It has to be sweet without the sugar.</h3>
+        <p>Monk fruit instead of refined sugar. It is a plant-based sweetener that carries no calories of its own. The sweetness sits behind the coffee, not in front of it.</p>
+      </div>
+    </div>
+    <p style="margin-top:48px;padding-top:32px;border-top:1px solid var(--line);font-size:16.5px;color:var(--ink-soft)">
+      The full ingredient list and nutritional panel are on every product page.
+      <a class="link" href="romoire-homepage.html#ingredients" style="margin-left:8px">See what's in each flavour →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ============ CHIKMAGALUR ============ -->
+<section class="s s-cream">
+  <div class="wrap two">
+    <div>
+      <div class="head" style="margin-bottom:28px">
+        <span class="eyebrow">Made in India</span>
+        <h2 style="color:var(--maroon)">Single origin. Chikmagalur.</h2>
+      </div>
+      <div class="story-body">
+        <p>Our Arabica comes from one place: Chikmagalur, in the hills of Karnataka, where coffee was first planted in India nearly four hundred years ago. Single origin, not a blend of whatever beans were cheapest that month.</p>
+        <p>Single origin is a harder promise to keep than a blend. It ties us to one region's harvest rather than to whatever the market is offering that month, and it means holding lot-level records back to the estate. We think a cup with a place behind it is worth the constraint.</p>
+        <p>Romoire is sourced and made in India, start to finish. The beans, the formulation, the production.</p>
+      </div>
+    </div>
+    <div class="ph" style="min-height:420px;background:#F3E2C6">
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 21s6.5-6 6.5-11a6.5 6.5 0 1 0-13 0c0 5 6.5 11 6.5 11Z"/><circle cx="12" cy="10" r="2.4"/>
+      </svg>
+      <p>[ESTATE OR GREEN BEANS — Chikmagalur hills, or unroasted beans in daylight. Ask your supplier; most have usable photography.]</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEWER THINGS ============ -->
+<section class="s s-white">
+  <div class="wrap two">
+    <div class="ph" style="min-height:380px">
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 6.5h10v13a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 7 19.5v-13Z"/><path d="M7 6.5 8.7 4l1.7 2.5L12 4l1.6 2.5L15.3 4 17 6.5"/>
+      </svg>
+      <p>[THE FLAVOURS — all the sachets or boxes together, shot flat on cream. Your strongest product image on this page.]</p>
+    </div>
+    <div>
+      <div class="head" style="margin-bottom:28px">
+        <span class="eyebrow">Our standard</span>
+        <h2 style="color:var(--maroon)">Fewer things. Done properly.</h2>
+      </div>
+      <div class="story-body">
+        <p>We'd rather do a few things properly than a lot of things adequately. One standard, and nothing goes in a box until it holds up to it.</p>
+        <p>Anything that doesn't meet it doesn't get made.</p>
+      </div>
+      <a class="btn" href="romoire-homepage.html#range" style="margin-top:32px">See the flavours</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE PERSON BEHIND IT ============ -->
+<section class="s s-maroon-mid">
+  <div class="narrow">
+    <div class="head" style="margin-bottom:32px">
+      <span class="eyebrow eyebrow-light">The person behind it</span>
+      <h2>Sonakshi Raj.</h2>
+    </div>
+    <div class="founder-body">
+      <p>I set out to find a cup of coffee I could actually drink, and ended up making it myself. Now I'm making it for you.</p>
+      <p>I have a master's in engineering from Queen's University, Canada, and I approached this formula the way I was trained to approach any problem: define the standard, test against it, change one variable, test again. It took eight months and more formulations than I care to count before one of them met the standard.</p>
+      <p>Every batch since has been held to that same cup.</p>
+      <p>If you try Romoire and it isn't right, write to me. It comes to my inbox.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:38px">
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:30px;color:#E9C9A8">[Signature: transparent PNG]</p>
+      <p style="font-size:12.5px;letter-spacing:1.8px;text-transform:uppercase;color:#E2BFA6">Sonakshi Raj · Founder, Romoire</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="s-maroon-deep">
+  <div class="wrap closing">
+    <h2>Real coffee. Anywhere you are.</h2>
+    <a class="btn btn-light" href="romoire-homepage.html#range">Shop the range</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="footer" class="ftr">
+  <div class="wrap ftr-in">
+    <div>
+      <p class="wordmark">ROMOIRE</p>
+      <p class="blurb">A dairy free coffee premix from India. Vegan friendly, lactose free, and sweetened with monk fruit.</p>
+    </div>
+    <div style="max-width:440px">
+      <p>Sourced and made in India. Single origin Arabica from Chikmagalur.<br>
+      Ravance Ventures LLP · FSSAI Licence No. [NUMBER]<br>
+      hello@romoire.com · +91 [NUMBER]</p>
+      <p style="margin-top:14px">© 2026 Romoire</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

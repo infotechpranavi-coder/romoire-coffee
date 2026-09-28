@@ -24,11 +24,12 @@ export default {
 		extend: {
 			fontFamily: {
 				heading: ['var(--font-playfair)', 'Georgia', 'serif'],
-				body: ['var(--font-garet)', 'var(--font-manrope)', 'system-ui', 'sans-serif'],
+				body: ['var(--font-outfit)', 'var(--font-garet)', 'var(--font-manrope)', 'system-ui', 'sans-serif'],
 				editorial: ['var(--font-cormorant)', 'Georgia', 'serif'],
 				playfair: ['var(--font-playfair)', 'serif'],
 				cormorant: ['var(--font-cormorant)', 'serif'],
-				garet: ['var(--font-garet)', 'var(--font-manrope)', 'sans-serif'],
+				outfit: ['var(--font-outfit)', 'sans-serif'],
+				garet: ['var(--font-outfit)', 'var(--font-manrope)', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -36,39 +37,55 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
-				espresso: '#4C2B08',
-				vanilla: '#D7BDA6',
-				mocha: '#85593E',
-				hazelnut: '#996133',
-				cream: '#F8F3EF',
-				burgundy: '#5A0D0D',
+				maroon: {
+					DEFAULT: '#661818',
+					mid: '#5A1616',
+					deep: '#4E1212',
+				},
+				cream: {
+					DEFAULT: '#FFF2DE',
+					light: '#FFF9F0',
+				},
+				sand: '#F7E8D2',
+				gold: '#B98D4E',
+				ink: {
+					DEFAULT: '#2E211C',
+					soft: '#5A433A',
+					mute: '#7A5C4E',
+				},
+				line: 'rgba(102, 24, 24, 0.14)',
+				espresso: '#661818',
+				vanilla: '#F7E8D2',
+				mocha: '#5A1616',
+				hazelnut: '#B98D4E',
+				burgundy: '#4E1212',
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
-					foreground: '#745F52',
+					foreground: '#7A5C4E',
 				},
 				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					DEFAULT: '#661818',
+					foreground: '#FFF2DE'
 				},
 				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					DEFAULT: '#FFF2DE',
+					foreground: '#661818'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
 				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
+					DEFAULT: '#B98D4E',
+					foreground: '#FFFFFF'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))'
 				},
 				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
+					DEFAULT: '#FFFFFF',
+					foreground: '#2E211C'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -85,14 +102,19 @@ export default {
 				'travel-light-teal': 'hsl(var(--travel-light-teal))',
 				'travel-light-bg': 'hsl(var(--travel-light-bg))',
 				romoire: {
-					espresso: '#4C2B08',
-					vanilla: '#D7BDA6',
-					mocha: '#85593E',
-					hazelnut: '#996133',
-					cream: '#F8F3EF',
-					burgundy: '#5A0D0D',
-					text: '#2E211B',
-					muted: '#745F52',
+					maroon: '#661818',
+					'maroon-mid': '#5A1616',
+					'maroon-deep': '#4E1212',
+					cream: '#FFF2DE',
+					sand: '#F7E8D2',
+					gold: '#B98D4E',
+					espresso: '#661818',
+					vanilla: '#F7E8D2',
+					mocha: '#5A1616',
+					hazelnut: '#B98D4E',
+					burgundy: '#4E1212',
+					text: '#2E211C',
+					muted: '#7A5C4E',
 				}
 			},
 			borderRadius: {
