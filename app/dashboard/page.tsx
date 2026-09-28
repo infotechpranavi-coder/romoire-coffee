@@ -43,6 +43,8 @@ import {
   Copy,
   MessageSquare,
   FileText,
+  Coffee,
+  Sparkles,
   Menu,
   X,
   LayoutDashboard,
@@ -300,7 +302,7 @@ export default function DashboardPage() {
       const res = await fetch('/api/packages/seed', { method: 'POST' });
       const data = await res.json();
       if (data.success) {
-        alert(`✅ Sample packages added: ${data.results.created} created, ${data.results.skipped} already existed.`);
+        alert(`✅ Romoire premix products seeded successfully! (${data.results.created} created, ${data.results.updated} updated)`);
         await fetchPackages();
       } else {
         alert('❌ Failed to seed packages: ' + (data.error || data.message || 'Unknown error'));
@@ -1688,8 +1690,19 @@ export default function DashboardPage() {
                 <CardHeader className="p-8 pb-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <div>
-                      <CardTitle className="text-2xl font-black text-espresso tracking-tight uppercase">EXPERIENCE INVENTORY</CardTitle>
-                      <CardDescription className="text-sm font-medium text-gray-400">Total catalog of curated experience packages</CardDescription>
+                      <CardTitle className="text-2xl font-black text-espresso tracking-tight uppercase">PRODUCT INVENTORY</CardTitle>
+                      <CardDescription className="text-sm font-medium text-gray-400">Total catalog of Romoire coffee premix products</CardDescription>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Button
+                        onClick={handleSeedPackages}
+                        disabled={seedingPackages}
+                        variant="outline"
+                        className="border-espresso/20 text-espresso hover:bg-espresso hover:text-white font-black text-xs uppercase tracking-wider rounded-2xl py-5 px-5 flex items-center gap-2 shadow-sm transition-all"
+                      >
+                        <Coffee className="h-4 w-4 text-hazelnut" />
+                        {seedingPackages ? 'Seeding Premixes...' : 'Seed Premix Products'}
+                      </Button>
                     </div>
                   </div>
                 </CardHeader>

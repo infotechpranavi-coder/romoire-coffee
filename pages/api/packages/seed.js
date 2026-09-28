@@ -1,208 +1,256 @@
 import connectDB from '../../../lib/mongodb';
 import Package from '../../../models/Package';
 import { isConnected } from '../../../lib/mongodb';
-import { PACKAGE_EXPERIENCE_CATEGORIES } from '../../../lib/packageExperienceCategories';
-import { SITE_NAME } from '../../../lib/branding';
 
-const categoryImage = (value) =>
-  PACKAGE_EXPERIENCE_CATEGORIES.find((c) => c.value === value)?.heroImage ?? '';
-
-const packageDefaults = (categoryValue, title, extras = {}) => {
-  const category = PACKAGE_EXPERIENCE_CATEGORIES.find((c) => c.value === categoryValue);
-  return {
-    title,
-    subtitle: extras.subtitle ?? category?.heroSubtitle?.slice(0, 90) ?? `Curated ${SITE_NAME} experience`,
-    about: extras.about ?? category?.heroSubtitle ?? `A curated adventure with ${SITE_NAME}.`,
-    services: extras.services ?? 'Guided experience, safety briefing, expert support',
-    tourDetails: extras.tourDetails ?? `Full ${category?.label ?? 'experience'} package with ${SITE_NAME}.`,
-    price: extras.price ?? 4999,
-    duration: extras.duration ?? '1 Day',
-    location: extras.location ?? 'South Africa',
-    capacity: extras.capacity ?? '2-8 persons',
-    packageType: extras.packageType ?? 'domestic',
-    place: extras.place ?? 'south-africa',
-    packageCategory: categoryValue,
+export const ROMOIRE_SEED_PACKAGES = [
+  {
+    title: 'Premix assorted flavours pack',
+    subtitle: 'All signature flavours in one discovery pack',
+    about: 'The complete Romoire experience. Includes Vanilla, Mocha, Hazelnut, and Plain classic premix. Built on single origin Arabica from Chikmagalur, coconut milk, and monk fruit sweetness. Dairy free, lactose free, zero refined sugar. One sachet, hot water, one minute.',
+    services: 'Single-serve sachets, 100% plant-based coconut milk, monk fruit sweetened, dairy-free',
+    tourDetails: 'Includes 5 assorted single-serve 20g sachets. Made with 100% single origin Arabica from Chikmagalur, premium spray-dried coconut milk, and monk fruit extract. Dissolves in hot water in 30 seconds into a rich, frothy café-style cappuccino.',
+    price: 499,
+    duration: '5 Sachets · 20g each',
+    location: 'Chikmagalur, Karnataka, India',
+    capacity: 'Assorted Pack (5 Sachets)',
+    packageType: 'domestic',
+    place: 'india',
+    packageCategory: 'Assorted Pack',
+    packageMiniCategory: 'Discovery Box',
     images: [
       {
-        public_id: `pkg-${category?.slug ?? 'experience'}`,
-        url: categoryImage(categoryValue),
-        alt: category?.label ?? title,
+        public_id: 'romoire-premix-assorted-flavours',
+        url: '/images/romoire/discovery_box.jpg',
+        alt: 'Premix assorted flavours pack',
       },
-    ],
-    itinerary: [
       {
-        day: 1,
-        title: extras.itineraryTitle ?? 'Experience Day',
-        description: extras.itineraryDesc ?? 'Meet guides, enjoy the activity, and return with memories.',
+        public_id: 'romoire-coffee-sachets-collection',
+        url: '/images/romoire/coffee_sachets.jpg',
+        alt: 'Romoire sachets collection',
       },
     ],
-    transportation: extras.transportation ?? [],
-    accommodation: extras.accommodation ?? [],
-    inclusions: extras.inclusions ?? ['Guide', 'Safety equipment'],
-    exclusions: extras.exclusions ?? ['Meals', 'Personal expenses'],
+    inclusions: [
+      {
+        category: 'In the box',
+        items: '5 single-serve sachets (20g each) · Assorted flavours (Plain, Vanilla, Mocha, Hazelnut)',
+      },
+      {
+        category: 'Quality standard',
+        items: '100% single origin Chikmagalur Arabica · Pure coconut milk · Zero cane sugar · Dairy free',
+      },
+    ],
+    exclusions: [
+      {
+        category: 'What stays out',
+        items: 'No milk powder · No lactose · No refined sugar · No chicory or bulking fillers',
+      },
+    ],
+    itinerary: [],
+    transportation: [],
+    accommodation: [],
     reviews: [],
-    bookings: extras.bookings ?? 5,
-    rating: extras.rating ?? 4.8,
-    isFeaturedDestination: extras.isFeaturedDestination ?? false,
-    isPopularPackage: extras.isPopularPackage ?? false,
-  };
-};
-
-const samplePackages = [
-  packageDefaults('Yachts & Sailing Cruises', 'Indian Ocean Sailing Charter', {
-    subtitle: 'Private yacht day sail with snorkelling',
-    about: 'Sail turquoise waters on a private yacht with crew, lunch onboard, and snorkelling at a reef stop.',
-    price: 8900,
-    location: 'Mauritius',
-    place: 'mauritius',
-    packageType: 'international',
-    isFeaturedDestination: false,
-    isPopularPackage: false,
-    bookings: 6,
+    faqs: [
+      {
+        question: 'What flavours are included in this assorted pack?',
+        answer: 'You get our four signature Romoire premixes: Vanilla, Mocha, Hazelnut, and Plain classic espresso cappuccino.',
+      },
+      {
+        question: 'How do I prepare it?',
+        answer: 'Tear one sachet into your favourite mug, pour 150ml of hot water, and stir briskly for 30 seconds. A rich, creamy micro-froth forms naturally without any machine or frother.',
+      },
+    ],
+    bookings: 42,
     rating: 4.9,
-  }),
-  packageDefaults('Kayaking Boat Rides', 'Coastal Kayak Explorer', {
-    subtitle: 'Half-day lagoon and coastline paddle',
-    about: 'Guided kayak tour through calm lagoons and scenic coastal inlets with wildlife spotting.',
-    price: 1299,
-    location: 'Cape Town, South Africa',
-    place: 'cape-town',
-    bookings: 12,
-  }),
-  packageDefaults('White water & rapids rafting', 'Zambezi Whitewater Rush', {
-    subtitle: 'Grade IV-V rapids adventure',
-    about: 'Adrenaline-packed rafting on world-class rapids with expert river guides.',
-    price: 3499,
-    location: 'Victoria Falls, Zimbabwe',
-    place: 'victoria-falls',
-    packageType: 'international',
-    bookings: 18,
+    isPopularPackage: true,
+    isFeaturedTrip: true,
+    isFeaturedDestination: true,
+  },
+  {
+    title: 'Plain premix',
+    subtitle: 'Pure single-origin Arabica with lush coconut milk froth',
+    about: 'The purest expression of Chikmagalur Arabica. Bold, direct café taste with a rich, stable micro-froth from coconut milk and gentle sweetness from monk fruit. No artificial flavours, no milk powder, and no refined sugar.',
+    services: 'Single-serve sachets, 100% plant-based coconut milk, monk fruit sweetened, dairy-free',
+    tourDetails: 'Our flagship straight cappuccino premix for coffee purists who want the taste of real coffee in front, not behind. Single origin Arabica with rich crema and velvety body from pure coconut milk.',
+    price: 449,
+    duration: '5 Sachets · 20g each',
+    location: 'Chikmagalur, Karnataka, India',
+    capacity: 'Box of 5 Sachets',
+    packageType: 'domestic',
+    place: 'india',
+    packageCategory: 'Classic Premix',
+    packageMiniCategory: 'Plain Espresso',
+    images: [
+      {
+        public_id: 'romoire-plain-premix',
+        url: '/images/romoire/flavor_espresso.jpg',
+        alt: 'Plain premix',
+      },
+      {
+        public_id: 'romoire-hero-cappuccino',
+        url: '/images/romoire/hero_cappuccino.jpg',
+        alt: 'Plain premix cappuccino froth',
+      },
+    ],
+    inclusions: [
+      {
+        category: 'In the box',
+        items: '5 single-serve sachets (20g each) · Pure Chikmagalur Arabica & coconut milk premix',
+      },
+    ],
+    exclusions: [
+      {
+        category: 'What stays out',
+        items: 'Zero dairy · Zero milk solids · Zero refined sugar · No artificial preservatives',
+      },
+    ],
+    itinerary: [],
+    transportation: [],
+    accommodation: [],
+    reviews: [],
+    faqs: [
+      {
+        question: 'Does the plain premix taste sweet?',
+        answer: 'It has a gentle, subtle sweetness from plant-derived monk fruit that sits comfortably behind the espresso notes, never overpowering the coffee.',
+      },
+    ],
+    bookings: 38,
     rating: 4.9,
-  }),
-  packageDefaults('Sailing School', 'ASA Certified Sailing Course', {
-    subtitle: 'Learn to sail in 3 days',
-    about: 'Beginner-friendly sailing school with certified instructors on calm coastal waters.',
-    price: 12999,
-    duration: '3 Days',
-    location: 'Cape Town, South Africa',
-    place: 'cape-town',
-    inclusions: ['Instructor', 'Sailing yacht', 'Course materials', 'Certificate'],
-  }),
-  packageDefaults('Parasailing (Future)', 'Coastal Parasailing Flight', {
-    subtitle: 'Soar above the shoreline',
-    about: 'Tandem parasailing experience with panoramic ocean views — launching soon.',
-    price: 2499,
-    duration: '30 Minutes',
-    location: 'Durban, South Africa',
-    place: 'durban',
-    isPopularPackage: false,
-  }),
-  packageDefaults('Scuba Diving & Snorkeling (Future)', 'Reef Snorkel & Dive Intro', {
-    subtitle: 'Discover underwater marine life',
-    about: 'Guided snorkel and introductory scuba session at a protected reef site.',
-    price: 3999,
-    duration: 'Half Day',
-    location: 'Mozambique',
-    place: 'mozambique',
-    packageType: 'international',
-  }),
-  packageDefaults('Bike Expeditions By Destination', 'Pan-Africa Bike Expedition', {
-    subtitle: 'Multi-destination motorcycle adventure',
-    about: 'Epic bike expedition covering iconic routes with mechanic support and backup vehicle.',
-    price: 35999,
-    duration: '8 Days',
-    location: 'Southern Africa',
-    place: 'southern-africa',
-    capacity: '4-12 riders',
-    isPopularPackage: false,
-  }),
-  packageDefaults('Domestic North — Leh, Ladakh, Spiti & North East', 'Ladakh Himalayan Bike Expedition', {
-    subtitle: 'High-altitude ride through Spiti & Ladakh',
-    about: 'Epic motorcycle expedition across Leh, Ladakh, Spiti, and Chandrataal with support crew.',
-    price: 45999,
-    duration: '10 Days',
-    location: 'Ladakh, India',
-    place: 'ladakh',
-    bookings: 9,
-    rating: 4.9,
-    isPopularPackage: false,
-  }),
-  packageDefaults('Domestic South — Pondicherry, Kerala & South India', 'Kerala Backwater Bike Tour', {
-    subtitle: 'Coastal South India scenic ride',
-    about: 'Ride through Kerala, Kolli Hills, and Pondicherry with curated nature stops.',
-    price: 28999,
-    duration: '7 Days',
-    location: 'Kerala, India',
-    place: 'kerala',
-    bookings: 7,
-    rating: 4.7,
-  }),
-  packageDefaults('International — Nepal, Vietnam, Thailand, Indonesia', 'Vietnam Coastal Bike Expedition', {
-    subtitle: 'International ride through Vietnam & Thailand',
-    about: 'Cross-border bike expedition covering Vietnam and Thailand highlights with local guides.',
-    price: 52999,
-    duration: '12 Days',
-    location: 'Vietnam & Thailand',
-    place: 'vietnam',
-    packageType: 'international',
-    bookings: 5,
-  }),
-  packageDefaults('Bungee Jumping', 'Rishikesh Bungee Jump Experience', {
-    subtitle: "India's highest bungee jump",
-    about: 'Thrilling bungee jump over the Ganges with safety-certified operators and video package.',
-    price: 4999,
-    duration: 'Half Day',
-    location: 'Rishikesh, India',
-    place: 'rishikesh',
-    bookings: 22,
-    rating: 4.9,
-  }),
-  packageDefaults('Treks (Future)', 'Himalayan Base Camp Trek', {
-    subtitle: 'Guided high-altitude trekking',
-    about: 'Multi-day guided trek through Himalayan trails with porters and camp stays — coming soon.',
-    price: 24999,
-    duration: '6 Days',
-    location: 'Nepal',
-    place: 'nepal',
-    packageType: 'international',
-  }),
-  packageDefaults('Cycling (Future)', 'Garden Route Cycling Tour', {
-    subtitle: 'Scenic coastal cycling adventure',
-    about: 'Leisure cycling along the Garden Route with support vehicle and boutique stays.',
-    price: 8999,
-    duration: '4 Days',
-    location: 'Garden Route, South Africa',
-    place: 'garden-route',
-  }),
-  packageDefaults('Helicopter Rides', 'Cape Town Helicopter Scenic Flight', {
-    subtitle: 'Aerial tour of Table Mountain & coastline',
-    about: 'Luxury helicopter ride with panoramic views of Table Mountain, coastline, and city bowl.',
-    price: 6999,
-    duration: '20 Minutes',
-    location: 'Cape Town, South Africa',
-    place: 'cape-town',
-    bookings: 15,
-    rating: 5,
-    isFeaturedDestination: false,
-  }),
-  packageDefaults('Small aircraft / single engine (Future)', 'Winelands Scenic Flight', {
-    subtitle: 'Private light aircraft experience',
-    about: 'Scenic flight over Cape winelands in a single-engine aircraft with licensed pilot.',
-    price: 14999,
-    duration: '45 Minutes',
-    location: 'Stellenbosch, South Africa',
-    place: 'stellenbosch',
-  }),
-  packageDefaults('Paragliding', 'Bir Billing Paragliding Tandem', {
-    subtitle: 'Tandem flight over the Himalayas',
-    about: "Soar over valleys with certified tandem pilots at one of Asia's top paragliding sites.",
-    price: 3999,
-    duration: 'Half Day',
-    location: 'Bir Billing, India',
-    place: 'bir-billing',
-    bookings: 11,
+    isPopularPackage: true,
+    isFeaturedTrip: true,
+    isFeaturedDestination: true,
+  },
+  {
+    title: 'Mocha premix',
+    subtitle: 'Rich velvety cocoa layered over single-origin cappuccino',
+    about: 'Rich and indulgent, with pure cocoa laid smoothly over the coffee rather than sitting on top of it. Full-bodied cappuccino body without dairy or cane sugar. Enough for an afternoon indulgence without turning into a heavy dessert.',
+    services: 'Single-serve sachets, 100% plant-based coconut milk, monk fruit sweetened, dairy-free',
+    tourDetails: 'Premium dark cocoa harmoniously blended with Chikmagalur Arabica and spray-dried coconut milk. Delivers decadent café mocha depth with zero dairy and zero cane sugar.',
+    price: 449,
+    duration: '5 Sachets · 20g each',
+    location: 'Chikmagalur, Karnataka, India',
+    capacity: 'Box of 5 Sachets',
+    packageType: 'domestic',
+    place: 'india',
+    packageCategory: 'Flavoured Premix',
+    packageMiniCategory: 'Mocha',
+    images: [
+      {
+        public_id: 'romoire-mocha-premix',
+        url: '/images/romoire/flavor_mocha.jpg',
+        alt: 'Mocha premix',
+      },
+    ],
+    inclusions: [
+      {
+        category: 'In the box',
+        items: '5 single-serve sachets (20g each) · Real cocoa & single origin Arabica premix',
+      },
+    ],
+    exclusions: [
+      {
+        category: 'What stays out',
+        items: 'No refined sugar · No dairy · No corn syrups · No artificial sweeteners',
+      },
+    ],
+    itinerary: [],
+    transportation: [],
+    accommodation: [],
+    reviews: [],
+    faqs: [],
+    bookings: 29,
     rating: 4.8,
-  }),
+    isPopularPackage: true,
+    isFeaturedTrip: true,
+    isFeaturedDestination: true,
+  },
+  {
+    title: 'Vanilla premix',
+    subtitle: 'Delicate Madagascar vanilla blended with creamy micro-froth',
+    about: 'Soft, rounded, and aromatic. Natural vanilla sits delicately under the single origin Arabica coffee rather than masking it. Ideal if a classic creamy cappuccino is your daily ritual.',
+    services: 'Single-serve sachets, 100% plant-based coconut milk, monk fruit sweetened, dairy-free',
+    tourDetails: 'Made with natural vanilla extract, single-origin Karnataka Arabica, and rich coconut milk. Smooth and rounded flavour profile that dissolves instantly in hot water.',
+    price: 449,
+    duration: '5 Sachets · 20g each',
+    location: 'Chikmagalur, Karnataka, India',
+    capacity: 'Box of 5 Sachets',
+    packageType: 'domestic',
+    place: 'india',
+    packageCategory: 'Flavoured Premix',
+    packageMiniCategory: 'Vanilla',
+    images: [
+      {
+        public_id: 'romoire-vanilla-premix',
+        url: '/images/romoire/flavor_vanilla.jpg',
+        alt: 'Vanilla premix',
+      },
+    ],
+    inclusions: [
+      {
+        category: 'In the box',
+        items: '5 single-serve sachets (20g each) · Natural vanilla bean extract & Arabica premix',
+      },
+    ],
+    exclusions: [
+      {
+        category: 'What stays out',
+        items: 'No refined sugar · No milk solids · No artificial colours or thickeners',
+      },
+    ],
+    itinerary: [],
+    transportation: [],
+    accommodation: [],
+    reviews: [],
+    faqs: [],
+    bookings: 35,
+    rating: 4.9,
+    isPopularPackage: true,
+    isFeaturedTrip: true,
+    isFeaturedDestination: true,
+  },
+  {
+    title: 'Hazelnut premix',
+    subtitle: 'Warm roasted hazelnut with rich café body',
+    about: 'Roasted hazelnut aroma carried right through the finish. Warm, comforting, and deeply aromatic cappuccino premix crafted with coconut milk and zero refined sugar.',
+    services: 'Single-serve sachets, 100% plant-based coconut milk, monk fruit sweetened, dairy-free',
+    tourDetails: 'Warm toasted hazelnut notes paired with single-origin Arabica. Produces a thick, velvety micro-froth layer when stirred with hot water for thirty seconds.',
+    price: 449,
+    duration: '5 Sachets · 20g each',
+    location: 'Chikmagalur, Karnataka, India',
+    capacity: 'Box of 5 Sachets',
+    packageType: 'domestic',
+    place: 'india',
+    packageCategory: 'Flavoured Premix',
+    packageMiniCategory: 'Hazelnut',
+    images: [
+      {
+        public_id: 'romoire-hazelnut-premix',
+        url: '/images/romoire/flavor_hazelnut.jpg',
+        alt: 'Hazelnut premix',
+      },
+    ],
+    inclusions: [
+      {
+        category: 'In the box',
+        items: '5 single-serve sachets (20g each) · Toasted hazelnut extract & Chikmagalur Arabica premix',
+      },
+    ],
+    exclusions: [
+      {
+        category: 'What stays out',
+        items: 'No cane sugar · No milk powder · No artificial preservatives',
+      },
+    ],
+    itinerary: [],
+    transportation: [],
+    accommodation: [],
+    reviews: [],
+    faqs: [],
+    bookings: 31,
+    rating: 4.8,
+    isPopularPackage: true,
+    isFeaturedTrip: true,
+    isFeaturedDestination: true,
+  },
 ];
 
 export default async function handler(req, res) {
@@ -217,15 +265,18 @@ export default async function handler(req, res) {
       return res.status(503).json({ success: false, error: 'Database not available' });
     }
 
-    const results = { created: [], updated: [], skipped: [], errors: [], syncedByCategory: 0 };
+    // Clean up temporary dummy products like 'Coffee 1'
+    await Package.deleteMany({ title: 'Coffee 1' });
 
-    for (const pkg of samplePackages) {
+    const results = { created: [], updated: [], errors: [] };
+
+    for (const pkg of ROMOIRE_SEED_PACKAGES) {
       try {
         const existing = await Package.findOne({ title: pkg.title });
         if (existing) {
           await Package.findByIdAndUpdate(existing._id, {
-            images: pkg.images,
-            packageCategory: pkg.packageCategory,
+            ...pkg,
+            updatedAt: new Date(),
           });
           results.updated.push(pkg.title);
           continue;
@@ -237,28 +288,13 @@ export default async function handler(req, res) {
       }
     }
 
-    for (const category of PACKAGE_EXPERIENCE_CATEGORIES) {
-      const image = {
-        public_id: `pkg-${category.slug}`,
-        url: category.heroImage,
-        alt: category.label,
-      };
-      const { modifiedCount } = await Package.updateMany(
-        { packageCategory: category.value },
-        { $set: { images: [image] } }
-      );
-      results.syncedByCategory += modifiedCount;
-    }
-
     res.status(200).json({
       success: true,
-      message: 'Packages seeded successfully',
+      message: 'Romoire premix products seeded successfully',
       results: {
-        total: samplePackages.length,
+        total: ROMOIRE_SEED_PACKAGES.length,
         created: results.created.length,
         updated: results.updated.length,
-        skipped: results.skipped.length,
-        syncedByCategory: results.syncedByCategory,
         errors: results.errors.length,
       },
       details: results,
