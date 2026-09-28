@@ -219,9 +219,11 @@ const HeroExplore = ({ initialBanners }: HeroExploreProps) => {
               transition={{ duration: 0.5, ease: 'easeOut' }}
               className="max-w-3xl"
             >
-              <p className="mb-4 font-body text-xs font-medium uppercase tracking-[0.12em] text-vanilla/90 md:text-sm">
-                {SITE_TAGLINE}
-              </p>
+              {SITE_TAGLINE ? (
+                <p className="mb-4 font-body text-xs font-medium uppercase tracking-[0.12em] text-vanilla/90 md:text-sm">
+                  {SITE_TAGLINE}
+                </p>
+              ) : null}
               <h1 className="font-heading text-[clamp(2.5rem,8vw,5.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-cream">
                 {heroTitle.charAt(0) + heroTitle.slice(1).toLowerCase()}
               </h1>

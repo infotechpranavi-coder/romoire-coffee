@@ -26,7 +26,7 @@ export default function BrandLogo({
   className,
   asLink = true,
   showWordmark = true,
-  showTagline = true,
+  showTagline = false,
 }: BrandLogoProps) {
   const dims = sizeMap[size];
   const isLight = variant === 'light';
@@ -49,7 +49,7 @@ export default function BrandLogo({
           priority
         />
       </span>
-      {(showWordmark || showTagline) && (
+      {(showWordmark || (showTagline && SITE_TAGLINE)) && (
         <span className="flex min-w-0 flex-col items-start justify-center gap-0.5">
           {showWordmark && (
             <span
@@ -62,7 +62,7 @@ export default function BrandLogo({
               {SITE_NAME}
             </span>
           )}
-          {showTagline && (
+          {showTagline && SITE_TAGLINE && (
             <span
               className={cn(
                 'font-body font-medium leading-tight tracking-[0.02em]',
@@ -84,7 +84,7 @@ export default function BrandLogo({
     <Link
       href="/"
       className="inline-flex shrink-0 items-center overflow-visible"
-      aria-label={`${SITE_NAME} — ${SITE_TAGLINE}`}
+      aria-label={SITE_TAGLINE ? `${SITE_NAME} — ${SITE_TAGLINE}` : SITE_NAME}
     >
       {logo}
     </Link>

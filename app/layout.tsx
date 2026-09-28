@@ -39,7 +39,7 @@ const manrope = Manrope({
 })
 
 export const metadata: Metadata = {
-  title: 'Romoire | Dairy Free Coffee Premix India | No Refined Sugar',
+  title: 'Romoire',
   description: 'Romoire is a plant based cappuccino premix made with single origin Arabica, coconut milk and monk fruit. Dairy free, lactose free, vegan friendly and no refined sugar. One sachet, hot water, one minute.',
   icons: {
     icon: LOGO_SRC,

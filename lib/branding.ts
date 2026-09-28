@@ -1,7 +1,7 @@
 import { TOKENS } from './design-tokens';
 
 export const SITE_NAME = 'Romoire';
-export const SITE_TAGLINE = 'Dairy Free Coffee Premix India | No Refined Sugar';
+export const SITE_TAGLINE = '';
 export const LOGO_SRC = '/20260812_Romoire_Logo-01-removebg-preview.png';
 
 /** Brand palette — Romoire Maroon, Cream & Sand */
