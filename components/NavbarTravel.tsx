@@ -77,7 +77,8 @@ const NavbarTravel = () => {
 
   const useSolidNav = true;
 
-  // Load active products dynamically from database
+  // Load active products dynamically from database — refetch on every route change
+  // so that category edits from dashboard are reflected immediately in the dropdown.
   useEffect(() => {
     let cancelled = false;
     async function loadNavProducts() {
@@ -87,7 +88,13 @@ const NavbarTravel = () => {
         const data = await res.json();
         const list = data?.success && Array.isArray(data?.data) ? data.data : Array.isArray(data) ? data : [];
         if (!cancelled && list.length > 0) {
-          setNavProducts(list);
+          setNavProducts(list.map((p: any) => ({
+            _id: p._id,
+            title: p.title,
+            subtitle: p.subtitle,
+            price: p.price,
+            packageCategory: p.packageCategory,
+          })));
         }
       } catch (err) {
         // Fallback remains in place
@@ -97,7 +104,7 @@ const NavbarTravel = () => {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [pathname]);
 
   // Compute category sections with their products
   const categorySections = useMemo(() => {
