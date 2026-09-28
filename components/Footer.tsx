@@ -46,20 +46,22 @@ const Footer = () => {
   });
 
   const coffeeCollectionLinks = (() => {
-    const isSubscribeGroup = (slug: string, label: string) => {
-      const key = `${slug} ${label}`.toLowerCase();
+    const isSubscribeGroup = (slug?: string, label?: string) => {
+      const key = `${slug || ''} ${label || ''}`.toLowerCase();
       return key.includes('subscribe') || key.includes('gift');
     };
 
-    const categories = navGroups.filter(
-      (group) => !isSubscribeGroup(group.slug, group.label)
+    const list = Array.isArray(navGroups) ? navGroups : [];
+    const categories = list.filter(
+      (group) => group && !isSubscribeGroup(group.slug, group.label)
     );
-    const subscribeGroups = navGroups.filter((group) =>
-      isSubscribeGroup(group.slug, group.label)
+    const subscribeGroups = list.filter((group) =>
+      group && isSubscribeGroup(group.slug, group.label)
     );
 
     return [...categories, ...subscribeGroups];
   })();
+
 
   useEffect(() => {
     const fetchSettings = async () => {
@@ -145,11 +147,14 @@ const Footer = () => {
             <div className="space-y-5 lg:border-l lg:border-vanilla/15 lg:pl-10">
               <h4 className="font-heading text-base font-semibold text-cream">Coffee Collections</h4>
               <ul className="space-y-3">
-                {coffeeCollectionLinks.map((group) => (
-                  <FooterLink key={group.slug} href={getGroupPageHref(group.slug)}>
-                    {group.label}
-                  </FooterLink>
-                ))}
+                {coffeeCollectionLinks.map((group) => {
+                  if (!group?.slug) return null;
+                  return (
+                    <FooterLink key={group.slug} href={getGroupPageHref(group.slug)}>
+                      {group.label || 'Coffee'}
+                    </FooterLink>
+                  );
+                })}
               </ul>
             </div>
 

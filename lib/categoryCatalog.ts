@@ -235,9 +235,9 @@ export function getMiniCategoryBySlugFromCatalog(
   catalog?: CategoryCatalogSettings | null
 ): PackageMiniCategory | undefined {
   return buildNavGroupsFromCatalog(catalog)
-    .flatMap((group) => group.items)
-    .flatMap((item) => item.miniItems ?? [])
-    .find((mini) => mini.slug === slug);
+    .flatMap((group) => group?.items || [])
+    .flatMap((item) => item?.miniItems ?? [])
+    .find((mini) => mini?.slug === slug);
 }
 
 export function buildMiniFilterForSlug(slug: string, catalog?: CategoryCatalogSettings | null) {
@@ -252,7 +252,7 @@ export function buildMiniFilterForSlug(slug: string, catalog?: CategoryCatalogSe
 
 export function getAllCategorySlugs(catalog?: CategoryCatalogSettings | null): Set<string> {
   return new Set(
-    buildNavGroupsFromCatalog(catalog).flatMap((group) => group.items.map((item) => item.slug))
+    buildNavGroupsFromCatalog(catalog).flatMap((group) => (group?.items || []).map((item) => item?.slug).filter(Boolean))
   );
 }
 

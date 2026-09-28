@@ -53,7 +53,19 @@ export default function HomePage() {
       .finally(() => setLoadingPackages(false))
   }, [])
 
-  const currentProduct = dbPackages.find((p) => p._id === selectedProductId) || dbPackages[0]
+  const DEFAULT_PRODUCT = {
+    _id: "6aba50bf62e0f8f1f0cfbbab",
+    title: "Premix assorted flavours pack",
+    price: 499,
+    packageCategory: "Assorted Pack",
+    duration: "5 Sachets · 20g each",
+    capacity: "Box of 5 Sachets",
+  }
+
+  const currentProduct =
+    (Array.isArray(dbPackages) && dbPackages.length > 0)
+      ? (dbPackages.find((p) => p._id === selectedProductId) || dbPackages[0])
+      : DEFAULT_PRODUCT
 
   const handleAddToCart = (productName: string, price: string) => {
     toast.success(`Added ${productName} (${price}) to cart!`, {

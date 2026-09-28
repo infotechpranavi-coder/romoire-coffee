@@ -48,14 +48,11 @@ interface CategoryLabelsContextValue {
 const CategoryLabelsContext = createContext<CategoryLabelsContextValue | null>(null);
 
 function applyResponse(
-  data: {
-    catalog?: CategoryCatalogSettings;
-    overrides?: CategoryCatalogSettings;
-    navGroups?: PackageNavGroup[];
-  },
+  data: any,
   setCatalog: (catalog: CategoryCatalogSettings) => void,
   setNavGroups: (groups: PackageNavGroup[]) => void
 ) {
+  if (!data) return;
   const catalog = data.catalog ?? {
     groupLabels: data.overrides?.groupLabels ?? {},
     categoryLabels: data.overrides?.categoryLabels ?? {},
@@ -64,13 +61,20 @@ function applyResponse(
     customMiniCategories: [],
   };
   setCatalog(catalog);
-  const rawGroups = data.navGroups ?? buildNavGroupsFromCatalog(catalog);
-  const safeGroups = (Array.isArray(rawGroups) ? rawGroups : []).map((g) => ({
-    ...g,
-    items: Array.isArray(g.items) ? g.items : [],
-  }));
-  setNavGroups(safeGroups);
+  try {
+    const rawGroups = data.navGroups ?? buildNavGroupsFromCatalog(catalog);
+    const safeGroups = (Array.isArray(rawGroups) ? rawGroups : []).map((g) => ({
+      ...g,
+      slug: g?.slug || '',
+      label: g?.label || '',
+      items: Array.isArray(g?.items) ? g.items : [],
+    }));
+    setNavGroups(safeGroups);
+  } catch (err) {
+    console.error('Error applying nav groups from catalog:', err);
+  }
 }
+
 
 export function CategoryLabelsProvider({ children }: { children: ReactNode }) {
   const [catalog, setCatalog] = useState<CategoryCatalogSettings>({
