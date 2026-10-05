@@ -216,15 +216,15 @@ export default function CheckoutPage() {
         {step !== 'done' && (
           <div className="mb-10 flex items-center gap-2 sm:gap-4 text-[11px] uppercase tracking-[0.14em] font-bold">
             {[
-              { id: 'details', label: '1. Details' },
-              { id: 'payment', label: '2. Payment' },
-              { id: 'done', label: '3. Done' },
+              { id: 'details' as const, label: '1. Details' },
+              { id: 'payment' as const, label: '2. Payment' },
+              { id: 'done' as const, label: '3. Done' },
             ].map((s, idx) => {
-              const active =
-                step === s.id ||
-                (step === 'payment' && s.id === 'details') ||
-                (step === 'done' && true)
+              const stepOrder = { details: 0, payment: 1, done: 2 } as const
+              const currentIndex = stepOrder[step]
+              const itemIndex = stepOrder[s.id]
               const current = step === s.id
+              const active = itemIndex <= currentIndex
               return (
                 <div key={s.id} className="flex items-center gap-2 sm:gap-4">
                   <span
