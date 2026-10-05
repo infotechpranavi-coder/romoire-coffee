@@ -2485,8 +2485,8 @@ Key Highlights`,
             <div className="w-20 h-20 mx-auto mb-6 bg-red-50 rounded-full flex items-center justify-center">
               <Globe className="h-10 w-10 text-red-400" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Package Not Found</h3>
-            <p className="text-gray-600 mb-8">{error || 'The package you are looking for does not exist.'}</p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Product Not Found</h3>
+            <p className="text-gray-600 mb-8">{error || 'The product you are looking for does not exist.'}</p>
             <Button onClick={() => router.back()} className="w-full">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Go Back
@@ -2567,11 +2567,11 @@ Key Highlights`,
                   {isPremium ? (
                     <Badge className="bg-hazelnut text-white border-none px-6 py-2 text-xs font-black uppercase tracking-[0.2em] shadow-xl">
                       <Sparkles className="h-3 w-3 mr-2" />
-                      Premium Experience
+                      Featured Premix
                     </Badge>
                   ) : (
                     <Badge className="bg-espresso text-white border-none px-4 py-1.5 text-xs font-black uppercase tracking-[0.1em] shadow-lg">
-                      {isAttractionPackage ? "Exclusive Experience" : isInternational ? "International Journey" : "Domestic Tour"}
+                      Specialty Coffee
                     </Badge>
                   )}
                   <div className="flex items-center gap-1.5 bg-cream/10 backdrop-blur-md px-5 py-2 rounded-full border border-white/20 text-sm font-bold text-white shadow-xl">
@@ -2595,7 +2595,7 @@ Key Highlights`,
                     <div className="p-2 bg-hazelnut/20 rounded-lg group-hover:bg-hazelnut/40 transition-colors">
                       <MapPin className="h-4 w-4 text-hazelnut" />
                     </div>
-                    <span>{packageData.location}</span>
+                    <span>Origin: {packageData.location}</span>
                   </div>
                   <div className="flex items-center gap-3 bg-espresso/80 backdrop-blur-xl px-6 py-4 rounded-2xl border border-white/10 shadow-2xl transition-all hover:border-hazelnut/50 group">
                     <div className="p-2 bg-hazelnut/20 rounded-lg group-hover:bg-hazelnut/40 transition-colors">
@@ -3240,35 +3240,10 @@ Key Highlights`,
               <div className="space-y-10">
                 {/* Overview Section */}
                 <section id="overview" className="space-y-8">
-                  {/* Best Time to Visit Card */}
-                  <Card className="border border-gray-100 shadow-sm overflow-hidden bg-cream rounded-3xl">
-                    <div className="bg-gray-50 px-8 py-5 flex items-center gap-3 border-b border-gray-100">
-                      <div className="p-2 bg-orange-500 rounded-lg">
-                        <Calendar className="h-4 w-4 text-white" />
-                      </div>
-                      <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Best Time to Visit {packageData.location?.split(',')[0]}</h4>
-                    </div>
-                    <CardContent className="p-8">
-                      <p className="text-gray-600 text-base leading-relaxed">
-                        {((packageData as any).bestTimeToVisit?.yearRound) || ''}
-                      </p>
-                      {((packageData as any).bestTimeToVisit?.winter && (
-                        <p className="text-gray-600 text-base leading-relaxed mt-2">
-                          <span className="font-semibold text-gray-700">Winter (Oct–Apr):</span> {(packageData as any).bestTimeToVisit.winter}
-                        </p>
-                      ))}
-                      {((packageData as any).bestTimeToVisit?.summer && (
-                        <p className="text-gray-600 text-base leading-relaxed mt-2">
-                          <span className="font-semibold text-gray-700">Summer (May–Sep):</span> {(packageData as any).bestTimeToVisit.summer}
-                        </p>
-                      ))}
-                    </CardContent>
-                  </Card>
-
-                  {/* About Romoire */}
+                  {/* About product */}
                   <Card className="border border-gray-100 shadow-sm overflow-hidden bg-cream rounded-3xl">
                     <div className="bg-gray-50 px-8 py-5 border-b border-gray-100">
-                      <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">About {SITE_NAME}</h4>
+                      <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">About this product</h4>
                     </div>
                     <CardContent className="p-8">
                       <p className="text-gray-600 text-base leading-relaxed italic border-l-2 border-amber-500/20 pl-6">
@@ -3277,12 +3252,12 @@ Key Highlights`,
                     </CardContent>
                   </Card>
 
-                  {/* Our Services */}
+                  {/* What's included / services */}
                   {packageData.services && (
                     <Card className="border border-gray-100 shadow-sm overflow-hidden bg-cream rounded-3xl">
                       <div className="bg-gray-50 px-8 py-5 flex items-center gap-3 border-b border-gray-100">
                         <Award className="h-5 w-5 text-blue-600" />
-                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Package Inclusions & Services</h4>
+                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">What&apos;s included</h4>
                       </div>
                       <CardContent className="p-8">
                         {Array.isArray(packageData.services) ? (
@@ -3303,12 +3278,12 @@ Key Highlights`,
                     </Card>
                   )}
 
-                  {/* Ideal For */}
+                  {/* Best For */}
                   {packageData.ideaFor && (
                     <Card className="border border-gray-100 shadow-sm overflow-hidden bg-cream rounded-3xl">
                       <div className="bg-gray-50 px-8 py-5 flex items-center gap-3 border-b border-gray-100">
                         <Users className="h-5 w-5 text-emerald-600" />
-                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Ideal For</h4>
+                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Best for</h4>
                       </div>
                       <CardContent className="p-8">
                         <div className="flex flex-wrap gap-2">
@@ -3322,11 +3297,11 @@ Key Highlights`,
                     </Card>
                   )}
 
-                  {/* Abstract */}
+                  {/* Process / details */}
                   {packageData.abstract && (
                     <Card className="border border-gray-100 shadow-sm overflow-hidden bg-cream rounded-3xl">
                       <div className="bg-gray-50 px-8 py-5 border-b border-gray-100">
-                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Executive Abstract</h4>
+                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Process & details</h4>
                       </div>
                       <CardContent className="p-8">
                         <p className="text-gray-600 text-base italic leading-relaxed border-l-2 border-purple-100 pl-6">
@@ -3336,7 +3311,7 @@ Key Highlights`,
                     </Card>
                   )}
 
-                  {/* Tour Overview & Details */}
+                  {/* Product overview / tasting notes */}
                   {(packageData.tourOverview || packageData.tourDetails) && (
                     <div className="space-y-6">
                       {packageData.tourOverview && (
@@ -3345,7 +3320,7 @@ Key Highlights`,
                             <div className="p-2 bg-blue-500 rounded-lg shadow-sm">
                               <LayoutDashboard className="h-4 w-4 text-white" />
                             </div>
-                            <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Experience Overview</h4>
+                            <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Product overview</h4>
                           </div>
                           <CardContent className="p-8">
                             <p className="text-gray-600 text-base leading-relaxed whitespace-pre-line font-medium">
@@ -3354,15 +3329,30 @@ Key Highlights`,
                           </CardContent>
                         </Card>
                       )}
+                      {packageData.tourDetails && (
+                        <Card className="border border-gray-100 shadow-sm overflow-hidden bg-cream rounded-3xl">
+                          <div className="bg-gray-50 px-8 py-5 flex items-center gap-3 border-b border-gray-100">
+                            <div className="p-2 bg-amber-500 rounded-lg shadow-sm">
+                              <CheckCircle className="h-4 w-4 text-white" />
+                            </div>
+                            <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Tasting notes</h4>
+                          </div>
+                          <CardContent className="p-8">
+                            <p className="text-gray-600 text-base leading-relaxed whitespace-pre-line font-medium">
+                              {brandedText(packageData.tourDetails)}
+                            </p>
+                          </CardContent>
+                        </Card>
+                      )}
                     </div>
                   )}
 
-                  {/* Pricing / Hotel Options */}
+                  {/* Size / options */}
                   {packageData.hotelOptions && packageData.hotelOptions.length > 0 && (
                     <Card className="border border-gray-100 shadow-sm overflow-hidden bg-cream rounded-3xl">
                       <div className="bg-gray-50 px-8 py-5 flex items-center gap-3 border-b border-gray-100">
                         <Hotel className="h-5 w-5 text-amber-600" />
-                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Package Tier Options</h4>
+                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Size & options</h4>
                       </div>
                       <CardContent className="p-8 grid gap-4 md:grid-cols-2">
                         {packageData.hotelOptions.map((option, idx) => (
@@ -3375,11 +3365,11 @@ Key Highlights`,
                     </Card>
                   )}
 
-                  {/* Key Highlights */}
+                  {/* Highlights */}
                   {packageData.keyHighlights && packageData.keyHighlights.length > 0 && (
                     <Card className="border border-gray-100 shadow-sm overflow-hidden bg-cream rounded-3xl">
                       <div className="bg-gray-50 px-8 py-5 border-b border-gray-100">
-                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Exclusive Glimpses</h4>
+                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Highlights</h4>
                       </div>
                       <CardContent className="p-8">
                         <ul className="space-y-3">
@@ -3397,10 +3387,10 @@ Key Highlights`,
                   {/* Feature Grid */}
                   <div className="grid grid-cols-2 gap-4">
                     {[
-                      { icon: CheckCircle, label: 'Verified Experience', color: 'text-green-500', bg: 'bg-green-50' },
-                      { icon: ShieldCheck, label: 'Best Price Guarantee', color: 'text-blue-500', bg: 'bg-blue-50' },
-                      { icon: Users, label: 'Expert Local Guides', color: 'text-purple-500', bg: 'bg-purple-50' },
-                      { icon: Heart, label: 'Curated with Love', color: 'text-rose-500', bg: 'bg-rose-50' },
+                      { icon: CheckCircle, label: 'Dairy Free Premix', color: 'text-green-500', bg: 'bg-green-50' },
+                      { icon: ShieldCheck, label: '100% Arabica', color: 'text-blue-500', bg: 'bg-blue-50' },
+                      { icon: Users, label: 'Made in India', color: 'text-purple-500', bg: 'bg-purple-50' },
+                      { icon: Heart, label: 'No Refined Sugar', color: 'text-rose-500', bg: 'bg-rose-50' },
                     ].map((feat, idx) => (
                       <div key={idx} className="bg-cream border border-gray-100 rounded-3xl p-6 flex items-center gap-4 shadow-sm hover:shadow-md transition-shadow">
                         <div className={`p-3 rounded-2xl ${feat.bg}`}>
@@ -3412,22 +3402,23 @@ Key Highlights`,
                   </div>
                 </section>
 
-                {/* Itinerary Section */}
+                {/* Brew guide / day details — only if itinerary exists */}
+                {Array.isArray(packageData.itinerary) && packageData.itinerary.length > 0 && (
                 <section id="itinerary" className="space-y-10">
                   <div className="flex items-center gap-6 mb-12">
                     <div className="p-4 bg-amber-50 rounded-[24px]">
                        <Calendar className="h-8 w-8 text-hazelnut" />
                     </div>
-                    <h3 className="text-4xl font-black text-gray-900 uppercase tracking-tighter text-black">Daily Itinerary</h3>
+                    <h3 className="text-4xl font-black text-gray-900 uppercase tracking-tighter text-black">How to enjoy</h3>
                   </div>
 
                   <div className="space-y-8">
-                    {Array.isArray(packageData.itinerary) && packageData.itinerary.map((day, index) => (
+                    {packageData.itinerary.map((day, index) => (
                       <div key={index} className="bg-cream border border-hazelnut/20 rounded-[40px] p-8 md:p-12 shadow-sm transition-all hover:shadow-md">
                         <div className="flex items-center justify-between mb-10">
                            <div className="flex items-center gap-8">
                               <div className="w-20 h-20 bg-hazelnut rounded-[28px] flex flex-col items-center justify-center text-white shadow-lg shadow-hazelnut/20">
-                                <span className="text-[10px] font-black uppercase tracking-widest leading-none mb-1">Day</span>
+                                <span className="text-[10px] font-black uppercase tracking-widest leading-none mb-1">Step</span>
                                 <span className="text-3xl font-black">{day.day}</span>
                               </div>
                               <h4 className="text-2xl font-black text-gray-900 uppercase tracking-tighter">{day.title}</h4>
@@ -3449,12 +3440,14 @@ Key Highlights`,
                     ))}
                   </div>
                 </section>
+                )}
 
-                {/* Inclusions & Exclusions */}
+                {/* Inclusions & Exclusions — only when present */}
+                {((packageData.inclusions?.length ?? 0) > 0 || (packageData.exclusions?.length ?? 0) > 0) && (
                 <section id="inclusions">
                    <Card className="border border-gray-100 shadow-sm overflow-hidden bg-cream rounded-3xl">
                       <div className="bg-gray-50 px-8 py-5 border-b border-gray-100">
-                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight text-center">Inclusions & Exclusions</h4>
+                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight text-center">Included & not included</h4>
                       </div>
                       <CardContent className="p-8">
                         <div className="grid lg:grid-cols-2 gap-12">
@@ -3462,7 +3455,7 @@ Key Highlights`,
                           <div className="space-y-6">
                             <div className="flex items-center gap-3 text-green-600 mb-2">
                               <CheckCircle className="h-5 w-5" />
-                              <span className="font-black text-xs uppercase tracking-widest">Premium Inclusions</span>
+                              <span className="font-black text-xs uppercase tracking-widest">Included</span>
                             </div>
                             <div className="space-y-4">
                               {packageData.inclusions?.map((item, idx) => {
@@ -3500,7 +3493,7 @@ Key Highlights`,
                           <div className="space-y-6">
                             <div className="flex items-center gap-3 text-red-600 mb-2">
                               <XCircle className="h-5 w-5" />
-                              <span className="font-black text-xs uppercase tracking-widest">Exclusions</span>
+                              <span className="font-black text-xs uppercase tracking-widest">Not included</span>
                             </div>
                             <div className="space-y-4">
                               {packageData.exclusions?.map((item, idx) => {
@@ -3537,6 +3530,7 @@ Key Highlights`,
                       </CardContent>
                     </Card>
                 </section>
+                )}
 
                 {/* Logistics & Accommodation */}
                 {(packageData.transportation?.length > 0 || packageData.accommodation?.length > 0) && (
@@ -3642,7 +3636,7 @@ Key Highlights`,
                    <Card className="border border-gray-100 shadow-sm overflow-hidden bg-cream rounded-3xl">
                       <div className="bg-gray-50 px-8 py-5 border-b border-gray-100 flex items-center gap-3">
                          <MessageSquare className="h-5 w-5 text-indigo-600" />
-                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Expert Inquiries (FAQs)</h4>
+                        <h4 className="font-black text-gray-900 text-sm uppercase tracking-tight">Frequently asked questions</h4>
                       </div>
                       <CardContent className="p-8">
                         <div className="grid md:grid-cols-2 gap-6">
@@ -3665,15 +3659,15 @@ Key Highlights`,
                    <Card className="border border-gray-100 shadow-sm overflow-hidden bg-cream rounded-3xl">
                       <div className="bg-gray-50 px-8 py-6 border-b border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
                         <div>
-                          <h4 className="text-amber-600 font-black uppercase text-[10px] tracking-[0.4em] mb-1">Elite Testimonials</h4>
-                          <h3 className="text-xl font-black text-gray-900 uppercase tracking-tight">Visitor Experiences</h3>
+                          <h4 className="text-amber-600 font-black uppercase text-[10px] tracking-[0.4em] mb-1">Customer stories</h4>
+                          <h3 className="text-xl font-black text-gray-900 uppercase tracking-tight">What people say</h3>
                         </div>
                         {packageData.rating && (
                           <div className="flex items-center gap-3 bg-cream px-5 py-2 rounded-2xl border border-gray-100 shadow-sm">
                             <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
                             <div className="flex flex-col">
                               <span className="font-black text-gray-900 text-lg leading-none">{packageData.rating}</span>
-                              <span className="text-gray-400 text-[8px] font-black uppercase tracking-widest">Global Rating</span>
+                              <span className="text-gray-400 text-[8px] font-black uppercase tracking-widest">Average rating</span>
                             </div>
                           </div>
                         )}

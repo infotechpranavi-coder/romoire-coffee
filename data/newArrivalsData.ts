@@ -179,12 +179,10 @@ export function mapPackageToProduct(pkg: {
   };
 }
 
-export function formatCoffeePrice(price: number) {
-  return `$${Number(price).toFixed(2)}`;
+export function formatCoffeePrice(_price?: number) {
+  return 'Coming soon';
 }
 
-export function formatCoffeePriceRange(price: number) {
-  const low = Number(price);
-  const high = Math.ceil(low * 1.42);
-  return `${formatCoffeePrice(low)} – ${formatCoffeePrice(high)}`;
+export function formatCoffeePriceRange(_price?: number) {
+  return 'Coming soon';
 }

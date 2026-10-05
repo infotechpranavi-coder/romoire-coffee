@@ -1,13 +1,14 @@
 'use client'
 
-import { useState, useEffect, useMemo } from "react";
-import { Search, Menu, X, ChevronDown, Coffee, ArrowRight } from "lucide-react";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import { Search, Menu, X, ChevronDown, Coffee, ArrowRight, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useInquiryForm } from "../contexts/InquiryFormContext";
+import { useCart } from "@/contexts/CartContext";
 import BrandLogo from "@/components/BrandLogo";
+import { useCategoryLabels } from "@/contexts/CategoryLabelsContext";
 
 interface NavProduct {
   _id: string;
@@ -15,6 +16,8 @@ interface NavProduct {
   subtitle?: string;
   price?: number | string;
   packageCategory?: string;
+  packageGroupSlug?: string;
+  packageMiniCategory?: string;
 }
 
 interface NavItem {
@@ -23,7 +26,7 @@ interface NavItem {
   isProducts?: boolean;
 }
 
-// Fallback seed products with categories
+// Fallback seed products with categories (used until DB responds)
 const FALLBACK_PRODUCTS: NavProduct[] = [
   {
     _id: "6aba50bf62e0f8f1f0cfbbab",
@@ -73,7 +76,13 @@ const NavbarTravel = () => {
   const [contactHovered, setContactHovered] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-  const { openForm } = useInquiryForm();
+  const { itemCount, openCart } = useCart();
+  const [cartReady, setCartReady] = useState(false);
+
+  useEffect(() => {
+    setCartReady(true);
+  }, []);
+  const { navGroups } = useCategoryLabels();
 
   const useSolidNav = true;
 
@@ -94,6 +103,8 @@ const NavbarTravel = () => {
             subtitle: p.subtitle,
             price: p.price,
             packageCategory: p.packageCategory,
+            packageGroupSlug: p.packageGroupSlug,
+            packageMiniCategory: p.packageMiniCategory,
           })));
         }
       } catch (err) {
@@ -106,32 +117,56 @@ const NavbarTravel = () => {
     };
   }, [pathname]);
 
-  // Compute category sections with their products
+  // Group products by category:
+  // Matches products directly by packageGroupSlug or packageCategory against navGroups
   const categorySections = useMemo(() => {
     const list = navProducts.length > 0 ? navProducts : FALLBACK_PRODUCTS;
-    const groupsMap = new Map<string, NavProduct[]>();
+    const sections: {
+      category: string;
+      href?: string;
+      products: Array<NavProduct & { subcategoryLabel?: string }>;
+    }[] = [];
+    const matched = new Set<string>();
 
-    // Priority order for coffee premix categories
-    const priorityCategories = ['Assorted Pack', 'Classic Premix', 'Flavoured Premix'];
-    priorityCategories.forEach((cat) => groupsMap.set(cat, []));
+    for (const group of navGroups) {
+      const groupSlug = group.slug.toLowerCase();
+      const groupLabel = group.label.trim().toLowerCase();
 
-    list.forEach((p) => {
-      const cat = (p.packageCategory?.trim()) || 'Coffee Premix';
-      if (!groupsMap.has(cat)) {
-        groupsMap.set(cat, []);
+      const groupProducts = list.filter((p) => {
+        const pGroup = (p.packageGroupSlug || '').trim().toLowerCase();
+        const pCat = (p.packageCategory || '').trim().toLowerCase();
+        return (
+          pGroup === groupSlug ||
+          pCat === groupLabel ||
+          pCat === groupSlug ||
+          group.items?.some(
+            (sub) =>
+              sub.label.trim().toLowerCase() === pCat ||
+              sub.value.trim().toLowerCase() === pCat
+          )
+        );
+      });
+
+      if (groupProducts.length > 0) {
+        groupProducts.forEach((p) => matched.add(p._id));
+        sections.push({
+          category: group.label,
+          href: `/packages/group/${group.slug}`,
+          products: groupProducts,
+        });
       }
-      groupsMap.get(cat)!.push(p);
-    });
+    }
 
-    const sections: { category: string; products: NavProduct[] }[] = [];
-    groupsMap.forEach((prods, category) => {
-      if (prods.length > 0) {
-        sections.push({ category, products: prods });
-      }
-    });
+    // Products whose category is set but not in the tree — show them under "Other".
+    const orphans = list.filter(
+      (p) => !matched.has(p._id) && (p.packageCategory || '').trim() !== ''
+    );
+    if (orphans.length > 0) {
+      sections.push({ category: 'Other', products: orphans });
+    }
 
     return sections;
-  }, [navProducts]);
+  }, [navProducts, navGroups]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -188,6 +223,11 @@ const NavbarTravel = () => {
     router.push(`/packages?search=${encodeURIComponent(searchQuery.trim())}`);
     setIsSearchOpen(false);
     setSearchQuery("");
+  };
+
+  const closeProductDropdown = () => {
+    setOpenDropdownIndex(null);
+    setHoveredIndex(null);
   };
 
   return (
@@ -254,41 +294,69 @@ const NavbarTravel = () => {
                             : 'opacity-0 invisible translate-y-1.5 pointer-events-none'
                         }`}
                       >
-                        <div className="w-[620px] lg:w-[680px] rounded-2xl bg-[#FDFBF7] shadow-[0_25px_65px_-15px_rgba(74,21,21,0.22)] border border-[#EADBCE] overflow-hidden text-left">
+                        {(() => {
+                          const colCount = Math.min(3, Math.max(1, categorySections.length || 1));
+                          const panelWidth =
+                            colCount === 1
+                              ? 'w-[min(92vw,300px)]'
+                              : colCount === 2
+                                ? 'w-[min(92vw,520px)]'
+                                : 'w-[min(92vw,720px)]';
+                          const gridCols =
+                            colCount === 1
+                              ? 'grid-cols-1'
+                              : colCount === 2
+                                ? 'grid-cols-1 sm:grid-cols-2'
+                                : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
+
+                          return (
+                        <div className={`${panelWidth} rounded-2xl bg-[#FDFBF7] shadow-[0_25px_65px_-15px_rgba(74,21,21,0.22)] border border-[#EADBCE] overflow-hidden text-left`}>
                           {/* Top Bar */}
-                          <div className="px-6 py-3 bg-[#F6EFE6] border-b border-[#EADBCE]/80 flex items-center justify-between">
-                            <div className="flex items-center gap-2.5">
-                              <Coffee className="w-4 h-4 text-burgundy" />
-                              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-burgundy font-serif">
+                          <div className="px-4 sm:px-5 py-3 bg-[#F6EFE6] border-b border-[#EADBCE]/80 flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <Coffee className="w-4 h-4 text-burgundy shrink-0" />
+                              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-burgundy font-serif truncate">
                                 Romoire Coffee Premixes
                               </span>
                             </div>
                             <Link
                               href="/packages"
-                              onClick={() => {
-                                setOpenDropdownIndex(null);
-                                setHoveredIndex(null);
-                              }}
-                              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-burgundy hover:text-espresso transition-colors group"
+                              onClick={closeProductDropdown}
+                              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-burgundy hover:text-espresso transition-colors group shrink-0"
                             >
                               <span>Explore All</span>
                               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                             </Link>
                           </div>
 
-                          {/* Categories Grid - Only Product Names */}
-                          <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-[#EADBCE]/60">
-                            {categorySections.map((section, sIdx) => (
+                          {/* Categories — width grows with category count */}
+                          <div className={`p-4 sm:p-5 grid ${gridCols} gap-5 ${colCount > 1 ? 'divide-y sm:divide-y-0 sm:divide-x divide-[#EADBCE]/60' : ''}`}>
+                            {categorySections.length === 0 && (
+                              <p className="text-sm text-gray-500">
+                                No products with categories yet.
+                              </p>
+                            )}
+                            {categorySections.slice(0, 6).map((section) => (
                               <div
                                 key={section.category}
-                                className={`${sIdx > 0 ? 'md:pl-6 pt-4 md:pt-0' : ''} flex flex-col`}
+                                className={`flex flex-col min-w-0 ${colCount > 1 ? 'sm:px-3 first:sm:pl-0 last:sm:pr-0' : ''}`}
                               >
                                 {/* Category Header */}
                                 <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#EADBCE]/60">
-                                  <div className="w-1.5 h-1.5 rounded-full bg-burgundy" />
-                                  <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-burgundy font-serif">
-                                    {section.category}
-                                  </h4>
+                                  <div className="w-1.5 h-1.5 rounded-full bg-burgundy shrink-0" />
+                                  {section.href ? (
+                                    <Link
+                                      href={section.href}
+                                      onClick={closeProductDropdown}
+                                      className="text-xs font-bold uppercase tracking-[0.14em] text-burgundy font-serif hover:text-espresso transition-colors"
+                                    >
+                                      {section.category}
+                                    </Link>
+                                  ) : (
+                                    <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-burgundy font-serif">
+                                      {section.category}
+                                    </h4>
+                                  )}
                                 </div>
 
                                 {/* Product Names List */}
@@ -297,13 +365,17 @@ const NavbarTravel = () => {
                                     <li key={prod._id}>
                                       <Link
                                         href={`/packages/${prod._id}`}
-                                        onClick={() => {
-                                          setOpenDropdownIndex(null);
-                                          setHoveredIndex(null);
-                                        }}
-                                        className="block px-2.5 py-1.5 rounded-lg text-sm font-medium text-gray-800 hover:text-burgundy hover:bg-[#F5EDE3] transition-colors leading-snug"
+                                        onClick={closeProductDropdown}
+                                        className="block px-2.5 py-1.5 rounded-lg hover:bg-[#F5EDE3] transition-colors leading-snug group/product"
                                       >
-                                        {prod.title}
+                                        <span className="block text-sm font-medium text-gray-800 group-hover/product:text-burgundy transition-colors">
+                                          {prod.title}
+                                        </span>
+                                        {prod.subcategoryLabel && (
+                                          <span className="block text-[10px] font-bold uppercase tracking-wider text-gray-400 group-hover/product:text-hazelnut transition-colors">
+                                            {prod.subcategoryLabel}
+                                          </span>
+                                        )}
                                       </Link>
                                     </li>
                                   ))}
@@ -312,6 +384,8 @@ const NavbarTravel = () => {
                             ))}
                           </div>
                         </div>
+                          );
+                        })()}
                       </div>
                     </div>
                   );
@@ -362,6 +436,24 @@ const NavbarTravel = () => {
               )}
             </div>
 
+            <button
+              type="button"
+              onClick={openCart}
+              aria-label={`Open cart${cartReady && itemCount ? `, ${itemCount} items` : ''}`}
+              className={`relative inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+                useSolidNav
+                  ? 'text-espresso hover:bg-vanilla'
+                  : 'text-white hover:bg-cream/10'
+              }`}
+            >
+              <ShoppingBag className="h-5 w-5" aria-hidden="true" />
+              {cartReady && itemCount > 0 && (
+                <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-hazelnut px-1 text-[10px] font-bold text-cream">
+                  {itemCount > 99 ? '99+' : itemCount}
+                </span>
+              )}
+            </button>
+
             <Link
               href="/contact"
               aria-current={isContactActive ? 'page' : undefined}
@@ -379,26 +471,30 @@ const NavbarTravel = () => {
             >
               Contact Us
             </Link>
-            
-            <Button
-              onClick={() => openForm()}
-              className={`${
-                useSolidNav
-                  ? 'bg-hazelnut hover:bg-espresso text-cream'
-                  : 'bg-transparent border border-white/35 text-white hover:bg-cream/10 hover:text-white'
-              } font-bold px-5 py-2 rounded-full shadow-none h-10 whitespace-nowrap text-[11px] uppercase tracking-[0.16em]`}
-            >
-              Order Now
-            </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`lg:hidden p-2 rounded-md ${useSolidNav ? 'text-gray-700' : 'text-white'}`}
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          {/* Mobile cart + menu */}
+          <div className="flex items-center gap-1 lg:hidden">
+            <button
+              type="button"
+              onClick={openCart}
+              aria-label={`Open cart${cartReady && itemCount ? `, ${itemCount} items` : ''}`}
+              className={`relative p-2 rounded-md ${useSolidNav ? 'text-gray-700' : 'text-white'}`}
+            >
+              <ShoppingBag className="h-6 w-6" aria-hidden="true" />
+              {cartReady && itemCount > 0 && (
+                <span className="absolute right-0 top-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-hazelnut px-1 text-[9px] font-bold text-cream">
+                  {itemCount > 99 ? '99+' : itemCount}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`p-2 rounded-md ${useSolidNav ? 'text-gray-700' : 'text-white'}`}
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -428,7 +524,7 @@ const NavbarTravel = () => {
                       </Link>
                     </div>
 
-                    {/* Category Sections & Product Names */}
+                    {/* Category Sections & Product Names — from dashboard tree */}
                     <div className="space-y-2.5 px-1">
                       {categorySections.map((sec) => (
                         <div
@@ -437,9 +533,19 @@ const NavbarTravel = () => {
                         >
                           <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-[#EADBCE]/60">
                             <div className="w-1.5 h-1.5 rounded-full bg-burgundy" />
-                            <h5 className="text-[11px] font-bold uppercase tracking-wider text-burgundy font-serif">
-                              {sec.category}
-                            </h5>
+                            {sec.href ? (
+                              <Link
+                                href={sec.href}
+                                onClick={() => setIsMenuOpen(false)}
+                                className="text-[11px] font-bold uppercase tracking-wider text-burgundy font-serif"
+                              >
+                                {sec.category}
+                              </Link>
+                            ) : (
+                              <h5 className="text-[11px] font-bold uppercase tracking-wider text-burgundy font-serif">
+                                {sec.category}
+                              </h5>
+                            )}
                           </div>
                           <div className="space-y-1">
                             {sec.products.map((prod) => (
@@ -447,9 +553,14 @@ const NavbarTravel = () => {
                                 key={prod._id}
                                 href={`/packages/${prod._id}`}
                                 onClick={() => setIsMenuOpen(false)}
-                                className="block px-2.5 py-1.5 rounded-lg text-xs font-medium text-gray-800 hover:bg-[#F5EDE3] hover:text-burgundy transition-colors"
+                                className="block px-2.5 py-1.5 rounded-lg hover:bg-[#F5EDE3] transition-colors"
                               >
-                                {prod.title}
+                                <span className="block text-xs font-medium text-gray-800">{prod.title}</span>
+                                {prod.subcategoryLabel && (
+                                  <span className="block text-[9px] font-bold uppercase tracking-wider text-gray-400">
+                                    {prod.subcategoryLabel}
+                                  </span>
+                                )}
                               </Link>
                             ))}
                           </div>
@@ -482,15 +593,6 @@ const NavbarTravel = () => {
               >
                 Contact Us
               </Link>
-              <Button
-                onClick={() => {
-                  openForm();
-                  setIsMenuOpen(false);
-                }}
-                className="w-full bg-hazelnut hover:bg-espresso text-cream font-bold mt-2"
-              >
-                Order Now
-              </Button>
             </div>
           </div>
         </div>

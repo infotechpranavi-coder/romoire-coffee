@@ -5,6 +5,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
 import { ProductInfo } from "../contexts/InquiryFormContext";
+import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/branding";
 
 interface InquiryFormPopupProps {
   isOpen: boolean;
@@ -367,17 +368,17 @@ const InquiryFormPopup = ({ isOpen, onClose, productInfo }: InquiryFormPopupProp
               <div className="flex flex-col items-center">
                 <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-secondary mb-1 sm:mb-2" />
                 <p className="text-xs sm:text-sm text-gray-600">Call us</p>
-                <p className="font-semibold text-secondary text-sm sm:text-base">+237 6 83 57 76 76</p>
+                <p className="font-semibold text-secondary text-sm sm:text-base">{CONTACT_PHONE}</p>
               </div>
               <div className="flex flex-col items-center">
                 <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-secondary mb-1 sm:mb-2" />
                 <p className="text-xs sm:text-sm text-gray-600">Email us</p>
-                <p className="font-semibold text-secondary text-sm sm:text-base">sales@skygovoyages.com</p>
+                <p className="font-semibold text-secondary text-sm sm:text-base">{CONTACT_EMAIL}</p>
               </div>
               <div className="flex flex-col items-center">
                 <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-secondary mb-1 sm:mb-2" />
                 <p className="text-xs sm:text-sm text-gray-600">Visit us</p>
-                <p className="font-semibold text-secondary text-xs sm:text-sm">Head office- Yaoundé, Cameroon</p>
+                <p className="font-semibold text-secondary text-xs sm:text-sm">{CONTACT_ADDRESS}</p>
               </div>
             </div>
           </div>

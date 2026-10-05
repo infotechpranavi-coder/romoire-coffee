@@ -6,6 +6,7 @@ import NavbarTravel from "./NavbarTravel"
 import Footer from "./Footer"
 import FloatingButtons from "./FloatingButtons"
 import HomeInquiryWrapper from "./HomeInquiryWrapper"
+import CartDrawer from "./CartDrawer"
 
 const OfferPopup = dynamic(() => import("./OfferPopup"), { ssr: false })
 
@@ -30,6 +31,7 @@ export default function ConditionalLayout({
       <Footer />
       <FloatingButtons />
       <HomeInquiryWrapper />
+      <CartDrawer />
       <OfferPopup />
     </>
   )

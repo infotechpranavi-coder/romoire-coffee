@@ -6,6 +6,7 @@ import { Toaster as Sonner } from "../components/ui/sonner"
 import { TooltipProvider } from "../components/ui/tooltip"
 import { InquiryFormProvider } from "../contexts/InquiryFormContext"
 import { CategoryLabelsProvider } from "../contexts/CategoryLabelsContext"
+import { CartProvider } from "../contexts/CartContext"
 import ConditionalLayout from "../components/ConditionalLayout"
 import { SITE_NAME, SITE_DESCRIPTION, SITE_TAGLINE, LOGO_SRC } from "../lib/branding"
 
@@ -71,11 +72,13 @@ export default function RootLayout({
         <TooltipProvider>
           <CategoryLabelsProvider>
             <InquiryFormProvider>
-              <ConditionalLayout>
-                {children}
-              </ConditionalLayout>
-              <Toaster />
-              <Sonner />
+              <CartProvider>
+                <ConditionalLayout>
+                  {children}
+                </ConditionalLayout>
+                <Toaster />
+                <Sonner />
+              </CartProvider>
             </InquiryFormProvider>
           </CategoryLabelsProvider>
         </TooltipProvider>

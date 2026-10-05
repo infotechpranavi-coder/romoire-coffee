@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, X, Upload, Star } from "lucide-react";
 import { compressImage } from "@/lib/utils";
 import { SITE_NAME, DEFAULT_ABOUT_TEXT, DEFAULT_SERVICES_TEXT, LOGO_SRC } from "@/lib/branding";
@@ -52,10 +53,12 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
     packageType: "domestic" as "international" | "domestic",
     place: "",
     packageCategory: defaultCategory,
+    packageGroupSlug: navGroups[0]?.slug ?? "",
     packageMiniCategory: "",
     isFeaturedDestination: false,
     isPopularPackage: false,
     isFeaturedTrip: false,
+    isComingSoon: false,
   });
 
   const [flavorNotes, setFlavorNotes] = useState<string[]>([""]);
@@ -92,15 +95,35 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
 
   const handlePackageGroupChange = (groupSlug: string) => {
     setPackageGroupSlug(groupSlug);
+    const group = navGroups.find((g) => g.slug === groupSlug);
+    const label = group?.label || groupSlug;
+    setFormData((prev) => ({
+      ...prev,
+      packageGroupSlug: groupSlug,
+      packageCategory: label,
+      packageMiniCategory: '',
+    }));
   };
 
   const handlePackageCategoryChange = (categoryValue: string) => {
-    handleInputChange("packageCategory", categoryValue);
-    handleInputChange("packageMiniCategory", "");
+    const group = navGroups.find(
+      (g) =>
+        g.label.toLowerCase() === categoryValue.toLowerCase() ||
+        g.slug.toLowerCase() === categoryValue.toLowerCase()
+    );
+    const slug = group?.slug || packageGroupSlug;
+    const label = group?.label || categoryValue;
+    setPackageGroupSlug(slug);
+    setFormData((prev) => ({
+      ...prev,
+      packageGroupSlug: slug,
+      packageCategory: label,
+      packageMiniCategory: '',
+    }));
   };
 
   const handlePackageMiniCategoryChange = (miniValue: string) => {
-    handleInputChange("packageMiniCategory", miniValue);
+    handleInputChange("packageMiniCategory", "");
   };
 
   const handleAddUrl = () => {
@@ -150,10 +173,12 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
       packageType: "domestic",
       place: "",
       packageCategory: nextCategory,
+      packageGroupSlug: navGroups[0]?.slug ?? "",
       packageMiniCategory: "",
       isFeaturedDestination: false,
       isPopularPackage: false,
       isFeaturedTrip: false,
+      isComingSoon: false,
     });
     setFlavorNotes([""]);
     setRoastOptions(["Light", "Medium", "Dark"]);
@@ -177,8 +202,12 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
   };
 
   const handleSubmit = async () => {
-    if (!formData.title || !formData.price) {
-      setSubmitError("Product name and price are required.");
+    if (!formData.title?.trim()) {
+      setSubmitError("Product title is required.");
+      return;
+    }
+    if (!formData.isComingSoon && (formData.price === "" || isNaN(parseFloat(formData.price as string)))) {
+      setSubmitError("Please enter a valid price for active products.");
       return;
     }
     if (!formData.place.trim()) {
@@ -214,18 +243,22 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
         formData.subtitle.trim() ||
         DEFAULT_ABOUT_TEXT;
 
+      const rawPrice = formData.price !== "" ? parseFloat(formData.price as string) : 0;
+      const price = isNaN(rawPrice) ? 0 : rawPrice;
+
       const payload = {
         ...formData,
         packageType: "domestic",
         location: origin,
         place: origin,
+        isComingSoon: Boolean(formData.isComingSoon),
         duration: formData.duration?.trim() || "250g / 500g / 1kg",
         capacity: formData.capacity?.trim() || "Whole Bean, Ground",
         subtitle: formData.subtitle?.trim() || formData.title.trim(),
         about: formData.about?.trim() || DEFAULT_ABOUT_TEXT,
         services: formData.services?.trim() || DEFAULT_SERVICES_TEXT,
         tourDetails: tastingNotes,
-        price: parseFloat(formData.price as string),
+        price: price,
         keyHighlights: flavorNotes.filter((h) => h.trim()),
         hotelOptions: roastOptions.filter((h) => h.trim()),
         whyChooseThisTrip: whyChoose.filter((w) => w.trim()),
@@ -316,28 +349,65 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
             </div>
           </div>
 
+          {/* Product Availability Status */}
+          <div className="p-4 bg-amber-50/70 rounded-2xl border border-amber-200/80 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-espresso uppercase tracking-wider block">
+                Product Availability Status *
+              </label>
+              <p className="text-[11px] text-mocha/80">
+                Choose whether this product is active with live pricing or marked as Coming Soon.
+              </p>
+            </div>
+            <div className="w-full md:w-64 shrink-0">
+              <Select
+                value={formData.isComingSoon ? "coming_soon" : "active"}
+                onValueChange={(val) => handleInputChange('isComingSoon', val === 'coming_soon')}
+              >
+                <SelectTrigger className="rounded-xl border-amber-300 bg-white font-medium text-sm">
+                  <SelectValue placeholder="Select Status" />
+                </SelectTrigger>
+                <SelectContent className="z-[200]">
+                  <SelectItem value="active" className="font-medium text-sm">
+                    🟢 Active (Show Live Price & Cart)
+                  </SelectItem>
+                  <SelectItem value="coming_soon" className="font-medium text-sm text-amber-900">
+                    ⭐ Coming Soon (Hide Price / Badge)
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">Price ($) *</label>
+              <div className="flex items-center justify-between">
+                <label className="text-sm font-medium">Price (₹) {!formData.isComingSoon && '*'}</label>
+                {formData.isComingSoon && (
+                  <span className="text-[10px] uppercase font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">
+                    Coming Soon
+                  </span>
+                )}
+              </div>
               <Input
                 type="number"
-                placeholder="e.g. 18"
+                placeholder={formData.isComingSoon ? "0 (Optional for Coming Soon)" : "e.g. 499"}
                 value={formData.price}
                 onChange={(e) => handleInputChange("price", e.target.value)}
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium">Available Sizes</label>
+              <label className="text-sm font-medium">Pack / Flavour Size</label>
               <Input
-                placeholder="e.g. 250g / 500g / 1kg"
+                placeholder="e.g. 5 Sachets · 20g each"
                 value={formData.duration}
                 onChange={(e) => handleInputChange("duration", e.target.value)}
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium">Grind Options</label>
+              <label className="text-sm font-medium">Product Details</label>
               <Input
-                placeholder="e.g. Whole Bean, Ground"
+                placeholder="e.g. Pre-measured Single Serving"
                 value={formData.capacity}
                 onChange={(e) => handleInputChange("capacity", e.target.value)}
               />
@@ -374,6 +444,22 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
 
           {/* Homepage placement */}
           <div className="space-y-3">
+            <div className="flex items-center space-x-2 py-2 px-4 bg-gray-50/50 rounded-2xl border border-dashed border-gray-200">
+              <Checkbox
+                id="isFeaturedDestination"
+                checked={formData.isFeaturedDestination}
+                onCheckedChange={(checked) => handleInputChange("isFeaturedDestination", !!checked)}
+              />
+              <div className="grid gap-1.5 leading-none">
+                <label htmlFor="isFeaturedDestination" className="text-sm font-bold uppercase tracking-widest">
+                  Show in Homepage Hero
+                </label>
+                <p className="text-[10px] text-mocha/60 font-bold uppercase tracking-tighter">
+                  Appears in the Start here picker on the home page.
+                </p>
+              </div>
+            </div>
+
             <div className="flex items-center space-x-2 py-2 px-4 bg-amber-50/50 rounded-2xl border border-dashed border-amber-200">
               <Checkbox
                 id="isPopularPackage"
@@ -382,10 +468,10 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
               />
               <div className="grid gap-1.5 leading-none">
                 <label htmlFor="isPopularPackage" className="text-sm font-bold uppercase tracking-widest">
-                  Show in Popular Coffees
+                  Show in The Range
                 </label>
                 <p className="text-[10px] text-mocha/60 font-bold uppercase tracking-tighter">
-                  Appears in the Popular Coffees section on the homepage.
+                  Appears in The Range (Choose your flavour) section on the home page.
                 </p>
               </div>
             </div>
@@ -398,10 +484,10 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
               />
               <div className="grid gap-1.5 leading-none">
                 <label htmlFor="isFeaturedTrip" className="text-sm font-bold uppercase tracking-widest">
-                  Show in New Arrivals
+                  Mark as Featured Product
                 </label>
                 <p className="text-[10px] text-mocha/60 font-bold uppercase tracking-tighter">
-                  Appears in the New Arrivals carousel on the homepage.
+                  Shows a Featured badge in The Range on the home page.
                 </p>
               </div>
             </div>

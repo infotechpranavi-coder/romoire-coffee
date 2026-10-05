@@ -7,6 +7,7 @@ import { toast } from 'sonner'
 import { Search, ShoppingBag, ArrowRight, Sparkles, Check, Coffee } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useCart } from '@/contexts/CartContext'
 
 interface PackageProduct {
   _id: string
@@ -15,9 +16,11 @@ interface PackageProduct {
   about?: string
   tourDetails?: string
   price: number | string
+  isComingSoon?: boolean
   duration?: string
   capacity?: string
   packageCategory?: string
+  packageGroupSlug?: string
   packageMiniCategory?: string
   images?: Array<{ url: string; alt?: string }>
   rating?: number
@@ -26,6 +29,7 @@ interface PackageProduct {
 
 export default function PackagesPage() {
   const [products, setProducts] = useState<PackageProduct[]>([])
+  const { addItem, openCart } = useCart()
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('All')
@@ -68,8 +72,9 @@ export default function PackagesPage() {
   const categories = useMemo(() => {
     const set = new Set<string>()
     products.forEach((p) => {
-      if (p.packageCategory?.trim()) {
-        set.add(p.packageCategory.trim())
+      const cat = p.packageCategory?.trim() || p.packageGroupSlug?.trim()
+      if (cat) {
+        set.add(cat)
       }
     })
     return ['All', ...Array.from(set)]
@@ -78,25 +83,50 @@ export default function PackagesPage() {
   // Filter products by search and category
   const filteredProducts = useMemo(() => {
     const q = searchTerm.trim().toLowerCase()
+    const targetCat = selectedCategory.trim().toLowerCase()
+
     return products.filter((p) => {
+      const pCat = (p.packageCategory || '').trim().toLowerCase()
+      const pGroup = (p.packageGroupSlug || '').trim().toLowerCase()
+
       const matchesSearch =
         !q ||
         (p.title && p.title.toLowerCase().includes(q)) ||
         (p.subtitle && p.subtitle.toLowerCase().includes(q)) ||
         (p.about && p.about.toLowerCase().includes(q)) ||
-        (p.packageCategory && p.packageCategory.toLowerCase().includes(q))
+        pCat.includes(q) ||
+        pGroup.includes(q)
 
       const matchesCategory =
         selectedCategory === 'All' ||
-        (p.packageCategory && p.packageCategory.trim().toLowerCase() === selectedCategory.toLowerCase())
+        pCat === targetCat ||
+        pGroup === targetCat
 
       return matchesSearch && matchesCategory
     })
   }, [products, searchTerm, selectedCategory])
 
-  const handleAddToCart = (productName: string, price: string) => {
-    toast.success(`Added ${productName} (${price}) to cart!`, {
-      description: 'Free express shipping across India on orders over ₹999.',
+  const handleProductAction = (pkg: PackageProduct, isComingSoon: boolean) => {
+    if (isComingSoon) {
+      toast.info(`${pkg.title} is coming soon!`, {
+        description: 'Sign up for our newsletter to get notified when orders open.',
+      })
+      return
+    }
+
+    addItem({
+      id: pkg._id,
+      title: pkg.title,
+      price: Number(pkg.price) || 0,
+      image: pkg.images?.[0]?.url,
+      category: pkg.packageCategory || pkg.subtitle,
+    })
+    toast.success(`Added ${pkg.title} to cart`, {
+      description: 'Open the bag icon in the navbar to view your selected products.',
+      action: {
+        label: 'View cart',
+        onClick: () => openCart(),
+      },
     })
   }
 
@@ -212,7 +242,8 @@ export default function PackagesPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
               {filteredProducts.map((pkg) => {
                 const imgUrl = pkg.images?.[0]?.url || '/images/romoire/coffee_sachets.jpg'
-                const priceText = `₹${pkg.price}`
+                const isComingSoon = Boolean(pkg.isComingSoon || !pkg.price || Number(pkg.price) === 0)
+                const priceText = isComingSoon ? 'Coming soon' : `₹${pkg.price}`
                 const sachetInfo = pkg.duration || pkg.capacity || '5 Sachets · 20g each'
                 const categoryLabel = pkg.packageCategory || pkg.subtitle || 'Plant-based Premix'
                 const desc =
@@ -270,7 +301,9 @@ export default function PackagesPage() {
                         <span className="font-playfair text-2xl text-maroon font-medium">
                           {priceText}
                         </span>
-                        <span className="text-[11px] text-ink-mute ml-1">incl. taxes</span>
+                        {!isComingSoon && (
+                          <span className="text-[11px] text-ink-mute ml-1">incl. taxes</span>
+                        )}
                       </div>
                       <Link
                         href={`/packages/${pkg._id}`}
@@ -280,14 +313,23 @@ export default function PackagesPage() {
                       </Link>
                     </div>
 
-                    {/* Add to Cart CTA */}
+                    {/* Action CTA */}
                     <button
                       type="button"
-                      onClick={() => handleAddToCart(pkg.title, priceText)}
+                      onClick={() => handleProductAction(pkg, isComingSoon)}
                       className="btn-romoire py-3.5 text-xs text-center w-full uppercase tracking-[1.6px] font-medium flex items-center justify-center gap-2 shadow-sm"
                     >
-                      <ShoppingBag className="w-3.5 h-3.5" />
-                      Add to cart
+                      {isComingSoon ? (
+                        <>
+                          <Sparkles className="w-3.5 h-3.5" />
+                          Coming soon
+                        </>
+                      ) : (
+                        <>
+                          <ShoppingBag className="w-3.5 h-3.5" />
+                          Add to cart
+                        </>
+                      )}
                     </button>
                   </article>
                 )

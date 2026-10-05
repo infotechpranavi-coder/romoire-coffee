@@ -188,8 +188,11 @@ const PackageSchema = new mongoose.Schema({
   },
   packageCategory: {
     type: String,
-    required: true,
-    default: 'Yachts & Sailing Cruises',
+    default: '',
+  },
+  packageGroupSlug: {
+    type: String,
+    default: '',
   },
   packageMiniCategory: {
     type: String,
@@ -249,6 +252,10 @@ const PackageSchema = new mongoose.Schema({
     default: false,
   },
   isFeaturedTrip: {
+    type: Boolean,
+    default: false,
+  },
+  isComingSoon: {
     type: Boolean,
     default: false,
   },

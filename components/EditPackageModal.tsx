@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Plus, Minus, X, Upload, Star } from "lucide-react";
 import { compressImage } from "@/lib/utils";
-import { PACKAGE_EXPERIENCE_CATEGORIES, getNavGroupForCategory } from "@/lib/packageExperienceCategories";
+import { PACKAGE_EXPERIENCE_CATEGORIES } from "@/lib/packageExperienceCategories";
 import ExperienceCategoryNameFields from "@/components/ExperienceCategoryNameFields";
 import PackageTourExtrasFields, {
   type FixedDepartureRow,
@@ -70,6 +70,7 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
     packageType: "",
     place: "",
     packageCategory: "Yachts & Sailing Cruises",
+    packageGroupSlug: "",
     packageMiniCategory: "",
     bestTimeToVisit: {
       yearRound: "",
@@ -79,6 +80,7 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
     isFeaturedDestination: false,
     isPopularPackage: false,
     isFeaturedTrip: false,
+    isComingSoon: false,
   });
 
   const [keyHighlights, setKeyHighlights] = useState<string[]>([]);
@@ -117,24 +119,36 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [packageGroupSlug, setPackageGroupSlug] = useState(navGroups[0]?.slug ?? "water");
 
+  // Track which package the form was last initialized for, so the init effect
+  // doesn't clobber in-progress edits when navGroups refreshes mid-edit.
+  const initializedForRef = useRef<string | null>(null);
+
   // Initialize form data when packageData changes
   useEffect(() => {
     if (packageData) {
-      // Map category value to ensure it matches SelectItem values
-      const mapCategory = (category: string | undefined): string => {
-        if (!category) return navGroups[0]?.items[0]?.value ?? "Yachts & Sailing Cruises";
-        const resolved = resolveCategoryByValue(category);
-        if (resolved) return resolved.value;
-        const match = PACKAGE_EXPERIENCE_CATEGORIES.find(
-          (item) =>
-            item.value.toLowerCase() === category.toLowerCase() ||
-            item.legacyValues?.some((legacy) => legacy.toLowerCase() === category.toLowerCase())
-        );
-        return match?.value || category;
-      };
+      // Skip re-init if this package is already loaded and the user has started editing
+      if (initializedForRef.current === String(packageData._id ?? '') && isOpen) {
+        return;
+      }
+      // Resolve category and group slug from live navGroups
+      const rawCat = packageData.packageCategory || "";
+      const rawGroup = packageData.packageGroupSlug || "";
+      const matchedGroup =
+        navGroups.find(
+          (g) =>
+            (rawGroup && g.slug.toLowerCase() === rawGroup.toLowerCase()) ||
+            (rawCat && g.label.toLowerCase() === rawCat.toLowerCase()) ||
+            (rawCat && g.slug.toLowerCase() === rawCat.toLowerCase()) ||
+            g.items?.some(
+              (item) =>
+                item.value.toLowerCase() === rawCat.toLowerCase() ||
+                item.label.toLowerCase() === rawCat.toLowerCase()
+            )
+        ) ?? navGroups[0];
 
-      const mappedCategory = mapCategory(packageData.packageCategory);
-      setPackageGroupSlug(getNavGroupForCategory(mappedCategory).slug);
+      const resolvedGroupSlug = matchedGroup?.slug || rawGroup || navGroups[0]?.slug || "single-origin";
+      const resolvedCategoryLabel = matchedGroup?.label || rawCat || "Single Origin";
+      setPackageGroupSlug(resolvedGroupSlug);
 
       setFormData({
         title: packageData.title || "",
@@ -145,14 +159,15 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
         tourDetails: packageData.tourDetails || "",
         abstract: packageData.abstract || "",
         tourOverview: packageData.tourOverview || "",
-        price: packageData.price?.toString() || "",
+        price: packageData.price !== undefined ? packageData.price.toString() : "",
         duration: packageData.duration || "",
         location: packageData.location || "",
         capacity: packageData.capacity || "",
         packageType: packageData.packageType || "",
         place: packageData.place || "",
-        packageCategory: mappedCategory,
-        packageMiniCategory: packageData.packageMiniCategory || "",
+        packageCategory: resolvedCategoryLabel,
+        packageGroupSlug: resolvedGroupSlug,
+        packageMiniCategory: "",
         bestTimeToVisit: {
           yearRound: packageData.bestTimeToVisit?.yearRound || "",
           winter: packageData.bestTimeToVisit?.winter || "",
@@ -161,6 +176,7 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
         isFeaturedDestination: packageData.isFeaturedDestination || false,
         isPopularPackage: packageData.isPopularPackage || false,
         isFeaturedTrip: packageData.isFeaturedTrip || false,
+        isComingSoon: packageData.isComingSoon || false,
       });
 
       setKeyHighlights(packageData.keyHighlights?.length ? packageData.keyHighlights : [""]);
@@ -288,10 +304,12 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
       setNewImages([]);
       setExternalImageUrls([]);
       setCurrentImageUrl("");
+
+      initializedForRef.current = String(packageData._id ?? '');
     }
   }, [packageData, navGroups, resolveCategoryByValue]);
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -300,15 +318,35 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
 
   const handlePackageGroupChange = (groupSlug: string) => {
     setPackageGroupSlug(groupSlug);
+    const group = navGroups.find((g) => g.slug === groupSlug);
+    const label = group?.label || groupSlug;
+    setFormData((prev) => ({
+      ...prev,
+      packageGroupSlug: groupSlug,
+      packageCategory: label,
+      packageMiniCategory: '',
+    }));
   };
 
   const handlePackageCategoryChange = (categoryValue: string) => {
-    handleInputChange("packageCategory", categoryValue);
-    handleInputChange("packageMiniCategory", "");
+    const group = navGroups.find(
+      (g) =>
+        g.label.toLowerCase() === categoryValue.toLowerCase() ||
+        g.slug.toLowerCase() === categoryValue.toLowerCase()
+    );
+    const slug = group?.slug || packageGroupSlug;
+    const label = group?.label || categoryValue;
+    setPackageGroupSlug(slug);
+    setFormData((prev) => ({
+      ...prev,
+      packageGroupSlug: slug,
+      packageCategory: label,
+      packageMiniCategory: '',
+    }));
   };
 
   const handlePackageMiniCategoryChange = (miniValue: string) => {
-    handleInputChange("packageMiniCategory", miniValue);
+    handleInputChange("packageMiniCategory", "");
   };
 
   const handleAddUrl = () => {
@@ -612,8 +650,9 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
         }
       }
 
-      const price = parseFloat(formData.price);
-      if (isNaN(price) || price <= 0) {
+      const rawPrice = formData.price !== "" ? parseFloat(formData.price) : 0;
+      const price = isNaN(rawPrice) ? 0 : rawPrice;
+      if (!formData.isComingSoon && price < 0) {
         alert('Please enter a valid price');
         return;
       }
@@ -624,6 +663,7 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
         packageType: 'international',
         location: formData.place,
         price: price,
+        isComingSoon: Boolean(formData.isComingSoon),
         duration: formData.duration?.trim() || formData.subtitle?.trim() || 'Flexible',
         capacity: formData.capacity?.trim() || '2 Adults',
         subtitle: formData.subtitle?.trim() || formData.title?.trim() || 'Package',
@@ -725,6 +765,7 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
   };
 
   const handleClose = () => {
+    initializedForRef.current = null;
     setFormData({
       title: "",
       subtitle: "",
@@ -741,6 +782,7 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
       packageType: "international",
       place: "bhutan",
       packageCategory: "Yachts & Sailing Cruises",
+      packageGroupSlug: "",
     packageMiniCategory: "",
       bestTimeToVisit: {
         yearRound: "",
@@ -750,6 +792,7 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
       isFeaturedDestination: false,
       isPopularPackage: false,
       isFeaturedTrip: false,
+      isComingSoon: false,
     });
     setKeyHighlights([]);
     setHotelOptions([]);
@@ -795,26 +838,69 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
             </div>
           </div>
 
+          {/* Product Availability Status */}
+          <div className="p-4 bg-amber-50/70 rounded-2xl border border-amber-200/80 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-espresso uppercase tracking-wider block">
+                Product Availability Status *
+              </label>
+              <p className="text-[11px] text-mocha/80">
+                Choose whether this product is active with live pricing or marked as Coming Soon.
+              </p>
+            </div>
+            <div className="w-full md:w-64 shrink-0">
+              <Select
+                value={formData.isComingSoon ? "coming_soon" : "active"}
+                onValueChange={(val) => handleInputChange('isComingSoon', val === 'coming_soon')}
+              >
+                <SelectTrigger className="rounded-xl border-amber-300 bg-white font-medium text-sm">
+                  <SelectValue placeholder="Select Status" />
+                </SelectTrigger>
+                <SelectContent className="z-[200]">
+                  <SelectItem value="active" className="font-medium text-sm">
+                    🟢 Active (Show Live Price & Cart)
+                  </SelectItem>
+                  <SelectItem value="coming_soon" className="font-medium text-sm text-amber-900">
+                    ⭐ Coming Soon (Hide Price / Badge)
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">Price (â‚¹) *</label>
-              <Input type="number" placeholder="e.g. 49999" value={formData.price} onChange={(e) => handleInputChange('price', e.target.value)} />
+              <div className="flex items-center justify-between">
+                <label className="text-sm font-medium">Price (₹) {!formData.isComingSoon && '*'}</label>
+                {formData.isComingSoon && (
+                  <span className="text-[10px] uppercase font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">
+                    Coming Soon
+                  </span>
+                )}
+              </div>
+              <Input
+                type="number"
+                placeholder={formData.isComingSoon ? "0 (Optional for Coming Soon)" : "e.g. 499"}
+                value={formData.price}
+                onChange={(e) => handleInputChange('price', e.target.value)}
+              />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium">Duration</label>
-              <Input placeholder="e.g. 6N/7D" value={formData.duration} onChange={(e) => handleInputChange('duration', e.target.value)} />
+              <label className="text-sm font-medium">Duration / Pack Details</label>
+              <Input placeholder="e.g. 5 Sachets · 20g each" value={formData.duration} onChange={(e) => handleInputChange('duration', e.target.value)} />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium">Capacity</label>
-              <Input placeholder="e.g. 2 Adults + 1 Child" value={formData.capacity} onChange={(e) => handleInputChange('capacity', e.target.value)} />
+              <label className="text-sm font-medium">Capacity / Flavour Info</label>
+              <Input placeholder="e.g. 20g / 1 Cup" value={formData.capacity} onChange={(e) => handleInputChange('capacity', e.target.value)} />
             </div>
           </div>
 
           <div className="space-y-4">
             <ExperienceCategoryNameFields
               packageGroupSlug={packageGroupSlug}
-              packageCategory={formData.packageCategory || navGroups[0]?.items[0]?.value || "Yachts & Sailing Cruises"}
+              packageCategory={formData.packageCategory || ""}
               packageMiniCategory={formData.packageMiniCategory || ""}
+              allowUnassign
               onGroupChange={handlePackageGroupChange}
               onCategoryChange={handlePackageCategoryChange}
               onMiniCategoryChange={handlePackageMiniCategoryChange}
@@ -829,24 +915,24 @@ const EditPackageModal = ({ isOpen, onClose, packageData, onPackageUpdated }: Ed
           <div className="flex items-center space-x-2 py-2 px-4 bg-gray-50/50 rounded-2xl border border-dashed border-gray-200">
             <Checkbox id="isFeaturedDestinationEdit" checked={formData.isFeaturedDestination} onCheckedChange={(checked) => handleCheckboxChange('isFeaturedDestination', !!checked)} />
             <div className="grid gap-1.5 leading-none">
-              <label htmlFor="isFeaturedDestinationEdit" className="text-sm font-bold uppercase tracking-widest leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Show in Homepage Destinations Section</label>
-              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">If checked, this package will be featured in the destinations grid on the home page.</p>
+              <label htmlFor="isFeaturedDestinationEdit" className="text-sm font-bold uppercase tracking-widest leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Show in Homepage Hero</label>
+              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">If checked, this product appears in the Start here picker on the home page.</p>
             </div>
           </div>
 
           <div className="flex items-center space-x-2 py-2 px-4 bg-amber-50/50 rounded-2xl border border-dashed border-amber-200">
             <Checkbox id="isPopularPackageEdit" checked={formData.isPopularPackage} onCheckedChange={(checked) => handleCheckboxChange('isPopularPackage', !!checked)} />
             <div className="grid gap-1.5 leading-none">
-              <label htmlFor="isPopularPackageEdit" className="text-sm font-bold uppercase tracking-widest leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Show in Homepage Popular Packages Section</label>
-              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">If checked, this package will appear in the Popular Packages section on the home page.</p>
+              <label htmlFor="isPopularPackageEdit" className="text-sm font-bold uppercase tracking-widest leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Show in The Range</label>
+              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">If checked, this product appears in The Range (Choose your flavour) section on the home page.</p>
             </div>
           </div>
 
           <div className="flex items-center space-x-2 py-2 px-4 bg-teal-50/50 rounded-2xl border border-dashed border-teal-200">
             <Checkbox id="isFeaturedTripEdit" checked={formData.isFeaturedTrip} onCheckedChange={(checked) => handleCheckboxChange('isFeaturedTrip', !!checked)} />
             <div className="grid gap-1.5 leading-none">
-              <label htmlFor="isFeaturedTripEdit" className="text-sm font-bold uppercase tracking-widest leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Show in Homepage Featured Adventures Section</label>
-              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">If checked, this package appears in the Featured Adventures section on the home page.</p>
+              <label htmlFor="isFeaturedTripEdit" className="text-sm font-bold uppercase tracking-widest leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Mark as Featured Product</label>
+              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">If checked, this product shows a Featured badge in The Range on the home page.</p>
             </div>
           </div>
 

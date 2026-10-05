@@ -28,6 +28,7 @@ import CreateTestimonialModal from "../../components/CreateTestimonialModal";
 import EditTestimonialModal from "../../components/EditTestimonialModal";
 import ReplyEnquiryModal from "../../components/ReplyEnquiryModal";
 import DashboardCategoriesPanel from "../../components/DashboardCategoriesPanel";
+import DashboardOrdersPanel from "../../components/DashboardOrdersPanel";
 import { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, WidthType, AlignmentType, HeadingLevel, ImageRun } from 'docx';
 import { saveAs } from 'file-saver';
 import axios from 'axios';
@@ -60,17 +61,14 @@ import {
   Settings as SettingsIcon,
   CheckCircle2,
   AlertCircle,
-  Linkedin,
   Share2,
-  Facebook,
-  Instagram,
-  Twitter,
-  Youtube,
   Save,
   Check,
   ExternalLink,
-  FolderTree
+  FolderTree,
+  ShoppingBag,
 } from "lucide-react";
+import { Facebook, Instagram, Twitter, Linkedin, Youtube } from "@/components/SocialIcons";
 import { Input } from "../../components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select";
 import { Switch } from "../../components/ui/switch";
@@ -82,7 +80,7 @@ import { useCategoryLabels } from "@/contexts/CategoryLabelsContext";
 import { getBannerPreviewImage, getBannerMediaLabel } from "@/lib/bannerMedia";
 import { PackageData, TourData, TicketData, BannerData, BlogData, GalleryData } from "@/lib/types";
 
-type DashboardView = 'packages' | 'categories' | 'tours' | 'tickets' | 'banners' | 'gallery' | 'testimonials' | 'blogs' | 'enquiries' | 'reports' | 'settings' | 'socials';
+type DashboardView = 'packages' | 'categories' | 'tours' | 'tickets' | 'banners' | 'gallery' | 'testimonials' | 'blogs' | 'orders' | 'enquiries' | 'reports' | 'settings' | 'socials';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -445,13 +443,6 @@ export default function DashboardPage() {
 
   const handleGroupFilterChange = (value: string) => {
     setGroupFilter(value);
-    setCategoryFilter("all");
-    setMiniFilter("all");
-  };
-
-  const handleCategoryFilterChange = (value: string) => {
-    setCategoryFilter(value);
-    setMiniFilter("all");
   };
 
   const filterPackages = useCallback(() => {
@@ -459,37 +450,34 @@ export default function DashboardPage() {
 
     if (groupFilter !== "all") {
       const group = navGroups.find((item) => item.slug === groupFilter);
+      const targetSlug = groupFilter.toLowerCase();
+      const targetLabel = (group?.label || '').trim().toLowerCase();
+
       filtered = filtered.filter((pkg) => {
-        if (!group) return packageMatchesNavGroup(pkg.packageCategory, groupFilter);
-        return group.items.some(
-          (cat) =>
-            cat.value.toLowerCase() === String(pkg.packageCategory || '').toLowerCase() ||
-            packageMatchesExperienceCategory(pkg.packageCategory, cat)
+        const pkgGroup = (pkg.packageGroupSlug || '').trim().toLowerCase();
+        const pkgCat = (pkg.packageCategory || '').trim().toLowerCase();
+
+        return (
+          pkgGroup === targetSlug ||
+          pkgCat === targetSlug ||
+          (targetLabel && pkgCat === targetLabel) ||
+          (group && group.items.some(
+            (cat) =>
+              cat.value.toLowerCase() === pkgCat ||
+              cat.slug.toLowerCase() === pkgCat ||
+              packageMatchesExperienceCategory(pkg.packageCategory, cat)
+          ))
         );
       });
-    }
-
-    if (categoryFilter !== "all") {
-      const category = resolveCategoryByValue(categoryFilter);
-      filtered = filtered.filter((pkg) =>
-        category
-          ? packageMatchesExperienceCategory(pkg.packageCategory, category)
-          : pkg.packageCategory === categoryFilter
-      );
-    }
-
-    if (miniFilter !== "all") {
-      filtered = filtered.filter(
-        (pkg) => String(pkg.packageMiniCategory || '').toLowerCase() === miniFilter.toLowerCase()
-      );
     }
 
     // Search filter
     if (searchTerm) {
       filtered = filtered.filter(pkg =>
-        pkg.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        pkg.subtitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        pkg.location.toLowerCase().includes(searchTerm.toLowerCase())
+        (pkg.title && pkg.title.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (pkg.subtitle && pkg.subtitle.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (pkg.packageCategory && pkg.packageCategory.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (pkg.location && pkg.location.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
 
@@ -499,7 +487,7 @@ export default function DashboardPage() {
     }
 
     setFilteredPackages(filtered);
-  }, [packages, searchTerm, placeFilter, groupFilter, categoryFilter, miniFilter, resolveCategoryByValue, navGroups]);
+  }, [packages, searchTerm, placeFilter, groupFilter, navGroups]);
 
   useEffect(() => {
     filterPackages();
@@ -1454,6 +1442,11 @@ export default function DashboardPage() {
       icon: FileText,
     },
     {
+      id: 'orders' as DashboardView,
+      label: 'Orders',
+      icon: ShoppingBag,
+    },
+    {
       id: 'enquiries' as DashboardView,
       label: 'Customer Enquiries',
       icon: MessageSquare,
@@ -1554,7 +1547,7 @@ export default function DashboardPage() {
                 </div>
                 <div>
                   <div className="text-sm font-bold text-white uppercase tracking-tighter">Admin User</div>
-                  <div className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Yaoundé HQ</div>
+                  <div className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Andheri West, Mumbai</div>
                 </div>
               </div>
               <Button 
@@ -1605,6 +1598,7 @@ export default function DashboardPage() {
                     {activeView === 'gallery' && 'Photo Gallery'}
                     {activeView === 'testimonials' && 'Guest Feedback'}
                     {activeView === 'blogs' && 'Content Studio'}
+                    {activeView === 'orders' && 'Placed Orders'}
                     {activeView === 'settings' && 'Home Configuration'}
                     {activeView === 'socials' && 'Social Presence'}
                   </h1>
@@ -1617,6 +1611,7 @@ export default function DashboardPage() {
                     {activeView === 'gallery' && 'Upload and manage photos shown on the public gallery page'}
                     {activeView === 'testimonials' && 'Monitoring guest satisfaction and reviews'}
                     {activeView === 'blogs' && 'Managing luxury travel narratives'}
+                    {activeView === 'orders' && 'Track website checkout orders and fulfilment status'}
                     {activeView === 'settings' && 'Customize homepage section visibility and features'}
                     {activeView === 'socials' && 'Centralized control for all brand digital touchpoints'}
                   </p>
@@ -1709,18 +1704,18 @@ export default function DashboardPage() {
                 <CardContent className="p-8 pt-4">
                   {/* Filters Section Refined */}
                   <div className="mb-10 p-6 bg-gray-50/50 rounded-[30px] border border-gray-100">
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6 gap-6">
-                      {/* Main Category Filter */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {/* Category Filter */}
                       <div className="space-y-2">
                         <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">
-                          Main Category
+                          Category
                         </label>
                         <Select value={groupFilter} onValueChange={handleGroupFilterChange}>
                           <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-cream">
-                            <SelectValue placeholder="All Types" />
+                            <SelectValue placeholder="All Categories" />
                           </SelectTrigger>
                           <SelectContent className="rounded-2xl border-white shadow-xl">
-                            <SelectItem value="all">All Types</SelectItem>
+                            <SelectItem value="all">All Categories</SelectItem>
                             {navGroups.map((group) => (
                               <SelectItem key={group.slug} value={group.slug}>
                                 {group.label}
@@ -1730,55 +1725,15 @@ export default function DashboardPage() {
                         </Select>
                       </div>
 
-                      {/* Subcategory Filter */}
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">
-                          Subcategory
-                        </label>
-                        <Select value={categoryFilter} onValueChange={handleCategoryFilterChange}>
-                          <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-cream">
-                            <SelectValue placeholder="All Subcategories" />
-                          </SelectTrigger>
-                          <SelectContent className="rounded-2xl border-white shadow-xl max-h-72">
-                            <SelectItem value="all">All Subcategories</SelectItem>
-                            {filterCategoryOptions.map((category) => (
-                              <SelectItem key={category.value} value={category.value}>
-                                {category.label}{category.isFuture ? ' (Future)' : ''}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Mini Category Filter */}
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">
-                          Mini Category
-                        </label>
-                        <Select value={miniFilter} onValueChange={setMiniFilter}>
-                          <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-cream">
-                            <SelectValue placeholder="All Mini Categories" />
-                          </SelectTrigger>
-                          <SelectContent className="rounded-2xl border-white shadow-xl max-h-72">
-                            <SelectItem value="all">All Mini Categories</SelectItem>
-                            {filterMiniOptions.map((mini) => (
-                              <SelectItem key={mini.slug} value={mini.value}>
-                                {mini.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-
                       {/* Search */}
-                      <div className="space-y-2 lg:col-span-1">
+                      <div className="space-y-2">
                         <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">
                           Search
                         </label>
                         <div className="relative group">
                           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-hazelnut h-4 w-4 transition-colors" />
                           <Input
-                            placeholder="Find package..."
+                            placeholder="Find package by title, category, or location..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="h-14 pl-12 pr-4 rounded-2xl border-white shadow-sm focus:ring-[#5A0D0D] focus:border-hazelnut"
@@ -1810,7 +1765,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* Clear Filters Button */}
-                    {(searchTerm || placeFilter !== "all" || groupFilter !== "all" || categoryFilter !== "all" || miniFilter !== "all") && (
+                    {(searchTerm || placeFilter !== "all" || groupFilter !== "all") && (
                       <div className="mt-4">
                         <Button
                           variant="outline"
@@ -1819,8 +1774,6 @@ export default function DashboardPage() {
                             setSearchTerm("");
                             setPlaceFilter("all");
                             setGroupFilter("all");
-                            setCategoryFilter("all");
-                            setMiniFilter("all");
                           }}
                         >
                           Clear Filters
@@ -1834,8 +1787,7 @@ export default function DashboardPage() {
                       <thead>
                         <tr className="border-b">
                           <th className="text-left p-3">Package Title</th>
-                          <th className="text-left p-3">Subcategory</th>
-                          <th className="text-left p-3">Mini Category</th>
+                          <th className="text-left p-3">Category</th>
                           <th className="text-left p-3">Place</th>
                           <th className="text-left p-3">Duration</th>
                           <th className="text-left p-3">Price</th>
@@ -1869,18 +1821,9 @@ export default function DashboardPage() {
                                 </div>
                               </td>
                               <td className="p-4">
-                                <span className="text-[11px] font-bold text-gray-600 bg-gray-100 px-3 py-1 rounded-full uppercase tracking-tight">
-                                  {resolveCategoryByValue(pkg.packageCategory)?.label || pkg.packageCategory || 'Yachts & Sailing Cruises'}
+                                <span className="text-[11px] font-bold text-amber-900 bg-amber-50 border border-amber-200/70 px-3 py-1.5 rounded-full uppercase tracking-tight inline-block shadow-sm">
+                                  {pkg.packageCategory || (navGroups.find(g => g.slug === pkg.packageGroupSlug)?.label) || pkg.packageGroupSlug || 'General'}
                                 </span>
-                              </td>
-                              <td className="p-4">
-                                {pkg.packageMiniCategory ? (
-                                  <span className="text-[11px] font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full uppercase tracking-tight">
-                                    {resolveMiniLabel(pkg.packageMiniCategory)}
-                                  </span>
-                                ) : (
-                                  <span className="text-[10px] font-medium text-gray-300">—</span>
-                                )}
                               </td>
                               <td className="p-4">
                                 <div className="flex flex-col">
@@ -1895,10 +1838,22 @@ export default function DashboardPage() {
                                 </div>
                               </td>
                               <td className="p-4">
-                                <div className="text-sm font-black text-espresso tracking-tight">
-                                  R {pkg.price?.toLocaleString()}
-                                </div>
-                                <div className="text-[9px] font-bold text-hazelnut uppercase tracking-widest">Premium Tier</div>
+                                {pkg.isComingSoon ? (
+                                  <div>
+                                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10.5px] font-bold uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-200">
+                                      <Sparkles className="w-3 h-3 text-amber-600" />
+                                      Coming Soon
+                                    </span>
+                                    <div className="text-[9px] font-medium text-gray-400 mt-1">Price Hidden</div>
+                                  </div>
+                                ) : (
+                                  <div>
+                                    <div className="text-sm font-black text-espresso tracking-tight">
+                                      ₹{pkg.price?.toLocaleString()}
+                                    </div>
+                                    <div className="text-[9px] font-bold text-emerald-600 uppercase tracking-widest">Active · Live</div>
+                                  </div>
+                                )}
                               </td>
                               <td className="p-4">
                                 <div className="flex items-center gap-1.5 bg-orange-50 px-3 py-1.5 rounded-xl w-fit">
@@ -1940,7 +1895,7 @@ export default function DashboardPage() {
                           ))
                         ) : (
                           <tr>
-                            <td colSpan={8} className="p-8 text-center text-gray-500">
+                            <td colSpan={7} className="p-8 text-center text-gray-500">
                               <div className="flex flex-col items-center space-y-2">
                                 <Package className="h-12 w-12 text-gray-300" />
                                 {packages.length === 0 ? (
@@ -1965,7 +1920,7 @@ export default function DashboardPage() {
                                       onClick={() => {
                                         setSearchTerm("");
                                         setPlaceFilter("all");
-                                        setCategoryFilter("all");
+                                        setGroupFilter("all");
                                       }}
                                     >
                                       Clear Filters
@@ -2656,6 +2611,12 @@ export default function DashboardPage() {
             </div>
           )}
 
+          {activeView === 'orders' && (
+            <div className="container mx-auto px-8 py-10 space-y-10">
+              <DashboardOrdersPanel />
+            </div>
+          )}
+
           {activeView === 'enquiries' && (
             <div className="container mx-auto px-8 py-10 space-y-10">
               <Card className="rounded-[40px] border-white shadow-sm overflow-hidden">
@@ -2769,8 +2730,8 @@ export default function DashboardPage() {
                         />
                       </div>
                       <div>
-                        <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">Popular Packages</h3>
-                        <p className="text-sm font-medium text-gray-500 mb-6">Display the curated collection of top-rated travel packages on the home screen.</p>
+                        <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">The Range</h3>
+                        <p className="text-sm font-medium text-gray-500 mb-6">Display products marked for The Range (Choose your flavour) on the home page.</p>
                         
                         <div className="flex items-center gap-2">
                           {siteSettings.popularSection ? (
@@ -2808,8 +2769,8 @@ export default function DashboardPage() {
                         />
                       </div>
                       <div>
-                        <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">Featured Water Trips</h3>
-                        <p className="text-sm font-medium text-gray-500 mb-6">Showcase yacht cruises, kayaking, rafting, and other water experiences on the homepage.</p>
+                        <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">Featured Products</h3>
+                        <p className="text-sm font-medium text-gray-500 mb-6">Show Featured badges on products marked as featured in The Range on the home page.</p>
                         
                         <div className="flex items-center gap-2">
                           {siteSettings.upcomingSection ? (
@@ -2847,8 +2808,8 @@ export default function DashboardPage() {
                         />
                       </div>
                       <div>
-                        <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">Destinations Grid</h3>
-                        <p className="text-sm font-medium text-gray-500 mb-6">Manage visibility of the global destinations gallery and featured location cards.</p>
+                        <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">Homepage Hero</h3>
+                        <p className="text-sm font-medium text-gray-500 mb-6">Control products shown in the Start here picker on the home page hero.</p>
                         
                         <div className="flex items-center gap-2">
                           {siteSettings.destinationsSection ? (

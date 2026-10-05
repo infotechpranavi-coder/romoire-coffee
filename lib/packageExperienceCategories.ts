@@ -421,9 +421,14 @@ export function packageMatchesNavGroup(
   packageCategory: string | undefined,
   groupSlug: string
 ) {
-  const group = PACKAGE_NAV_GROUPS.find((g) => g.slug === groupSlug);
-  if (!group || !packageCategory) return false;
-  return group.items.some((cat) => packageMatchesExperienceCategory(packageCategory, cat));
+  if (!packageCategory) return false;
+  const cat = packageCategory.trim().toLowerCase();
+  const slug = groupSlug.trim().toLowerCase();
+  if (cat === slug) return true;
+  const group = PACKAGE_NAV_GROUPS.find((g) => g.slug.toLowerCase() === slug);
+  if (group && cat === group.label.trim().toLowerCase()) return true;
+  if (!group) return false;
+  return group.items.some((c) => packageMatchesExperienceCategory(packageCategory, c));
 }
 
 export const accentStyles = {

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { TERMS_PAGE_TITLE, TERMS_SECTIONS } from '@/lib/termsContent';
-import { CONTACT_EMAIL, CONTACT_EMAIL_MAILTO, CONTACT_PHONE, CONTACT_PHONE_TEL } from '@/lib/branding';
+import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_EMAIL_MAILTO, CONTACT_PHONE, CONTACT_PHONE_TEL, SITE_NAME } from '@/lib/branding';
 
 export const metadata = {
   title: 'Terms of Use, Disclaimer & Limitation of Liability | Explore360',
@@ -69,7 +69,7 @@ export default function TermsPage() {
             <div className="mt-14 rounded-2xl border border-gray-100 bg-[#faf8f3] p-6 md:p-8">
               <h3 className="text-lg font-black text-[#1e1f44] mb-3">Need clarification?</h3>
               <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-4">
-                For questions about these Terms & Conditions, contact Explore360:
+                For questions about these Terms & Conditions, contact {SITE_NAME}:
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 text-sm font-semibold">
                 <a href={CONTACT_EMAIL_MAILTO} className="text-[#bd9245] hover:underline">
@@ -78,6 +78,7 @@ export default function TermsPage() {
                 <a href={CONTACT_PHONE_TEL} className="text-[#bd9245] hover:underline">
                   {CONTACT_PHONE}
                 </a>
+                <span className="text-gray-700">{CONTACT_ADDRESS}</span>
                 <Link href="/contact" className="text-[#1e1f44] hover:text-[#bd9245] transition-colors">
                   Contact page →
                 </Link>

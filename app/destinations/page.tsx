@@ -299,7 +299,7 @@ const DestinationsPage = () => {
                               )}
                               <div className="absolute top-4 right-4 space-y-2">
                                 <Badge className="bg-cream text-espresso block">
-                                  {formatPrice(pkg.price)}
+                                  Coming soon
                                 </Badge>
                                 <Badge variant="outline" className="bg-primary/10 text-primary border-primary block">
                                   {pkg.packageCategory}

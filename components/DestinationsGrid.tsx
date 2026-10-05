@@ -314,19 +314,9 @@ const DestinationsGrid = () => {
             </h3>
 
             <div className="mb-3 flex flex-wrap items-center gap-2">
-              {hasSale && (
-                <span className="text-base text-mocha/50 line-through">
-                  ${product.originalPrice!.toFixed(2)}
-                </span>
-              )}
-              <span className="text-xl font-medium text-espresso md:text-2xl">
-                ${product.price.toFixed(2)}
+              <span className="text-xl font-medium text-hazelnut md:text-2xl">
+                Coming soon
               </span>
-              {hasSale && (
-                <span className="rounded bg-hazelnut px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
-                  Sale
-                </span>
-              )}
             </div>
 
             <p className="mb-4 line-clamp-2 text-xs leading-relaxed text-mocha/70 md:text-sm">

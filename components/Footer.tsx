@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect, FormEvent, ReactNode } from 'react';
-import { ArrowUpRight, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Linkedin } from '@/components/SocialIcons';
 import Link from 'next/link';
 import BrandLogo from '@/components/BrandLogo';
 import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/branding';

@@ -10,7 +10,7 @@ import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Users, Globe, Plane } 
 import { useSearchParams } from "next/navigation";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import { SITE_NAME } from "@/lib/branding";
+import { SITE_NAME, CONTACT_ADDRESS, CONTACT_MAP_EMBED, CONTACT_MAP_SEARCH } from "@/lib/branding";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -147,8 +147,8 @@ const ContactForm = () => {
     {
       icon: MapPin,
       title: "Address Location",
-      details: ["Head office- Yaoundé ,Cameroon"],
-      description: "Located in the heart of Yaoundé"
+      details: [CONTACT_ADDRESS],
+      description: "Visit us in Andheri West, Mumbai"
     },
     {
       icon: Phone,
@@ -443,14 +443,14 @@ const ContactForm = () => {
                     <CardContent className="p-0">
                       <div className="aspect-video">
                         <iframe
-                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.0253456789!2d18.4166667!3d33.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc5d123456789%3A0x123456789abcdef!2sV%26A%20Waterfront!5e0!3m2!1sen!2sza!4v1699123456789!5m2!1sen!2sza"
+                          src={CONTACT_MAP_EMBED}
                           width="100%"
                           height="100%"
                           style={{ border: 0 }}
                           allowFullScreen
                           loading="lazy"
                           referrerPolicy="no-referrer-when-downgrade"
-                          title={`${SITE_NAME} Location - Yaoundé, Cameroon`}
+                          title={`${SITE_NAME} Location — ${CONTACT_ADDRESS}`}
                         ></iframe>
                       </div>
                     </CardContent>
@@ -458,15 +458,15 @@ const ContactForm = () => {
                   <div className="mt-4 text-center">
                     <p className="text-sm text-gray-600">
                       <MapPin className="h-4 w-4 inline mr-1" />
-                      Head office- Yaoundé, Cameroon
+                      {CONTACT_ADDRESS}
                     </p>
                     <a
-                      href="https://www.google.com/maps/search/Yaoundé,+Cameroon"
+                      href={CONTACT_MAP_SEARCH}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary hover:text-primary/80 text-sm font-medium mt-2 inline-block"
                     >
-                      Open in Google Maps â†’
+                      Open in Google Maps →
                     </a>
                   </div>
                 </div>

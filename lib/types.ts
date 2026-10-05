@@ -32,6 +32,7 @@ export interface PackageData {
     packageType: 'domestic' | 'international';
     place: string;
     packageCategory: string;
+    packageGroupSlug?: string;
     packageMiniCategory?: string;
     images: Array<{
         public_id: string;
@@ -79,6 +80,7 @@ export interface PackageData {
     isFeaturedDestination?: boolean;
     isPopularPackage?: boolean;
     isFeaturedTrip?: boolean;
+    isComingSoon?: boolean;
     createdAt: string;
     updatedAt: string;
 }

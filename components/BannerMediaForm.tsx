@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { Upload, X, Youtube, Film, ImageIcon } from "lucide-react";
+import { Upload, X, Film, ImageIcon } from "lucide-react";
+import { Youtube } from "@/components/SocialIcons";
 import { Input } from "@/components/ui/input";
 import { BannerMediaType } from "@/lib/bannerMedia";
 
@@ -22,7 +23,7 @@ interface BannerMediaFormProps {
   onYoutubeUrlChange: (url: string) => void;
 }
 
-const mediaOptions: { value: BannerMediaType; label: string; icon: typeof ImageIcon }[] = [
+const mediaOptions: { value: BannerMediaType; label: string; icon: React.ElementType }[] = [
   { value: 'image', label: 'Image', icon: ImageIcon },
   { value: 'video', label: 'Video Upload', icon: Film },
   { value: 'youtube', label: 'YouTube Link', icon: Youtube },

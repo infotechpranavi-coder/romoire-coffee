@@ -1,10 +1,11 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { toast } from 'sonner'
-import { Menu, X, Star, Check, ChevronDown, ArrowRight } from 'lucide-react'
+import { Menu, X, Star, Check, ChevronDown, ArrowRight, Sparkles } from 'lucide-react'
+import { useCart } from '@/contexts/CartContext'
 
 
 const FAQS = [
@@ -38,6 +39,7 @@ export default function HomePage() {
   const [subscribed, setSubscribed] = useState(false)
   const [dbPackages, setDbPackages] = useState<any[]>([])
   const [loadingPackages, setLoadingPackages] = useState(true)
+  const { addItem, openCart } = useCart()
 
   useEffect(() => {
     fetch('/api/packages')
@@ -45,9 +47,6 @@ export default function HomePage() {
       .then((data) => {
         const list = data?.success && Array.isArray(data?.data) ? data.data : Array.isArray(data) ? data : []
         setDbPackages(list)
-        if (list.length > 0) {
-          setSelectedProductId(list[0]._id)
-        }
       })
       .catch((err) => console.error('Failed to fetch packages:', err))
       .finally(() => setLoadingPackages(false))
@@ -62,16 +61,57 @@ export default function HomePage() {
     capacity: "Box of 5 Sachets",
   }
 
+  // Homepage Hero (Start here) — products flagged isFeaturedDestination
+  const heroProducts = useMemo(() => {
+    const flagged = dbPackages.filter((p) => p.isFeaturedDestination)
+    return flagged.length > 0 ? flagged : dbPackages
+  }, [dbPackages])
+
+  // The Range — products flagged isPopularPackage
+  const rangeProducts = useMemo(() => {
+    const flagged = dbPackages.filter((p) => p.isPopularPackage)
+    return flagged.length > 0 ? flagged : dbPackages
+  }, [dbPackages])
+
+  useEffect(() => {
+    if (heroProducts.length === 0) return
+    const stillVisible = heroProducts.some((p) => p._id === selectedProductId)
+    if (!selectedProductId || !stillVisible) {
+      setSelectedProductId(heroProducts[0]._id)
+    }
+  }, [heroProducts, selectedProductId])
+
   const currentProduct =
-    (Array.isArray(dbPackages) && dbPackages.length > 0)
-      ? (dbPackages.find((p) => p._id === selectedProductId) || dbPackages[0])
+    (Array.isArray(heroProducts) && heroProducts.length > 0)
+      ? (heroProducts.find((p) => p._id === selectedProductId) || heroProducts[0])
       : DEFAULT_PRODUCT
 
-  const handleAddToCart = (productName: string, price: string) => {
-    toast.success(`Added ${productName} (${price}) to cart!`, {
-      description: 'Free shipping across India on orders over ₹999.',
+  const handleAddToCart = (pkg: any, isComingSoon: boolean = false) => {
+    if (isComingSoon) {
+      toast.info(`${pkg.title} is coming soon!`, {
+        description: 'Sign up for our newsletter to get notified when orders open.',
+      })
+      return
+    }
+
+    const price = Number(pkg.price) || 0
+    addItem({
+      id: String(pkg._id || pkg.id || pkg.title),
+      title: pkg.title,
+      price,
+      image: pkg.images?.[0]?.url,
+      category: pkg.packageCategory || pkg.subtitle,
+    })
+    toast.success(`Added ${pkg.title} to cart`, {
+      description: 'Open the bag icon in the navbar to view your selected products.',
+      action: {
+        label: 'View cart',
+        onClick: () => openCart(),
+      },
     })
   }
+
+  const isHeroComingSoon = Boolean(currentProduct?.isComingSoon || !currentProduct?.price || Number(currentProduct?.price) === 0)
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault()
@@ -116,8 +156,8 @@ export default function HomePage() {
                   <>
                     {/* Dynamic Product Pills */}
                     <div className="flex flex-wrap gap-2" role="group" aria-label="Choose a product">
-                      {dbPackages.map((p) => {
-                        const isActive = (selectedProductId || dbPackages[0]?._id) === p._id
+                      {heroProducts.map((p) => {
+                        const isActive = (selectedProductId || heroProducts[0]?._id) === p._id
                         return (
                           <button
                             key={p._id}
@@ -138,7 +178,7 @@ export default function HomePage() {
                     {/* Price and Details */}
                     <div className="flex items-baseline justify-between gap-4 flex-wrap pt-1 border-t border-line/50">
                       <span className="font-playfair text-3xl text-maroon font-medium">
-                        ₹{currentProduct.price}
+                        {isHeroComingSoon ? 'Coming soon' : `₹${currentProduct.price}`}
                       </span>
                       <span className="text-sm text-ink-mute">
                         {currentProduct.packageCategory || 'Single Origin'} · {currentProduct.duration || currentProduct.capacity || 'Pre-measured 20g'}
@@ -148,10 +188,17 @@ export default function HomePage() {
                     {/* Add CTA */}
                     <button
                       type="button"
-                      onClick={() => handleAddToCart(currentProduct.title, `₹${currentProduct.price}`)}
-                      className="btn-romoire w-full text-center py-4 text-[13px] tracking-[1.8px] shadow-sm uppercase font-medium"
+                      onClick={() => handleAddToCart(currentProduct, isHeroComingSoon)}
+                      className="btn-romoire w-full text-center py-4 text-[13px] tracking-[1.8px] shadow-sm uppercase font-medium flex items-center justify-center gap-2"
                     >
-                      Add {currentProduct.title} to cart
+                      {isHeroComingSoon ? (
+                        <>
+                          <Sparkles className="w-4 h-4" />
+                          Coming soon
+                        </>
+                      ) : (
+                        `Add ${currentProduct.title} to cart`
+                      )}
                     </button>
                   </>
                 ) : (
@@ -546,14 +593,13 @@ export default function HomePage() {
               <div className="col-span-full py-16 text-center text-ink-mute font-light text-base">
                 Loading products...
               </div>
-            ) : dbPackages.length === 0 ? (
+            ) : rangeProducts.length === 0 ? (
               <div className="col-span-full py-16 text-center text-ink-mute font-light text-base">
                 No products found in the collection.
               </div>
             ) : (
-              dbPackages.map((pkg) => {
+              rangeProducts.map((pkg) => {
                 const imgUrl = pkg.images?.[0]?.url || '/images/romoire/coffee_sachets.jpg'
-                const priceText = `₹${pkg.price}`
                 const categoryText = pkg.packageCategory || pkg.subtitle || 'Specialty Coffee'
                 const descText =
                   pkg.about || pkg.tourDetails || pkg.subtitle || 'Single origin Arabica coffee, crafted without refined sugar or dairy.'
@@ -572,11 +618,18 @@ export default function HomePage() {
                         alt={pkg.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      {pkg.packageCategory && (
-                        <span className="absolute top-2.5 right-2.5 bg-maroon text-cream text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-medium shadow-sm">
-                          {pkg.packageCategory}
-                        </span>
-                      )}
+                      <div className="absolute top-2.5 right-2.5 flex flex-col items-end gap-1.5">
+                        {pkg.isFeaturedTrip && (
+                          <span className="bg-gold text-maroon-deep text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-medium shadow-sm">
+                            Featured
+                          </span>
+                        )}
+                        {pkg.packageCategory && (
+                          <span className="bg-maroon text-cream text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-medium shadow-sm">
+                            {pkg.packageCategory}
+                          </span>
+                        )}
+                      </div>
                     </Link>
 
                     <Link href={`/packages/${pkg._id}`} className="hover:text-maroon-deep transition-colors">
@@ -591,25 +644,39 @@ export default function HomePage() {
                       {descText}
                     </p>
 
-                    <div className="flex items-baseline justify-between pt-1">
-                      <p className="font-playfair text-xl text-maroon font-medium">
-                        {priceText}
-                      </p>
-                      <Link
-                        href={`/packages/${pkg._id}`}
-                        className="text-xs uppercase tracking-wider text-ink-mute hover:text-maroon underline underline-offset-4"
-                      >
-                        View details →
-                      </Link>
-                    </div>
+                    {(() => {
+                      const isCardComingSoon = Boolean(pkg.isComingSoon || !pkg.price || Number(pkg.price) === 0)
+                      return (
+                        <>
+                          <div className="flex items-baseline justify-between pt-1">
+                            <p className="font-playfair text-xl text-maroon font-medium">
+                              {isCardComingSoon ? 'Coming soon' : `₹${pkg.price}`}
+                            </p>
+                            <Link
+                              href={`/packages/${pkg._id}`}
+                              className="text-xs uppercase tracking-wider text-ink-mute hover:text-maroon underline underline-offset-4"
+                            >
+                              View details →
+                            </Link>
+                          </div>
 
-                    <button
-                      type="button"
-                      onClick={() => handleAddToCart(pkg.title, priceText)}
-                      className="btn-romoire py-3.5 text-xs text-center w-full"
-                    >
-                      Add to cart
-                    </button>
+                          <button
+                            type="button"
+                            onClick={() => handleAddToCart(pkg, isCardComingSoon)}
+                            className="btn-romoire py-3.5 text-xs text-center w-full flex items-center justify-center gap-2 uppercase tracking-wider font-medium"
+                          >
+                            {isCardComingSoon ? (
+                              <>
+                                <Sparkles className="w-3.5 h-3.5" />
+                                Coming soon
+                              </>
+                            ) : (
+                              'Add to cart'
+                            )}
+                          </button>
+                        </>
+                      )
+                    })()}
                   </article>
                 )
               })

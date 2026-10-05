@@ -39,8 +39,13 @@ export const CONTACT_PHONE = '+91 877919 2482';
 export const CONTACT_PHONE_TEL = 'tel:+918779192482';
 export const CONTACT_EMAIL_MAILTO = 'mailto:hello@romoire.com';
 export const CONTACT_WHATSAPP = 'https://wa.me/918779192482';
-export const CONTACT_ADDRESS = 'Ravance Ventures LLP, Mumbai 400053';
-export const CONTACT_ADDRESS_LINE = 'Ravance Ventures LLP · FSSAI Licence No. 11524998000124 · Mumbai 400053';
+export const CONTACT_ADDRESS = 'Andheri West, Mumbai, Maharashtra';
+export const CONTACT_ADDRESS_LINE =
+  'Ravance Ventures LLP · Andheri West, Mumbai, Maharashtra';
+export const CONTACT_MAP_SEARCH =
+  'https://www.google.com/maps/search/?api=1&query=Andheri+West,+Mumbai,+Maharashtra';
+export const CONTACT_MAP_EMBED =
+  'https://maps.google.com/maps?q=Andheri%20West%2C%20Mumbai%2C%20Maharashtra&z=14&output=embed';
 
 /** Replace legacy travel branding in stored product copy when rendering. */
 export function brandedText(text?: string | null): string {

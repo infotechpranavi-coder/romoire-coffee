@@ -6,26 +6,27 @@ import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
 import contactHeroImage from "@/assets/modify.webp";
 import BestPlaceSection from "@/components/BestPlaceSection";
+import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, SITE_NAME } from "@/lib/branding";
 
 const ContactPage = () => {
   const contactInfo = [
     {
       icon: Phone,
       title: "Phone Numbers",
-      details: ["+237 6 83 57 76 76"],
+      details: [CONTACT_PHONE],
       description: "Call us anytime for immediate assistance"
     },
     {
       icon: Mail,
       title: "Email Address",
-      details: ["sales@skygovoyages.com"],
+      details: [CONTACT_EMAIL],
       description: "Send us your queries and we'll respond within 24 hours"
     },
     {
       icon: MapPin,
       title: "Office Address",
-      details: ["Head Office — Navi Mumbai, Maharashtra 400706"],
-      description: "Visit our office for personalized travel planning"
+      details: [CONTACT_ADDRESS],
+      description: "Visit us for personalized coffee guidance"
     },
     {
       icon: Clock,
@@ -50,10 +51,10 @@ const ContactPage = () => {
         <div className="container mx-auto px-4 relative z-20">
           <div className="text-center space-y-6 fade-in">
             <h1 className="text-5xl lg:text-6xl font-bold text-white">
-              Contact <span className="text-secondary">Sky Go</span>
+              Contact <span className="text-secondary">{SITE_NAME}</span>
             </h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              We're here to help you plan your next adventure. Get in touch with us!
+              We're here to help. Get in touch with us!
             </p>
           </div>
         </div>

@@ -304,11 +304,12 @@ export default function AboutPage() {
               <div className="relative rounded-[3px] overflow-hidden border border-maroon/15 shadow-md bg-sand">
                 <div className="relative aspect-[4/3] sm:aspect-[5/4] w-full">
                   <Image
-                    src="/images/romoire/coffee_sachets.jpg"
-                    alt="Romoire coffee premix sachet range"
+                    src="/image of 4 flavours.png"
+                    alt="Romoire Vanilla, Espresso, Mocha and Hazelnut coffee premix sachets"
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover object-center"
+                    priority
                   />
                 </div>
               </div>
