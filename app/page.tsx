@@ -756,7 +756,7 @@ export default function HomePage() {
                 </li>
               </ul>
               <p className="text-sm leading-relaxed text-[#E2BFA6] mt-7 pt-4 border-t border-cream/25">
-                ~65 kcal per prepared cup. Full nutritional panel on every box.
+                Full nutritional panel on box
               </p>
             </div>
           </div>

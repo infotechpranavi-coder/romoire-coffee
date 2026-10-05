@@ -143,22 +143,22 @@ export default function PackagesPage() {
           </div>
 
           <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl text-cream font-medium leading-[1.12]">
-            Our Premix Products
+            find your cup
           </h1>
 
           <p className="text-base sm:text-lg text-[#F0DBC4] max-w-[620px] leading-[1.7]">
-            Every blend crafted with single-origin Arabica from Chikmagalur, rich coconut milk solids, and natural monk fruit sweetness. Dairy free, lactose free, no refined sugar.
+            Single origin Chikmagalur Arabica coffee and coconut milk, sweetened with monk fruit. No dairy, no refined sugar. Just add hot water.
           </p>
 
           <div className="flex flex-wrap justify-center items-center gap-6 pt-2 text-xs uppercase tracking-[2px] text-[#E2BFA6] font-light">
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold" /> 100% Arabica
+              <span className="w-1.5 h-1.5 rounded-full bg-gold" /> 100% arabica.
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold" /> Coconut Milk Crema
+              <span className="w-1.5 h-1.5 rounded-full bg-gold" /> Dairy free.
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold" /> Ready in 60 Seconds
+              <span className="w-1.5 h-1.5 rounded-full bg-gold" /> Ready in 60 seconds.
             </span>
           </div>
         </div>

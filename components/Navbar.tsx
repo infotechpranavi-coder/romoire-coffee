@@ -9,7 +9,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useInquiryForm } from "../contexts/InquiryFormContext";
-import { SITE_NAME, LOGO_SRC } from "@/lib/branding";
+import { SITE_NAME, LOGO_SRC, CONTACT_EMAIL, CONTACT_SUPPORT_EMAIL } from "@/lib/branding";
 import { PACKAGE_EXPERIENCE_CATEGORIES } from "@/lib/packageExperienceCategories";
 
 interface SearchPackage {
@@ -258,7 +258,11 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4" />
-                  <span>sales@skygovoyages.com</span>
+                  <span>{CONTACT_EMAIL}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Mail className="h-4 w-4" />
+                  <span>{CONTACT_SUPPORT_EMAIL}</span>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
@@ -291,9 +295,15 @@ const Navbar = () => {
           </div>
 
           {/* Row 2: Email */}
-          <div className="flex items-center justify-center space-x-2 text-base mt-2">
-            <Mail className="h-4 w-4" />
-            <span>sales@skygovoyages.com</span>
+          <div className="flex flex-col items-center gap-1 text-sm mt-2">
+            <div className="flex items-center space-x-2">
+              <Mail className="h-4 w-4" />
+              <span>{CONTACT_EMAIL}</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Mail className="h-4 w-4" />
+              <span>{CONTACT_SUPPORT_EMAIL}</span>
+            </div>
           </div>
 
           {/* Row 3: Live Chat & Login */}

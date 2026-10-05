@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin, Coffee, Sparkles, CheckCircle2, Mail } from "lucide-react";
+import { CONTACT_EMAIL_MAILTO } from "@/lib/branding";
 
 export const metadata: Metadata = {
   title: "Our Story | Romoire | Dairy Free Coffee Premix, Made in India",
@@ -391,7 +392,7 @@ export default function AboutPage() {
             </div>
 
             <a
-              href="mailto:hello@romoire.com"
+              href={CONTACT_EMAIL_MAILTO}
               className="inline-flex items-center gap-2 text-xs uppercase tracking-[1.8px] text-[#F3DFCB] hover:text-white border border-[#E2BFA6]/40 hover:border-white py-3 px-5 rounded-[2px] transition-colors self-start sm:self-auto"
             >
               <Mail className="w-3.5 h-3.5 text-gold" />

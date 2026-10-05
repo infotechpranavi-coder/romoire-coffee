@@ -10,7 +10,7 @@ import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Users, Globe, Plane } 
 import { useSearchParams } from "next/navigation";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import { SITE_NAME, CONTACT_ADDRESS, CONTACT_MAP_EMBED, CONTACT_MAP_SEARCH } from "@/lib/branding";
+import { SITE_NAME, CONTACT_ADDRESS, CONTACT_MAP_EMBED, CONTACT_MAP_SEARCH, CONTACT_EMAIL, CONTACT_SUPPORT_EMAIL, CONTACT_EMAIL_MAILTO, CONTACT_PHONE, CONTACT_PHONE_TEL } from "@/lib/branding";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -153,13 +153,13 @@ const ContactForm = () => {
     {
       icon: Phone,
       title: "Phone Numbers",
-      details: ["+237 6 83 57 76 76"],
+      details: [CONTACT_PHONE],
       description: "Available 24/7 for emergency support"
     },
     {
       icon: Mail,
       title: "Email Address",
-      details: ["sales@skygovoyages.com"],
+      details: [CONTACT_EMAIL, CONTACT_SUPPORT_EMAIL],
       description: "We respond within 24 hours"
     },
     {
@@ -173,15 +173,15 @@ const ContactForm = () => {
   const teamMembers = [
     {
       name: "Customer Support",
-      role: "Tour Operations",
-      email: "sales@skygovoyages.com",
-      phone: "+237 6 83 57 76 76"
+      role: "Orders & Help",
+      email: CONTACT_SUPPORT_EMAIL,
+      phone: CONTACT_PHONE
     },
     {
       name: `${SITE_NAME} Team`,
-      role: "Customer Relations",
-      email: "sales@skygovoyages.com",
-      phone: "+237 6 83 57 76 76"
+      role: "General Inquiries",
+      email: CONTACT_EMAIL,
+      phone: CONTACT_PHONE
     }
   ];
 
@@ -533,7 +533,13 @@ const ContactForm = () => {
                     <div className="space-y-1 mb-3">
                       {info.details.map((detail, idx) => (
                         <p key={idx} className="text-gray-600 font-medium">
-                          {detail}
+                          {detail.includes('@') ? (
+                            <a href={`mailto:${detail}`} className="hover:text-primary hover:underline">
+                              {detail}
+                            </a>
+                          ) : (
+                            detail
+                          )}
                         </p>
                       ))}
                     </div>
@@ -619,13 +625,13 @@ const ContactForm = () => {
               Let&apos;s find the perfect coffee for you
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:+237683577676">
+              <a href={CONTACT_PHONE_TEL}>
                 <Button size="lg" variant="secondary" className="bg-cream text-primary hover:bg-gray-100">
                   <Phone className="h-5 w-5 mr-2" />
                   Call Us Now
                 </Button>
               </a>
-              <a href="mailto:sales@skygovoyages.com">
+              <a href={CONTACT_EMAIL_MAILTO}>
                 <Button size="lg" variant="outline" className="bg-cream text-black border-gray-200 hover:bg-gray-100">
                   <MessageCircle className="h-5 w-5 mr-2 text-black" />
                   Send Email

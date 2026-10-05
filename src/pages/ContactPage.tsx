@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
 import contactHeroImage from "@/assets/modify.webp";
 import BestPlaceSection from "@/components/BestPlaceSection";
-import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, SITE_NAME } from "@/lib/branding";
+import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_SUPPORT_EMAIL, CONTACT_PHONE, SITE_NAME } from "@/lib/branding";
 
 const ContactPage = () => {
   const contactInfo = [
@@ -19,7 +19,7 @@ const ContactPage = () => {
     {
       icon: Mail,
       title: "Email Address",
-      details: [CONTACT_EMAIL],
+      details: [CONTACT_EMAIL, CONTACT_SUPPORT_EMAIL],
       description: "Send us your queries and we'll respond within 24 hours"
     },
     {

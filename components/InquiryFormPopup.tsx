@@ -5,7 +5,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
 import { ProductInfo } from "../contexts/InquiryFormContext";
-import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/branding";
+import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_SUPPORT_EMAIL, CONTACT_PHONE } from "@/lib/branding";
 
 interface InquiryFormPopupProps {
   isOpen: boolean;
@@ -374,6 +374,7 @@ const InquiryFormPopup = ({ isOpen, onClose, productInfo }: InquiryFormPopupProp
                 <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-secondary mb-1 sm:mb-2" />
                 <p className="text-xs sm:text-sm text-gray-600">Email us</p>
                 <p className="font-semibold text-secondary text-sm sm:text-base">{CONTACT_EMAIL}</p>
+                <p className="font-semibold text-secondary text-sm sm:text-base">{CONTACT_SUPPORT_EMAIL}</p>
               </div>
               <div className="flex flex-col items-center">
                 <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-secondary mb-1 sm:mb-2" />

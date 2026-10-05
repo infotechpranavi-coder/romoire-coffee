@@ -12,7 +12,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { SITE_NAME, LOGO_SRC } from "@/lib/branding";
+import { SITE_NAME, LOGO_SRC, CONTACT_EMAIL, CONTACT_SUPPORT_EMAIL, CONTACT_PHONE, CONTACT_WHATSAPP } from "@/lib/branding";
 import { PACKAGE_NAV_GROUPS } from "@/lib/packageExperienceCategories";
 
 const Header = () => {
@@ -72,7 +72,7 @@ const Header = () => {
                 </div>
                 <div className="flex items-center space-x-1">
                   <Mail className="h-3 w-3" />
-                  <span className="truncate">sales@skygovoyages.com</span>
+                  <span className="truncate">{CONTACT_EMAIL}</span>
                 </div>
               </div>
               <div className="flex justify-center">
@@ -100,7 +100,11 @@ const Header = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4" />
-                  <span>sales@skygovoyages.com</span>
+                  <span>{CONTACT_EMAIL}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Mail className="h-4 w-4" />
+                  <span>{CONTACT_SUPPORT_EMAIL}</span>
                 </div>
                 <a
                   href="https://wa.me/237683577676"

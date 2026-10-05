@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { TERMS_PAGE_TITLE, TERMS_SECTIONS } from '@/lib/termsContent';
-import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_EMAIL_MAILTO, CONTACT_PHONE, CONTACT_PHONE_TEL, SITE_NAME } from '@/lib/branding';
+import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_EMAIL_MAILTO, CONTACT_SUPPORT_EMAIL, CONTACT_SUPPORT_EMAIL_MAILTO, CONTACT_PHONE, CONTACT_PHONE_TEL, SITE_NAME } from '@/lib/branding';
 
 export const metadata = {
   title: 'Terms of Use, Disclaimer & Limitation of Liability | Explore360',
@@ -74,6 +74,9 @@ export default function TermsPage() {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 text-sm font-semibold">
                 <a href={CONTACT_EMAIL_MAILTO} className="text-[#bd9245] hover:underline">
                   {CONTACT_EMAIL}
+                </a>
+                <a href={CONTACT_SUPPORT_EMAIL_MAILTO} className="text-[#bd9245] hover:underline">
+                  {CONTACT_SUPPORT_EMAIL}
                 </a>
                 <a href={CONTACT_PHONE_TEL} className="text-[#bd9245] hover:underline">
                   {CONTACT_PHONE}

@@ -1,11 +1,10 @@
 'use client';
 
 import { useState, useEffect, FormEvent, ReactNode } from 'react';
-import { ArrowUpRight } from 'lucide-react';
 import { Facebook, Instagram, Twitter, Linkedin } from '@/components/SocialIcons';
 import Link from 'next/link';
 import BrandLogo from '@/components/BrandLogo';
-import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/branding';
+import { SITE_NAME } from '@/lib/branding';
 import { useCategoryLabels } from '@/contexts/CategoryLabelsContext';
 import { getGroupPageHref } from '@/lib/packageExperienceCategories';
 
@@ -100,8 +99,8 @@ const Footer = () => {
                 <BrandLogo size="md" variant="light" />
               </div>
 
-              <p className="max-w-xs text-sm leading-relaxed text-vanilla/75">
-                {SITE_DESCRIPTION.split('.')[0]}.
+              <p className="max-w-[16rem] font-heading text-2xl sm:text-3xl leading-[1.25] font-medium text-cream whitespace-pre-line">
+                {`Café taste.\nNo dairy.\nNo sugar.`}
               </p>
 
               <div className="space-y-3">
@@ -146,7 +145,7 @@ const Footer = () => {
             </div>
 
             <div className="space-y-5 lg:border-l lg:border-vanilla/15 lg:pl-10">
-              <h4 className="font-heading text-base font-semibold text-cream">Coffee Collections</h4>
+              <h4 className="font-heading text-base font-semibold text-cream">Shop our collection</h4>
               <ul className="space-y-3">
                 {coffeeCollectionLinks.map((group) => {
                   if (!group?.slug) return null;
@@ -161,10 +160,10 @@ const Footer = () => {
 
             <div className="space-y-5 lg:border-l lg:border-vanilla/15 lg:pl-10">
               <h4 className="font-heading text-base font-semibold leading-snug text-cream">
-                Subscribe To Our Newsletter
+                join the list
               </h4>
               <p className="text-xs leading-relaxed text-vanilla/70">
-                Sign up for new roasts, brewing tips, and exclusive offers.
+                Sign up for early access and offers
               </p>
               <form
                 onSubmit={handleNewsletter}
@@ -180,10 +179,10 @@ const Footer = () => {
                 />
                 <button
                   type="submit"
-                  className="flex shrink-0 items-center justify-center bg-hazelnut px-4 text-cream transition-colors hover:bg-hazelnut/90"
-                  aria-label="Subscribe"
+                  className="flex shrink-0 items-center justify-center bg-hazelnut px-5 py-3 font-body text-sm font-semibold uppercase tracking-wider text-cream transition-colors hover:bg-hazelnut/90"
+                  aria-label="Join"
                 >
-                  <ArrowUpRight className="h-5 w-5" />
+                  join
                 </button>
               </form>
             </div>
