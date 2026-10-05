@@ -8,12 +8,20 @@ import { ArrowLeft, ExternalLink, Maximize2, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { BlogData } from "@/lib/types";
 import LiveLinkFrame from "@/components/LiveLinkFrame";
+import { useBlogsPageEnabled } from "@/hooks/useBlogsPageEnabled";
 
 const BlogDetailPage = () => {
   const params = useParams();
   const router = useRouter();
+  const { blogsPageEnabled, loading: settingsLoading } = useBlogsPageEnabled();
   const [blog, setBlog] = useState<BlogData | null>(null);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!settingsLoading && !blogsPageEnabled) {
+      router.replace('/');
+    }
+  }, [settingsLoading, blogsPageEnabled, router]);
 
   useEffect(() => {
     const slug = params?.id;
@@ -35,7 +43,7 @@ const BlogDetailPage = () => {
 
   const isLinkBlog = Boolean(blog?.sourceType === 'link' && blog?.externalUrl);
 
-  if (loading) {
+  if (settingsLoading || !blogsPageEnabled || loading) {
     return (
       <div className="min-h-screen bg-cream flex items-center justify-center pt-20">
         <div className="text-center">

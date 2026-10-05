@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react";
 import { Menu, X, Phone, Mail, ChevronDown, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,16 +16,18 @@ import {
 } from "@/components/ui/navigation-menu";
 import { SITE_NAME, LOGO_SRC, CONTACT_EMAIL, CONTACT_SUPPORT_EMAIL, CONTACT_PHONE, CONTACT_WHATSAPP } from "@/lib/branding";
 import { PACKAGE_NAV_GROUPS } from "@/lib/packageExperienceCategories";
+import { useBlogsPageEnabled } from "@/hooks/useBlogsPageEnabled";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { blogsPageEnabled } = useBlogsPageEnabled();
 
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Destinations", href: "/destinations" },
-    { name: "Blogs", href: "/blogs" },
+    ...(blogsPageEnabled ? [{ name: "Blogs", href: "/blogs" }] : []),
     { name: "Contact Us", href: "/contact" },
   ];
 
@@ -206,12 +210,14 @@ const Header = () => {
               </Link>
 
               {/* Blogs */}
-              <Link
-                href="/blogs"
-                className={`transition-colors duration-200 font-medium text-white hover:text-primary ${pathname === "/blogs" ? 'text-primary' : ''}`}
-              >
-                Blogs
-              </Link>
+              {blogsPageEnabled && (
+                <Link
+                  href="/blogs"
+                  className={`transition-colors duration-200 font-medium text-white hover:text-primary ${pathname === "/blogs" ? 'text-primary' : ''}`}
+                >
+                  Blogs
+                </Link>
+              )}
 
               {/* Contact Us */}
               <Link
@@ -298,13 +304,15 @@ const Header = () => {
                 </Link>
 
                 {/* Blogs */}
-                <Link
-                  href="/blogs"
-                  className={`transition-colors duration-200 font-medium text-white hover:text-primary ${pathname === "/blogs" ? 'text-primary' : ''}`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Blogs
-                </Link>
+                {blogsPageEnabled && (
+                  <Link
+                    href="/blogs"
+                    className={`transition-colors duration-200 font-medium text-white hover:text-primary ${pathname === "/blogs" ? 'text-primary' : ''}`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Blogs
+                  </Link>
+                )}
 
                 {/* Contact Us */}
                 <Link

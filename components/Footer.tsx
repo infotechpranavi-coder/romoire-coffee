@@ -7,8 +7,9 @@ import BrandLogo from '@/components/BrandLogo';
 import { SITE_NAME } from '@/lib/branding';
 import { useCategoryLabels } from '@/contexts/CategoryLabelsContext';
 import { getGroupPageHref } from '@/lib/packageExperienceCategories';
+import { useBlogsPageEnabled } from '@/hooks/useBlogsPageEnabled';
 
-const quickLinks = [
+const quickLinksBase = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Products', href: '/packages' },
@@ -31,6 +32,7 @@ const FooterLink = ({ href, children }: { href: string; children: ReactNode }) =
 
 const Footer = () => {
   const { navGroups } = useCategoryLabels();
+  const { blogsPageEnabled } = useBlogsPageEnabled();
   const [email, setEmail] = useState('');
   const [settings, setSettings] = useState<any>({
     facebookEnabled: true,
@@ -44,6 +46,10 @@ const Footer = () => {
     youtubeEnabled: true,
     youtubeUrl: '',
   });
+
+  const quickLinks = blogsPageEnabled
+    ? quickLinksBase
+    : quickLinksBase.filter((link) => link.href !== '/blogs');
 
   const coffeeCollectionLinks = (() => {
     const isSubscribeGroup = (slug?: string, label?: string) => {

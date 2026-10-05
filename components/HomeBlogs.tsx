@@ -8,6 +8,7 @@ import { Playfair_Display } from 'next/font/google';
 import { BlogData } from '@/lib/types';
 import { SITE_NAME } from '@/lib/branding';
 import { getReadTime, formatBlogDate } from '@/data/homeBlogsData';
+import { useBlogsPageEnabled } from '@/hooks/useBlogsPageEnabled';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -67,6 +68,7 @@ interface HomeBlogsProps {
 }
 
 const HomeBlogs = ({ initialBlogs }: HomeBlogsProps) => {
+  const { blogsPageEnabled } = useBlogsPageEnabled();
   const [blogs, setBlogs] = useState<BlogData[]>(
     initialBlogs ? initialBlogs.slice(0, 2) : []
   );
@@ -108,6 +110,8 @@ const HomeBlogs = ({ initialBlogs }: HomeBlogsProps) => {
   }, [initialBlogs]);
 
   const displayBlogs = blogs.slice(0, 2);
+
+  if (!blogsPageEnabled) return null;
 
   return (
     <section id="blogs" className="bg-cream py-16 md:py-20 lg:py-24">

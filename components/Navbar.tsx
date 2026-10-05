@@ -11,6 +11,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { useInquiryForm } from "../contexts/InquiryFormContext";
 import { SITE_NAME, LOGO_SRC, CONTACT_EMAIL, CONTACT_SUPPORT_EMAIL } from "@/lib/branding";
 import { PACKAGE_EXPERIENCE_CATEGORIES } from "@/lib/packageExperienceCategories";
+import { useBlogsPageEnabled } from "@/hooks/useBlogsPageEnabled";
 
 interface SearchPackage {
   _id: string;
@@ -45,6 +46,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { openForm } = useInquiryForm();
+  const { blogsPageEnabled } = useBlogsPageEnabled();
 
   // Initialize search term from URL on component mount
   useEffect(() => {
@@ -100,7 +102,7 @@ const Navbar = () => {
         href: category.href,
       })),
     },
-    { name: 'Travel Blog ', href: '/blogs' },
+    ...(blogsPageEnabled ? [{ name: 'Travel Blog ', href: '/blogs' }] : []),
     { name: 'Contact', href: '/contact' },
   ];
 

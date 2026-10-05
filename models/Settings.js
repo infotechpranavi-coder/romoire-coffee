@@ -6,6 +6,7 @@ const SettingsSchema = new mongoose.Schema({
   destinationsSection: { type: Boolean, default: true },
   exploreSection: { type: Boolean, default: true },
   testimonialsSection: { type: Boolean, default: true },
+  blogsPageEnabled: { type: Boolean, default: true },
   
   // Social Media Settings
   facebookUrl: { type: String, default: "" },

@@ -8,6 +8,7 @@ const SETTINGS_DEFAULTS = {
   destinationsSection: true,
   exploreSection: true,
   testimonialsSection: true,
+  blogsPageEnabled: true,
   facebookUrl: '',
   facebookEnabled: true,
   instagramUrl: '',

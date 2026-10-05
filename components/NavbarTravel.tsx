@@ -9,6 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useCart } from "@/contexts/CartContext";
 import BrandLogo from "@/components/BrandLogo";
 import { useCategoryLabels } from "@/contexts/CategoryLabelsContext";
+import { useBlogsPageEnabled } from "@/hooks/useBlogsPageEnabled";
 
 interface NavProduct {
   _id: string;
@@ -78,6 +79,7 @@ const NavbarTravel = () => {
   const router = useRouter();
   const { itemCount, openCart } = useCart();
   const [cartReady, setCartReady] = useState(false);
+  const { blogsPageEnabled } = useBlogsPageEnabled();
 
   useEffect(() => {
     setCartReady(true);
@@ -184,7 +186,7 @@ const NavbarTravel = () => {
       href: '/packages',
       isProducts: true,
     },
-    { name: 'Blogs', href: '/blogs' },
+    ...(blogsPageEnabled ? [{ name: 'Blogs', href: '/blogs' }] : []),
     { name: 'Gallery', href: '/gallery' },
   ];
 

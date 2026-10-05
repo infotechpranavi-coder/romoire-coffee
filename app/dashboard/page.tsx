@@ -135,6 +135,7 @@ export default function DashboardPage() {
     destinationsSection: true,
     exploreSection: true,
     testimonialsSection: true,
+    blogsPageEnabled: true,
     facebookUrl: "",
     facebookEnabled: true,
     instagramUrl: "",
@@ -2891,6 +2892,45 @@ export default function DashboardPage() {
                         
                         <div className="flex items-center gap-2">
                           {siteSettings.testimonialsSection ? (
+                            <Badge className="bg-green-100 text-green-700 hover:bg-green-100 border-none font-black px-3 py-1 rounded-lg text-[10px] uppercase tracking-widest">
+                              <CheckCircle2 className="h-3 w-3 mr-1" /> Visible Live
+                            </Badge>
+                          ) : (
+                            <Badge className="bg-gray-200 text-gray-500 hover:bg-gray-200 border-none font-black px-3 py-1 rounded-lg text-[10px] uppercase tracking-widest">
+                              <AlertCircle className="h-3 w-3 mr-1" /> Hidden
+                            </Badge>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Blogs Page Toggle */}
+                    <div className={cn(
+                      "p-8 rounded-[32px] border-2 transition-all duration-300 flex flex-col justify-between h-full",
+                      siteSettings.blogsPageEnabled 
+                        ? "bg-cream border-hazelnut/20 shadow-xl shadow-[#5A0D0D]/5" 
+                        : "bg-gray-50/50 border-gray-100"
+                    )}>
+                      <div className="flex items-start justify-between mb-6">
+                        <div className={cn(
+                          "w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg",
+                          siteSettings.blogsPageEnabled ? "bg-hazelnut text-white shadow-hazelnut/20" : "bg-gray-200 text-gray-400"
+                        )}>
+                          <FileText className="h-7 w-7" />
+                        </div>
+                        <Switch 
+                          disabled={settingsLoading}
+                          checked={siteSettings.blogsPageEnabled !== false} 
+                          onCheckedChange={(val) => updateSetting('blogsPageEnabled', val)}
+                          className="data-[state=checked]:bg-hazelnut"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-black text-espresso uppercase tracking-tight mb-2">Blogs Page</h3>
+                        <p className="text-sm font-medium text-gray-500 mb-6">Show or hide the Blogs page everywhere — navbar, footer, and /blogs. Turn off when you are not ready to publish.</p>
+                        
+                        <div className="flex items-center gap-2">
+                          {siteSettings.blogsPageEnabled !== false ? (
                             <Badge className="bg-green-100 text-green-700 hover:bg-green-100 border-none font-black px-3 py-1 rounded-lg text-[10px] uppercase tracking-widest">
                               <CheckCircle2 className="h-3 w-3 mr-1" /> Visible Live
                             </Badge>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlogData } from "@/lib/types";
 import { SITE_NAME } from "@/lib/branding";
+import { useBlogsPageEnabled } from "@/hooks/useBlogsPageEnabled";
 
 const BLOG_CATEGORIES = ['Travel Tips', 'Destinations', 'Lifestyle', 'News', 'Experience'] as const;
 
@@ -29,11 +31,19 @@ function formatDate(dateStr: string) {
 }
 
 const BlogsPage = () => {
+  const router = useRouter();
+  const { blogsPageEnabled, loading: settingsLoading } = useBlogsPageEnabled();
   const [blogs, setBlogs] = useState<BlogData[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [sortBy, setSortBy] = useState("latest");
+
+  useEffect(() => {
+    if (!settingsLoading && !blogsPageEnabled) {
+      router.replace('/');
+    }
+  }, [settingsLoading, blogsPageEnabled, router]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -143,6 +153,14 @@ const BlogsPage = () => {
       </Card>
     </Link>
   );
+
+  if (settingsLoading || !blogsPageEnabled) {
+    return (
+      <div className="min-h-screen bg-cream flex items-center justify-center pt-20">
+        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-cream">
