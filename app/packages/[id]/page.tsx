@@ -47,6 +47,7 @@ import { SITE_NAME, brandedText } from "@/lib/branding";
 import { getCategoryByValue } from "@/lib/packageExperienceCategories";
 import { useInquiryForm } from "@/contexts/InquiryFormContext";
 import TourPackageSections from "@/components/TourPackageSections";
+import ProductDetailView from "@/components/ProductDetailView";
 import type { PackageData } from "@/lib/types";
 
 // Utility function to render text with bold formatting
@@ -123,6 +124,7 @@ interface Package {
   }>;
   bookings: number;
   rating: number;
+  isComingSoon?: boolean;
 }
 
 const PackageDetailPage = () => {
@@ -2503,6 +2505,10 @@ Key Highlights`,
   );
 
   const experienceCategory = getCategoryByValue(packageData.packageCategory);
+
+  if (!isUpcomingTourPackage) {
+    return <ProductDetailView package={packageData} />;
+  }
 
   return (
     <div className={`min-h-screen ${playfair.variable} ${cormorant.variable} ${poppins.variable} font-sans bg-cream`}>
