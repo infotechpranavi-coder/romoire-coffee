@@ -1,6 +1,7 @@
 import connectDB from '@/lib/mongodb';
 import Enquiry from '@/models/Enquiry';
 import { isConnected } from '@/lib/mongodb';
+import { sendEnquiryNotificationEmail } from '@/lib/mailer';
 
 function buildEnquiryMessage(body) {
   if (body.message?.trim()) return body.message.trim();
@@ -63,6 +64,19 @@ export default async function handler(req, res) {
       }
 
       const enquiry = await Enquiry.create(payload);
+
+      // Asynchronously dispatch email notification to support@romoire.com & ghodehimanshu453@gmail.com
+      sendEnquiryNotificationEmail({
+        name: payload.name,
+        email: payload.email,
+        phone: payload.phone,
+        subject: payload.subject,
+        message: payload.message,
+        orderNumber: req.body.orderNumber,
+      }).catch((mailErr) => {
+        console.error('[Enquiry API] Failed to send email notification:', mailErr);
+      });
+
       res.status(201).json({ success: true, data: enquiry });
     } catch (error) {
       console.error(error);
