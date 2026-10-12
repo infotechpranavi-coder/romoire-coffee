@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, FormEvent, ReactNode } from 'react';
-import { Facebook, Instagram, Twitter, Linkedin } from '@/components/SocialIcons';
+import { Facebook, Instagram } from '@/components/SocialIcons';
 import Link from 'next/link';
 import BrandLogo from '@/components/BrandLogo';
 import { SITE_NAME } from '@/lib/branding';
@@ -36,14 +36,14 @@ const Footer = () => {
   const [email, setEmail] = useState('');
   const [settings, setSettings] = useState<any>({
     facebookEnabled: true,
-    facebookUrl: '',
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61594131054227',
     instagramEnabled: true,
-    instagramUrl: '',
-    twitterEnabled: true,
+    instagramUrl: 'https://www.instagram.com/romoire_social/',
+    twitterEnabled: false,
     twitterUrl: '',
-    linkedinEnabled: true,
+    linkedinEnabled: false,
     linkedinUrl: '',
-    youtubeEnabled: true,
+    youtubeEnabled: false,
     youtubeUrl: '',
   });
 
@@ -89,10 +89,18 @@ const Footer = () => {
   };
 
   const socialItems = [
-    { key: 'facebook', enabled: settings?.facebookEnabled, url: settings?.facebookUrl, Icon: Facebook },
-    { key: 'twitter', enabled: settings?.twitterEnabled, url: settings?.twitterUrl, Icon: Twitter },
-    { key: 'instagram', enabled: settings?.instagramEnabled, url: settings?.instagramUrl, Icon: Instagram },
-    { key: 'linkedin', enabled: settings?.linkedinEnabled, url: settings?.linkedinUrl, Icon: Linkedin },
+    {
+      key: 'facebook',
+      enabled: settings?.facebookEnabled !== false,
+      url: settings?.facebookUrl || 'https://www.facebook.com/profile.php?id=61594131054227',
+      Icon: Facebook,
+    },
+    {
+      key: 'instagram',
+      enabled: settings?.instagramEnabled !== false,
+      url: settings?.instagramUrl || 'https://www.instagram.com/romoire_social/',
+      Icon: Instagram,
+    },
   ].filter((item) => item.enabled);
 
   return (
@@ -126,7 +134,7 @@ const Footer = () => {
                       </Link>
                     ))
                   ) : (
-                    [Facebook, Twitter, Instagram].map((Icon, i) => (
+                    [Facebook, Instagram].map((Icon, i) => (
                       <span
                         key={i}
                         className="flex h-10 w-10 items-center justify-center rounded-sm border border-vanilla/20 text-cream"
@@ -166,7 +174,7 @@ const Footer = () => {
 
             <div className="space-y-5 lg:border-l lg:border-vanilla/15 lg:pl-10">
               <h4 className="font-heading text-base font-semibold leading-snug text-cream">
-                join the list
+                Join the list
               </h4>
               <p className="text-xs leading-relaxed text-vanilla/70">
                 Sign up for early access and offers

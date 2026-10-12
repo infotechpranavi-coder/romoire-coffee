@@ -36,11 +36,11 @@ export const DEFAULT_SERVICES_TEXT =
 
 export const CONTACT_EMAIL = 'hello@romoire.com';
 export const CONTACT_SUPPORT_EMAIL = 'support@romoire.com';
-export const CONTACT_PHONE = '+91 877919 2482';
-export const CONTACT_PHONE_TEL = 'tel:+918779192482';
+export const CONTACT_PHONE = '+918369669275';
+export const CONTACT_PHONE_TEL = 'tel:+918369669275';
 export const CONTACT_EMAIL_MAILTO = 'mailto:hello@romoire.com';
 export const CONTACT_SUPPORT_EMAIL_MAILTO = 'mailto:support@romoire.com';
-export const CONTACT_WHATSAPP = 'https://wa.me/918779192482';
+export const CONTACT_WHATSAPP = 'https://wa.me/918369669275';
 export const CONTACT_ADDRESS = 'Andheri West, Mumbai, Maharashtra';
 export const CONTACT_ADDRESS_LINE =
   'Ravance Ventures LLP · Andheri West, Mumbai, Maharashtra';
